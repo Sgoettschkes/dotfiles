@@ -1,0 +1,36 @@
+[user]
+	name = Sebastian Göttschkes
+	email = sebastian.goettschkes@googlemail.com
+[core]
+    excludesfile = ~/.gitignore
+	editor = vim
+[alias]
+	# standard
+	br = branch
+	ci = commit
+	cl = clone
+	co = checkout
+	cp = cherry-pick
+	dc = diff --cached
+	diff = diff --word-diff
+	fe = fetch
+	pu = push origin master
+	st = status -s
+
+	# log
+	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+
+	# reset
+	r = reset
+	r1 = reset HEAD^
+	r2 = reset HEAD^^
+	rh = reset --hard
+	rh1 = reset HEAD^ --hard
+	rh2 = reset HEAD^^ --hard
+
+	# stash
+	sl = stash list
+	sa = stash apply
+	ss = stash save
