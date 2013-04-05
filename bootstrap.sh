@@ -8,5 +8,9 @@ create_link () {
 
 BASEPATH=`pwd`
 
+# git
 create_link $BASEPATH/git/gitconfig ~/.gitconfig
 create_link $BASEPATH/git/gitignore ~/.gitignore
+
+# vim
+create_link $BASEPATH/vim/vimrc ~/.vimrc

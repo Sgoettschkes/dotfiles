@@ -1,0 +1,12 @@
+" Template managed by Sgoettschkes/dotfiles
+" Do not change
+
+syntax on
+
+set number
+set tabstop=4 shiftwidth=4 expandtab 
+
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
