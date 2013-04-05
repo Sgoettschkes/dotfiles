@@ -1,0 +1,33 @@
+# Template managed by Sgoettschkes/dotfiles
+# Do not change
+
+# best clear ever
+alias cl='clear && pwd && ls -AFG'
+
+# Making cd easier
+alias u='cd .. && ll'
+alias ..='cd ..'
+alias .2='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
+# everything is vim
+alias vi=vim
+alias svim='sudo vi'
+alias edit=vim
+
+# do not delete / or prompt if deleting more than 3 files at a time
+alias rm='rm -I --preserve-root'
+ 
+# Parenting changing perms on / #
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
+# better su
+alias su='sudo -i'
+alias root=su
+
+# advancing system tools
+alias psx="ps aux | grep $1"
