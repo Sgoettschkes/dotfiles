@@ -16,5 +16,8 @@ create_link $BASEPATH/bash/bashrc ~/.bashrc
 create_link $BASEPATH/git/gitconfig ~/.gitconfig
 create_link $BASEPATH/git/gitignore ~/.gitignore
 
+# screen
+create_link $BASEPATH/screen/screenrc ~/.screenrc
+
 # vim
 create_link $BASEPATH/vim/vimrc ~/.vimrc
