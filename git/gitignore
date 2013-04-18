@@ -31,6 +31,10 @@
 *.sql
 *.sqlite
 
+# EDITORs #
+###########
+*.swp
+
 # IDEs #
 ########
 .idea
