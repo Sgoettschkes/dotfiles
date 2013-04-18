@@ -6,6 +6,10 @@ syntax on
 set number
 set tabstop=4 shiftwidth=4 expandtab 
 
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
 noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
