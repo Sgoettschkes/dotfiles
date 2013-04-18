@@ -1,12 +1,6 @@
 # Template managed by Sgoettschkes/dotfiles
 # Do not change
 
-[user]
-	name = Sebastian Göttschkes
-	email = sebastian.goettschkes@googlemail.com
-[core]
-    excludesfile = ~/.gitignore
-	editor = vim
 [alias]
 	# standard
 	br = branch
@@ -15,6 +9,7 @@
 	co = checkout
 	cp = cherry-pick
 	dc = diff --cached
+    df = diff
 	diff = diff --word-diff
 	fe = fetch
 	pu = push origin master
@@ -35,5 +30,22 @@
 
 	# stash
 	sl = stash list
-	sa = stash apply
+	sa = stash pop
 	ss = stash save
+
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    ui = auto
+
+[core]
+	editor = vim
+    excludesfile = ~/.gitignore
+
+[push]
+    default = matching
+
+[user]
+	name = Sebastian Göttschkes
+	email = sebastian.goettschkes@googlemail.com
