@@ -21,3 +21,6 @@ create_link $BASEPATH/screen/screenrc ~/.screenrc
 
 # vim
 create_link $BASEPATH/vim/vimrc ~/.vimrc
+
+#ghci
+create_link $BASEPATH/ghc/ghci.conf ~/.ghc/ghci.conf
