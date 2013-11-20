@@ -29,7 +29,7 @@ copy $BASEPATH/git/gitconfig ~/.gitconfig
 #copy $BASEPATH/git/gitignore ~/.gitignore
 
 # vim
-#copy $BASEPATH/vim/vimrc ~/.vimrc
+copy $BASEPATH/vim/vimrc ~/.vimrc
 
 # ghci
 #copy $BASEPATH/ghc/ghci.conf ~/.ghc/ghci.conf
