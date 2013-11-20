@@ -28,9 +28,6 @@ copy $BASEPATH/bash/bashrc ~/.bashrc
 copy $BASEPATH/git/gitconfig ~/.gitconfig
 #copy $BASEPATH/git/gitignore ~/.gitignore
 
-# screen
-#copy $BASEPATH/screen/screenrc ~/.screenrc
-
 # vim
 #copy $BASEPATH/vim/vimrc ~/.vimrc
 
