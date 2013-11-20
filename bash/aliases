@@ -12,6 +12,7 @@ alias cl='clear && pwd && ls -AFG'
 
 # Shortcuts
 alias g=git
+#alias va=vagrant
 alias v=vim
 
 # Some ls aliases
