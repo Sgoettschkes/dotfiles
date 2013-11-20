@@ -25,7 +25,7 @@ copy $BASEPATH/bash/aliases ~/.aliases
 copy $BASEPATH/bash/bashrc ~/.bashrc
 
 # git
-#copy $BASEPATH/git/gitconfig ~/.gitconfig
+copy $BASEPATH/git/gitconfig ~/.gitconfig
 #copy $BASEPATH/git/gitignore ~/.gitignore
 
 # screen
