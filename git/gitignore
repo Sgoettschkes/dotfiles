@@ -1,4 +1,4 @@
-# Template managed by Sgoettschkes/dotfiles
+# File managed by Sgoettschkes/dotfiles
 # Do not change
 
 # Global gitignore
@@ -50,7 +50,6 @@ nbproject
 ._*
 .Spotlight-V100
 .Trashes
-desktp.ini
-Icon?
+desktop.ini
 ehthumbs.db
 Thumbs.db

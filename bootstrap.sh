@@ -26,7 +26,7 @@ copy $BASEPATH/bash/bashrc ~/.bashrc
 
 # git
 copy $BASEPATH/git/gitconfig ~/.gitconfig
-#copy $BASEPATH/git/gitignore ~/.gitignore
+copy $BASEPATH/git/gitignore ~/.gitignore
 
 # vim
 copy $BASEPATH/vim/vimrc ~/.vimrc
