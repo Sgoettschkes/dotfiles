@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# File managed by Sgoettschkes/dotfiles
+# Do not change
+
+TAG=$1
+VALUE=$2
+FILES=$3
+ 
+if [ -z "$TAG" ]; then
+    echo "No TAG given"
+    exit
+fi
+
+if [ -z "$VALUE" ]; then
+    echo "No VALUE given"
+    exit
+fi
+
+if [ -z "$FILES" ]; then
+    FILES="*"
+fi
+
+echo "Changing $TAG to $VALUE for $FILES"
+echo ""
+
+echo "OLD values"
+metaflac --show-tag=$TAG $FILES
+
+metaflac --remove-tag=$TAG $FILES
+metaflac --set-tag=$TAG="$VALUE" $FILES
+
+echo ""
+echo "NEW values"
+metaflac --show-tag=$TAG $FILES
