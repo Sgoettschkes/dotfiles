@@ -38,6 +38,5 @@ copy $BASEPATH/bash/bashrc ~/.bashrc
 #copy $BASEPATH/ghc/ghci.conf ~/.ghc/ghci.conf
 
 # bin
-#copy $BASEPATH/bin/backup ~/bin/backup
-#copy $BASEPATH/bin/changeTag ~/bin/changeTag
-#chmod 744 ~/bin/*
+copy $BASEPATH/bin/changeTag ~/bin/changeTag
+chmod 744 ~/bin/*

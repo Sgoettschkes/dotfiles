@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# File managed by Sgoettschkes/dotfiles
-# Do not change
-
-rsync -azv --delete --progress /home/sebastian/Music /media/sebastian/BIG/
-rsync -azv --delete --progress /home/sebastian/mp3 /media/sebastian/BIG/
