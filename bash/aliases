@@ -1,0 +1,28 @@
+# Dir navigation
+alias u='cd .. && ll'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ~='cd ~'
+
+# Misc
+alias cl='clear && pwd && ls -AFG'
+
+# Shortcuts
+alias g=git
+alias v=vim
+
+# Some ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Little helpers
+alias rm='rm -I --preserve-root'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+alias su='sudo -i'
+alias root=su
+
+# Advanced system tools
+alias psx="ps aux | grep $1"

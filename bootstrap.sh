@@ -21,23 +21,23 @@ copy () {
 BASEPATH=`pwd`
 
 # bash
-copy $BASEPATH/bash/bash_aliases ~/.bash_aliases
+copy $BASEPATH/bash/aliases ~/.aliases
 copy $BASEPATH/bash/bashrc ~/.bashrc
 
 # git
-copy $BASEPATH/git/gitconfig ~/.gitconfig
-copy $BASEPATH/git/gitignore ~/.gitignore
+#copy $BASEPATH/git/gitconfig ~/.gitconfig
+#copy $BASEPATH/git/gitignore ~/.gitignore
 
 # screen
-copy $BASEPATH/screen/screenrc ~/.screenrc
+#copy $BASEPATH/screen/screenrc ~/.screenrc
 
 # vim
-copy $BASEPATH/vim/vimrc ~/.vimrc
+#copy $BASEPATH/vim/vimrc ~/.vimrc
 
 # ghci
-copy $BASEPATH/ghc/ghci.conf ~/.ghc/ghci.conf
+#copy $BASEPATH/ghc/ghci.conf ~/.ghc/ghci.conf
 
 # bin
-copy $BASEPATH/bin/backup ~/bin/backup
-copy $BASEPATH/bin/changeTag ~/bin/changeTag
-chmod 744 ~/bin/*
+#copy $BASEPATH/bin/backup ~/bin/backup
+#copy $BASEPATH/bin/changeTag ~/bin/changeTag
+#chmod 744 ~/bin/*
