@@ -4,7 +4,7 @@
 # Dir navigation
 alias u='cd .. && ll'
 alias ..='cd ..'
-alias ...='cd ../..'
+alias ..2='cd ../..'
 alias ~='cd ~'
 
 # Misc
@@ -30,7 +30,3 @@ alias root=su
 
 # Advanced system tools
 alias psx="ps aux | grep $1"
-
-# Some phun
-alias lost="PS1=\">: \""
-alias win="PS1=\"C:\> \""
