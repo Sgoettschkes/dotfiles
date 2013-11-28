@@ -5,11 +5,19 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-syntax on
+syntax enable
 
+" Use solarized
+let g:solarized_termcolors=256
+se t_Co=16
+set background=dark
+colorscheme solarized
+
+" Tabs
 set number
 set tabstop=4 shiftwidth=4 expandtab 
 
+" Prevent cheating
 inoremap <Up> <NOP>
 inoremap <Down> <NOP>
 inoremap <Left> <NOP>
