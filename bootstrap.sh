@@ -31,6 +31,7 @@ copy $BASEPATH/git/gitignore ~/.gitignore
 # vim
 copy $BASEPATH/vim/vimrc ~/.vimrc
 copy $BASEPATH/vim/solarized.vim ~/.vim/colors/solarized.vim
+copy $BASEPATH/vim/supertab.vim ~/.vim/plugin/supertab.vim
 
 # ghci
 #copy $BASEPATH/ghc/ghci.conf ~/.ghc/ghci.conf
