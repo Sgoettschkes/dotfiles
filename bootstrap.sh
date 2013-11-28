@@ -33,6 +33,7 @@ copy $BASEPATH/vim/vimrc ~/.vimrc
 copy $BASEPATH/vim/solarized.vim ~/.vim/colors/solarized.vim
 copy $BASEPATH/vim/supertab.vim ~/.vim/plugin/supertab.vim
 copy $BASEPATH/vim/matchit.vim ~/.vim/plugin/matchit.vim
+copy $BASEPATH/vim/searchcomplete.vim ~/.vim/plugin/searchcomplete.vim
 
 # ghci
 #copy $BASEPATH/ghc/ghci.conf ~/.ghc/ghci.conf
