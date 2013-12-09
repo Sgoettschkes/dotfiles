@@ -23,6 +23,7 @@ BASEPATH=`pwd`
 # bash
 copy $BASEPATH/bash/aliases ~/.aliases
 copy $BASEPATH/bash/bashrc ~/.bashrc
+copy $BASEPATH/bash/profile ~/.profile
 
 # git
 copy $BASEPATH/git/gitconfig ~/.gitconfig
