@@ -35,8 +35,9 @@ copy $BASEPATH/vim/supertab.vim ~/.vim/plugin/supertab.vim
 copy $BASEPATH/vim/matchit.vim ~/.vim/plugin/matchit.vim
 copy $BASEPATH/vim/searchcomplete.vim ~/.vim/plugin/searchcomplete.vim
 
-# ghci
+# haskell
 copy $BASEPATH/haskell/ghci.conf ~/.ghc/ghci.conf
+copy $BASEPATH/haskell/cabal_config ~/.cabal/config
 
 # bin
 copy $BASEPATH/bin/changeTag ~/bin/changeTag
