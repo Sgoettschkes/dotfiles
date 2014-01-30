@@ -11,6 +11,9 @@
     pu = push origin master
     st = status -s
 
+[branch]
+	autosetuprebase = always
+
 [color]
     diff = auto
     status = auto
