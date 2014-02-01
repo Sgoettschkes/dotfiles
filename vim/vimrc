@@ -26,3 +26,6 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
+
+" Use normal bash tab completion for files
+set wildmode=longest,list
