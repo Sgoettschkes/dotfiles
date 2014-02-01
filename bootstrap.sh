@@ -43,3 +43,6 @@ copy $BASEPATH/haskell/cabal_config ~/.cabal/config
 # bin
 copy $BASEPATH/bin/changeTag ~/bin/changeTag
 chmod 744 ~/bin/*
+
+# config
+copy $BASEPATH/config/redshift.conf ~/.config/redshift.conf
