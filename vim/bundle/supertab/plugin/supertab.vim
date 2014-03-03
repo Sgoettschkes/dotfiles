@@ -1,6 +1,3 @@
-" File managed by Sgoettschkes/dotfiles
-" Do not change
-
 " Author: Eric Van Dewoestine <ervandew@gmail.com>
 "         Original concept and versions up to 0.32 written by
 "         Gergely Kontra <kgergely@mcl.hu>
