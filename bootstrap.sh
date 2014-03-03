@@ -31,6 +31,7 @@ copy $BASEPATH/git/gitignore ~/.gitignore
 
 # vim
 copy $BASEPATH/vim/vimrc ~/.vimrc
+copy $BASEPATH/vim/bundle/vim-pathogen/autoload/pathogen.vim ~/.vim/bundle/vim-pathogen/autoload/pathogen.vim
 copy $BASEPATH/vim/solarized.vim ~/.vim/colors/solarized.vim
 copy $BASEPATH/vim/supertab.vim ~/.vim/plugin/supertab.vim
 copy $BASEPATH/vim/matchit.vim ~/.vim/plugin/matchit.vim
