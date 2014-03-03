@@ -18,6 +18,21 @@ copy () {
     cp $1 $2
 }
 
+symlink () {
+    # Check if target exists
+    if [ -e $2 ]; then
+        echo "Target $2 exists; please remove"
+        return
+    fi
+    DIR=`dirname $2`
+    if [ ! -d $DIR ]; then
+        echo "Folder $DIR does not exist; creating"
+        mkdir -p $DIR
+    fi
+    ln -s $1 $2
+    echo "Symlink $2 for target $1 created"
+}
+
 BASEPATH=`pwd`
 
 # bash
@@ -30,8 +45,9 @@ copy $BASEPATH/git/gitconfig ~/.gitconfig
 copy $BASEPATH/git/gitignore ~/.gitignore
 
 # vim
-copy $BASEPATH/vim/vimrc ~/.vimrc
-copy $BASEPATH/vim/bundle/vim-pathogen/autoload/pathogen.vim ~/.vim/bundle/vim-pathogen/autoload/pathogen.vim
+symlink $BASEPATH/vim/vimrc ~/.vimrc
+symlink $BASEPATH/vim/bundle ~/.vim/bundle
+# copy $BASEPATH/vim/bundle/vim-pathogen/autoload/pathogen.vim ~/.vim/bundle/vim-pathogen/autoload/pathogen.vim
 copy $BASEPATH/vim/solarized.vim ~/.vim/colors/solarized.vim
 copy $BASEPATH/vim/supertab.vim ~/.vim/plugin/supertab.vim
 copy $BASEPATH/vim/matchit.vim ~/.vim/plugin/matchit.vim
