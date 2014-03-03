@@ -21,7 +21,7 @@ copy () {
 symlink () {
     # Check if target exists
     if [ -e $2 ]; then
-        echo "Target $2 exists; please remove"
+        echo "Target $2 exists; Aborting"
         return
     fi
     DIR=`dirname $2`
@@ -36,9 +36,10 @@ symlink () {
 BASEPATH=`pwd`
 
 # bash
-copy $BASEPATH/bash/aliases ~/.aliases
-copy $BASEPATH/bash/bashrc ~/.bashrc
-copy $BASEPATH/bash/profile ~/.profile
+symlink $BASEPATH/bash/aliases ~/.aliases
+symlink $BASEPATH/bash/bashrc ~/.bashrc
+symlink $BASEPATH/bash/profile ~/.profile
+source ~/.profile
 
 # git
 copy $BASEPATH/git/gitconfig ~/.gitconfig
