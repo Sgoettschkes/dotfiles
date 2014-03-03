@@ -47,7 +47,6 @@ copy $BASEPATH/git/gitignore ~/.gitignore
 # vim
 symlink $BASEPATH/vim/vimrc ~/.vimrc
 symlink $BASEPATH/vim/bundle ~/.vim/bundle
-copy $BASEPATH/vim/matchit.vim ~/.vim/plugin/matchit.vim
 copy $BASEPATH/vim/searchcomplete.vim ~/.vim/plugin/searchcomplete.vim
 
 # haskell

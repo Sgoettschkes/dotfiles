@@ -1,6 +1,3 @@
-" File managed by Sgoettschkes/dotfiles
-" Do not change
-
 "  matchit.vim: (global plugin) Extended "%" matching
 "  Last Change: Fri Jan 25 10:00 AM 2008 EST
 "  Maintainer:  Benji Fisher PhD   <benji@member.AMS.org>
