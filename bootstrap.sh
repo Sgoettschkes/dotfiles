@@ -34,6 +34,10 @@ symlink () {
 }
 
 BASEPATH=`pwd`
+ENV=`uname -o`
+
+echo "--- STARTING ---"
+echo "Detected ENV: $ENV"
 
 # bash
 symlink $BASEPATH/bash/aliases ~/.aliases
@@ -42,8 +46,13 @@ symlink $BASEPATH/bash/profile ~/.profile
 source ~/.profile
 
 # git
-copy $BASEPATH/git/gitconfig ~/.gitconfig
-copy $BASEPATH/git/gitignore ~/.gitignore
+if [ $ENV == "Cygwin" ]; then
+    copy $BASEPATH/git/gitconfig ~/.gitconfig
+    copy $BASEPATH/git/gitignore ~/.gitignore
+else
+    symlink $BASEPATH/git/gitconfig ~/.gitconfig
+    symlink $BASEPATH/git/gitignore ~/.gitignore
+fi
 
 # vim
 symlink $BASEPATH/vim/vimrc ~/.vimrc
@@ -59,3 +68,5 @@ chmod 744 ~/bin/*
 
 # config
 copy $BASEPATH/config/redshift.conf ~/.config/redshift.conf
+
+echo "--- STOPPING ---"
