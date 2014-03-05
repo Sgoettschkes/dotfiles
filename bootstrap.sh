@@ -59,8 +59,8 @@ symlink $BASEPATH/vim/vimrc ~/.vimrc
 symlink $BASEPATH/vim/bundle ~/.vim/bundle
 
 # haskell
-copy $BASEPATH/haskell/ghci.conf ~/.ghc/ghci.conf
-copy $BASEPATH/haskell/cabal_config ~/.cabal/config
+symlink $BASEPATH/haskell/ghci.conf ~/.ghc/ghci.conf
+symlink $BASEPATH/haskell/cabal_config ~/.cabal/config
 
 # bin
 copy $BASEPATH/bin/changeTag ~/bin/changeTag
