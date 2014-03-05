@@ -63,10 +63,10 @@ symlink $BASEPATH/haskell/ghci.conf ~/.ghc/ghci.conf
 symlink $BASEPATH/haskell/cabal_config ~/.cabal/config
 
 # bin
-copy $BASEPATH/bin/changeTag ~/bin/changeTag
-chmod 744 ~/bin/*
+symlink $BASEPATH/bin/changeTag ~/bin/changeTag
+chmod 744 $BASEPATH/bin/*
 
 # config
-copy $BASEPATH/config/redshift.conf ~/.config/redshift.conf
+symlink $BASEPATH/config/redshift.conf ~/.config/redshift.conf
 
 echo "--- STOPPING ---"
