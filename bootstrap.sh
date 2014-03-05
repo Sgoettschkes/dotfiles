@@ -1,11 +1,9 @@
 #!/bin/bash
 
 copy () {
-    # Check if file exists; if so, backup it
+    # Check if file exists; if so, delete
     if [ -f $2 ]; then
-        echo "File $2 exists; creating backup"
-        mkdir -p ~/.dotfiles/backup/
-        cp -f $2 ~/.dotfiles/backup/
+        echo "File $2 exists; Will be deleted"
         rm -f $2
     fi
     # Check if folder exists; if not, create it
@@ -21,7 +19,11 @@ copy () {
 symlink () {
     # Check if target exists
     if [ -e $2 ]; then
-        echo "Target $2 exists; Aborting"
+        if [ "$(readlink $2)" == "$1" ]; then
+            echo "Target $2 already in place"
+        else
+            echo "Target $2 exists; Aborting"
+        fi
         return
     fi
     DIR=`dirname $2`
