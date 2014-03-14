@@ -57,7 +57,11 @@ else
 fi
 
 # vim
-symlink $BASEPATH/vim/vimrc ~/.vimrc
+if [ $ENV == "Cygwin" ]; then
+    symlink $BASEPATH/vim/vimrccygwin ~/.vimrc
+else
+    symlink $BASEPATH/vim/vimrc ~/.vimrc
+fi
 symlink $BASEPATH/vim/bundle ~/.vim/bundle
 
 # haskell
