@@ -36,11 +36,7 @@ symlink $BASEPATH/git/gitconfig ~/.gitconfig
 symlink $BASEPATH/git/gitignore ~/.gitignore
 
 # vim
-if [ $ENV == "Cygwin" ]; then
-    symlink $BASEPATH/vim/vimrccygwin ~/.vimrc
-else
-    symlink $BASEPATH/vim/vimrc ~/.vimrc
-fi
+symlink $BASEPATH/vim/vimrc ~/.vimrc
 symlink $BASEPATH/vim/bundle ~/.vim/bundle
 
 # haskell
