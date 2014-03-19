@@ -20,10 +20,8 @@ symlink () {
 }
 
 BASEPATH=`pwd`
-ENV=`uname -o`
 
 echo "--- STARTING ---"
-echo "Detected ENV: $ENV"
 
 # bash
 symlink $BASEPATH/bash/aliases ~/.aliases
