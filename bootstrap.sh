@@ -1,21 +1,5 @@
 #!/bin/bash
 
-copy () {
-    # Check if file exists; if so, delete
-    if [ -f $2 ]; then
-        echo "File $2 exists; Will be deleted"
-        rm -f $2
-    fi
-    # Check if folder exists; if not, create it
-    DIR=`dirname $2`
-    if [ ! -d $DIR ]; then
-        echo "Folder $DIR does not exist; creating"
-        mkdir -p $DIR
-    fi
-    # Copy file
-    cp $1 $2
-}
-
 symlink () {
     # Check if target exists
     if [ -e $2 ]; then
@@ -48,13 +32,8 @@ symlink $BASEPATH/bash/profile ~/.profile
 source ~/.profile
 
 # git
-if [ $ENV == "Cygwin" ]; then
-    copy $BASEPATH/git/gitconfig ~/.gitconfig
-    copy $BASEPATH/git/gitignore ~/.gitignore
-else
-    symlink $BASEPATH/git/gitconfig ~/.gitconfig
-    symlink $BASEPATH/git/gitignore ~/.gitignore
-fi
+symlink $BASEPATH/git/gitconfig ~/.gitconfig
+symlink $BASEPATH/git/gitignore ~/.gitignore
 
 # vim
 if [ $ENV == "Cygwin" ]; then
