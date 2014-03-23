@@ -43,6 +43,7 @@ symlink $BASEPATH/haskell/cabal_config ~/.cabal/config
 
 # bin
 symlink $BASEPATH/bin/changeTag ~/bin/changeTag
+symlink $BASEPATH/bin/gitRePu ~/bin/gitRePu
 chmod 744 $BASEPATH/bin/*
 
 # config

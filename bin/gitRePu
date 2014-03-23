@@ -1,0 +1,6 @@
+#!/bin/sh
+
+git co master
+git rebase work
+git pu
+git co work
