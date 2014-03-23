@@ -1,6 +1,8 @@
 #!/bin/sh
 
+CURRENT_BRANCH=`git branch | awk '/^\*/{print $2}'`
+
 git co master
-git rebase work
+git rebase $CURRENT_BRANCH
 git pu
-git co work
+git co $CURRENT_BRANCH
