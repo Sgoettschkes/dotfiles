@@ -2,7 +2,7 @@
 
 CURRENT_BRANCH=`git branch | awk '/^\*/{print $2}'`
 
-git co master
+git checkout master
 git rebase $CURRENT_BRANCH
-git pu
-git co $CURRENT_BRANCH
+git push origin master
+git checkout $CURRENT_BRANCH
