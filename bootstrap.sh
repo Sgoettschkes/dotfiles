@@ -43,8 +43,9 @@ symlink $BASEPATH/haskell/cabal_config ~/.cabal/config
 
 # bin
 symlink $BASEPATH/bin/changeTag ~/bin/changeTag
-symlink $BASEPATH/bin/gitRePu ~/bin/gitRePu
-chmod 744 $BASEPATH/bin/*
+rm -f ~/bin/gitRePu
+symlink $BASEPATH/bin/gitHelper ~/bin/gitHelper
+chmod 764 $BASEPATH/bin/*
 
 # config
 symlink $BASEPATH/config/redshift.conf ~/.config/redshift.conf
