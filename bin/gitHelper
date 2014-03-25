@@ -7,23 +7,25 @@ if [ $# -ne 1 ]; then
     exit
 fi
 
-git checkout master
-if [ $? -ne 0 ]; then
-    exit
-fi
-
-git rebase $CURRENT_BRANCH
-if [ $? -ne 0 ]; then
+if [ "$1" = "up" ]; then
+    git checkout master
+    if [ $? -ne 0 ]; then
+        exit
+    fi
+    
+    git rebase $CURRENT_BRANCH
+    if [ $? -ne 0 ]; then
+        git checkout $CURRENT_BRANCH
+        exit
+    fi
+    
+    git push origin master
+    if [ $? -ne 0 ]; then
+        exit
+    fi
+    
     git checkout $CURRENT_BRANCH
-    exit
-fi
-
-git push origin master
-if [ $? -ne 0 ]; then
-    exit
-fi
-
-git checkout $CURRENT_BRANCH
-if [ $? -ne 0 ]; then
-    exit
+    if [ $? -ne 0 ]; then
+        exit
+    fi
 fi
