@@ -7,9 +7,11 @@
     ci = commit
     co = checkout
     diff = diff --word-diff
+    down = pull --rebase
     fe = fetch
-    pu = push origin master
+    re = reset HEAD
     st = status -s
+    up = push origin master
 
 [branch]
 	autosetuprebase = always
