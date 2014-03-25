@@ -3,6 +3,22 @@
 CURRENT_BRANCH=`git branch | awk '/^\*/{print $2}'`
 
 git checkout master
+if [ $? -ne 0 ]; then
+    exit
+fi
+
 git rebase $CURRENT_BRANCH
+if [ $? -ne 0 ]; then
+    git checkout $CURRENT_BRANCH
+    exit
+fi
+
 git push origin master
+if [ $? -ne 0 ]; then
+    exit
+fi
+
 git checkout $CURRENT_BRANCH
+if [ $? -ne 0 ]; then
+    exit
+fi
