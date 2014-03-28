@@ -3,7 +3,8 @@
 
 [alias]
     # standard
-    br = branch --all
+    br = branch
+    bra = branch --all
     ci = commit
     co = checkout
     diff = diff --word-diff
