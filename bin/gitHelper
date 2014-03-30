@@ -28,4 +28,24 @@ if [ "$1" = "up" ]; then
     if [ $? -ne 0 ]; then
         exit
     fi
+elif [ "$1" = "down" ]; then
+    git checkout master
+    if [ $? -ne 0 ]; then
+        exit
+    fi
+
+    git pull --rebase origin master
+    if [ $? -ne 0 ]; then
+        exit
+    fi
+
+    git checkout $CURRENT_BRANCH
+    if [ $? -ne 0 ]; then
+        exit
+    fi
+
+    git rebase master
+    if [ $? -ne 0 ]; then
+        exit
+    fi
 fi
