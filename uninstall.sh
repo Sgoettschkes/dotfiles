@@ -24,7 +24,6 @@ rm -f ~/.cabal/config
 # bin
 rm -f ~/bin/changeTag
 rm -f ~/bin/gitHelper
-chmod 764 $BASEPATH/bin/*
 
 rm -f ~/.config/redshift.conf
 
