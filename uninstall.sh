@@ -1,7 +1,5 @@
 #!/bin/bash
 
-BASEPATH=`pwd`
-
 echo "--- STARTING ---"
 
 # bash
