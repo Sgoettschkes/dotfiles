@@ -19,7 +19,7 @@ symlink () {
     echo "Symlink $2 for target $1 created"
 }
 
-BASEPATH=`pwd`
+BASEPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "--- STARTING ---"
 
