@@ -8,6 +8,8 @@ set nocompatible
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
+filetype plugin on
+
 syntax enable
 
 " Use solarized
@@ -32,3 +34,6 @@ noremap <Right> <Nop>
 
 " Use normal bash tab completion for files
 set wildmode=longest,list
+
+" Settings for vimwiki
+let g:vimwiki_list = [{'path':'$HOME/workspace/Sgoettschkes/wiki/', 'path_html':'$HOME/workspace/Sgoettschkes/wiki/html/'}]
