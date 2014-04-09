@@ -1,13 +1,15 @@
 #!/bin/sh
 
 CURRENT_BRANCH=`git branch | awk '/^\*/{print $2}'`
+CURRENT_DIR=`pwd`
+GIT_BASE_DIR=`git rev-parse --show-toplevel`
 
 if [ $# -ne 1 ]; then
     echo "No argument given"
     exit
 fi
 
-if [ "$1" = "up" ]; then
+up () {
     git checkout master
     if [ $? -ne 0 ]; then
         exit
@@ -28,17 +30,15 @@ if [ "$1" = "up" ]; then
     if [ $? -ne 0 ]; then
         exit
     fi
-elif [ "$1" = "down" ]; then
+}
+
+down () {
     git checkout master
     if [ $? -ne 0 ]; then
         exit
     fi
 
     git pull --rebase origin master
-    if [ $? -ne 0 ]; then
-        exit
-    fi
-
     git checkout $CURRENT_BRANCH
     if [ $? -ne 0 ]; then
         exit
@@ -48,4 +48,14 @@ elif [ "$1" = "down" ]; then
     if [ $? -ne 0 ]; then
         exit
     fi
+}
+
+if [ "$1" = "up" ]; then
+    cd $GIT_BASE_DIR
+    up
+    cd $CURRENT_DIR
+elif [ "$1" = "down" ]; then
+    cd $GIT_BASE_DIR
+    down
+    cd $CURRENT_DIR
 fi
