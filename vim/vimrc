@@ -36,4 +36,4 @@ noremap <Right> <Nop>
 set wildmode=longest,list
 
 " Settings for vimwiki
-let g:vimwiki_list = [{'path':'$HOME/workspace/Sgoettschkes/wiki/', 'path_html':'$HOME/workspace/Sgoettschkes/wiki/html/'}]
+let g:vimwiki_list = [{'path':'$HOME/workspace/Sgoettschkes/wiki/', 'path_html':'$HOME/workspace/Sgoettschkes/wiki/html/', 'template_path':'$HOME/workspace/Sgoettschkes/wiki/templates/', 'template_default':'def_template', 'template_ext':'.html'}]
