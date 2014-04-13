@@ -46,7 +46,10 @@ symlink $BASEPATH/bin/changeTag ~/bin/changeTag
 symlink $BASEPATH/bin/gitHelper ~/bin/gitHelper
 chmod 764 $BASEPATH/bin/*
 
-# config
+# redshift
 symlink $BASEPATH/config/redshift.conf ~/.config/redshift.conf
+
+# tmux
+symlink $BASEPATH/tmux/tmux.conf ~/.tmux.conf
 
 echo "--- STOPPING ---"
