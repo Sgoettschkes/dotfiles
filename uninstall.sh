@@ -24,5 +24,6 @@ rm -f ~/bin/changeTag
 rm -f ~/bin/gitHelper
 
 rm -f ~/.config/redshift.conf
+rm -f ~/.tmux.conf
 
 echo "--- STOPPING ---"
