@@ -37,3 +37,6 @@ alias df="df -Tha --total"
 alias du="du -ach | sort -h"
 alias free="free -mt"
 alias psx="ps aux | grep $1"
+
+# Rest API stuff
+alias myip="curl http://ipecho.net/plain; echo"
