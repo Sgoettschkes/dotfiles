@@ -18,11 +18,13 @@ alias v=vim
 alias va=vagrant
 
 # Some ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
 alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF'
+alias lsl="ls -lhFA | less"
 
 # Little helpers
+alias mkdir='mkdir -p'
 alias rm='rm -I --preserve-root'
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
@@ -31,4 +33,7 @@ alias su='sudo -i'
 alias root=su
 
 # Advanced system tools
+alias df="df -Tha --total"
+alias du="du -ach | sort -h"
+alias free="free -mt"
 alias psx="ps aux | grep $1"
