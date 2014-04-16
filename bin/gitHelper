@@ -1,4 +1,6 @@
 #!/bin/sh
+set -o nounset
+set -o errexit
 
 CURRENT_BRANCH=`git branch | awk '/^\*/{print $2}'`
 CURRENT_DIR=`pwd`
