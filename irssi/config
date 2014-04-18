@@ -1,0 +1,116 @@
+aliases = {
+  J = "join";
+  WJOIN = "join -window";
+  WQUERY = "query -window";
+  LEAVE = "part";
+  BYE = "quit";
+  EXIT = "quit";
+  SIGNOFF = "quit";
+  DESCRIBE = "action";
+  DATE = "time";
+  HOST = "userhost";
+  LAST = "lastlog";
+  SAY = "msg *";
+  WI = "whois";
+  WII = "whois $0 $0";
+  WW = "whowas";
+  W = "who";
+  N = "names";
+  M = "msg";
+  T = "topic";
+  C = "clear";
+  CL = "clear";
+  K = "kick";
+  KB = "kickban";
+  KN = "knockout";
+  BANS = "ban";
+  B = "ban";
+  MUB = "unban *";
+  UB = "unban";
+  IG = "ignore";
+  UNIG = "unignore";
+  SB = "scrollback";
+  UMODE = "mode $N";
+  WC = "window close";
+  WN = "window new hide";
+  SV = "say Irssi $J ($V) - http://irssi.org/";
+  GOTO = "sb goto";
+  CHAT = "dcc chat";
+  RUN = "SCRIPT LOAD";
+  CALC = "exec - if command -v bc >/dev/null 2>&1\\; then printf '%s=' '$*'\\; echo '$*' | bc -l\\; else echo bc was not found\\; fi";
+  SBAR = "STATUSBAR";
+  INVITELIST = "mode $C +I";
+  Q = "QUERY";
+  "MANUAL-WINDOWS" = "set use_status_window off;set autocreate_windows off;set autocreate_query_level none;set autoclose_windows off;set reuse_unused_windows on;save";
+  EXEMPTLIST = "mode $C +e";
+  ATAG = "WINDOW SERVER";
+  UNSET = "set -clear";
+  RESET = "set -default";
+};
+
+statusbar = {
+  items = { act = "{sb $0-}"; lag = "{sb L:$0-}"; more = "{sb V}"; };
+  default = {
+    topic = { disabled = "yes"; };
+    window = { disabled = "yes"; };
+    prompt = {
+      items = {
+        prompt = { priority = "-1"; };
+        prompt_empty = { priority = "-1"; };
+        input = { priority = "10"; };
+        more = { priority = "-1"; alignment = "right"; };
+        lag = { priority = "-1"; alignment = "right"; };
+        act = { priority = "10"; alignment = "right"; };
+      };
+    };
+  };
+};
+
+settings = {
+  core = {
+    real_name = "Sgoettschkes";
+    user_name = "Sgoettschkes";
+    nick = "Sgoettschkes";
+    timestamp_format = "%H:%M:%S";
+    awaylog_file = "~/.irssi/logs/away.log";
+    quit_message = "And gone";
+  };
+  "fe-text" = { actlist_sort = "refnum"; term_force_colors = "yes"; };
+  "fe-common/core" = {
+    autocreate_own_query = "no";
+    autocreate_query_level = "DCCMSGS";
+    use_status_window = "no";
+    use_msgs_window = "no";
+    autoclose_windows = "no";
+    reuse_unused_windows = "yes";
+    term_charset = "utf-8";
+    print_active_channel = "yes";
+    autolog = "yes";
+    autolog_path = "~/.irssi/logs/%Y/%m-%d/$tag-$0.log";
+    theme = "furry";
+    beep_when_away = "no";
+  };
+};
+chatnets = {
+  freenode = {
+    type = "IRC";
+    autosendcmd = "/^msg nickserv identify Sgoettschkes cb7NF6PAgGLiO6LdMjTR;wait 2000";
+  };
+};
+servers = (
+  {
+    address = "chat.freenode.net";
+    chatnet = "freenode";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  }
+);
+hilights = ( { text = "Sgoettschkes"; nick = "yes"; word = "yes"; } );
+channels = (
+  { name = "#haskell"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "#vagrant"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "##vienna"; chatnet = "freenode"; autojoin = "yes"; }
+);
+logs = { };

@@ -26,4 +26,7 @@ rm -f ~/bin/gitHelper
 rm -f ~/.config/redshift.conf
 rm -f ~/.tmux.conf
 
+rm -f ~/.irssi/config
+rm -f ~/.irssi/furry.theme
+
 echo "--- STOPPING ---"

@@ -52,4 +52,8 @@ symlink $BASEPATH/config/redshift.conf ~/.config/redshift.conf
 # tmux
 symlink $BASEPATH/tmux/tmux.conf ~/.tmux.conf
 
+# irssi
+symlink $BASEPATH/irssi/config ~/.irssi/config
+symlink $BASEPATH/irssi/furry.theme ~/.irssi/furry.theme
+
 echo "--- STOPPING ---"
