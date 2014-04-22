@@ -14,7 +14,7 @@ syntax enable
 
 " Use solarized
 let g:solarized_termcolors=256
-se t_Co=16
+set t_Co=16
 set background=dark
 colorscheme solarized
 
