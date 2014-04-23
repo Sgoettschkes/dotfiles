@@ -18,9 +18,12 @@ set t_Co=16
 set background=dark
 colorscheme solarized
 
-" Tabs
+" Code intention
 set number
 set tabstop=4 shiftwidth=4 expandtab 
+
+" Tabs
+set showtabline=2
 
 " Prevent cheating
 inoremap <Up> <NOP>
