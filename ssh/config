@@ -5,3 +5,8 @@ Host raspberry
     HostName sgoettschkes.duckdns.org
     Port 22
     User sebastian
+
+Host sgoett11
+    HostName 141.0.170.41
+    Port 22
+    User sebastian
