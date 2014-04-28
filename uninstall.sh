@@ -7,6 +7,9 @@ rm -f ~/.aliases
 rm -f ~/.bashrc
 rm -f ~/.profile
 
+# ssh
+rm -f ~/.ssh/config
+
 # git
 rm -f ~/.gitconfig
 rm -f ~/.gitignore

@@ -29,6 +29,9 @@ symlink $BASEPATH/bash/bashrc ~/.bashrc
 symlink $BASEPATH/bash/profile ~/.profile
 source ~/.profile
 
+# ssh
+symlink $BASEPATH/ssh/config ~/.ssh/config
+
 # git
 symlink $BASEPATH/git/gitconfig ~/.gitconfig
 symlink $BASEPATH/git/gitignore ~/.gitignore

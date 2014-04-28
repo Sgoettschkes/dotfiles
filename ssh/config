@@ -1,0 +1,7 @@
+# File managed by Sgoettschkes/dotfiles
+# Do not change
+
+Host raspberry
+    HostName sgoettschkes.duckdns.org
+    Port 22
+    User sebastian
