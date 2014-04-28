@@ -6,6 +6,11 @@ Host raspberry
     Port 22
     User sebastian
 
+Host sgoett01
+    HostName bootes.uberspace.de
+    Port 22
+    User sgoett01
+
 Host sgoett11
     HostName 141.0.170.41
     Port 22
