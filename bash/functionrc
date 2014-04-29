@@ -5,8 +5,8 @@
 
 cdl() {
     cd -- "$@" && ls
-}
+}; export -f cdl
 
 mkcd () {
     mkdir -p -- "$@" && cd "$@"
-}
+}; export -f mkcd
