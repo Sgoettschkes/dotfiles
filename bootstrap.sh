@@ -28,7 +28,6 @@ symlink $BASEPATH/bash/aliases ~/.aliases
 symlink $BASEPATH/bash/bashrc ~/.bashrc
 symlink $BASEPATH/bash/profile ~/.profile
 symlink $BASEPATH/bash/functionrc ~/.functionrc
-source ~/.profile
 
 # ssh
 symlink $BASEPATH/ssh/config ~/.ssh/config
