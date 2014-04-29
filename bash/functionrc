@@ -1,0 +1,8 @@
+# File managed by Sgoettschkes/dotfiles
+# Do not change
+
+# vim: set filetype=sh :
+
+mkcd () {
+    mkdir -p -- "$@" && cd "$@"
+}
