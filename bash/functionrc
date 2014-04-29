@@ -3,6 +3,10 @@
 
 # vim: set filetype=sh :
 
+cdl() {
+    cd -- "$@" && ls
+}
+
 mkcd () {
     mkdir -p -- "$@" && cd "$@"
 }
