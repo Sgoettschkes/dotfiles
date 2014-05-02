@@ -6,6 +6,7 @@ echo "--- STARTING ---"
 rm -f ~/.aliases
 rm -f ~/.bashrc
 rm -f ~/.profile
+rm -f ~/.inputrc
 rm -f ~/.functionrc
 
 # ssh

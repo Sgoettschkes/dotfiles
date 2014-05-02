@@ -27,6 +27,7 @@ echo "--- STARTING ---"
 symlink $BASEPATH/bash/aliases ~/.aliases
 symlink $BASEPATH/bash/bashrc ~/.bashrc
 symlink $BASEPATH/bash/profile ~/.profile
+symlink $BASEPATH/bash/inputrc ~/.inputrc
 symlink $BASEPATH/bash/functionrc ~/.functionrc
 
 # ssh
