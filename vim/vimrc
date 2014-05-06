@@ -38,5 +38,8 @@ noremap <Right> <Nop>
 " Use normal bash tab completion for files
 set wildmode=longest,list
 
+" Detect .md files as Markdown
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 " Settings for vimwiki
 let g:vimwiki_list = [{'path':'$HOME/workspace/Sgoettschkes/wiki/', 'path_html':'$HOME/workspace/Sgoettschkes/wiki/html/', 'template_path':'$HOME/workspace/Sgoettschkes/wiki/templates/', 'template_default':'def_template', 'template_ext':'.html'}]
