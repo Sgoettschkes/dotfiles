@@ -35,6 +35,12 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
+" Remap leader key
+let mapleader=","
+
+" Mapping some leader key settings
+noremap <Leader>W :w !sudo tee % > /dev/null
+
 " Use normal bash tab completion for files
 set wildmode=longest,list
 
