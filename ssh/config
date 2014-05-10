@@ -5,6 +5,8 @@ Host raspberry
     HostName sgoettschkes.duckdns.org
     Port 22
     User sebastian
+    UserKnownHostsFile=/dev/null
+    StrictHostKeyChecking no
 
 Host sgoett01
     HostName bootes.uberspace.de
