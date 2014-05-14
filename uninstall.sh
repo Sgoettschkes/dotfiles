@@ -17,21 +17,19 @@ rm -f ~/.gitconfig
 rm -f ~/.gitignore
 
 # vim
-rm -f ~/.vimrc
-rm -f ~/.vim/bundle
+rm -rf ~/.vimrc
+rm -rf ~/.vim
 
 # haskell
-rm -f ~/.ghc/ghci.conf
-rm -f ~/.cabal/config
+rm -rf ~/.ghc
+rm -rf ~/.cabal
 
 # bin
-rm -f ~/bin/changeTag
-rm -f ~/bin/gitHelper
+rm -rf ~/bin
 
-rm -f ~/.config/redshift.conf
+rm -rf ~/.config
 rm -f ~/.tmux.conf
 
-rm -f ~/.irssi/config
-rm -f ~/.irssi/furry.theme
+rm -rf ~/.irssi
 
 echo "--- STOPPING ---"
