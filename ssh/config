@@ -1,6 +1,11 @@
 # File managed by Sgoettschkes/dotfiles
 # Do not change
 
+Host *
+    Protocol 2
+    TCPKeepAlive yes
+    ServerAliveInterval 60
+
 Host raspberry
     HostName sgoettschkes.duckdns.org
     Port 22
