@@ -25,6 +25,7 @@ rm -f ~/.ghc/ghci.conf
 rm -f ~/.cabal/config
 
 # bin
+rm -f ~/bin/backup
 rm -f ~/bin/changeTag
 rm -f ~/bin/gitHelper
 
