@@ -1,5 +1,23 @@
-#!/bin/sh
+#!/bin/bash
 set -o nounset
 set -o errexit
 
-obnam backup --exclude='/home/sebastian/.gnupg;/home/sebastian/.ssh' --repository /media/sebastian/Backup $HOME 
+Target=${1:-backup}
+Logdir=${2:-/home/sebastian/.obnam}
+
+echo "Starting obnam"
+echo "-- SETTING Target: ${Target}"
+echo "-- SETTING Logdir: ${Logdir}"
+
+if [ ! -d "${Logdir}" ]; then
+    mkdir -p ${Logdir}
+fi
+
+if [ "${Target}" == "backup" ]; then
+    Repository=/media/sebastian/Backup/backup 
+    obnam backup --exclude-caches --log ${Logdir}/obnam.log --repository ${Repository} $HOME/Downloads $HOME/Dropbox $HOME/Music $HOME/Pictures $HOME/tmp $HOME/Videos $HOME/workspace
+    obnam forget --keep "24h,30d,4w,12m" --log ${Logdir}/obnam.log --repository ${Repository}
+fi
+
+# obnam backup --exclude-caches --repository sftp://sgoett11/home/sebastian/backup $HOME/Dropbox $HOME/Pictures $HOME/Videos
+# obnam forget --keep="24h,30d,4w,12m" --repository /media/sebastian/Backup
