@@ -5,7 +5,7 @@ set -o errexit
 Target=${1:-backup}
 Logdir=${2:-/home/sebastian/.obnam}
 
-echo "Starting obnam"
+echo "Starting backup"
 echo "-- SETTING Target: ${Target}"
 echo "-- SETTING Logdir: ${Logdir}"
 
@@ -14,10 +14,28 @@ if [ ! -d "${Logdir}" ]; then
 fi
 
 if [ "${Target}" == "backup" ]; then
-    Repository=/media/sebastian/Backup/backup 
-    obnam backup --exclude-caches --log ${Logdir}/obnam.log --repository ${Repository} $HOME/Downloads $HOME/Dropbox $HOME/Music $HOME/Pictures $HOME/tmp $HOME/Videos $HOME/workspace
-    obnam forget --keep "24h,30d,4w,12m" --log ${Logdir}/obnam.log --repository ${Repository}
+    ExternalHardDrive=/media/sebastian/Backup
+    Repository=${ExternalHardDrive}/backup 
+
+    echo "-- SETTING Repository: ${Repository}"
+
+    if [ ! -d "${ExternalHardDrive}" ]; then
+        echo "!!! External HardDrive missing !!!"
+        echo "!!! Aborting !!!"
+        exit
+    fi
+
+    obnam backup --exclude-caches --log ${Logdir}/${Target}.log --repository ${Repository} $HOME/Downloads $HOME/Dropbox $HOME/Music $HOME/Pictures $HOME/tmp $HOME/Videos $HOME/workspace
+    obnam forget --keep "24h,30d,4w,12m" --log ${Logdir}/${Target}.log --repository ${Repository}
+elif [ "${Target}" == "sgoett11" ]; then
+    Repository=sftp://sgoett11/home/sebastian/backup
+
+    echo "-- SETTING Repository: ${Repository}"
+
+    obnam backup --exclude-caches --log ${Logdir}/${Target}.log --repository ${Repository} $HOME/Dropbox $HOME/Pictures $HOME/Videos
+    obnam forget --keep="24h,30d,4w,12m" --log ${Logdir}/${Target}.log --repository ${Repository}
+else
+    echo "!!! No Target with this name !!!"
 fi
 
-# obnam backup --exclude-caches --repository sftp://sgoett11/home/sebastian/backup $HOME/Dropbox $HOME/Pictures $HOME/Videos
-# obnam forget --keep="24h,30d,4w,12m" --repository /media/sebastian/Backup
+echo "Ending backup"
