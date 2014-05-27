@@ -36,6 +36,7 @@ elif [ "${Target}" == "sgoett11" ]; then
     obnam forget --keep="24h,30d,4w,12m" --log ${Logdir}/${Target}.log --repository ${Repository}
 else
     echo "!!! No Target with this name !!!"
+    exit
 fi
 
 echo "Ending backup"
