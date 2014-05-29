@@ -27,6 +27,20 @@ if [ "${Target}" == "backup" ]; then
 
     obnam backup --exclude-caches --log ${Logdir}/${Target}.log --repository ${Repository} $HOME/Downloads $HOME/Dropbox $HOME/Music $HOME/Pictures $HOME/tmp $HOME/Videos $HOME/workspace
     obnam forget --keep "24h,30d,4w,12m" --log ${Logdir}/${Target}.log --repository ${Repository}
+elif [ "${Target}" == "safe" ]; then
+    ExternalHardDrive=/media/sebastian/Safe
+    Repository=${ExternalHardDrive}/backup 
+
+    echo "-- SETTING Repository: ${Repository}"
+
+    if [ ! -d "${ExternalHardDrive}" ]; then
+        echo "!!! External HardDrive missing !!!"
+        echo "!!! Aborting !!!"
+        exit
+    fi
+
+    obnam backup --log ${Logdir}/${Target}.log --repository ${Repository} $HOME
+#    obnam forget --keep "24h,30d,4w,12m" --log ${Logdir}/${Target}.log --repository ${Repository}
 elif [ "${Target}" == "sgoett11" ]; then
     Repository=sftp://sgoett11/home/sebastian/backup
 
