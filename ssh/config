@@ -6,6 +6,10 @@ Host *
     TCPKeepAlive yes
     ServerAliveInterval 60
 
+Host 10.66.6.*
+    UserKnownHostsFile=/dev/null
+    StrictHostKeyChecking no
+
 Host raspberry
     HostName sgoettschkes.duckdns.org
     Port 22
