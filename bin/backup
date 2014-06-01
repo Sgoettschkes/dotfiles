@@ -26,7 +26,7 @@ if [ "${Target}" == "backup" ]; then
     fi
 
     obnam backup --exclude-caches --log ${Logdir}/${Target}.log --repository ${Repository} $HOME/Downloads $HOME/Dropbox $HOME/Music $HOME/Pictures $HOME/tmp $HOME/Videos $HOME/workspace
-    obnam forget --keep "24h,30d,4w,12m" --log ${Logdir}/${Target}.log --repository ${Repository}
+    obnam forget --keep "24h,30d,8w,14m" --log ${Logdir}/${Target}.log --repository ${Repository}
 elif [ "${Target}" == "safe" ]; then
     ExternalHardDrive=/media/sebastian/Safe
     Repository=${ExternalHardDrive}/backup 
@@ -47,7 +47,7 @@ elif [ "${Target}" == "sgoett11" ]; then
     echo "-- SETTING Repository: ${Repository}"
 
     obnam backup --exclude-caches --log ${Logdir}/${Target}.log --repository ${Repository} $HOME/Dropbox $HOME/Pictures $HOME/Videos
-    obnam forget --keep="24h,30d,4w,12m" --log ${Logdir}/${Target}.log --repository ${Repository}
+    obnam forget --keep="24h,30d,8w,14m" --log ${Logdir}/${Target}.log --repository ${Repository}
 else
     echo "!!! No Target with this name !!!"
     exit
