@@ -12,6 +12,9 @@ rm -f ~/.functionrc
 # ssh
 rm -f ~/.ssh/config
 
+# gnupg
+rm -f ~/.gnupg/gpg.conf
+
 # git
 rm -f ~/.gitconfig
 rm -f ~/.gitignore

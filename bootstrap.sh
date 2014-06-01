@@ -33,6 +33,9 @@ symlink $BASEPATH/bash/functionrc ~/.functionrc
 # ssh
 symlink $BASEPATH/ssh/config ~/.ssh/config
 
+# gnupg
+symlink $BASEPATH/gnupg/gpg.conf ~/.gnupg/gpg.conf
+
 # git
 symlink $BASEPATH/git/gitconfig ~/.gitconfig
 symlink $BASEPATH/git/gitignore ~/.gitignore
