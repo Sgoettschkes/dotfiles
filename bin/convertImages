@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+'''
+Convert images by using ImageMagick to reduce imagesize and rename file into imageXXX.jpg pattern
+
+Usage:
+    convertImages scrDir
+'''
+
 import argparse, os, re, subprocess
 
 def convertImage(srcFile, destFile):
