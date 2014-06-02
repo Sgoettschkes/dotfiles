@@ -30,6 +30,7 @@ rm -f ~/.cabal/config
 # bin
 rm -f ~/bin/backup
 rm -f ~/bin/changeTag
+rm -f ~/bin/convertImages
 rm -f ~/bin/gitHelper
 
 rm -f ~/.config/redshift.conf

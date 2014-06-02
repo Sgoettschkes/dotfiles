@@ -51,6 +51,7 @@ symlink $BASEPATH/haskell/cabal_config ~/.cabal/config
 # bin
 symlink $BASEPATH/bin/backup ~/bin/backup
 symlink $BASEPATH/bin/changeTag ~/bin/changeTag
+symlink $BASEPATH/bin/convertImages ~/bin/convertImages
 symlink $BASEPATH/bin/gitHelper ~/bin/gitHelper
 chmod 764 $BASEPATH/bin/*
 
