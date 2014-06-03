@@ -21,7 +21,7 @@ alias va=vagrant
 alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
-alias lsl="ls -lhFA | less"
+alias lsl='ls -lhFA | less'
 
 # Little helpers
 alias mkdir='mkdir -p'
@@ -33,16 +33,16 @@ alias su='sudo -i'
 alias root=su
 
 # Advanced system tools
-alias df="df -Tha --total"
-alias du="du -ach | sort -h"
-alias free="free -mt"
-alias psx="ps aux | grep $1"
+alias df='df -Tha --total'
+alias du='du -ach | sort -h'
+alias free='free -mt'
+alias psx='ps aux | grep $1'
 
 # tmux
-alias tmux2="tmux -2"
+alias tmux2='tmux -2'
 
 # vagrant
-alias vag="vagrant global-status"
+alias vag='vagrant global-status'
 
 # Rest API stuff
-alias myip="curl http://ipecho.net/plain; echo"
+alias myip='curl http://ipecho.net/plain; echo'
