@@ -13,6 +13,7 @@ alias cl='clear && pwd && ls -AFG'
 
 # Shortcuts
 alias g=git
+alias gg='git grep'
 alias gh=gitHelper
 alias v=vim
 alias va=vagrant
