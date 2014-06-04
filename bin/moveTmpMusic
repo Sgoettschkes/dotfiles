@@ -1,0 +1,25 @@
+#!/bin/bash
+set -o nounset
+set -o errexit
+
+readonly PROGNAME=$(basename "$0")
+readonly PROGDIR=$(readlink -m $(dirname "$0"))
+readonly ARGS="$@"
+
+main() {
+    local TmpDrive=/home/sebastian/tmp
+    local ExternalHardDrive=/media/sebastian/BIG
+
+    if [ ! -d "${ExternalHardDrive}" ]; then
+        echo "!!! External HardDrive missing !!!"
+        exit
+    fi
+
+    if [ -d $TmpDrive/flac/* ]; then
+        mv $TmpDrive/flac/* $ExternalHardDrive/flac/
+    fi
+    if [ -d $TmpDrive/mp3/* ]; then
+        mv $TmpDrive/mp3/* $ExternalHardDrive/mp3/
+    fi
+}
+main

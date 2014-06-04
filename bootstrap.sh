@@ -53,6 +53,7 @@ symlink $BASEPATH/bin/backup ~/bin/backup
 symlink $BASEPATH/bin/changeTag ~/bin/changeTag
 symlink $BASEPATH/bin/convertImages ~/bin/convertImages
 symlink $BASEPATH/bin/gitHelper ~/bin/gitHelper
+symlink $BASEPATH/bin/moveTmpMusic ~/bin/moveTmpMusic
 chmod 764 $BASEPATH/bin/*
 
 # redshift

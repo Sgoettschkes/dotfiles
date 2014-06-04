@@ -32,6 +32,7 @@ rm -f ~/bin/backup
 rm -f ~/bin/changeTag
 rm -f ~/bin/convertImages
 rm -f ~/bin/gitHelper
+rm -f ~/bin/moveTmpMusic
 
 rm -f ~/.config/redshift.conf
 rm -f ~/.tmux.conf
