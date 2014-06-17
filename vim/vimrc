@@ -18,25 +18,11 @@ set t_Co=16
 set background=dark
 colorscheme solarized
 
-" Some default settings
+" Code intention
 set number
-set ruler
-set laststatus=2
-set showcmd
-set history=2000
+set tabstop=4 shiftwidth=4 expandtab 
 
-" Search
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-
-" Tabs and indents
-set tabstop=4 
-set softtabstop=4
-set expandtab
-set shiftwidth=4
-set autoindent
+" Tabs
 set showtabline=2
 
 " Prevent cheating
