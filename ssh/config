@@ -11,7 +11,7 @@ Host 10.66.6.*
     StrictHostKeyChecking no
 
 Host raspberry
-    HostName sgoettschkes.duckdns.org
+    HostName 2a02:8388:6480:d80:ba27:ebff:fe31:4058
     Port 22
     User sebastian
     UserKnownHostsFile=/dev/null
