@@ -22,6 +22,8 @@ rm -f ~/.gitignore
 # vim
 rm -f ~/.vimrc
 rm -f ~/.vim/bundle
+rm -rf ~/.vim/backup
+rm -rf ~/.vim/temp
 
 # haskell
 rm -f ~/.ghc/ghci.conf
