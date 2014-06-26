@@ -26,6 +26,7 @@ set ruler
 set laststatus=2
 set showcmd
 set history=2000
+set scrolloff=5 " Scroll if the cursor is 5 lines above the bottom
 
 " Search
 set hlsearch " Highlight matches
