@@ -1,3 +1,4 @@
+"
 " File managed by Sgoettschkes/dotfiles
 " Do not change
 
@@ -75,13 +76,6 @@ set wildmode=longest,list
 
 " Detect .md files as Markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-
-" Settings for saverers
-" let savevers_types='*'
-" let savevers_max=9999
-" let savevers_purge=1
-" let savevers_dirs="~/.vim/backup/"
-" set patchmode=.clean 
 
 " Settings for vimwiki
 let g:vimwiki_list = [{'path':'$HOME/workspace/Sgoettschkes/wiki/', 'path_html':'$HOME/workspace/Sgoettschkes/wiki/html/', 'template_path':'$HOME/workspace/Sgoettschkes/wiki/templates/', 'template_default':'def_template', 'template_ext':'.html'}]
