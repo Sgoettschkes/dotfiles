@@ -5,12 +5,14 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Use pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
-filetype plugin on
+" Settings for pathogen
+syntax on
+filetype plugin indent on
 
-syntax enable
 
 " Use solarized
 let g:solarized_termcolors=256
