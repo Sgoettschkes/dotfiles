@@ -43,7 +43,7 @@ symlink $BASEPATH/git/gitignore ~/.gitignore
 # vim
 symlink $BASEPATH/vim/vimrc ~/.vimrc
 symlink $BASEPATH/vim/bundle ~/.vim/bundle
-mkdir -p ~/.vim/backup
+mkdir -p ~/.vim/backup/undo
 mkdir -p ~/.vim/temp
 
 # haskell

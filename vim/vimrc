@@ -25,14 +25,22 @@ set number
 set ruler
 set laststatus=2
 set showcmd
-set history=2000
+set history=2000 " Store history of commands
 set scrolloff=5 " Scroll if the cursor is 5 lines above the bottom
+set autowrite " Write files when changing buffers
 
 " Search
 set hlsearch " Highlight matches
 set incsearch " Show first match while still typing
 set ignorecase " Does case-insensitive search
 set smartcase " Make search behave case-insensitive if only lowercase is entered and case-sensitive if not
+
+" Backup
+set backupdir=~/.vim/backup
+set dir=~/.vim/temp
+set undodir=~/.vim/backup/undo
+set undofile
+set backup 
 
 " Disable highlight for current search on ESC
 " http://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
@@ -69,11 +77,11 @@ set wildmode=longest,list
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " Settings for saverers
-set backup 
-set backupdir=~/.vim/backup
-set dir=~/.vim/temp
-set patchmode=.clean 
-let savevers_dir=&backupdir
+" let savevers_types='*'
+" let savevers_max=9999
+" let savevers_purge=1
+" let savevers_dirs="~/.vim/backup/"
+" set patchmode=.clean 
 
 " Settings for vimwiki
 let g:vimwiki_list = [{'path':'$HOME/workspace/Sgoettschkes/wiki/', 'path_html':'$HOME/workspace/Sgoettschkes/wiki/html/', 'template_path':'$HOME/workspace/Sgoettschkes/wiki/templates/', 'template_default':'def_template', 'template_ext':'.html'}]
