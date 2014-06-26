@@ -68,5 +68,12 @@ set wildmode=longest,list
 " Detect .md files as Markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
+" Settings for saverers
+set backup 
+set backupdir=~/.vim/backup
+set dir=~/.vim/temp
+set patchmode=.clean 
+let savevers_dir=&backupdir
+
 " Settings for vimwiki
 let g:vimwiki_list = [{'path':'$HOME/workspace/Sgoettschkes/wiki/', 'path_html':'$HOME/workspace/Sgoettschkes/wiki/html/', 'template_path':'$HOME/workspace/Sgoettschkes/wiki/templates/', 'template_default':'def_template', 'template_ext':'.html'}]
