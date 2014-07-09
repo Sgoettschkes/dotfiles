@@ -14,6 +14,8 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+" Remap leader key
+let mapleader=","
 
 " Use solarized
 let g:solarized_termcolors=256
@@ -43,9 +45,9 @@ set undodir=~/.vim/backup/undo
 set undofile
 set backup 
 
-" Disable highlight for current search on ESC
-" http://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
-nnoremap <esc> :noh<return><esc>
+" Disabe syntax highlighting
+" http://stackoverflow.com/questions/11940801/mapping-esc-in-vimrc-causes-bizzare-arrow-behaviour
+nnoremap <LEADER>e :noh<CR>
 
 " Tabs
 set tabstop=4 
@@ -64,9 +66,6 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
-
-" Remap leader key
-let mapleader=","
 
 " Mapping some leader key settings
 noremap <Leader>W :w !sudo tee % > /dev/null
