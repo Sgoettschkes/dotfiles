@@ -40,7 +40,7 @@ set ignorecase " Does case-insensitive search
 set smartcase " Make search behave better when searching
 
 " Disabe search highlighting with ,e
-" http://stackoverflow.com/questions/11940801/mapping-esc-in-vimrc-causes-bizzare-arrow-behaviour
+" http://stackoverflow.com/q/11940801/372562
 nnoremap <LEADER>e :noh<CR>
 
 " Backup
