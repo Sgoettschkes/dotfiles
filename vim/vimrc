@@ -31,6 +31,7 @@ set showcmd
 set history=2000 " Store history of commands
 set scrolloff=5 " Scroll if the cursor is 5 lines above the bottom
 set autowrite " Write files when changing buffers
+set colorcolumn=80 "Show vertical line at 80 characters
 
 " Search
 set hlsearch " Highlight matches
