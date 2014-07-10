@@ -38,16 +38,16 @@ set incsearch " Show first match while still typing
 set ignorecase " Does case-insensitive search
 set smartcase " Make search behave case-insensitive if only lowercase is entered and case-sensitive if not
 
+" Disabe search highlighting with ,e
+" http://stackoverflow.com/questions/11940801/mapping-esc-in-vimrc-causes-bizzare-arrow-behaviour
+nnoremap <LEADER>e :noh<CR>
+
 " Backup
 set backupdir=~/.vim/backup
 set dir=~/.vim/temp
 set undodir=~/.vim/backup/undo
 set undofile
 set backup 
-
-" Disabe syntax highlighting
-" http://stackoverflow.com/questions/11940801/mapping-esc-in-vimrc-causes-bizzare-arrow-behaviour
-nnoremap <LEADER>e :noh<CR>
 
 " Tabs
 set tabstop=4 
