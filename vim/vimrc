@@ -58,6 +58,10 @@ set shiftwidth=4
 set autoindent
 set showtabline=2
 
+" Align Current Paragraph with Leader + a
+" http://hashrocket.com/blog/posts/8-great-vim-mappings
+noremap <Leader>a ma=ip`a
+
 " Use normal bash tab completion for files
 set wildmode=longest,list
 
@@ -71,7 +75,21 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-" Mapping some leader key settings
+" Shift + Direction to Change Tabs
+" http://hashrocket.com/blog/posts/8-great-vim-mappings
+noremap <S-l> gt
+noremap <S-h> gT
+
+" Quit Files with Leader + q
+" http://hashrocket.com/blog/posts/8-great-vim-mappings
+noremap <leader>q :q<cr>
+
+" Save File with Leader + s
+" http://hashrocket.com/blog/posts/8-great-vim-mappings
+nnoremap <leader>s :w<cr>
+inoremap <leader>s <C-c>:w<cr>
+
+" Mapping ,W to save with sudo
 noremap <Leader>W :w !sudo tee % > /dev/null
 
 " Detect .md files as Markdown
