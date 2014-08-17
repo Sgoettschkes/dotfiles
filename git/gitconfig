@@ -2,21 +2,20 @@
 # Do not change
 
 [alias]
-    # standard
-    br = branch
-    bra = branch --all
+    amend = commit -a --amend
     ci = commit
-    co = checkout
+    cm = !git add -A && git commit -m
+    cob = checkout -b
     diff = diff --word-diff
-    down = pull --rebase
-    fe = fetch
-    fl = log -u
+    down = !git pull --rebase --prune $@ && git submodule update --init --recursive
     l = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
     ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --date=relative
     ldd = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --numstat
     re = reset HEAD
+    save = !git add -A && git commit -m 'SAVEPOINT'
     st = status -s
+    undo = reset HEAD~1 --mixed
     up = push origin master
 
 [branch]
