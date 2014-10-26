@@ -29,3 +29,8 @@ set -o vi
 if [ -f ~/.bashrc_locale ]; then
     . ~/.bashrc_locale
 fi
+
+# Source git-prompt for promt to work
+if [ -f ~/.git/git-prompt.sh ]; then
+    . ~/.git/git-prompt.sh
+fi

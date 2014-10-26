@@ -39,6 +39,7 @@ symlink $BASEPATH/gnupg/gpg.conf ~/.gnupg/gpg.conf
 # git
 symlink $BASEPATH/git/gitconfig ~/.gitconfig
 symlink $BASEPATH/git/gitignore ~/.gitignore
+symlink $BASEPATH/git/git-prompt.sh ~/.git/git-prompt.sh
 
 # vim
 symlink $BASEPATH/vim/vimrc ~/.vimrc
