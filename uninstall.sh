@@ -18,6 +18,7 @@ rm -f ~/.gnupg/gpg.conf
 # git
 rm -f ~/.gitconfig
 rm -f ~/.gitignore
+rm -f ~/.git/git-prompt.sh
 
 # vim
 rm -f ~/.vimrc
