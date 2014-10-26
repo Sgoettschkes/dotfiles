@@ -63,9 +63,6 @@ symlink $BASEPATH/bin/moveTmpMusic ~/bin/moveTmpMusic
 symlink $BASEPATH/bin/organizeImages ~/bin/organizeImages
 chmod 764 $BASEPATH/bin/*
 
-# redshift
-symlink $BASEPATH/config/redshift.conf ~/.config/redshift.conf
-
 # tmux
 symlink $BASEPATH/tmux/tmux.conf ~/.tmux.conf
 
