@@ -33,6 +33,9 @@ symlink $BASEPATH/bash/functionrc ~/.functionrc
 # ssh
 symlink $BASEPATH/ssh/config ~/.ssh/config
 
+# xfce
+symlink $BASEPATH/xfce/xinitrc ~/.config/xfce4/xinitrc
+
 # gnupg
 symlink $BASEPATH/gnupg/gpg.conf ~/.gnupg/gpg.conf
 

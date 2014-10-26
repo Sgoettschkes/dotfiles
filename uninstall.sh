@@ -12,6 +12,9 @@ rm -f ~/.functionrc
 # ssh
 rm -f ~/.ssh/config
 
+# xfce
+rm -f ~/.config/xfce4/xinitrc
+
 # gnupg
 rm -f ~/.gnupg/gpg.conf
 
