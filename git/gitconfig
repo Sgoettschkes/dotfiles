@@ -5,6 +5,7 @@
     amend = commit -a --amend
     ci = commit
     cm = !git add -A && git commit -m
+    co = checkout
     cob = checkout -b
     diff = diff --word-diff
     down = !git pull --rebase --prune $@ && git submodule update --init --recursive
