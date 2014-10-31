@@ -75,4 +75,7 @@ symlink $BASEPATH/irssi/furry.theme ~/.irssi/furry.theme
 # asunder
 symlink $BASEPATH/asunder/asunder ~/.asunder
 
+# apollo
+symlink $BASEPATH/apollo/apollo ~/.apollo
+
 echo "--- STOPPING ---"

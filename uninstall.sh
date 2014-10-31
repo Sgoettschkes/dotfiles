@@ -50,4 +50,6 @@ rm -f ~/.irssi/furry.theme
 
 rm -f ~/.asunder
 
+rm -f ~/.apollo
+
 echo "--- STOPPING ---"
