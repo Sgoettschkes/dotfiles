@@ -43,7 +43,12 @@ alias psx='ps aux | grep $1'
 alias tmux2='tmux -2'
 
 # vagrant
+alias vadu='vagrant destroy --force && vagrant up'
 alias vag='vagrant global-status'
+alias vap='vagrant provision'
+alias var='vagrant reload'
+alias vas='vagrant ssh'
+alias vau='vagrant up'
 
 # Rest API stuff
 alias myip='curl http://ipecho.net/plain; echo'
