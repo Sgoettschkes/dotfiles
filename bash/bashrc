@@ -18,6 +18,17 @@ PS1="$PS1 [\w]\[\e[0;32m\]"
 PS1="$PS1\$(__git_ps1)\n"
 PS1="$PS1 \[\e[0;32m\]$\[\e[00m\] "
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes cabal bin if exists
+if [ -d "$HOME/.cabal/bin" ] ; then
+    PATH="$HOME/.cabal/bin:$PATH"
+fi
+
+# Let's get some aliases in here
 if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
@@ -28,6 +39,11 @@ set -o vi
 # Load a local bashrc  file if needed
 if [ -f ~/.bashrc_locale ]; then
     . ~/.bashrc_locale
+fi
+
+# Load functions
+if [ -f "$HOME/.functionrc" ]; then
+    . "$HOME/.functionrc"
 fi
 
 # Source git-prompt for promt to work
