@@ -1,8 +1,8 @@
 Sgoettschkes/dotfiles
 =====================
 
-@Sgoettschkes on dotfiles ;)
+[@Sgoettschkes](https://twitter.com/Sgoettschkes] on dotfiles
 
-A collection of my dotfiles. Nothing fancy as I'm just getting started!
+A collection of my dotfiles. Includes standard stuff like bash/git/vim and fancy stuff.
 
-Right now, this repo is a copy of my Ubuntu 12.10 ~ not tested elsewhere!
+Should work anywhere. Started on Ubuntu 12.10, made better on Mint 15 and currently in use on Debian Jessie.
