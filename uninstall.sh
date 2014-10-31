@@ -14,6 +14,7 @@ rm -f ~/.ssh/config
 
 # xfce
 rm -f ~/.config/xfce4/xinitrc
+rm -f ~/.config/menus/xfce-applications.menu
 
 # gnupg
 rm -f ~/.gnupg/gpg.conf
