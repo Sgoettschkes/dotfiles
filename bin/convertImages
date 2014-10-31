@@ -3,6 +3,9 @@
 '''
 Convert images by using ImageMagick to reduce imagesize and rename file into imageXXX.jpg pattern
 
+Dependencies:
+    imagemagick
+
 Usage:
     convertImages scrDir
 '''

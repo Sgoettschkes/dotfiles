@@ -3,6 +3,9 @@
 '''
 Puts images in ~/Pictures/tmp in folders named by the date taken
 
+Dependencies:
+    imagemagick
+
 Usage: organizeImages
 '''
 
