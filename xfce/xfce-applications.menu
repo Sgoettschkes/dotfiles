@@ -15,7 +15,6 @@
     <Layout>
         <Filename>xfce4-session-logout.desktop</Filename>
         <Separator/>
-        <Filename>keepassx.desktop</Filename>
         <Filename>virtualbox.desktop</Filename>
         <Filename>truecrypt.desktop</Filename>
         <Separator/>
