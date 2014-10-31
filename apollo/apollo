@@ -1,3 +1,6 @@
+# File managed by Sgoettschkes/dotfiles
+# Do not change
+
 [def]
 flacdir = /home/sebastian/tmp/flac
 mp3dir = /home/sebastian/tmp/mp3
