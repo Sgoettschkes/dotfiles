@@ -46,4 +46,6 @@ rm -f ~/.tmux.conf
 rm -f ~/.irssi/config
 rm -f ~/.irssi/furry.theme
 
+rm -f ~/.asunder
+
 echo "--- STOPPING ---"

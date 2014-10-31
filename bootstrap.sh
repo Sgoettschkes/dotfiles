@@ -70,4 +70,7 @@ symlink $BASEPATH/tmux/tmux.conf ~/.tmux.conf
 symlink $BASEPATH/irssi/config ~/.irssi/config
 symlink $BASEPATH/irssi/furry.theme ~/.irssi/furry.theme
 
+# asunder
+symlink $BASEPATH/asunder/asunder ~/.asunder
+
 echo "--- STOPPING ---"
