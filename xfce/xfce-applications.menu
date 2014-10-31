@@ -15,6 +15,7 @@
     <Layout>
         <Filename>xfce4-session-logout.desktop</Filename>
         <Separator/>
+        <Filename>skype.desktop</Filename>
         <Filename>virtualbox.desktop</Filename>
         <Filename>truecrypt.desktop</Filename>
         <Separator/>
