@@ -7,6 +7,10 @@ cdl() {
     cd -- "$@" && ls
 }; export -f cdl
 
-mkcd () {
+mkcd() {
     mkdir -p -- "$@" && cd "$@"
 }; export -f mkcd
+
+lsx() {
+    ls -alF $1 | grep $2
+}; export -f lsx
