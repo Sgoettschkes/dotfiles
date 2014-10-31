@@ -1,0 +1,13 @@
+#!/bin/bash
+set -o nounset
+set -o errexit
+
+Mode=${1:-home}
+
+if [ "${Mode}" == "home" ]; then
+    xrandr --output VGA-0 --off --output LVDS --off --output HDMI-0 --auto --primary
+elif [ "${Mode}" == "road" ]; then
+    xrandr --output VGA-0 --off --output LVDS --auto --primary --output HDMI-0 --off
+elif [ "${Mode}" == "beamer" ]; then
+    xrandr --output VGA-0 --off --output LVDS --auto --primary --output HDMI-0 --auto --right-of LVDS
+fi

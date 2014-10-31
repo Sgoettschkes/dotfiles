@@ -60,6 +60,7 @@ symlink $BASEPATH/bin/backup ~/bin/backup
 symlink $BASEPATH/bin/changeTag ~/bin/changeTag
 symlink $BASEPATH/bin/convertImages ~/bin/convertImages
 symlink $BASEPATH/bin/gitHelper ~/bin/gitHelper
+symlink $BASEPATH/bin/mon ~/bin/mon
 symlink $BASEPATH/bin/moveTmpMusic ~/bin/moveTmpMusic
 symlink $BASEPATH/bin/organizeImages ~/bin/organizeImages
 chmod 764 $BASEPATH/bin/*
