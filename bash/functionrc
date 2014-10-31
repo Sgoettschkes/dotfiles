@@ -14,3 +14,7 @@ mkcd() {
 lsx() {
     ls -alF $1 | grep $2
 }; export -f lsx
+
+ssht() {
+    ssh $* -t 'tmux a || tmux || /bin/bash'
+}; export -f ssht
