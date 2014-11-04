@@ -21,12 +21,12 @@ remove () {
         return
     fi
 
-    if [ ! -f $Target ] && [ ! -e $Target ]; then
+    if [ ! -e "$Target" ]; then
         error "Target does not exist"
         return
     fi
 
-    if [ -e $Target ]; then
+    if [ -e "$Target" ]; then
         rm -r $Target
         success "Dir $Target removed"
     else
