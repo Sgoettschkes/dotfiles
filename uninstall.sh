@@ -59,9 +59,9 @@ remove ~/.git/git-prompt.sh
 
 # vim
 remove ~/.vimrc
-rm -rf ~/.vim/bundle
-rm -rf ~/.vim/backup
-rm -rf ~/.vim/temp
+remove ~/.vim/bundle
+remove ~/.vim/backup
+remove ~/.vim/temp
 
 # haskell
 remove ~/.ghc/ghci.conf
