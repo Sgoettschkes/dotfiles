@@ -1,27 +1,39 @@
 #!/bin/bash
+set -o nounset
+set -o errexit
+
+success () {
+    printf "\e[32m$1\e[39m\n"
+}
+
+warning () {
+    printf "\e[33m$1\e[39m\n"
+}
+
+error () {
+    printf "\e[31m$1\e[39m\n"
+}
 
 symlink () {
     # Check if target exists
     if [ -e $2 ]; then
         if [ "$(readlink $2)" == "$1" ]; then
-            echo "Target $2 already in place"
+            success "Target $2 already in place"
         else
-            echo "Target $2 exists; Aborting"
+            error "Target $2 exists; Aborting"
         fi
         return
     fi
     DIR=`dirname $2`
     if [ ! -d $DIR ]; then
-        echo "Folder $DIR does not exist; creating"
+        warning "Folder $DIR does not exist; creating"
         mkdir -p $DIR
     fi
     ln -s $1 $2
-    echo "Symlink $2 for target $1 created"
+    success "Symlink $2 for target $1 created"
 }
 
 BASEPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-echo "--- STARTING ---"
 
 # bash
 symlink $BASEPATH/bash/aliases ~/.aliases
@@ -77,5 +89,3 @@ symlink $BASEPATH/asunder/asunder ~/.asunder
 
 # apollo
 symlink $BASEPATH/apollo/apollo ~/.apollo
-
-echo "--- STOPPING ---"
