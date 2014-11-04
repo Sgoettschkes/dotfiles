@@ -26,7 +26,7 @@ remove () {
         return
     fi
 
-    if [ -e "$Target" ]; then
+    if [ -d "$Target" ]; then
         rm -r $Target
         success "Dir $Target removed"
     else
