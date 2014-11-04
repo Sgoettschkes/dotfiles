@@ -27,16 +27,16 @@ remove () {
     fi
 
     if [ -e $Target ]; then
-        rm -rf $Target
+        rm -r $Target
         success "Dir $Target removed"
     else
-        rm -f $Target
+        rm $Target
         success "File $Target removed"
     fi
 }
 
 # bash
-rm -f ~/.aliases
+remove ~/.aliases
 rm -f ~/.bashrc
 rm -f ~/.profile
 rm -f ~/.inputrc
