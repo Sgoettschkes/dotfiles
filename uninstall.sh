@@ -37,54 +37,54 @@ remove () {
 
 # bash
 remove ~/.aliases
-rm -f ~/.bashrc
-rm -f ~/.profile
-rm -f ~/.inputrc
-rm -f ~/.functionrc
+remove ~/.bashrc
+remove ~/.profile
+remove ~/.inputrc
+remove ~/.functionrc
 
 # ssh
-rm -f ~/.ssh/config
+remove ~/.ssh/config
 
 # xfce
-rm -f ~/.config/xfce4/xinitrc
-rm -f ~/.config/menus/xfce-applications.menu
+remove ~/.config/xfce4/xinitrc
+remove ~/.config/menus/xfce-applications.menu
 
 # gnupg
-rm -f ~/.gnupg/gpg.conf
+remove ~/.gnupg/gpg.conf
 
 # git
-rm -f ~/.gitconfig
-rm -f ~/.gitignore
-rm -f ~/.git/git-prompt.sh
+remove ~/.gitconfig
+remove ~/.gitignore
+remove ~/.git/git-prompt.sh
 
 # vim
-rm -f ~/.vimrc
+remove ~/.vimrc
 rm -rf ~/.vim/bundle
 rm -rf ~/.vim/backup
 rm -rf ~/.vim/temp
 
 # haskell
-rm -f ~/.ghc/ghci.conf
-rm -f ~/.cabal/config
+remove ~/.ghc/ghci.conf
+remove ~/.cabal/config
 
 # bin
-rm -f ~/bin/backup
-rm -f ~/bin/changeTag
-rm -f ~/bin/convertImages
-rm -f ~/bin/gitHelper
-rm -f ~/bin/mon
-rm -f ~/bin/moveTmpMusic
-rm -f ~/bin/organizeImages
+remove ~/bin/backup
+remove ~/bin/changeTag
+remove ~/bin/convertImages
+remove ~/bin/gitHelper
+remove ~/bin/mon
+remove ~/bin/moveTmpMusic
+remove ~/bin/organizeImages
 
 # tmux
-rm -f ~/.tmux.conf
+remove ~/.tmux.conf
 
 # irssi
-rm -f ~/.irssi/config
-rm -f ~/.irssi/furry.theme
+remove ~/.irssi/config
+remove ~/.irssi/furry.theme
 
 # asunder
-rm -f ~/.asunder
+remove ~/.asunder
 
 # apollo
-rm -f ~/.apollo
+remove ~/.apollo
