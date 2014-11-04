@@ -21,7 +21,7 @@ remove () {
         return
     fi
 
-    if [ ! -e $Target ]; then
+    if [ ! -f $Target ] && [ ! -e $Target ]; then
         error "Target does not exist"
         return
     fi
