@@ -11,16 +11,11 @@ Host 10.66.6.*
     StrictHostKeyChecking no
 
 Host raspberry
-    HostName 2a02:8388:6480:d80:ba27:ebff:fe31:4058
+    HostName 10.66.6.10
     Port 22
     User sebastian
     UserKnownHostsFile=/dev/null
     StrictHostKeyChecking no
-
-Host sgoett01
-    HostName bootes.uberspace.de
-    Port 22
-    User sgoett01
 
 Host sgoett11
     HostName 141.0.170.41
