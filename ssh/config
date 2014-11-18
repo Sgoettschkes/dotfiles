@@ -17,7 +17,7 @@ Host raspberry
     UserKnownHostsFile=/dev/null
     StrictHostKeyChecking no
 
-Host sgoett11
-    HostName 141.0.170.41
+Host silk
+    HostName silk.agileaddicts.com
     Port 22
     User sebastian
