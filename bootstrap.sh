@@ -14,6 +14,31 @@ error () {
     printf "\e[31m$1\e[39m\n"
 }
 
+THISENV=`expr substr $(uname -s) 1 6`
+warning "Environment $THISENV detected"
+
+manage () {
+    if [ "$THISENV" == "CYGWIN" ]; then
+        copy $1 $2
+    else 
+        symlink $1 $2
+    fi
+}
+
+copy () {
+    if [ -e $2 ]; then
+        error "Target $2 exists; Aborting"
+        return
+    fi
+    DIR=`dirname $2`
+    if [ ! -d $DIR ]; then
+        warning "Folder $DIR does not exist; creating"
+        mkdir -p $DIR
+    fi
+    cp -r $1 $2
+    success "Copy $2 for target $1 created"
+}
+
 symlink () {
     # Check if target exists
     if [ -e $2 ]; then
@@ -36,56 +61,56 @@ symlink () {
 BASEPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # bash
-symlink $BASEPATH/bash/aliases ~/.aliases
-symlink $BASEPATH/bash/bashrc ~/.bashrc
-symlink $BASEPATH/bash/profile ~/.profile
-symlink $BASEPATH/bash/inputrc ~/.inputrc
-symlink $BASEPATH/bash/functionrc ~/.functionrc
+manage $BASEPATH/bash/aliases ~/.aliases
+manage $BASEPATH/bash/bashrc ~/.bashrc
+manage $BASEPATH/bash/profile ~/.profile
+manage $BASEPATH/bash/inputrc ~/.inputrc
+manage $BASEPATH/bash/functionrc ~/.functionrc
 
 # ssh
-symlink $BASEPATH/ssh/config ~/.ssh/config
+manage $BASEPATH/ssh/config ~/.ssh/config
 
 # xfce
-symlink $BASEPATH/xfce/xinitrc ~/.config/xfce4/xinitrc
-symlink $BASEPATH/xfce/xfce-applications.menu ~/.config/menus/xfce-applications.menu
+manage $BASEPATH/xfce/xinitrc ~/.config/xfce4/xinitrc
+manage $BASEPATH/xfce/xfce-applications.menu ~/.config/menus/xfce-applications.menu
 
 # gnupg
-symlink $BASEPATH/gnupg/gpg.conf ~/.gnupg/gpg.conf
+manage $BASEPATH/gnupg/gpg.conf ~/.gnupg/gpg.conf
 
 # git
-symlink $BASEPATH/git/gitconfig ~/.gitconfig
-symlink $BASEPATH/git/gitignore ~/.gitignore
-symlink $BASEPATH/git/git-prompt.sh ~/.git/git-prompt.sh
+manage $BASEPATH/git/gitconfig ~/.gitconfig
+manage $BASEPATH/git/gitignore ~/.gitignore
+manage $BASEPATH/git/git-prompt.sh ~/.git/git-prompt.sh
 
 # vim
-symlink $BASEPATH/vim/vimrc ~/.vimrc
-symlink $BASEPATH/vim/bundle ~/.vim/bundle
+manage $BASEPATH/vim/vimrc ~/.vimrc
+manage $BASEPATH/vim/bundle ~/.vim/bundle
 mkdir -p ~/.vim/backup/undo
 mkdir -p ~/.vim/temp
 
 # haskell
-symlink $BASEPATH/haskell/ghci.conf ~/.ghc/ghci.conf
-symlink $BASEPATH/haskell/cabal_config ~/.cabal/config
+manage $BASEPATH/haskell/ghci.conf ~/.ghc/ghci.conf
+manage $BASEPATH/haskell/cabal_config ~/.cabal/config
 
 # bin
-symlink $BASEPATH/bin/backup ~/bin/backup
-symlink $BASEPATH/bin/changeTag ~/bin/changeTag
-symlink $BASEPATH/bin/convertImages ~/bin/convertImages
-symlink $BASEPATH/bin/gitHelper ~/bin/gitHelper
-symlink $BASEPATH/bin/mon ~/bin/mon
-symlink $BASEPATH/bin/moveTmpMusic ~/bin/moveTmpMusic
-symlink $BASEPATH/bin/organizeImages ~/bin/organizeImages
+manage $BASEPATH/bin/backup ~/bin/backup
+manage $BASEPATH/bin/changeTag ~/bin/changeTag
+manage $BASEPATH/bin/convertImages ~/bin/convertImages
+manage $BASEPATH/bin/gitHelper ~/bin/gitHelper
+manage $BASEPATH/bin/mon ~/bin/mon
+manage $BASEPATH/bin/moveTmpMusic ~/bin/moveTmpMusic
+manage $BASEPATH/bin/organizeImages ~/bin/organizeImages
 chmod 764 $BASEPATH/bin/*
 
 # tmux
-symlink $BASEPATH/tmux/tmux.conf ~/.tmux.conf
+manage $BASEPATH/tmux/tmux.conf ~/.tmux.conf
 
 # irssi
-symlink $BASEPATH/irssi/config ~/.irssi/config
-symlink $BASEPATH/irssi/furry.theme ~/.irssi/furry.theme
+manage $BASEPATH/irssi/config ~/.irssi/config
+manage $BASEPATH/irssi/furry.theme ~/.irssi/furry.theme
 
 # asunder
-symlink $BASEPATH/asunder/asunder ~/.asunder
+manage $BASEPATH/asunder/asunder ~/.asunder
 
 # apollo
-symlink $BASEPATH/apollo/apollo ~/.apollo
+manage $BASEPATH/apollo/apollo ~/.apollo
