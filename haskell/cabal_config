@@ -12,10 +12,10 @@
 
 
 remote-repo: hackage.haskell.org:http://hackage.haskell.org/packages/archive
-remote-repo-cache: /home/sebastian/.cabal/packages
+remote-repo-cache: ~/.cabal/packages
 -- local-repo:
 -- logs-dir:
-world-file: /home/sebastian/.cabal/world
+world-file: ~/.cabal/world
 -- verbose: 1
 -- compiler: ghc
 -- with-compiler:
@@ -56,7 +56,7 @@ world-file: /home/sebastian/.cabal/world
 -- only-dependencies: False
 -- root-cmd:
 -- symlink-bindir:
-build-summary: /home/sebastian/.cabal/logs/build.log
+build-summary: ~/.cabal/logs/build.log
 -- build-log:
 remote-build-reporting: anonymous
 -- one-shot: False
@@ -64,7 +64,7 @@ remote-build-reporting: anonymous
 -- password:
 
 install-dirs user
-  -- prefix: /home/sebastian/.cabal
+  -- prefix: ~/.cabal
   -- bindir: $prefix/bin
   -- libdir: $prefix/lib
   -- libsubdir: $pkgid/$compiler
