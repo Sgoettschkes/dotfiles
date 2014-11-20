@@ -1,4 +1,5 @@
 #!/bin/bash
+
 set -o nounset
 set -o errexit
 
@@ -14,9 +15,6 @@ error () {
     printf "\e[31m$1\e[39m\n"
 }
 
-THISENV=`expr substr $(uname -s) 1 6`
-warning "Environment $THISENV detected"
-
 manage () {
     if [ "$THISENV" == "CYGWIN" ]; then
         copy $1 $2
@@ -26,21 +24,25 @@ manage () {
 }
 
 copy () {
-    if [ -e $2 ]; then
-        if diff -rq $1 $2 > /dev/null; then
-            success "Target $2 already in place"
-        else
-            error "Target $2 exists; Aborting"
-        fi
-        return
-    fi
     DIR=`dirname $2`
     if [ ! -d $DIR ]; then
-        warning "Folder $DIR does not exist; creating"
+        warning "Folder $DIR created"
         mkdir -p $DIR
     fi
-    cp -r $1 $2
-    success "Copy $2 for target $1 created"
+    
+    cp -f $1 $2
+    success "File $1 copied to $2"
+}
+
+copyDir () {
+    DIR=`dirname $2`
+    if [ ! -d $DIR ]; then
+        warning "Folder $DIR created"
+        mkdir -p $DIR
+    fi
+    
+    cp -rf $1 $2
+    success "Folder $1 copied to $2"
 }
 
 symlink () {
@@ -62,61 +64,66 @@ symlink () {
     success "Symlink $2 for target $1 created"
 }
 
+THISENV=`expr substr $(uname -s) 1 6`
+warning "Environment $THISENV detected"
+
+if [ "$#" -ne 1 ] || [ "$1" != "--force" ]; then
+    read -p "This will overwrite stuff in your ~! Ok? [Y/n]" yn
+    if [ "$yn" != "Y" ]; then
+        error "Didn't get permission to overwrite stuff. Aborting"
+        exit
+    fi
+fi
+
 BASEPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # bash
-manage $BASEPATH/bash/aliases ~/.aliases
-manage $BASEPATH/bash/bashrc ~/.bashrc
-manage $BASEPATH/bash/profile ~/.profile
-manage $BASEPATH/bash/inputrc ~/.inputrc
-manage $BASEPATH/bash/functionrc ~/.functionrc
+copy $BASEPATH/bash/aliases ~/.aliases
+copy $BASEPATH/bash/bashrc ~/.bashrc
+copy $BASEPATH/bash/profile ~/.profile
+copy $BASEPATH/bash/inputrc ~/.inputrc
+copy $BASEPATH/bash/functionrc ~/.functionrc
 
 # ssh
-manage $BASEPATH/ssh/config ~/.ssh/config
+copy $BASEPATH/ssh/config ~/.ssh/config
 
 # xfce
-manage $BASEPATH/xfce/xinitrc ~/.config/xfce4/xinitrc
-manage $BASEPATH/xfce/xfce-applications.menu ~/.config/menus/xfce-applications.menu
+copy $BASEPATH/xfce/xinitrc ~/.config/xfce4/xinitrc
+copy $BASEPATH/xfce/xfce-applications.menu ~/.config/menus/xfce-applications.menu
 
 # gnupg
-manage $BASEPATH/gnupg/gpg.conf ~/.gnupg/gpg.conf
+copy $BASEPATH/gnupg/gpg.conf ~/.gnupg/gpg.conf
 
 # git
-manage $BASEPATH/git/gitconfig ~/.gitconfig
-manage $BASEPATH/git/gitignore ~/.gitignore
-manage $BASEPATH/git/git-prompt.sh ~/.git/git-prompt.sh
+copy $BASEPATH/git/gitconfig ~/.gitconfig
+copy $BASEPATH/git/gitignore ~/.gitignore
+copy $BASEPATH/git/git-prompt.sh ~/.git/git-prompt.sh
 
 # vim
-manage $BASEPATH/vim/vimrc ~/.vimrc
-manage $BASEPATH/vim/bundle ~/.vim/bundle
+copy $BASEPATH/vim/vimrc ~/.vimrc
+copyDir $BASEPATH/vim/bundle ~/.vim/
 mkdir -p ~/.vim/backup/undo
 mkdir -p ~/.vim/temp
 
 # haskell
-manage $BASEPATH/haskell/ghci.conf ~/.ghc/ghci.conf
+copy $BASEPATH/haskell/ghci.conf ~/.ghc/ghci.conf
 # Special case for cabal because ~ needs to be replaced
 rm ~/.cabal/config
 cat $BASEPATH/haskell/cabal.config | sed "s#~#$HOME#" > ~/.cabal/config
 
 # bin
-manage $BASEPATH/bin/backup ~/bin/backup
-manage $BASEPATH/bin/changeTag ~/bin/changeTag
-manage $BASEPATH/bin/convertImages ~/bin/convertImages
-manage $BASEPATH/bin/gitHelper ~/bin/gitHelper
-manage $BASEPATH/bin/mon ~/bin/mon
-manage $BASEPATH/bin/moveTmpMusic ~/bin/moveTmpMusic
-manage $BASEPATH/bin/organizeImages ~/bin/organizeImages
+copyDir $BASEPATH/bin/ ~/bin/
 chmod 764 $BASEPATH/bin/*
 
 # tmux
-manage $BASEPATH/tmux/tmux.conf ~/.tmux.conf
+copy $BASEPATH/tmux/tmux.conf ~/.tmux.conf
 
 # irssi
-manage $BASEPATH/irssi/config ~/.irssi/config
-manage $BASEPATH/irssi/furry.theme ~/.irssi/furry.theme
+copy $BASEPATH/irssi/config ~/.irssi/config
+copy $BASEPATH/irssi/furry.theme ~/.irssi/furry.theme
 
 # asunder
-manage $BASEPATH/asunder/asunder ~/.asunder
+copy $BASEPATH/asunder/asunder ~/.asunder
 
 # apollo
-manage $BASEPATH/apollo/apollo ~/.apollo
+copy $BASEPATH/apollo/apollo ~/.apollo
