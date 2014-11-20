@@ -3,20 +3,27 @@
 set -o nounset
 set -o errexit
 
-DotfilesDir=~/.dotfiles
+readonly Progname=$(basename "$0")
+readonly Progdir=$(readlink -m $(dirname "$0"))
+readonly Args="$@"
 
 # Helpers for printing stuff
 success () { printf "\e[32m$1\e[39m\n"; }
 warning () { printf "\e[33m$1\e[39m\n"; }
 error () { printf "\e[31m$1\e[39m\n"; }
 
-if [ ! -d $DotfilesDir ]; then
-    error "Dotfiles dir $DotfilesDir does not exist. Aborting"
-    exit
-fi
+main() {
+    readonly DotfilesDir=~/.dotfiles
+    
+    if [ ! -d $DotfilesDir ]; then
+        error "Dotfiles dir $DotfilesDir does not exist. Aborting"
+        exit
+    fi
 
-cd $DotfilesDir
-git fetch --all > /dev/null
-git reset --hard origin/master > /dev/null
-success "Updated dotfiles"
-./bootstrap.sh $@
+    cd $DotfilesDir
+    git fetch --all > /dev/null
+    git reset --hard origin/master > /dev/null
+    success "Updated dotfiles"
+    ./bootstrap.sh $@
+}
+main $Args
