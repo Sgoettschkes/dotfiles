@@ -3,9 +3,9 @@
 set -o nounset
 set -o errexit
 
-readonly PROGNAME=$(basename "$0")
-readonly PROGDIR=$(readlink -m $(dirname "$0"))
-readonly ARGS="$@"
+readonly Progname=$(basename "$0")
+readonly Progdir=$(readlink -m $(dirname "$0"))
+readonly Args="$@"
 
 main() {
     local TmpDrive=/home/sebastian/tmp
