@@ -2,7 +2,8 @@
 # Do not change
 
 [alias]
-    amend = commit -a --amend
+    amend = commit --all --amend
+    br = branch --all --color
     ci = commit
     cm = !git add -A && git commit -m
     co = checkout
