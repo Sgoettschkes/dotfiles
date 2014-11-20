@@ -104,7 +104,7 @@ copy $BASEPATH/tmux/tmux.conf $HOMEPATH/.tmux.conf
 
 # vim (Create dirs for vim to store stuff)
 copy $BASEPATH/vim/vimrc $HOMEPATH/.vimrc
-copy $BASEPATH/vim/bundle/ $HOMEPATH/.vim/bundle/
+copy $BASEPATH/vim/bundle $HOMEPATH/.vim/bundle
 mkdir -p $HOMEPATH/.vim/backup/undo
 mkdir -p $HOMEPATH/.vim/temp
 
