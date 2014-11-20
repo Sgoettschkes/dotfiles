@@ -15,14 +15,6 @@ error () {
     printf "\e[31m$1\e[39m\n"
 }
 
-manage () {
-    if [ "$THISENV" == "CYGWIN" ]; then
-        copy $1 $2
-    else 
-        symlink $1 $2
-    fi
-}
-
 copy () {
     DIR=`dirname $2`
     if [ ! -d $DIR ]; then
@@ -45,25 +37,6 @@ copyDir () {
     success "Folder $1 copied to $2"
 }
 
-symlink () {
-    # Check if target exists
-    if [ -e $2 ]; then
-        if [ "$(readlink $2)" == "$1" ]; then
-            success "Target $2 already in place"
-        else
-            error "Target $2 exists; Aborting"
-        fi
-        return
-    fi
-    DIR=`dirname $2`
-    if [ ! -d $DIR ]; then
-        warning "Folder $DIR does not exist; creating"
-        mkdir -p $DIR
-    fi
-    ln -s $1 $2
-    success "Symlink $2 for target $1 created"
-}
-
 THISENV=`expr substr $(uname -s) 1 6`
 warning "Environment $THISENV detected"
 
@@ -74,6 +47,7 @@ if [ "$#" -ne 1 ] || [ "$1" != "--force" ]; then
         exit
     fi
 fi
+warning "Will start to overwrite files now!"
 
 BASEPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
