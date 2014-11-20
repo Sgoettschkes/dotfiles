@@ -33,7 +33,7 @@ copy () {
         mkdir -p $DIR
     fi
     
-    rm $2
+    rm -f $2
     cp $1 $2
     success "File $1 copied to $2"
 }
