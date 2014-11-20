@@ -50,54 +50,55 @@ fi
 warning "Will start to overwrite files now!"
 
 BASEPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+HOMEPATH=`echo ~`
 
 # bash
-copy $BASEPATH/bash/aliases ~/.aliases
-copy $BASEPATH/bash/bashrc ~/.bashrc
-copy $BASEPATH/bash/profile ~/.profile
-copy $BASEPATH/bash/inputrc ~/.inputrc
-copy $BASEPATH/bash/functionrc ~/.functionrc
+copy $BASEPATH/bash/aliases $HOMEPATH/.aliases
+copy $BASEPATH/bash/bashrc $HOMEPATH/.bashrc
+copy $BASEPATH/bash/profile $HOMEPATH/.profile
+copy $BASEPATH/bash/inputrc $HOMEPATH/.inputrc
+copy $BASEPATH/bash/functionrc $HOMEPATH/.functionrc
 
 # ssh
-copy $BASEPATH/ssh/config ~/.ssh/config
+copy $BASEPATH/ssh/config $HOMEPATH/.ssh/config
 
 # xfce
-copy $BASEPATH/xfce/xinitrc ~/.config/xfce4/xinitrc
-copy $BASEPATH/xfce/xfce-applications.menu ~/.config/menus/xfce-applications.menu
+copy $BASEPATH/xfce/xinitrc $HOMEPATH/.config/xfce4/xinitrc
+copy $BASEPATH/xfce/xfce-applications.menu $HOMEPATH/.config/menus/xfce-applications.menu
 
 # gnupg
-copy $BASEPATH/gnupg/gpg.conf ~/.gnupg/gpg.conf
+copy $BASEPATH/gnupg/gpg.conf $HOMEPATH/.gnupg/gpg.conf
 
 # git
-copy $BASEPATH/git/gitconfig ~/.gitconfig
-copy $BASEPATH/git/gitignore ~/.gitignore
-copy $BASEPATH/git/git-prompt.sh ~/.git/git-prompt.sh
+copy $BASEPATH/git/gitconfig $HOMEPATH/.gitconfig
+copy $BASEPATH/git/gitignore $HOMEPATH/.gitignore
+copy $BASEPATH/git/git-prompt.sh $HOMEPATH/.git/git-prompt.sh
 
 # vim
-copy $BASEPATH/vim/vimrc ~/.vimrc
-copyDir $BASEPATH/vim/bundle ~/.vim/
-mkdir -p ~/.vim/backup/undo
-mkdir -p ~/.vim/temp
+copy $BASEPATH/vim/vimrc $HOMEPATH/.vimrc
+copyDir $BASEPATH/vim/bundle $HOMEPATH/.vim/
+mkdir -p $HOMEPATH/.vim/backup/undo
+mkdir -p $HOMEPATH/.vim/temp
 
 # haskell
-copy $BASEPATH/haskell/ghci.conf ~/.ghc/ghci.conf
+copy $BASEPATH/haskell/ghci.conf $HOMEPATH/.ghc/ghci.conf
 # Special case for cabal because ~ needs to be replaced
-rm ~/.cabal/config
-cat $BASEPATH/haskell/cabal.config | sed "s#~#$HOME#" > ~/.cabal/config
+rm $HOMEPATH/.cabal/config
+cat $BASEPATH/haskell/cabal.config | sed "s#~#$HOME#" > $HOMEPATH/.cabal/config
 
 # bin
-copyDir $BASEPATH/bin/ ~/bin/
+copyDir $BASEPATH/bin/ $HOMEPATH/bin/
 chmod 764 $BASEPATH/bin/*
 
 # tmux
-copy $BASEPATH/tmux/tmux.conf ~/.tmux.conf
+copy $BASEPATH/tmux/tmux.conf $HOMEPATH/.tmux.conf
 
 # irssi
-copy $BASEPATH/irssi/config ~/.irssi/config
-copy $BASEPATH/irssi/furry.theme ~/.irssi/furry.theme
+copy $BASEPATH/irssi/config $HOMEPATH/.irssi/config
+copy $BASEPATH/irssi/furry.theme $HOMEPATH/.irssi/furry.theme
 
 # asunder
-copy $BASEPATH/asunder/asunder ~/.asunder
+copy $BASEPATH/asunder/asunder $HOMEPATH/.asunder
 
 # apollo
-copy $BASEPATH/apollo/apollo ~/.apollo
+copy $BASEPATH/apollo/apollo $HOMEPATH/.apollo
