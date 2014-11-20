@@ -33,7 +33,8 @@ copy () {
         mkdir -p $DIR
     fi
     
-    cp -f $1 $2
+    rm $2
+    cp $1 $2
     success "File $1 copied to $2"
 }
 
@@ -44,7 +45,8 @@ copyDir () {
         mkdir -p $DIR
     fi
     
-    cp -rf $1 $2
+    rm -rf $2
+    cp -r $1 $2
     success "Folder $1 copied to $2"
 }
 
@@ -118,9 +120,3 @@ mkdir -p $HOMEPATH/.vim/temp
 # xfce
 copy $BASEPATH/xfce/xinitrc $HOMEPATH/.config/xfce4/xinitrc
 copy $BASEPATH/xfce/xfce-applications.menu $HOMEPATH/.config/menus/xfce-applications.menu
-
-#
-# Final stuff
-#
-
-source $HOMEPATH/.bashrc
