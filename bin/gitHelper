@@ -1,10 +1,11 @@
 #!/bin/sh
+
 set -o nounset
 set -o errexit
 
-CURRENT_BRANCH=`git branch | awk '/^\*/{print $2}'`
-CURRENT_DIR=`pwd`
-GIT_BASE_DIR=`git rev-parse --show-toplevel`
+CurrentBranch=`git branch | awk '/^\*/{print $2}'`
+CurrentDir=`pwd`
+GitBaseDir=`git rev-parse --show-toplevel`
 
 if [ $# -ne 1 ]; then
     echo "No argument given"
@@ -17,9 +18,9 @@ up () {
         exit
     fi
     
-    git rebase $CURRENT_BRANCH
+    git rebase $CurrentBranch
     if [ $? -ne 0 ]; then
-        git checkout $CURRENT_BRANCH
+        git checkout $CurrentBranch
         exit
     fi
     
@@ -28,7 +29,7 @@ up () {
         exit
     fi
     
-    git checkout $CURRENT_BRANCH
+    git checkout $CurrentBranch
     if [ $? -ne 0 ]; then
         exit
     fi
@@ -41,7 +42,7 @@ down () {
     fi
 
     git pull --rebase origin master
-    git checkout $CURRENT_BRANCH
+    git checkout $CurrentBranch
     if [ $? -ne 0 ]; then
         exit
     fi
@@ -53,11 +54,11 @@ down () {
 }
 
 if [ "$1" = "up" ]; then
-    cd $GIT_BASE_DIR
+    cd $GitBaseDir
     up
-    cd $CURRENT_DIR
+    cd $CurrentDir
 elif [ "$1" = "down" ]; then
-    cd $GIT_BASE_DIR
+    cd $GitBaseDir
     down
-    cd $CURRENT_DIR
+    cd $CurrentDir
 fi
