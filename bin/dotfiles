@@ -27,6 +27,7 @@ if [ ! -d $DOTFILES_DIR ]; then
 fi
 
 cd $DOTFILES_DIR
-git fetch --all
-git reset --hard origin/master
+git fetch --all > /dev/null
+git reset --hard origin/master > /dev/null
+success "Updated dotfiles"
 ./bootstrap.sh $@
