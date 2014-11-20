@@ -90,7 +90,9 @@ mkdir -p ~/.vim/temp
 
 # haskell
 manage $BASEPATH/haskell/ghci.conf ~/.ghc/ghci.conf
-manage $BASEPATH/haskell/cabal_config ~/.cabal/config
+# Special case for cabal because ~ needs to be replaced
+rm ~/.cabal/config
+cat $BASEPATH/haskell/cabal_config | sed "s#~#$HOME#" > ~/.cabal/config
 
 # bin
 manage $BASEPATH/bin/backup ~/bin/backup
