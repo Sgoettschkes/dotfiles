@@ -3,12 +3,25 @@
 set -o nounset
 set -o errexit
 
-Mode=${1:-home}
+readonly Progname=$(basename "$0")
+readonly Progdir=$(readlink -m $(dirname "$0"))
+readonly Args="$@"
 
-if [ "${Mode}" == "home" ]; then
-    xrandr --output VGA-0 --off --output LVDS --off --output HDMI-0 --auto --primary
-elif [ "${Mode}" == "road" ]; then
-    xrandr --output VGA-0 --off --output LVDS --auto --primary --output HDMI-0 --off
-elif [ "${Mode}" == "beamer" ]; then
-    xrandr --output VGA-0 --off --output LVDS --auto --primary --output HDMI-0 --auto --right-of LVDS
-fi
+# Helpers for printing stuff
+success () { printf "\e[32m$1\e[39m\n"; }
+warning () { printf "\e[33m$1\e[39m\n"; }
+error () { printf "\e[31m$1\e[39m\n"; }
+
+main () {
+    readonly Mode=${1:-home}
+    
+    case "$Mode" in
+        "home") xrandr --output VGA-0 --off --output LVDS --off --output HDMI-0 --auto --primary ;;
+        "road") xrandr --output VGA-0 --off --output LVDS --auto --primary --output HDMI-0 --off ;;
+        "beamer") xrandr --output VGA-0 --off --output LVDS --auto --primary --output HDMI-0 --auto --right-of LVDS ;;
+        *) error "Mode not found"; exit ;;
+    esac
+    
+    success "Mode $Mode set"
+}
+main $Args
