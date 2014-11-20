@@ -77,7 +77,7 @@ copy $BASEPATH/bash/functionrc $HOMEPATH/.functionrc
 
 # bin
 copy $BASEPATH/bin/ $HOMEPATH/bin/
-chmod 764 $BASEPATH/bin/*
+chmod 764 $HOMEPATH/bin/*
 
 # git
 copy $BASEPATH/git/gitconfig $HOMEPATH/.gitconfig
