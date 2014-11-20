@@ -39,10 +39,6 @@ copyDir () {
     success "Folder $1 copied to $2"
 }
 
-# Get environment
-THISENV=`expr substr $(uname -s) 1 6`
-warning "Environment $THISENV detected"
-
 #
 # Read the parameters
 #
@@ -114,7 +110,7 @@ copy $BASEPATH/tmux/tmux.conf $HOMEPATH/.tmux.conf
 
 # vim (Create dirs for vim to store stuff)
 copy $BASEPATH/vim/vimrc $HOMEPATH/.vimrc
-copyDir $BASEPATH/vim/bundle $HOMEPATH/.vim/
+copyDir $BASEPATH/vim/bundle/ $HOMEPATH/.vim/bundle/
 mkdir -p $HOMEPATH/.vim/backup/undo
 mkdir -p $HOMEPATH/.vim/temp
 
