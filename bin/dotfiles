@@ -3,30 +3,22 @@
 set -o nounset
 set -o errexit
 
-DOTFILES_DIR=~/.dotfiles
+DotfilesDir=~/.dotfiles
 
 #
 # Helpers for printing stuff
 #
 
-success () {
-    printf "\e[32m$1\e[39m\n"
-}
+success () { printf "\e[32m$1\e[39m\n"; }
+warning () { printf "\e[33m$1\e[39m\n"; }
+error () { printf "\e[31m$1\e[39m\n"; }
 
-warning () {
-    printf "\e[33m$1\e[39m\n"
-}
-
-error () {
-    printf "\e[31m$1\e[39m\n"
-}
-
-if [ ! -d $DOTFILES_DIR ]; then
-    error "Dotfiles dir $DOTFILES_DIR does not exist. Aborting"
+if [ ! -d $DotfilesDir ]; then
+    error "Dotfiles dir $DotfilesDir does not exist. Aborting"
     exit
 fi
 
-cd $DOTFILES_DIR
+cd $DotfilesDir
 git fetch --all > /dev/null
 git reset --hard origin/master > /dev/null
 success "Updated dotfiles"
