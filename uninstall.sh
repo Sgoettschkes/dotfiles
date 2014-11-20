@@ -8,24 +8,20 @@ warning () { printf "\e[33m$1\e[39m\n"; }
 error () { printf "\e[31m$1\e[39m\n"; }
 
 remove () {
-    Target=$1
-    if [ -z "$Target" ]; then
+    if [ "$#" -ne 1 ]; then
         error "Target not given"
         return
     fi
+    
+    local readonly Target=$1
 
     if [ ! -e "$Target" ]; then
         error "Target $Target does not exist"
         return
     fi
 
-    if [ -d "$Target" ]; then
-        rm -rf $Target
-        success "Dir $Target removed"
-    else
-        rm $Target
-        success "File $Target removed"
-    fi
+    rm -rf $Target
+    success "Target $Target removed"
 }
 
 # apollo
