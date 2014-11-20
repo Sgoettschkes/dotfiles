@@ -55,10 +55,22 @@ THISENV=`expr substr $(uname -s) 1 6`
 warning "Environment $THISENV detected"
 
 #
-# Warn user about overwriting stuff
+# Read the parameters
 #
 
-if [ "$#" -ne 1 ] || [ "$1" != "--force" ]; then
+FORCE=false
+for p in $*; do
+    case "$p" in
+        "--force") FORCE=true ;;
+        *) error "Unkown parameter \"$p\" passed"; exit ;;
+    esac
+done;
+
+#
+# Check with user if he really want's to overwrite
+#
+
+if ! $FORCE; then
     read -p "This will overwrite stuff in your ~! Ok? [Y/n]" yn
     if [ "$yn" != "Y" ]; then
         error "Didn't get permission to overwrite stuff. Aborting"
