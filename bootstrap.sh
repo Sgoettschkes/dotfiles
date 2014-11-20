@@ -27,7 +27,11 @@ manage () {
 
 copy () {
     if [ -e $2 ]; then
-        error "Target $2 exists; Aborting"
+        if diff -rq $1 $2 > /dev/null; then
+            success "Target $2 already in place"
+        else
+            error "Target $2 exists; Aborting"
+        fi
         return
     fi
     DIR=`dirname $2`
