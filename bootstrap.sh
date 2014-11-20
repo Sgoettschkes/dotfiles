@@ -16,27 +16,21 @@ error () { printf "\e[31m$1\e[39m\n"; }
 #
 
 copy () {
-    DIR=`dirname $2`
-    if [ ! -d $DIR ]; then
-        warning "Folder $DIR created"
-        mkdir -p $DIR
+    if [ "$#" -ne 2 ]; then
+        error "Src and/or Dest missing"
+        return
+    fi
+    local readonly Src=$1
+    local readonly Dest=$2
+    local readonly Dir=`dirname $Dest`
+    if [ ! -d $Dir ]; then
+        mkdir -p $Dir
+        success "Folder $Dir created"
     fi
     
-    rm -f $2
-    cp $1 $2
-    success "File $1 copied to $2"
-}
-
-copyDir () {
-    DIR=`dirname $2`
-    if [ ! -d $DIR ]; then
-        warning "Folder $DIR created"
-        mkdir -p $DIR
-    fi
-    
-    rm -rf $2
-    cp -r $1 $2
-    success "Folder $1 copied to $2"
+    rm -rf $Dest
+    cp -r $Src $Dest
+    success "Source $Src copied to Destination $Dest"
 }
 
 #
@@ -82,7 +76,7 @@ copy $BASEPATH/bash/inputrc $HOMEPATH/.inputrc
 copy $BASEPATH/bash/functionrc $HOMEPATH/.functionrc
 
 # bin
-copyDir $BASEPATH/bin/ $HOMEPATH/bin/
+copy $BASEPATH/bin/ $HOMEPATH/bin/
 chmod 764 $BASEPATH/bin/*
 
 # git
@@ -110,7 +104,7 @@ copy $BASEPATH/tmux/tmux.conf $HOMEPATH/.tmux.conf
 
 # vim (Create dirs for vim to store stuff)
 copy $BASEPATH/vim/vimrc $HOMEPATH/.vimrc
-copyDir $BASEPATH/vim/bundle/ $HOMEPATH/.vim/bundle/
+copy $BASEPATH/vim/bundle/ $HOMEPATH/.vim/bundle/
 mkdir -p $HOMEPATH/.vim/backup/undo
 mkdir -p $HOMEPATH/.vim/temp
 
