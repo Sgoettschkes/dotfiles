@@ -2,17 +2,10 @@
 set -o nounset
 set -o errexit
 
-success () {
-    printf "\e[32m$1\e[39m\n"
-}
-
-warning () {
-    printf "\e[33m$1\e[39m\n"
-}
-
-error () {
-    printf "\e[31m$1\e[39m\n"
-}
+# Helpers for printing stuff
+success () { printf "\e[32m$1\e[39m\n"; }
+warning () { printf "\e[33m$1\e[39m\n"; }
+error () { printf "\e[31m$1\e[39m\n"; }
 
 remove () {
     Target=$1
@@ -22,18 +15,24 @@ remove () {
     fi
 
     if [ ! -e "$Target" ]; then
-        error "Target does not exist"
+        error "Target $Target does not exist"
         return
     fi
 
     if [ -d "$Target" ]; then
-        rm -r $Target
+        rm -rf $Target
         success "Dir $Target removed"
     else
         rm $Target
         success "File $Target removed"
     fi
 }
+
+# apollo
+remove ~/.apollo
+
+# asunder
+remove ~/.asunder
 
 # bash
 remove ~/.aliases
@@ -42,20 +41,30 @@ remove ~/.profile
 remove ~/.inputrc
 remove ~/.functionrc
 
-# ssh
-remove ~/.ssh/config
-
-# xfce
-remove ~/.config/xfce4/xinitrc
-remove ~/.config/menus/xfce-applications.menu
-
-# gnupg
-remove ~/.gnupg/gpg.conf
+# bin
+remove ~/bin
 
 # git
 remove ~/.gitconfig
 remove ~/.gitignore
 remove ~/.git/git-prompt.sh
+
+# gnupg
+remove ~/.gnupg/gpg.conf
+
+# haskell
+remove ~/.ghc/ghci.conf
+remove ~/.cabal/config
+
+# irssi
+remove ~/.irssi/config
+remove ~/.irssi/furry.theme
+
+# ssh
+remove ~/.ssh/config
+
+# tmux
+remove ~/.tmux.conf
 
 # vim
 remove ~/.vimrc
@@ -63,28 +72,6 @@ remove ~/.vim/bundle
 remove ~/.vim/backup
 remove ~/.vim/temp
 
-# haskell
-remove ~/.ghc/ghci.conf
-remove ~/.cabal/config
-
-# bin
-remove ~/bin/backup
-remove ~/bin/changeTag
-remove ~/bin/convertImages
-remove ~/bin/gitHelper
-remove ~/bin/mon
-remove ~/bin/moveTmpMusic
-remove ~/bin/organizeImages
-
-# tmux
-remove ~/.tmux.conf
-
-# irssi
-remove ~/.irssi/config
-remove ~/.irssi/furry.theme
-
-# asunder
-remove ~/.asunder
-
-# apollo
-remove ~/.apollo
+# xfce
+remove ~/.config/xfce4/xinitrc
+remove ~/.config/menus/xfce-applications.menu
