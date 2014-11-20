@@ -1,6 +1,11 @@
 #!/bin/bash
+
 set -o nounset
 set -o errexit
+
+readonly Progname=$(basename "$0")
+readonly Progdir=$(readlink -m $(dirname "$0"))
+readonly Args="$@"
 
 # Helpers for printing stuff
 success () { printf "\e[32m$1\e[39m\n"; }
