@@ -6,21 +6,10 @@ set -o errexit
 BASEPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 HOMEPATH=`echo ~`
 
-#
 # Helpers for printing stuff
-#
-
-success () {
-    printf "\e[32m$1\e[39m\n"
-}
-
-warning () {
-    printf "\e[33m$1\e[39m\n"
-}
-
-error () {
-    printf "\e[31m$1\e[39m\n"
-}
+success () { printf "\e[32m$1\e[39m\n"; }
+warning () { printf "\e[33m$1\e[39m\n"; }
+error () { printf "\e[31m$1\e[39m\n"; }
 
 #
 # Main functions to handle copying
