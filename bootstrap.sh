@@ -111,3 +111,4 @@ mkdir -p $HOMEPATH/.vim/temp
 # xfce
 copy $BASEPATH/xfce/xinitrc $HOMEPATH/.config/xfce4/xinitrc
 copy $BASEPATH/xfce/xfce-applications.menu $HOMEPATH/.config/menus/xfce-applications.menu
+copy $BASEPATH/xfce/Xmodmap $HOMEPATH/.Xmodmap
