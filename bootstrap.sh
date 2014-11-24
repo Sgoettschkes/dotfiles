@@ -3,8 +3,11 @@
 set -o nounset
 set -o errexit
 
-BASEPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-HOMEPATH=`echo ~`
+readonly Progname=$(basename "$0")
+readonly Progdir=$(readlink -m $(dirname "$0"))
+readonly Args="$@"
+
+readonly Homepath=`echo ~`
 
 # Helpers for printing stuff
 success () { printf "\e[32m$1\e[39m\n"; }
@@ -38,7 +41,7 @@ copy () {
 #
 
 FORCE=false
-for p in $*; do
+for p in $Args; do
     case "$p" in
         "--force") FORCE=true ;;
         *) error "Unkown parameter \"$p\" passed"; exit ;;
@@ -63,52 +66,52 @@ warning "Will start to overwrite files now!"
 #
 
 # apollo
-copy $BASEPATH/apollo/apollo $HOMEPATH/.apollo
+copy $Progdir/apollo/apollo $Homepath/.apollo
 
 # asunder
-copy $BASEPATH/asunder/asunder $HOMEPATH/.asunder
+copy $Progdir/asunder/asunder $Homepath/.asunder
 
 # bash
-copy $BASEPATH/bash/aliases $HOMEPATH/.aliases
-copy $BASEPATH/bash/bashrc $HOMEPATH/.bashrc
-copy $BASEPATH/bash/profile $HOMEPATH/.profile
-copy $BASEPATH/bash/inputrc $HOMEPATH/.inputrc
-copy $BASEPATH/bash/functionrc $HOMEPATH/.functionrc
+copy $Progdir/bash/aliases $Homepath/.aliases
+copy $Progdir/bash/bashrc $Homepath/.bashrc
+copy $Progdir/bash/profile $Homepath/.profile
+copy $Progdir/bash/inputrc $Homepath/.inputrc
+copy $Progdir/bash/functionrc $Homepath/.functionrc
 
 # bin
-copy $BASEPATH/bin/ $HOMEPATH/bin/
-chmod 764 $HOMEPATH/bin/*
+copy $Progdir/bin/ $Homepath/bin/
+chmod 764 $Homepath/bin/*
 
 # git
-copy $BASEPATH/git/gitconfig $HOMEPATH/.gitconfig
-copy $BASEPATH/git/gitignore $HOMEPATH/.gitignore
-copy $BASEPATH/git/git-prompt.sh $HOMEPATH/.git/git-prompt.sh
+copy $Progdir/git/gitconfig $Homepath/.gitconfig
+copy $Progdir/git/gitignore $Homepath/.gitignore
+copy $Progdir/git/git-prompt.sh $Homepath/.git/git-prompt.sh
 
 # gnupg
-copy $BASEPATH/gnupg/gpg.conf $HOMEPATH/.gnupg/gpg.conf
+copy $Progdir/gnupg/gpg.conf $Homepath/.gnupg/gpg.conf
 
 # haskell (Special case for cabal because ~ needs to be replaced)
-copy $BASEPATH/haskell/ghci.conf $HOMEPATH/.ghc/ghci.conf
-rm -f $HOMEPATH/.cabal/config
-cat $BASEPATH/haskell/cabal.config | sed "s#~#$HOME#" > $HOMEPATH/.cabal/config
+copy $Progdir/haskell/ghci.conf $Homepath/.ghc/ghci.conf
+rm -f $Homepath/.cabal/config
+cat $Progdir/haskell/cabal.config | sed "s#~#$HOME#" > $Homepath/.cabal/config
 
 # irssi
-copy $BASEPATH/irssi/config $HOMEPATH/.irssi/config
-copy $BASEPATH/irssi/furry.theme $HOMEPATH/.irssi/furry.theme
+copy $Progdir/irssi/config $Homepath/.irssi/config
+copy $Progdir/irssi/furry.theme $Homepath/.irssi/furry.theme
 
 # ssh
-copy $BASEPATH/ssh/config $HOMEPATH/.ssh/config
+copy $Progdir/ssh/config $Homepath/.ssh/config
 
 # tmux
-copy $BASEPATH/tmux/tmux.conf $HOMEPATH/.tmux.conf
+copy $Progdir/tmux/tmux.conf $Homepath/.tmux.conf
 
 # vim (Create dirs for vim to store stuff)
-copy $BASEPATH/vim/vimrc $HOMEPATH/.vimrc
-copy $BASEPATH/vim/bundle $HOMEPATH/.vim/bundle
-mkdir -p $HOMEPATH/.vim/backup/undo
-mkdir -p $HOMEPATH/.vim/temp
+copy $Progdir/vim/vimrc $Homepath/.vimrc
+copy $Progdir/vim/bundle $Homepath/.vim/bundle
+mkdir -p $Homepath/.vim/backup/undo
+mkdir -p $Homepath/.vim/temp
 
 # xfce
-copy $BASEPATH/xfce/xinitrc $HOMEPATH/.config/xfce4/xinitrc
-copy $BASEPATH/xfce/xfce-applications.menu $HOMEPATH/.config/menus/xfce-applications.menu
-copy $BASEPATH/xfce/Xmodmap $HOMEPATH/.Xmodmap
+copy $Progdir/xfce/xinitrc $Homepath/.config/xfce4/xinitrc
+copy $Progdir/xfce/xfce-applications.menu $Homepath/.config/menus/xfce-applications.menu
+copy $Progdir/xfce/Xmodmap $Homepath/.Xmodmap
