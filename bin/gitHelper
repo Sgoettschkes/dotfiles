@@ -12,30 +12,28 @@ readonly GitCurrentBranch=`git branch | awk '/^\*/{print $2}'`
 readonly GitBaseDir=`git rev-parse --show-toplevel`
 
 main () {
-    if [ $# -ne 1 ]; then
-        echo "No argument given"
-        exit
-    fi
+    local readonly Task=${1:-down}
+    local readonly GitTargetBranch=${2:-master}
 
     up () {
-        git checkout master
+        git checkout $GitTargetBranch
         git rebase $GitCurrentBranch
-        git push origin master
+        git push origin $GitTargetBranch
         git checkout $GitCurrentBranch
     }
 
     down () {
-        git checkout master
-        git pull --rebase origin master
+        git checkout $GitTargetBranch
+        git pull --rebase origin $GitTargetBranch
         git checkout $GitCurrentBranch
-        git rebase master
+        git rebase $GitTargetBranch
     }
 
-    if [ "$1" = "up" ]; then
+    if [ "$Task" == "up" ]; then
         cd $GitBaseDir
         up
         cd $CurrentDir
-    elif [ "$1" = "down" ]; then
+    elif [ "$Task" == "down" ]; then
         cd $GitBaseDir
         down
         cd $CurrentDir
