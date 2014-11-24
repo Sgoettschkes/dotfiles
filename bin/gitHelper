@@ -29,14 +29,8 @@ main () {
         git rebase $GitTargetBranch
     }
 
-    if [ "$Task" == "up" ]; then
-        cd $GitBaseDir
-        up
-        cd $CurrentDir
-    elif [ "$Task" == "down" ]; then
-        cd $GitBaseDir
-        down
-        cd $CurrentDir
-    fi
+    cd $GitBaseDir
+    $Task
+    cd $CurrentDir
 }
 main $Args
