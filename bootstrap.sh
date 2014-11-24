@@ -44,7 +44,7 @@ FORCE=false
 for p in $Args; do
     case "$p" in
         "--force") FORCE=true ;;
-        *) error "Unkown parameter \"$p\" passed"; exit ;;
+        *) error "Unkown parameter \"$p\" passed"; exit;;
     esac
 done;
 
