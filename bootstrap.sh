@@ -50,7 +50,7 @@ done;
 #
 
 if ! $FORCE; then
-    read -p "This will overwrite stuff in your ~! Ok? [Y/n]" yn
+    read -p "This will overwrite stuff in your ~! Ok? [Y/n] " yn
     if [ "$yn" != "Y" ]; then
         error "Didn't get permission to overwrite stuff. Aborting"
         exit
