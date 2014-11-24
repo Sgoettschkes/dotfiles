@@ -3,62 +3,69 @@
 set -o nounset
 set -o errexit
 
-CurrentBranch=`git branch | awk '/^\*/{print $2}'`
-CurrentDir=`pwd`
-GitBaseDir=`git rev-parse --show-toplevel`
+readonly Progname=$(basename "$0")
+readonly Progdir=$(readlink -m $(dirname "$0"))
+readonly Args="$@"
 
-if [ $# -ne 1 ]; then
-    echo "No argument given"
-    exit
-fi
+readonly CurrentDir=`pwd`
+readonly GitCurrentBranch=`git branch | awk '/^\*/{print $2}'`
+readonly GitBaseDir=`git rev-parse --show-toplevel`
 
-up () {
-    git checkout master
-    if [ $? -ne 0 ]; then
+main () {
+    if [ $# -ne 1 ]; then
+        echo "No argument given"
         exit
     fi
-    
-    git rebase $CurrentBranch
-    if [ $? -ne 0 ]; then
-        git checkout $CurrentBranch
-        exit
-    fi
-    
-    git push origin master
-    if [ $? -ne 0 ]; then
-        exit
-    fi
-    
-    git checkout $CurrentBranch
-    if [ $? -ne 0 ]; then
-        exit
+
+    up () {
+        git checkout master
+        if [ $? -ne 0 ]; then
+            exit
+        fi
+        
+        git rebase $GitCurrentBranch
+        if [ $? -ne 0 ]; then
+            git checkout $GitCurrentBranch
+            exit
+        fi
+        
+        git push origin master
+        if [ $? -ne 0 ]; then
+            exit
+        fi
+        
+        git checkout $GitCurrentBranch
+        if [ $? -ne 0 ]; then
+            exit
+        fi
+    }
+
+    down () {
+        git checkout master
+        if [ $? -ne 0 ]; then
+            exit
+        fi
+
+        git pull --rebase origin master
+        git checkout $GitCurrentBranch
+        if [ $? -ne 0 ]; then
+            exit
+        fi
+
+        git rebase master
+        if [ $? -ne 0 ]; then
+            exit
+        fi
+    }
+
+    if [ "$1" = "up" ]; then
+        cd $GitBaseDir
+        up
+        cd $CurrentDir
+    elif [ "$1" = "down" ]; then
+        cd $GitBaseDir
+        down
+        cd $CurrentDir
     fi
 }
-
-down () {
-    git checkout master
-    if [ $? -ne 0 ]; then
-        exit
-    fi
-
-    git pull --rebase origin master
-    git checkout $CurrentBranch
-    if [ $? -ne 0 ]; then
-        exit
-    fi
-
-    git rebase master
-    if [ $? -ne 0 ]; then
-        exit
-    fi
-}
-
-if [ "$1" = "up" ]; then
-    cd $GitBaseDir
-    up
-    cd $CurrentDir
-elif [ "$1" = "down" ]; then
-    cd $GitBaseDir
-    down
-    cd $CurrentDir
-fi
+main $Args
