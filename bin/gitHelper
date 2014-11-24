@@ -19,43 +19,16 @@ main () {
 
     up () {
         git checkout master
-        if [ $? -ne 0 ]; then
-            exit
-        fi
-        
         git rebase $GitCurrentBranch
-        if [ $? -ne 0 ]; then
-            git checkout $GitCurrentBranch
-            exit
-        fi
-        
         git push origin master
-        if [ $? -ne 0 ]; then
-            exit
-        fi
-        
         git checkout $GitCurrentBranch
-        if [ $? -ne 0 ]; then
-            exit
-        fi
     }
 
     down () {
         git checkout master
-        if [ $? -ne 0 ]; then
-            exit
-        fi
-
         git pull --rebase origin master
         git checkout $GitCurrentBranch
-        if [ $? -ne 0 ]; then
-            exit
-        fi
-
         git rebase master
-        if [ $? -ne 0 ]; then
-            exit
-        fi
     }
 
     if [ "$1" = "up" ]; then
