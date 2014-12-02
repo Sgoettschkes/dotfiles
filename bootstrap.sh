@@ -93,6 +93,7 @@ copy $Progdir/gnupg/gpg.conf $Homepath/.gnupg/gpg.conf
 # haskell (Special case for cabal because ~ needs to be replaced)
 copy $Progdir/haskell/ghci.conf $Homepath/.ghc/ghci.conf
 rm -f $Homepath/.cabal/config
+mkdir -p $Homepath/.cabal
 cat $Progdir/haskell/cabal.config | sed "s#~#$HOME#" > $Homepath/.cabal/config
 
 # irssi
