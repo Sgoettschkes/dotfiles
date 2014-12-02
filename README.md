@@ -1,7 +1,7 @@
 Sgoettschkes/dotfiles
 =====================
 
-[@Sgoettschkes](https://twitter.com/Sgoettschkes] on dotfiles
+[@Sgoettschkes](https://twitter.com/Sgoettschkes) on dotfiles
 
 A collection of my dotfiles. Includes standard stuff like bash/git/tmux/vim
 and some fancy stuff like asunder/haskell.
