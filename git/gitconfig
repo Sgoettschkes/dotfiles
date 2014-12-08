@@ -3,7 +3,7 @@
 
 [alias]
     amend = commit --all --amend
-    br = branch --all --color
+    br = branch --all --color -vv
     ci = commit
     cm = !git add -A && git commit -m
     co = checkout
