@@ -21,3 +21,8 @@ Host silk
     HostName silk.agileaddicts.com
     Port 22
     User sebastian
+
+Host impact
+    HostName impact.agileaddicts.com
+    Port 22
+    User sebastian
