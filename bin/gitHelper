@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -o nounset
 set -o errexit
@@ -8,7 +8,6 @@ readonly Progdir=$(readlink -m $(dirname "$0"))
 readonly Args="$@"
 
 readonly CurrentDir=`pwd`
-readonly GitCurrentBranch=`git branch | awk '/^\*/{print $2}'`
 readonly GitBaseDir=`git rev-parse --show-toplevel`
 
 main () {
@@ -17,15 +16,15 @@ main () {
 
     up () {
         git checkout $GitTargetBranch
-        git rebase $GitCurrentBranch
+        git rebase -
         git push origin $GitTargetBranch
-        git checkout $GitCurrentBranch
+        git checkout -
     }
 
     down () {
         git checkout $GitTargetBranch
         git pull --rebase origin $GitTargetBranch
-        git checkout $GitCurrentBranch
+        git checkout -
         git rebase $GitTargetBranch
     }
 
