@@ -7,7 +7,9 @@
     ci = commit
     co = checkout
     cob = checkout -b
-    diff = diff --word-diff
+    diw = diff --word-diff
+    dic = diff --color-words
+    dicc = diff --color-words=.
     l = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
     ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --date=relative
     ldd = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
