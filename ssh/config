@@ -17,6 +17,11 @@ Host raspberry
     UserKnownHostsFile=/dev/null
     StrictHostKeyChecking no
 
+Host lisa
+    HostName lisa.sgoettschkes.me
+    Port 22
+    User sebastian
+
 Host silk
     HostName silk.agileaddicts.com
     Port 22
