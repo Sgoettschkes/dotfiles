@@ -42,7 +42,7 @@ elif [ "${Target}" == "safe" ]; then
 
     obnam backup --log ${Logdir}/${Target}.log --repository ${Repository} $HOME
 elif [ "${Target}" == "remote" ]; then
-    Repository=sftp://silk/home/sebastian/backup
+    Repository=sftp://lisa/home/sebastian/backup
 
     echo "-- SETTING Repository: ${Repository}"
 
