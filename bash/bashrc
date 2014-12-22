@@ -10,6 +10,9 @@ export EDITOR=vim VISUAL=vim
 # Git
 export GIT_PS1_SHOWDIRTYSTATE=1
 
+# GnuPG
+export GPGKEY=5E2EA0FA
+
 PS1=""
 PS1="$PS1\$(if [[ \$? == 0 ]]; then echo \"\[\e[0;32m\]\!\[\e[00m\]\"; else echo \"\[\e[0;31m\]\!\[\e[00m\]\"; fi)"
 PS1="$PS1 [\t]"
