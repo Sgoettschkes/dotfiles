@@ -21,9 +21,9 @@ main () {
 
     cd $Flacdir
 
-    # TODO: Refactor to use a loop!
+    # TODO: Refactor to use loops
     find . -type d -exec mkdir -p $Mp3dir/{} \;
-    find . -type f -name "*.flac" -exec ~/workspace/Sgoettschkes/apollo/flac2mp3.sh 5 {} $Mp3dir/{} \;
+    find . -type f -name "*.flac" -exec flac2mp3 5 {} $Mp3dir/{} \;
     find -L $Mp3dir -type f -name "*.flac" -print0 | while IFS= read -r -d '' FNAME; do
         mv -- "$FNAME" "${FNAME%.flac}.mp3"
     done
