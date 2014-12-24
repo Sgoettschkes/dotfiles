@@ -3,24 +3,30 @@
 # File managed by Sgoettschkes/dotfiles
 # Do not change
 
-TAG=$1
-VALUE=$2
-FILES=$3
- 
-if [ -z "$TAG" ]; then
+set -o nounset
+set -o errexit
+
+readonly Progname=$(basename "$0")
+readonly Progdir=$(readlink -m $(dirname "$0"))
+readonly Args="$@"
+
+if [ "$#" -eq 0 ]; then
     echo "No TAG given"
     exit
 fi
 
-if [ -z "$VALUE" ]; then
+if [ "$#" -eq 1 ]; then
     echo "No VALUE given"
     exit
 fi
 
-if [ -z "$FILES" ]; then
-    FILES="*"
+if [ "$#" -eq 2 ]; then
 fi
 
+TAG=$1
+VALUE=$2
+FILES=${3:-*}
+ 
 echo "Changing $TAG to $VALUE for $FILES"
 echo ""
 
