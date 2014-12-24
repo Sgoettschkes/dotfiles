@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# File managed by Sgoettschkes/dotfiles
+# Do not change
+
 set -o nounset
 set -o errexit
 

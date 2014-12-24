@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# File managed by Sgoettschkes/dotfiles
+# Do not change
+
 '''
 Puts images in ~/Pictures/tmp in folders named by the date taken
 

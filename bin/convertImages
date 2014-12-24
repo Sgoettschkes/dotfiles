@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# File managed by Sgoettschkes/dotfiles
+# Do not change
+
 '''
 Convert images by using ImageMagick to reduce imagesize and rename file into imageXXX.jpg pattern
 
