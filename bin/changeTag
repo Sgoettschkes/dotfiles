@@ -10,32 +10,24 @@ readonly Progname=$(basename "$0")
 readonly Progdir=$(readlink -m $(dirname "$0"))
 readonly Args="$@"
 
-if [ "$#" -eq 0 ]; then
-    echo "No TAG given"
+if [ "$#" -lt 2 ]; then
+    echo "Missing arguments. Usage: changeTag TAG VALUE [FILES]"
     exit
 fi
 
-if [ "$#" -eq 1 ]; then
-    echo "No VALUE given"
-    exit
-fi
-
-if [ "$#" -eq 2 ]; then
-fi
-
-TAG=$1
-VALUE=$2
-FILES=${3:-*}
+local readonly Tag=$1
+local readonly Value=$2
+local readonly Files=${3:-*}
  
-echo "Changing $TAG to $VALUE for $FILES"
+echo "Changing $Tag to $Value for $Files"
 echo ""
 
 echo "OLD values"
-metaflac --show-tag=$TAG $FILES
+metaflac --show-tag=$Tag $Files
 
-metaflac --remove-tag=$TAG $FILES
-metaflac --set-tag=$TAG="$VALUE" $FILES
+metaflac --remove-tag=$Tag $Files
+metaflac --set-tag=$Tag="$Value" $Files
 
 echo ""
 echo "NEW values"
-metaflac --show-tag=$TAG $FILES
+metaflac --show-tag=$Tag $Files
