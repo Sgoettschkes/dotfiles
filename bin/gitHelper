@@ -10,12 +10,12 @@ readonly Progname=$(basename "$0")
 readonly Progdir=$(readlink -m $(dirname "$0"))
 readonly Args="$@"
 
-readonly CurrentDir=`pwd`
-readonly GitBaseDir=`git rev-parse --show-toplevel`
-
 main () {
     local readonly Task=${1:-down}
     local readonly GitTargetBranch=${2:-master}
+
+    local readonly CurrentDir=`pwd`
+    local readonly GitBaseDir=`git rev-parse --show-toplevel`
 
     up () {
         git checkout $GitTargetBranch
