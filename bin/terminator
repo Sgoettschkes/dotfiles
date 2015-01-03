@@ -36,7 +36,6 @@ session_cllctr () {
     tmux send-keys -t cllctr:3.2 'cd ~/workspace/agileaddicts/ansible-playbooks; clear' C-m
 
     tmux select-window -t cllctr:1
-    tmux attach -t cllctr
 }
 
 session_seg () {
@@ -46,13 +45,13 @@ session_seg () {
     tmux new-window -n vimwiki -t seg
     tmux split-window -t seg:2.1 -h
     tmux send-keys -t seg:2.1 'cd ~/workspace/Sgoettschkes/vimwiki; clear' C-m
+    tmux send-keys -t seg:2.1 'vim index.wiki' C-m
     tmux send-keys -t seg:2.2 'cd ~/workspace/Sgoettschkes/vimwiki; clear' C-m
 
     tmux new-window -n IRC -t seg
     tmux send-keys -t seg:3.1 'cd ~; clear; irssi' C-m
 
     tmux select-window -t seg:1
-    tmux attach -t seg
 }
 
 main () {
@@ -63,11 +62,10 @@ main () {
         exit;
     fi
 
-    if tmux has-session -t $Sessionname; then
-        tmux attach -t $Sessionname
-        exit
+    if ! tmux has-session -t $Sessionname; then
+        session_$Sessionname
     fi
 
-    session_$Sessionname
+    tmux -2 attach -t $Sessionname
 }
 main $Args
