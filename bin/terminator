@@ -15,12 +15,36 @@ success () { printf "\e[32m$1\e[39m\n"; }
 warning () { printf "\e[33m$1\e[39m\n"; }
 error () { printf "\e[31m$1\e[39m\n"; }
 
+session_cllctr () {
+    tmux new-session -s cllctr -n sh -d
+    tmux send-keys -t cllctr:1.1 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
+
+    tmux new-window -n va -t cllctr
+    tmux split-window -t cllctr:2.1 -h
+    tmux split-window -t cllctr:2.1 -v
+    tmux send-keys -t cllctr:2.1 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
+    tmux send-keys -t cllctr:2.1 'va up && va ssh' C-m
+    tmux send-keys -t cllctr:2.1 'cd /cllctr' C-m
+    tmux send-keys -t cllctr:2.2 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
+    tmux send-keys -t cllctr:2.3 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
+    tmux send-keys -t cllctr:2.3 'sleep 60 && va ssh' C-m
+    tmux send-keys -t cllctr:2.3 'mongo' C-m
+
+    tmux new-window -n playbooks -t cllctr
+    tmux split-window -t cllctr:3.1 -h
+    tmux send-keys -t cllctr:3.1 'cd ~/workspace/agileaddicts/ansible-playbooks; clear' C-m
+    tmux send-keys -t cllctr:3.2 'cd ~/workspace/agileaddicts/ansible-playbooks; clear' C-m
+
+    tmux select-window -t cllctr:1
+    tmux attach -t cllctr
+}
+
 session_seg () {
     tmux new-session -s seg -n sh -d
     tmux send-keys -t seg:1.1 'cd ~; clear' C-m
 
     tmux new-window -n vimwiki -t seg
-    tmux split-window -t seg:2.1 -v
+    tmux split-window -t seg:2.1 -h
     tmux send-keys -t seg:2.1 'cd ~/workspace/Sgoettschkes/vimwiki; clear' C-m
     tmux send-keys -t seg:2.2 'cd ~/workspace/Sgoettschkes/vimwiki; clear' C-m
 
