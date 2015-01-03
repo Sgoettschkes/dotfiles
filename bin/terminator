@@ -30,12 +30,16 @@ main () {
 
     tmux new-session -s $Sessionname -n sh -d
     tmux send-keys -t $Sessionname:1.1 'cd ~; clear' C-m
+
     tmux new-window -n vimwiki -t $Sessionname
     tmux split-window -t $Sessionname:2.1 -v
     tmux send-keys -t $Sessionname:2.1 'cd ~/workspace/Sgoettschkes/vimwiki; clear' C-m
     tmux send-keys -t $Sessionname:2.2 'cd ~/workspace/Sgoettschkes/vimwiki; clear' C-m
-    tmux select-window -t $Sessionname:1
 
+    tmux new-window -n IRC -t $Sessionname
+    tmux send-keys -t $Sessionname:3.1 'cd ~; clear; irssi' C-m
+
+    tmux select-window -t $Sessionname:1
     tmux attach -t $Sessionname
 }
 main $Args
