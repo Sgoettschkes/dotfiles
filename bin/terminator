@@ -15,6 +15,22 @@ success () { printf "\e[32m$1\e[39m\n"; }
 warning () { printf "\e[33m$1\e[39m\n"; }
 error () { printf "\e[31m$1\e[39m\n"; }
 
+session_seg () {
+    tmux new-session -s seg -n sh -d
+    tmux send-keys -t seg:1.1 'cd ~; clear' C-m
+
+    tmux new-window -n vimwiki -t seg
+    tmux split-window -t seg:2.1 -v
+    tmux send-keys -t seg:2.1 'cd ~/workspace/Sgoettschkes/vimwiki; clear' C-m
+    tmux send-keys -t seg:2.2 'cd ~/workspace/Sgoettschkes/vimwiki; clear' C-m
+
+    tmux new-window -n IRC -t seg
+    tmux send-keys -t seg:3.1 'cd ~; clear; irssi' C-m
+
+    tmux select-window -t seg:1
+    tmux attach -t seg
+}
+
 main () {
     local readonly Sessionname=${1:-seg}
 
@@ -28,18 +44,6 @@ main () {
         exit
     fi
 
-    tmux new-session -s $Sessionname -n sh -d
-    tmux send-keys -t $Sessionname:1.1 'cd ~; clear' C-m
-
-    tmux new-window -n vimwiki -t $Sessionname
-    tmux split-window -t $Sessionname:2.1 -v
-    tmux send-keys -t $Sessionname:2.1 'cd ~/workspace/Sgoettschkes/vimwiki; clear' C-m
-    tmux send-keys -t $Sessionname:2.2 'cd ~/workspace/Sgoettschkes/vimwiki; clear' C-m
-
-    tmux new-window -n IRC -t $Sessionname
-    tmux send-keys -t $Sessionname:3.1 'cd ~; clear; irssi' C-m
-
-    tmux select-window -t $Sessionname:1
-    tmux attach -t $Sessionname
+    session_$Sessionname
 }
 main $Args
