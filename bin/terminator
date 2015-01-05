@@ -40,10 +40,17 @@ session_projects() {
     tmux new-session -s projects -n sh -d
     tmux send-keys -t projects:1.1 'cd ~; clear' C-m
 
-    tmux new-window -n start -t projects
+    tmux new-window -n dotfiles -t projects
     tmux split-window -t projects:2.1 -h
-    tmux send-keys -t projects:2.1 'cd ~; clear' C-m
-    tmux send-keys -t projects:2.2 'cd ~; clear' C-m
+    tmux send-keys -t projects:2.1 'cd ~/workspace/Sgoettschkes/dotfiles; clear' C-m
+    tmux send-keys -t projects:2.2 'cd ~/workspace/Sgoettschkes/dotfiles; clear' C-m
+
+    tmux new-window -n ansible -t projects
+    tmux split-window -t projects:3.1 -h
+    tmux send-keys -t projects:3.1 'cd ~/workspace/Sgoettschkes/ansible-playbooks; clear' C-m
+    tmux send-keys -t projects:3.2 'cd ~/workspace/Sgoettschkes/ansible-playbooks; clear' C-m
+
+    tmux select-window -t projects:1
 }
 
 session_seg () {
