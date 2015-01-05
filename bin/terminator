@@ -36,6 +36,16 @@ session_cllctr () {
     tmux select-window -t cllctr:1
 }
 
+session_env() {
+    tmux new-session -s env -n sh -d
+    tmux send-keys -t env:1.1 'cd ~; clear' C-m
+
+    tmux new-window -n project -t env
+    tmux split-window -t env:2.1 -h
+    tmux send-keys -t env:2.1 'cd ~; clear' C-m
+    tmux send-keys -t env:2.2 'cd ~; clear' C-m
+}
+
 session_seg () {
     tmux new-session -s seg -n sh -d
     tmux send-keys -t seg:1.1 'cd ~; clear' C-m
