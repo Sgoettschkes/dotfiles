@@ -44,11 +44,14 @@ set smartcase " Make search behave better when searching
 nnoremap <LEADER>e :noh<CR>
 
 " Backup
+set backup 
 set backupdir=~/.vim/backup
 set dir=~/.vim/temp
-set undodir=~/.vim/backup/undo
+set patchmode=.clean
+let savevers_dirs="~/.vim/backup"
+let savevers_max=999
 set undofile
-set backup 
+set undodir=~/.vim/backup/undo
 
 " Tabs
 set tabstop=4 
@@ -56,7 +59,14 @@ set softtabstop=4
 set expandtab
 set shiftwidth=4
 set autoindent
+set smartindent
 set showtabline=2
+
+" for security, see: http://www.guninski.com/vim1.html
+set modelines=0
+
+" Access a shell via <LEADER>S
+map <Leader>S :sh<cr>
 
 " Align Current Paragraph with Leader + a
 " http://hashrocket.com/blog/posts/8-great-vim-mappings
