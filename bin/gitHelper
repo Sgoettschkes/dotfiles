@@ -19,15 +19,15 @@ main () {
 
     up () {
         git checkout $GitTargetBranch
-        git rebase -
+        git rebase @{-1}
         git push origin $GitTargetBranch
-        git checkout -
+        git checkout @{-1}
     }
 
     down () {
         git checkout $GitTargetBranch
         git pull --rebase origin $GitTargetBranch
-        git checkout -
+        git checkout @{-1}
         git rebase $GitTargetBranch
     }
 
