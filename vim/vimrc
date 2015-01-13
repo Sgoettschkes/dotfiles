@@ -47,7 +47,6 @@ nnoremap <LEADER>e :noh<CR>
 set backup 
 set backupdir=~/.vim/backup
 set dir=~/.vim/temp
-set patchmode=.clean
 let savevers_dirs="~/.vim/backup"
 let savevers_max=999
 set undofile
