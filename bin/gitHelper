@@ -17,6 +17,11 @@ main () {
     local readonly CurrentDir=`pwd`
     local readonly GitBaseDir=`git rev-parse --show-toplevel`
 
+    if [ "$Task" != "up" ] && [ "$Task" != "down" ]; then
+        echo "Unknown Task"
+        exit
+    fi
+
     up () {
         git checkout $GitTargetBranch
         git rebase @{-1}
