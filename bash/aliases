@@ -38,7 +38,7 @@ alias df='df -Tha --total'
 alias du='du -ach | sort -h'
 alias free='free -mt'
 alias psx='ps aux | grep'
-alias watchlog='watch -n 2 tail -n 40'
+alias watchlog='watch -n 2 tail -n 15'
 
 # flux
 alias flux='xflux -l 48.20 -g 16.36'
