@@ -33,6 +33,13 @@ session_cllctr () {
     tmux send-keys -t cllctr:2.1 'cd ~/workspace/agileaddicts/ansible-playbooks; clear' C-m
     tmux send-keys -t cllctr:2.2 'cd ~/workspace/agileaddicts/ansible-playbooks; clear' C-m
 
+    tmux new-window -n remote -t cllctr
+    tmux split-window -t cllctr:3.1 -h
+    tmux send-keys -t cllctr:3.1 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
+    tmux send-keys -t cllctr:3.1 'ssh silk'
+    tmux send-keys -t cllctr:3.2 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
+    tmux send-keys -t cllctr:3.2 'ssh impact'
+
     tmux select-window -t cllctr:1
 }
 
@@ -49,20 +56,6 @@ session_projects() {
     tmux split-window -t projects:3.1 -h
     tmux send-keys -t projects:3.1 'cd ~/workspace/Sgoettschkes/ansible-playbooks; clear' C-m
     tmux send-keys -t projects:3.2 'cd ~/workspace/Sgoettschkes/ansible-playbooks; clear' C-m
-
-    tmux new-window -n λ -t projects
-    tmux split-window -t projects:4.1 -h
-    tmux split-window -t projects:4.1 -v
-    tmux send-keys -t projects:4.1 'cd ~/workspace/Sgoettschkes/learning; clear' C-m
-    tmux send-keys -t projects:4.1 'va up && va ssh' C-m
-    tmux send-keys -t projects:4.1 'cd ~/exercism/haskell' C-m
-    tmux send-keys -t projects:4.2 'cd ~/workspace/Sgoettschkes/learning/haskell; clear' C-m
-    tmux send-keys -t projects:4.3 'cd ~/workspace/Sgoettschkes/learning/haskell; clear' C-m
-    
-    tmux new-window -n learning -t projects
-    tmux split-window -t projects:5.1 -h
-    tmux send-keys -t projects:5.1 'cd ~/workspace/Sgoettschkes/learning; clear' C-m
-    tmux send-keys -t projects:5.2 'cd ~/workspace/Sgoettschkes/learning; clear' C-m
 
     tmux select-window -t projects:1
 }
