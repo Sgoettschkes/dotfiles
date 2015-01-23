@@ -24,14 +24,15 @@ main () {
 
     up () {
         git checkout $GitTargetBranch
-        git rebase @{-1}
+        git pull --ff-only origin $GitTargetBranch
+        git merge --ff-only @{-1}
         git push origin $GitTargetBranch
         git checkout @{-1}
     }
 
     down () {
         git checkout $GitTargetBranch
-        git pull --rebase origin $GitTargetBranch
+        git pull --ff-only origin $GitTargetBranch
         git checkout @{-1}
         git rebase $GitTargetBranch
     }
