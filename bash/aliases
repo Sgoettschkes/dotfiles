@@ -12,6 +12,8 @@ alias ~='cd ~'
 alias cl='clear && pwd && ls -AFG'
 
 # Shortcuts
+alias a=ansible
+alias ap=ansible-playbook
 alias g=git
 alias gg='git grep'
 alias gh=gitHelper
