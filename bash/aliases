@@ -9,7 +9,6 @@ alias .3='cd ../../..'
 alias ~='cd ~'
 
 # Misc
-alias cl='clear && pwd && ls -AFG'
 
 # Shortcuts
 alias a=ansible
@@ -27,13 +26,15 @@ alias lg='ls -alF | grep'
 alias ll='ls -alF'
 
 # Little helpers
+alias chgrp='chgrp --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chown='chown --preserve-root'
+alias cl='clear && pwd && ls -AFG'
+alias clc=clear
 alias mkdir='mkdir -p'
 alias rm='rm -I --preserve-root'
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
-alias su='sudo -i'
 alias root=su
+alias su='sudo -i'
 
 # Advanced system tools
 alias df='df -Tha --total'
