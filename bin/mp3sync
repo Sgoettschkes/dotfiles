@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# File managed by Sgoettschkes/dotfiles
+# Do not change
+
+set -o nounset
+set -o errexit
+
+readonly Progname=$(basename "$0")
+readonly Progdir=$(readlink -m $(dirname "$0"))
+readonly Args="$@"
+
+# Helpers for printing stuff
+success () { printf "\e[32m$1\e[39m\n"; }
+warning () { printf "\e[33m$1\e[39m\n"; }
+error () { printf "\e[31m$1\e[39m\n"; }
+
+main () {
+    local readone Ma=~/Music/Alben
+    local readone Maa=~/Music/"Andere Alben"
+
+    rsync \
+        --verbose \
+        --recursive \
+        --delete-delay \
+        --ignore-existing \
+        "$Ma/59 Times the Pain" \
+        "$Ma/Alexisonfire" \
+        "$Ma/Bane" \
+        "$Ma/Barcode" \
+        "$Ma/Biohazard" \
+        "$Ma/Blood for Betrayal" \
+        "$Ma/Bloodshed Remains" \
+        "$Ma/Born from Pain" \
+        "$Ma/Boysetsfire" \
+        "$Ma/Cancer Bats" \
+        "$Ma/Cast Iron Hike" \
+        "$Maa/Choke X Chain" \
+        "$Ma/Comaspool" \
+        "$Ma/Count on Pride" \
+        "$Ma/Earth Crisis" \
+        "$Ma/Eighteen Visions" \
+        "$Ma/Enter Shikari" \
+        "$Ma/From Autumn to Ashes" \
+        "$Ma/Fucked Up" \
+        "$Ma/Fun People" \
+        "$Ma/Fury of Five" \
+        "$Maa/Fürsöna" \
+        "$Ma/Hatebreed" \
+        "$Ma/Have Heart" \
+        "$Ma/Ignite" \
+        "$Ma/Intensity" \
+        "$Maa/Last Laugh" \
+        "$Ma/Light your Anchor" \
+        "$Ma/Look my Way" \
+        "$Ma/Madball" \
+        "$Ma/Nasty" \
+        "$Ma/Nine" \
+        "$Ma/Pro-Pain" \
+        "$Ma/Racial Abuse" \
+        "$Ma/Right Direction" \
+        "$Ma/Risk it!" \
+        "$Ma/Sense of Justice" \
+        "$Ma/Shelter" \
+        "$Ma/Sick of it All" \
+        "$Ma/Submissives" \
+        "$Ma/Suicidal Tendencies" \
+        "$Maa/thesedays" \
+        "$Ma/Throwdown" \
+        "$Ma/Union 13" \
+        "$Maa/xCROSSBEARERx" \
+        "$Ma/Youth of Today" \
+        /media/sebastian/E0D6-C698/Music
+}
+main $Args
