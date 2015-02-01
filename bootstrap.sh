@@ -65,9 +65,6 @@ warning "Will start to overwrite files now!"
 # Let's do some magic 
 #
 
-# apollo
-copy $Progdir/apollo/apollo $Homepath/.apollo
-
 # asunder
 copy $Progdir/asunder/asunder $Homepath/.asunder
 
