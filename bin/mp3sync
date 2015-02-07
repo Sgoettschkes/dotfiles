@@ -26,6 +26,7 @@ main () {
     local readone Maa=~/Music/"Andere Alben"
 
     rsync \
+        --archive \
         --verbose \
         --recursive \
         "$Ma/59 Times the Pain" \
