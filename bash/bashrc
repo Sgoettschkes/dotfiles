@@ -56,5 +56,5 @@ fi
 
 # Source ansible env-setup
 if [ -f /opt/ansible/hacking/env-setup ]; then
-    yes | source /opt/ansible/hacking/env-setup -q
+    source /opt/ansible/hacking/env-setup -q
 fi
