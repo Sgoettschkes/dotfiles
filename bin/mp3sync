@@ -4,6 +4,7 @@
 # Do not change
 
 # Added:
+# * All Deathcore
 # * All Hardcore Punk
 # * All Post-Hardcore
 # * In Flames
@@ -38,14 +39,19 @@ main () {
         "$Ma/Bloodshed Remains" \
         "$Ma/Born from Pain" \
         "$Ma/Boysetsfire" \
+        "$Ma/Bring me the Horizon" \
+        "$Ma/The Browning" \
         "$Ma/Cancer Bats" \
+        "$Ma/Carnifex" \
         "$Ma/Cast Iron Hike" \
         "$Maa/Choke X Chain" \
         "$Ma/Comaspool" \
         "$Ma/Count on Pride" \
+        "$Ma/Despised Icon" \
         "$Ma/Downset" \
         "$Ma/Earth Crisis" \
         "$Ma/Eighteen Visions" \
+        "$Ma/Emmure" \
         "$Ma/Enter Shikari" \
         "$Ma/From Autumn to Ashes" \
         "$Ma/Fucked Up" \
@@ -76,6 +82,7 @@ main () {
         "$Ma/Sonic Syndicate" \
         "$Ma/Submissives" \
         "$Ma/Suicidal Tendencies" \
+        "$Ma/Suicide Silence" \
         "$Maa/thesedays" \
         "$Ma/Throwdown" \
         "$Ma/Union 13" \
@@ -83,6 +90,8 @@ main () {
         "$Ma/Thrice" \
         "$Ma/Thursday" \
         "$Ma/Vanna" \
+        "$Ma/We Butter the Bread with Butter" \
+        "$Ma/Whitechapel" \
         "$Maa/xCROSSBEARERx" \
         "$Ma/Youth of Today" \
         /media/sebastian/E0D6-C698/Music
