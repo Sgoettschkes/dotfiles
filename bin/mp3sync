@@ -3,6 +3,12 @@
 # File managed by Sgoettschkes/dotfiles
 # Do not change
 
+# Added:
+# * All Hardcore Punk
+# * All Post-Hardcore
+# * In Flames
+# * Sonic Syndicate
+
 set -o nounset
 set -o errexit
 
