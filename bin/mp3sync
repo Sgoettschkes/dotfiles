@@ -24,7 +24,7 @@ error () { printf "\e[31m$1\e[39m\n"; }
 
 main () {
     local readone Ma=~/Music/Alben
-    local readone Maa=~/Music/Digital
+    local readone Md=~/Music/Digital
 
     rsync \
         --archive \
@@ -40,20 +40,20 @@ main () {
         "$Ma/Boysetsfire" \
         "$Ma/Cancer Bats" \
         "$Ma/Cast Iron Hike" \
-        "$Maa/Choke X Chain" \
+        "$Md/Choke X Chain" \
         "$Ma/Count on Pride" \
         "$Ma/Downset" \
         "$Ma/Earth Crisis" \
-        "$Maa/Forget the Hate" \
+        "$Md/Forget the Hate" \
         "$Ma/Fucked Up" \
         "$Ma/Fun People" \
         "$Ma/Fury of Five" \
-        "$Maa/Fürsöna" \
+        "$Md/Fürsöna" \
         "$Ma/Hatebreed" \
         "$Ma/Have Heart" \
         "$Ma/Ignite" \
         "$Ma/Intensity" \
-        "$Maa/Last Laugh" \
+        "$Md/Last Laugh" \
         "$Ma/Light your Anchor" \
         "$Ma/Look my Way" \
         "$Ma/Madball" \
@@ -68,15 +68,15 @@ main () {
         "$Ma/Sick of it All" \
         "$Ma/Submissives" \
         "$Ma/Suicidal Tendencies" \
-        "$Maa/thesedays" \
+        "$Md/thesedays" \
         "$Ma/Throwdown" \
         "$Ma/Union 13" \
-        "$Maa/xCROSSBEARERx" \
+        "$Md/xCROSSBEARERx" \
         "$Ma/Youth of Today" \
         "$Ma/Alexisonfire" \
         "$Ma/Bring me the Horizon" \
         "$Ma/The Browning" \
-        "$Maa/Captive Eyes" \
+        "$Md/Captive Eyes" \
         "$Ma/Carnifex" \
         "$Ma/Comaspool" \
         "$Ma/Despised Icon" \
