@@ -24,7 +24,7 @@ error () { printf "\e[31m$1\e[39m\n"; }
 
 main () {
     local readone Ma=~/Music/Alben
-    local readone Maa=~/Music/"Andere Alben"
+    local readone Maa=~/Music/Digital
 
     rsync \
         --archive \
