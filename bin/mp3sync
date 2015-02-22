@@ -31,7 +31,6 @@ main () {
         --verbose \
         --recursive \
         "$Ma/59 Times the Pain" \
-        "$Ma/Alexisonfire" \
         "$Ma/Bane" \
         "$Ma/Barcode" \
         "$Ma/Biohazard" \
@@ -39,33 +38,20 @@ main () {
         "$Ma/Bloodshed Remains" \
         "$Ma/Born from Pain" \
         "$Ma/Boysetsfire" \
-        "$Ma/Bring me the Horizon" \
-        "$Ma/The Browning" \
         "$Ma/Cancer Bats" \
-        "$Maa/Captive Eyes" \
-        "$Ma/Carnifex" \
         "$Ma/Cast Iron Hike" \
         "$Maa/Choke X Chain" \
-        "$Ma/Comaspool" \
         "$Ma/Count on Pride" \
-        "$Ma/Despised Icon" \
         "$Ma/Downset" \
         "$Ma/Earth Crisis" \
-        "$Ma/Eighteen Visions" \
-        "$Ma/Emmure" \
-        "$Ma/Enter Shikari" \
         "$Maa/Forget the Hate" \
-        "$Ma/From Autumn to Ashes" \
         "$Ma/Fucked Up" \
         "$Ma/Fun People" \
         "$Ma/Fury of Five" \
         "$Maa/Fürsöna" \
         "$Ma/Hatebreed" \
         "$Ma/Have Heart" \
-        "$Ma/Helia" \
-        "$Ma/I am Ghost" \
         "$Ma/Ignite" \
-        "$Ma/In Flames" \
         "$Ma/Intensity" \
         "$Maa/Last Laugh" \
         "$Ma/Light your Anchor" \
@@ -75,27 +61,41 @@ main () {
         "$Ma/Nine" \
         "$Ma/Pro-Pain" \
         "$Ma/Racial Abuse" \
-        "$Ma/Return the Queen" \
         "$Ma/Right Direction" \
         "$Ma/Risk it!" \
         "$Ma/Sense of Justice" \
         "$Ma/Shelter" \
         "$Ma/Sick of it All" \
-        "$Ma/Sonic Syndicate" \
         "$Ma/Submissives" \
         "$Ma/Suicidal Tendencies" \
-        "$Ma/Suicide Silence" \
         "$Maa/thesedays" \
         "$Ma/Throwdown" \
         "$Ma/Union 13" \
+        "$Maa/xCROSSBEARERx" \
+        "$Ma/Youth of Today" \
+        "$Ma/Alexisonfire" \
+        "$Ma/Bring me the Horizon" \
+        "$Ma/The Browning" \
+        "$Maa/Captive Eyes" \
+        "$Ma/Carnifex" \
+        "$Ma/Comaspool" \
+        "$Ma/Despised Icon" \
+        "$Ma/Eighteen Visions" \
+        "$Ma/Emmure" \
+        "$Ma/Enter Shikari" \
+        "$Ma/From Autumn to Ashes" \
+        "$Ma/Helia" \
+        "$Ma/I am Ghost" \
+        "$Ma/In Flames" \
+        "$Ma/Return the Queen" \
+        "$Ma/Sonic Syndicate" \
+        "$Ma/Suicide Silence" \
         "$Ma/The Used" \
         "$Ma/Thrice" \
         "$Ma/Thursday" \
         "$Ma/Vanna" \
         "$Ma/We Butter the Bread with Butter" \
         "$Ma/Whitechapel" \
-        "$Maa/xCROSSBEARERx" \
-        "$Ma/Youth of Today" \
         /media/sebastian/E0D6-C698/Music
 }
 main $Args
