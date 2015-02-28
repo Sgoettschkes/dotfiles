@@ -82,20 +82,25 @@ artists = [
         "We Butter the Bread with Butter",
         "Whitechapel"
         ]
+dest = "/media/sebastian/E0D6-C698/Music"
 
 def main():
+    if not os.path.isdir(dest):
+        raise Exception("Dest does not exist")
     for artist in artists:
-        dir = "/home/sebastian/Music/Alben/" + artist
-        if not os.path.isdir(dir):
-            dir = "/home/sebastian/Music/Digital/" + artist
+        src = "/home/sebastian/Music/Alben/" + artist
+        if not os.path.isdir(src):
+            src = "/home/sebastian/Music/Digital/" + artist
+        if not os.path.isdir(src):
+            raise Exception("Artist " + artist + " does not exist")
 
         subprocess.check_call([
             "rsync",
             "--archive",
             "--recursive",
             "--verbose",
-            dir,
-            "/media/sebastian/E0D6-C698/Music"
+            src,
+            dest
             ])
 
 if __name__ == "__main__":
