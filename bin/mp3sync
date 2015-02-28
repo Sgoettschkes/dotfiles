@@ -30,17 +30,6 @@ main () {
         --archive \
         --verbose \
         --recursive \
-        "$Ma/59 Times the Pain" \
-        "$Ma/Bane" \
-        "$Ma/Barcode" \
-        "$Ma/Biohazard" \
-        "$Ma/Blood for Betrayal" \
-        "$Ma/Bloodshed Remains" \
-        "$Ma/Born from Pain" \
-        "$Ma/Boysetsfire" \
-        "$Ma/Cancer Bats" \
-        "$Ma/Cast Iron Hike" \
-        "$Md/Choke X Chain" \
         "$Ma/Count on Pride" \
         "$Ma/Downset" \
         "$Ma/Earth Crisis" \
