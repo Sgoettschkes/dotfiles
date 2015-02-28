@@ -80,7 +80,15 @@ def main():
         dir = "/home/sebastian/Music/Alben/" + artist
         if not os.path.isdir(dir):
             dir = "/home/sebastian/Music/Digital/" + artist
-        subprocess.check_call(["rsync","--archive","--recursive","--verbose",dir,"/media/sebastian/E0D6-C698/Music"])
+
+        subprocess.check_call([
+            "rsync",
+            "--archive",
+            "--recursive",
+            "--verbose",
+            dir,
+            "/media/sebastian/E0D6-C698/Music"
+            ])
 
 if __name__ == "__main__":
    main() 
