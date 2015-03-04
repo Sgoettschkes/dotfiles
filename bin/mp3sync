@@ -56,31 +56,33 @@ artists = [
         "Union 13",
         "xCROSSBEARERx",
         "Youth of Today",
-        # Other
+        # Post-Hardcore
         "Alexisonfire",
-        "Bring me the Horizon",
-        "The Browning",
-        "Captive Eyes",
-        "Carnifex",
         "Comaspool",
-        "Daniel Gun",
-        "Despised Icon",
         "Eighteen Visions",
-        "Emmure",
         "Enter Shikari",
         "From Autumn to Ashes",
         "Helia",
         "I am Ghost",
-        "In Flames",
         "Return the Queen",
-        "Sonic Syndicate",
-        "Suicide Silence",
         "The Used",
         "Thrice",
         "Thursday",
         "Vanna",
+        # Deathcore
+        "Bring me the Horizon",
+        "Captive Eyes",
+        "Carnifex",
+        "Despised Icon",
+        "Emmure",
+        "Suicide Silence",
+        "The Browning",
         "We Butter the Bread with Butter",
         "Whitechapel"
+        # Other
+        "Daniel Gun",
+        "In Flames",
+        "Sonic Syndicate",
         ]
 dest = "/media/sebastian/E0D6-C698/Music"
 
