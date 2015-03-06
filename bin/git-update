@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# File managed by Sgoettschkes/dotfiles
+# Do not change
+
+set -o nounset
+set -o errexit
+
+main () {
+    git checkout master
+    git fetch --all --prune --tags
+    git merge --ff-only origin/master
+    git checkout @{-1}
+
+}
+main
