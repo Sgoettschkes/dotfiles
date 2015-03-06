@@ -11,14 +11,16 @@ readonly Progdir=$(readlink -m $(dirname "$0"))
 readonly Args="$@"
 
 main () {
+    local readonly GitTargetRemote=${1:-origin}
+
     local readonly GitBaseDir=`git rev-parse --show-toplevel`
     local readonly CurrentDir=`pwd`
 
     cd $GitBaseDir
     git checkout master
     git fetch --all --prune --tags
-    git merge --ff-only origin/master
+    git merge --ff-only ${GitTargetRemote}/master
     git checkout @{-1}
     cd $CurrentDir
 }
-main
+main $Args
