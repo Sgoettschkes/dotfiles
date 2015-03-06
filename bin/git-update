@@ -20,6 +20,5 @@ main () {
     git merge --ff-only origin/master
     git checkout @{-1}
     cd $CurrentDir
-
 }
 main
