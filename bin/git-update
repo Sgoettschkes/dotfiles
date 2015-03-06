@@ -6,11 +6,20 @@
 set -o nounset
 set -o errexit
 
+readonly Progname=$(basename "$0")
+readonly Progdir=$(readlink -m $(dirname "$0"))
+readonly Args="$@"
+
 main () {
+    local readonly GitBaseDir=`git rev-parse --show-toplevel`
+    local readonly CurrentDir=`pwd`
+
+    cd $GitBaseDir
     git checkout master
     git fetch --all --prune --tags
     git merge --ff-only origin/master
     git checkout @{-1}
+    cd $CurrentDir
 
 }
 main
