@@ -6,21 +6,21 @@
 set -o nounset
 set -o errexit
 
-readonly Progname=$(basename "$0")
-readonly Progdir=$(readlink -m $(dirname "$0"))
+readonly Progname=$(basename "${0}")
+readonly Progdir=$(readlink -m $(dirname "${0}"))
 readonly Args="$@"
 
 main () {
-    local readonly GitTargetBranch=${2:-master}
+    local readonly GitTargetBranch=${1:-master}
 
     local readonly GitBaseDir=`git rev-parse --show-toplevel`
     local readonly CurrentDir=`pwd`
 
-    cd $GitBaseDir
-    git checkout $GitTargetBranch
-    git pull --ff-only origin $GitTargetBranch
+    cd ${GitBaseDir}
+    git checkout ${GitTargetBranch}
+    git pull --ff-only origin ${GitTargetBranch}
     git checkout @{-1}
-    git rebase $GitTargetBranch
-    cd $CurrentDir
+    git rebase ${GitTargetBranch}
+    cd ${CurrentDir}
 }
-main $Args
+main ${Args}
