@@ -32,7 +32,6 @@ alias chown='chown --preserve-root'
 alias cl='clear && pwd && ls -AFG'
 alias clc=clear
 alias mkdir='mkdir -p'
-alias r='rm -i --preserve-root'
 alias rm='rm --preserve-root'
 alias root=su
 alias su='sudo -i'
