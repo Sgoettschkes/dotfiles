@@ -15,7 +15,6 @@ alias a=ansible
 alias ap=ansible-playbook
 alias g=git
 alias gg='git grep'
-alias gh=gitHelper
 alias v=vim
 alias va=vagrant
 
