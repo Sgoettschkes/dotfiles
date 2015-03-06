@@ -22,6 +22,10 @@ Host lisa
     Port 22
     User sebastian
 
+#
+# AgileAddicts
+# 
+
 Host silk
     HostName silk.agileaddicts.com
     Port 22
@@ -31,3 +35,12 @@ Host impact
     HostName impact.agileaddicts.com
     Port 22
     User sebastian
+
+#
+# wogibtswas
+#
+
+Host comrade
+    HostName 54.93.170.56
+    Port 22
+    User admin
