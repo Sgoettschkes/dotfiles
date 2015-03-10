@@ -54,6 +54,11 @@ if [ -f ~/.git/git-prompt.sh ]; then
     . ~/.git/git-prompt.sh
 fi
 
+# Source git-completion for git awesomeness
+if [ -f ~/.git/git-completion.bash ]; then
+    . ~/.git/git-completion.bash
+fi
+
 # Source ansible env-setup
 if [ -f /opt/ansible/hacking/env-setup ]; then
     source /opt/ansible/hacking/env-setup -q

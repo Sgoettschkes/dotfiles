@@ -83,6 +83,7 @@ chmod 764 $Homepath/bin/*
 copy $Progdir/git/gitconfig $Homepath/.gitconfig
 copy $Progdir/git/gitignore $Homepath/.gitignore
 copy $Progdir/git/git-prompt.sh $Homepath/.git/git-prompt.sh
+copy $Progdir/git/git-completion.bash $Homepath/.git/git-completion.bash
 
 # gnupg
 copy $Progdir/gnupg/gpg.conf $Homepath/.gnupg/gpg.conf
