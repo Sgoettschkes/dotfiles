@@ -14,6 +14,7 @@ alias ~='cd ~'
 alias a=ansible
 alias ag=ansible-galaxy
 alias ap=ansible-playbook
+alias g=git
 alias gg='git grep'
 alias va=vagrant
 
