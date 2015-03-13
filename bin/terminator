@@ -100,7 +100,7 @@ main () {
         exit;
     fi
 
-    if ! tmux has-session -t $Sessionname; then
+    if [[ ! `tmux has-session -t $Sessionname &> /dev/null` ]]; then
         session_$Sessionname
     fi
 
