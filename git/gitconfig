@@ -40,5 +40,5 @@
     default = upstream
 
 [user]
-    name = Sebastian Göttschkes
     email = sebastian.goettschkes@googlemail.com
+    name = Sebastian Göttschkes
