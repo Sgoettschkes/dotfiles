@@ -3,7 +3,8 @@
 
 [alias]
     amend = commit --all --amend
-    br = branch --all --color -vv
+    br = branch
+    bra = branch --all --color -vv
     ci = commit
     co = checkout
     cob = checkout -b
