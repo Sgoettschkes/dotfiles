@@ -2,6 +2,7 @@
 # Do not change
 
 [alias]
+    a = add
     amend = commit --all --amend
     br = branch
     bra = branch --all --color -vv
