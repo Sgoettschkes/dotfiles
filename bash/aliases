@@ -6,9 +6,8 @@ alias u='cd .. && ll'
 alias ..='cd ..'
 alias .2='cd ../..'
 alias .3='cd ../../..'
+alias .4='cd ../../../..'
 alias ~='cd ~'
-
-# Misc
 
 # Shortcuts
 alias a=ansible
@@ -16,6 +15,7 @@ alias ag=ansible-galaxy
 alias ap=ansible-playbook
 alias g=git
 alias gg='git grep'
+alias v=vim
 alias va=vagrant
 
 # Some ls aliases
@@ -32,7 +32,6 @@ alias cl='clear && pwd && ls -AFG'
 alias clc=clear
 alias mkdir='mkdir -p'
 alias rm='rm --preserve-root'
-alias root=su
 alias su='sudo -i'
 
 # Advanced system tools
@@ -42,10 +41,8 @@ alias free='free -mt'
 alias psx='ps aux | grep'
 alias watchlog='watch -n 2 tail -n 15'
 
-# flux
+# Tools
 alias flux='xflux -l 48.20 -g 16.36'
-
-# tmux
 alias tmux='tmux -2'
 
 # Rest API stuff
