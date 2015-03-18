@@ -9,9 +9,12 @@
     ci = commit
     co = checkout
     cob = checkout -b
+    d = diff
     diw = diff --word-diff
     dic = diff --color-words
     dicc = diff --color-words=.
+    f = fetch --all
+    fa = fetch --all --prune --tags --verbose
     l = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --numstat
     llm = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --numstat --max-count=10
