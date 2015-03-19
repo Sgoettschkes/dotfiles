@@ -6,7 +6,9 @@
     amend = commit --all --amend
     br = branch
     bra = branch --all --color -vv
+    ca = commit -am
     ci = commit
+    cm = commit -m
     co = checkout
     cob = checkout -b
     d = diff
@@ -47,7 +49,7 @@
 	conflictstyle = diff3
 
 [push]
-    default = upstream
+    default = simple
 
 [rebase]
     autosquash = true
