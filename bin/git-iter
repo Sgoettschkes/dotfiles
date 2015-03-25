@@ -22,6 +22,10 @@ main () {
     local readonly IterFile="$GitBaseDir/.git/iter"
 
     if [ "$Action" == "start" ]; then
+        if [ -f $IterFile ]; then
+            error "git iter was not stopped properly. Run git iter stop"
+        fi
+
         local readonly Target=${2:-HEAD}
         git rev-list $Target..HEAD > $IterFile
         git checkout $Target
