@@ -14,17 +14,18 @@ main () {
     local readonly Action=${1:-next}
 
     local readonly GitBaseDir=`git rev-parse --show-toplevel`
+    local readonly IterFile="$GitBaseDir/.git/iter"
 
     if [ "$Action" == "start" ]; then
         local readonly Target=${2:-HEAD}
-        git rev-list $Target..HEAD > $GitBaseDir/.git/iter
+        git rev-list $Target..HEAD > $IterFile
         git checkout $Target
     elif [ "$Action" == "next" ]; then
-        local readonly Target=`tail -n 1 $GitBaseDir/.git/iter`
-        sed -i '$ d' $GitBaseDir/.git/iter
+        local readonly Target=`tail -n 1 $IterFile`
+        sed -i '$ d' $IterFile
         git checkout $Target
     elif [ "$Action" == "stop" ]; then
-        rm $GitBaseDir/.git/iter
+        rm $IterFile
         git checkout master
     fi
 }
