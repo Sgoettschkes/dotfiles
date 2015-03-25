@@ -30,6 +30,10 @@ main () {
         git rev-list $Target..HEAD > $IterFile
         git checkout $Target
     elif [ "$Action" == "next" ]; then
+        if [ ! -f $IterFile ]; then
+            error "git iter was not startet properly. Run git iter start HASH"
+        fi
+
         local readonly Target=`tail -n 1 $IterFile`
         sed -i '$ d' $IterFile
         git checkout $Target
