@@ -38,6 +38,10 @@ main () {
         sed -i '$ d' $IterFile
         git checkout $Target
     elif [ "$Action" == "stop" ]; then
+        if [ ! -f $IterFile ]; then
+            error "git iter was not startet properly. Run git iter start HASH"
+        fi
+
         rm $IterFile
         git checkout master
     fi
