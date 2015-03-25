@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# File managed by Sgoettschkes/dotfiles
+# Do not change
+
+set -o nounset
+set -o errexit
+
+readonly Progname=$(basename "${0}")
+readonly Progdir=$(readlink -m $(dirname "${0}"))
+readonly Args="$@"
+
+main () {
+    local readonly Action=${1:-next}
+
+    local readonly GitBaseDir=`git rev-parse --show-toplevel`
+
+    if [ "$Action" == "start" ]; then
+        local readonly Target=${2:-HEAD}
+        git rev-list $Target..HEAD > $GitBaseDir/.git/iter
+        git checkout $Target
+    elif [ "$Action" == "next" ]; then
+        local readonly Target=`tail -n 1 $GitBaseDir/.git/iter`
+        sed -i '$ d' $GitBaseDir/.git/iter
+        git checkout $Target
+    elif [ "$Action" == "stop" ]; then
+        rm $GitBaseDir/.git/iter
+        git checkout master
+    fi
+}
+main ${Args}
+
