@@ -37,6 +37,9 @@ main () {
         local readonly Target=`tail -n 1 ${WalkFile}`
         sed -i '$ d' ${WalkFile}
         git checkout ${Target}
+    elif [ "${Action}" == "prev" ]; then
+        git rev-list HEAD^1..HEAD >> $WalkFile
+        git checkout HEAD^1
     elif [ "${Action}" == "stop" ]; then
         if [ ! -f ${WalkFile} ]; then
             error "git walk was not startet properly. Run git walk start HASH"
