@@ -15,6 +15,7 @@
     diw = diff --word-diff
     dic = diff --color-words
     dicc = diff --color-words=.
+    diffl = diff HEAD^1..HEAD
     f = fetch --all
     fa = fetch --all --prune --tags --verbose
     l = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
