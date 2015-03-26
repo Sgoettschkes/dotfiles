@@ -19,30 +19,30 @@ main () {
     local readonly Action=${1:-next}
 
     local readonly GitBaseDir=`git rev-parse --show-toplevel`
-    local readonly IterFile="$GitBaseDir/.git/iter"
+    local readonly WalkFile="$GitBaseDir/.git/walk"
 
     if [ "$Action" == "start" ]; then
-        if [ -f $IterFile ]; then
-            error "git iter was not stopped properly. Run git iter stop"
+        if [ -f $WalkFile ]; then
+            error "git walk was not stopped properly. Run git walk stop"
         fi
 
         local readonly Target=${2:-HEAD}
-        git rev-list $Target..HEAD > $IterFile
+        git rev-list $Target..HEAD > $WalkFile
         git checkout $Target
     elif [ "$Action" == "next" ]; then
-        if [ ! -f $IterFile ]; then
-            error "git iter was not startet properly. Run git iter start HASH"
+        if [ ! -f $WalkFile ]; then
+            error "git walk was not startet properly. Run git walk start HASH"
         fi
 
-        local readonly Target=`tail -n 1 $IterFile`
-        sed -i '$ d' $IterFile
+        local readonly Target=`tail -n 1 $WalkFile`
+        sed -i '$ d' $WalkFile
         git checkout $Target
     elif [ "$Action" == "stop" ]; then
-        if [ ! -f $IterFile ]; then
-            error "git iter was not startet properly. Run git iter start HASH"
+        if [ ! -f $WalkFile ]; then
+            error "git walk was not startet properly. Run git walk start HASH"
         fi
 
-        rm $IterFile
+        rm $WalkFile
         git checkout master
     fi
 }
