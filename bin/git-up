@@ -18,7 +18,8 @@ main () {
 
     cd ${GitBaseDir}
     git checkout ${GitTargetBranch}
-    git pull --ff-only origin ${GitTargetBranch}
+    git fetch --all --prune --tags
+    git merge --ff-only origin/${GitTargetBranch}
     git merge --ff-only @{-1}
     git push origin ${GitTargetBranch}
     git checkout @{-1}
