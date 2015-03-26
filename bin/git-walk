@@ -24,6 +24,7 @@ main () {
     if [ "${Action}" == "start" ]; then
         if [ -f ${WalkFile} ]; then
             error "git walk was not stopped properly. Run git walk stop"
+            exit 1
         fi
 
         local readonly Target=${2:-HEAD}
@@ -32,6 +33,7 @@ main () {
     elif [ "${Action}" == "next" ]; then
         if [ ! -f ${WalkFile} ]; then
             error "git walk was not startet properly. Run git walk start HASH"
+            exit 1
         fi
 
         local readonly Target=`tail -n 1 ${WalkFile}`
@@ -40,6 +42,7 @@ main () {
     elif [ "${Action}" == "prev" ]; then
         if [ ! -f ${WalkFile} ]; then
             error "git walk was not startet properly. Run git walk start HASH"
+            exit 1
         fi
 
         git rev-list HEAD^1..HEAD >> $WalkFile
@@ -47,6 +50,7 @@ main () {
     elif [ "${Action}" == "stop" ]; then
         if [ ! -f ${WalkFile} ]; then
             error "git walk was not startet properly. Run git walk start HASH"
+            exit 1
         fi
 
         rm ${WalkFile}
