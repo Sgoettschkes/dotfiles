@@ -19,30 +19,30 @@ main () {
     local readonly Action=${1:-next}
 
     local readonly GitBaseDir=`git rev-parse --show-toplevel`
-    local readonly WalkFile="$GitBaseDir/.git/walk"
+    local readonly WalkFile="${GitBaseDir}/.git/walk"
 
-    if [ "$Action" == "start" ]; then
-        if [ -f $WalkFile ]; then
+    if [ "${Action}" == "start" ]; then
+        if [ -f ${WalkFile} ]; then
             error "git walk was not stopped properly. Run git walk stop"
         fi
 
         local readonly Target=${2:-HEAD}
-        git rev-list $Target..HEAD > $WalkFile
-        git checkout $Target
-    elif [ "$Action" == "next" ]; then
-        if [ ! -f $WalkFile ]; then
+        git rev-list ${Target}..HEAD > ${WalkFile}
+        git checkout ${Target}
+    elif [ "${Action}" == "next" ]; then
+        if [ ! -f ${WalkFile} ]; then
             error "git walk was not startet properly. Run git walk start HASH"
         fi
 
-        local readonly Target=`tail -n 1 $WalkFile`
-        sed -i '$ d' $WalkFile
-        git checkout $Target
-    elif [ "$Action" == "stop" ]; then
-        if [ ! -f $WalkFile ]; then
+        local readonly Target=`tail -n 1 ${WalkFile}`
+        sed -i '$ d' ${WalkFile}
+        git checkout ${Target}
+    elif [ "${Action}" == "stop" ]; then
+        if [ ! -f ${WalkFile} ]; then
             error "git walk was not startet properly. Run git walk start HASH"
         fi
 
-        rm $WalkFile
+        rm ${WalkFile}
         git checkout master
     fi
 }
