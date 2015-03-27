@@ -24,6 +24,7 @@
     lm = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate --max-count=25
     re = reset HEAD
     st = status --short
+    stu = status --short --untracked-files
     undo = reset HEAD~1 --mixed
 
 [branch]
