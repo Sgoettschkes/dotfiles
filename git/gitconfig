@@ -44,7 +44,7 @@
     algorithm = patience
 
 [help]
-    autocorrect = 1
+    autocorrect = 10
 
 [merge]
 	conflictstyle = diff3
