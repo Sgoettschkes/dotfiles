@@ -114,3 +114,11 @@ mkdir -p $Homepath/.vim/temp
 copy $Progdir/xfce/xinitrc $Homepath/.config/xfce4/xinitrc
 copy $Progdir/xfce/xfce-applications.menu $Homepath/.config/menus/xfce-applications.menu
 copy $Progdir/xfce/Xmodmap $Homepath/.Xmodmap
+
+# exchange some stuff when on cygwin
+if [ Cygwin = "$(uname -o 2>/dev/null)" ]; then
+    warning "Applying cygwin specific settings"
+
+    # Adjust vim executable in gitconfig
+    sed -i -e 's/editor = vim/editor = vim.exe/g' ~/.gitconfig
+fi
