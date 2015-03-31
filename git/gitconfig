@@ -48,7 +48,7 @@
     autocorrect = 10
 
 [merge]
-	conflictstyle = diff3
+    conflictstyle = diff3
 
 [push]
     default = current
