@@ -12,6 +12,7 @@ execute pathogen#infect()
 
 " Settings for pathogen
 syntax on
+filetype on
 filetype plugin indent on
 
 " Remap leader key
