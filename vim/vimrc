@@ -44,6 +44,9 @@ set smartcase " Make search behave better when searching
 " http://stackoverflow.com/q/11940801/372562
 nnoremap <LEADER>e :noh<CR>
 
+" Swap
+set noswapfile
+
 " Backup
 set backup 
 set backupdir=~/.vim/backup
