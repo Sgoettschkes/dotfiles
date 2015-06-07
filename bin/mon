@@ -21,7 +21,6 @@ main () {
     case "$Mode" in
         "home") xrandr --output VGA-0 --off --output LVDS --off --output HDMI-0 --auto --primary ;;
         "road") xrandr --output VGA-0 --off --output LVDS --auto --primary --output HDMI-0 --off ;;
-        "beamer") xrandr --output VGA-0 --off --output LVDS --auto --primary --output HDMI-0 --auto --right-of LVDS ;;
         *) error "Mode not found"; exit ;;
     esac
     
