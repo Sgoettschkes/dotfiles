@@ -113,6 +113,13 @@ map <Leader>S :sh<cr>
 " http://hashrocket.com/blog/posts/8-great-vim-mappings
 noremap <Leader>a ma=ip`a
 
+" Configuring airline
+" http://sheerun.net/2014/03/21/how-to-boost-your-vim-productivity/
+let g:airline_theme='powerlineish'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_section_z=''
+
 " Detect .md files as Markdown
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
