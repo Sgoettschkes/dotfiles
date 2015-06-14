@@ -15,7 +15,7 @@ filetype on
 filetype plugin indent on
 
 " Remap leader key
-let mapleader="\<Space>"
+let mapleader=","
 
 "Use solarized
 let g:solarized_termcolors=256
