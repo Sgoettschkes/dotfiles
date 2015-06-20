@@ -92,7 +92,6 @@ noremap <leader>q :q<cr>
 " Save File with Leader+s
 " http://hashrocket.com/blog/posts/8-great-vim-mappings
 nnoremap <leader>s :w<cr>
-inoremap <leader>s <C-c>:w<cr>
 
 " Mapping Leader+W to save with sudo
 noremap <Leader>W :w !sudo tee % > /dev/null
