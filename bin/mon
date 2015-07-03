@@ -22,12 +22,12 @@ main () {
         "home")
             xrandr --output VGA-0 --off --output LVDS --off --output HDMI-0 --auto --primary
             xrandr --output HDMI-0 --mode 1024x768
-            xrandr --output HDMI-0 --auto
+            xrandr --output VGA-0 --off --output LVDS --off --output HDMI-0 --auto --primary
         ;;
         "road")
             xrandr --output VGA-0 --off --output LVDS --auto --primary --output HDMI-0 --off
             xrandr --output LVDS --mode 1024x768
-            xrandr --output LVDS --auto
+            xrandr --output VGA-0 --off --output LVDS --auto --primary --output HDMI-0 --off
         ;;
         *) error "Mode not found"; exit ;;
     esac
