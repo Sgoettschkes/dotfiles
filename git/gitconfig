@@ -7,6 +7,7 @@
     br = branch
     bra = branch --all --color -vv
     ci = commit
+    cin = commit --no-verify
     co = checkout
     cob = checkout -b
     d = diff
