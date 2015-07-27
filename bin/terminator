@@ -21,11 +21,11 @@ session_cllctr () {
     tmux split-window -t cllctr:1.1 -h
     tmux split-window -t cllctr:1.1 -v
     tmux send-keys -t cllctr:1.1 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
-    tmux send-keys -t cllctr:1.1 'va up && va ssh' C-m
+    tmux send-keys -t cllctr:1.1 'vagrant up && vagrant ssh' C-m
     tmux send-keys -t cllctr:1.1 'cd /cllctr' C-m
     tmux send-keys -t cllctr:1.2 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
     tmux send-keys -t cllctr:1.3 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
-    tmux send-keys -t cllctr:1.3 'sleep 60 && va ssh' C-m
+    tmux send-keys -t cllctr:1.3 'sleep 60 && vagrant ssh' C-m
     tmux send-keys -t cllctr:1.3 'mongo' C-m
 
     tmux new-window -n playbooks -t cllctr
