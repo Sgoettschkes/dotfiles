@@ -83,7 +83,7 @@ session_wgw () {
     tmux new-window -n structconverter -t wgw
     tmux split-window -t wgw:3.1 -h
     tmux send-keys -t wgw:3.1 'cd ~/workspace/wogibtswas/structconverter/vm; clear' C-m
-    tmux send-keys -t wgw:3.1 'vagrant up' C-m
+    tmux send-keys -t wgw:3.1 'vagrant up && vagrant ssh' C-m
     tmux send-keys -t wgw:3.1 'cd structconverter' C-m
     tmux send-keys -t wgw:3.2 'cd ~/workspace/wogibtswas/structconverter; clear' C-m
 
