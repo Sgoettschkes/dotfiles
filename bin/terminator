@@ -16,7 +16,7 @@ warning () { printf "\e[33m$1\e[39m\n"; }
 error () { printf "\e[31m$1\e[39m\n"; }
 
 session_cllctr () {
-    tmux new-session -s cllctr -n sh -d
+    tmux new-session -s cllctr -n cllctr -d
 
     tmux split-window -t cllctr:1.1 -h
     tmux split-window -t cllctr:1.1 -v
