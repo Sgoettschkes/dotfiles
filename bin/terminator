@@ -34,11 +34,7 @@ session_cllctr () {
     tmux send-keys -t cllctr:2.2 'cd ~/workspace/agileaddicts/ansible-playbooks; clear' C-m
 
     tmux new-window -n remote -t cllctr
-    tmux split-window -t cllctr:3.1 -h
     tmux send-keys -t cllctr:3.1 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
-    tmux send-keys -t cllctr:3.1 'ssh silk'
-    tmux send-keys -t cllctr:3.2 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
-    tmux send-keys -t cllctr:3.2 'ssh impact'
 
     tmux select-window -t cllctr:1
 }
