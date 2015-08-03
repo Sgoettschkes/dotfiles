@@ -70,21 +70,18 @@ session_seg () {
 }
 
 session_wgw () {
-    tmux new-session -s wgw -n ansible -d
-    tmux send-keys -t wgw:1.1 'cd ~/workspace/wogibtswas/ansible-playbooks; clear' C-m
-
-    tmux new-window -n octodata -t wgw
-    tmux send-keys -t wgw:2.1 'cd ~/workspace/wogibtswas/octodata; clear' C-m
+    tmux new-session -s wgw -n sh -d
+    tmux send-keys -t wgw:1.1 'cd ~/workspace/wogibtswas; clear' C-m
 
     tmux new-window -n structconverter -t wgw
-    tmux split-window -t wgw:3.1 -h
-    tmux send-keys -t wgw:3.1 'cd ~/workspace/wogibtswas/structconverter/vm; clear' C-m
-    tmux send-keys -t wgw:3.1 'vagrant up && vagrant ssh' C-m
-    tmux send-keys -t wgw:3.1 'cd structconverter' C-m
-    tmux send-keys -t wgw:3.2 'cd ~/workspace/wogibtswas/structconverter; clear' C-m
+    tmux split-window -t wgw:2.1 -h
+    tmux send-keys -t wgw:2.1 'cd ~/workspace/wogibtswas/structconverter/vm; clear' C-m
+    tmux send-keys -t wgw:2.1 'vagrant up && vagrant ssh' C-m
+    tmux send-keys -t wgw:2.1 'cd structconverter' C-m
+    tmux send-keys -t wgw:2.2 'cd ~/workspace/wogibtswas/structconverter; clear' C-m
 
     tmux new-window -n wgwVm -t wgw
-    tmux send-keys -t wgw:4.1 'cd ~/workspace/wogibtswas/wgwVm; clear' C-m
+    tmux send-keys -t wgw:3.1 'cd ~/workspace/wogibtswas/wgwVm; clear' C-m
 
     tmux select-window -t wgw:1
 }
