@@ -35,6 +35,11 @@ remove ~/.apollo
 # asunder
 remove ~/.asunder
 
+# atom
+remove ~/.atom/config.cson
+remove ~/.atom/keymap.cson
+remove ~/.atom/styles.less
+
 # bash
 remove ~/.aliases
 remove ~/.bashrc

@@ -68,6 +68,11 @@ warning "Will start to overwrite files now!"
 # asunder
 copy $Progdir/asunder/asunder $Homepath/.asunder
 
+#atom
+copy $Progdir/atom/config.cson $Homepath/.atom/config.cson
+copy $Progdir/atom/keymap.cson $Homepath/.atom/keymap.cson
+copy $Progdir/atom/styles.less $Homepath/.atom/styles.less
+
 # bash
 copy $Progdir/bash/aliases $Homepath/.aliases
 copy $Progdir/bash/bashrc $Homepath/.bashrc
