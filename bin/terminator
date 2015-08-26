@@ -15,6 +15,11 @@ success () { printf "\e[32m$1\e[39m\n"; }
 warning () { printf "\e[33m$1\e[39m\n"; }
 error () { printf "\e[31m$1\e[39m\n"; }
 
+session_agileaddicts () {
+    tmux new-session -s agileaddicts -n sh -d
+    tmux send-keys -t agileaddicts:1.1 'cd ~; clear' C-m
+}
+
 session_cllctr () {
     tmux new-session -s cllctr -n cllctr -d
 
