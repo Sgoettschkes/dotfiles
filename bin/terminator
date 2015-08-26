@@ -17,7 +17,7 @@ error () { printf "\e[31m$1\e[39m\n"; }
 
 session_agileaddicts () {
     tmux new-session -s agileaddicts -n sh -d
-    tmux send-keys -t agileaddicts:1.1 'cd ~; clear' C-m
+    tmux send-keys -t agileaddicts:1.1 'cd ~/workspace/agileaddicts; clear' C-m
 }
 
 session_cllctr () {
