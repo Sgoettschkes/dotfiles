@@ -22,30 +22,6 @@ session_agileaddicts () {
     tmux select-window -t agileaddicts:1
 }
 
-session_cllctr () {
-    tmux new-session -s cllctr -n cllctr -d
-
-    tmux split-window -t cllctr:1.1 -h
-    tmux split-window -t cllctr:1.1 -v
-    tmux send-keys -t cllctr:1.1 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
-    tmux send-keys -t cllctr:1.1 'vagrant up && vagrant ssh' C-m
-    tmux send-keys -t cllctr:1.1 'cd /cllctr' C-m
-    tmux send-keys -t cllctr:1.2 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
-    tmux send-keys -t cllctr:1.3 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
-    tmux send-keys -t cllctr:1.3 'sleep 60 && vagrant ssh' C-m
-    tmux send-keys -t cllctr:1.3 'mongo' C-m
-
-    tmux new-window -n playbooks -t cllctr
-    tmux split-window -t cllctr:2.1 -h
-    tmux send-keys -t cllctr:2.1 'cd ~/workspace/agileaddicts/ansible-playbooks; clear' C-m
-    tmux send-keys -t cllctr:2.2 'cd ~/workspace/agileaddicts/ansible-playbooks; clear' C-m
-
-    tmux new-window -n remote -t cllctr
-    tmux send-keys -t cllctr:3.1 'cd ~/workspace/agileaddicts/cllctr; clear' C-m
-
-    tmux select-window -t cllctr:1
-}
-
 session_projects() {
     tmux new-session -s projects -n sh -d
     tmux send-keys -t projects:1.1 'cd ~; clear' C-m
