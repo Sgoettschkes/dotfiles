@@ -113,5 +113,7 @@ servers = (
 hilights = ( { text = "Sgoettschkes"; nick = "yes"; word = "yes"; } );
 channels = (
   { name = "##vienna"; chatnet = "freenode"; autojoin = "yes"; }
+  { name = "#dart"; chatnet = "freenode"; autojoin = "yes"; }
+  { name = "#python"; chatnet = "freenode"; autojoin = "yes"; }
 );
 logs = { };
