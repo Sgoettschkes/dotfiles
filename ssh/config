@@ -19,6 +19,14 @@ Host lisa
     Port 22
     User sebastian
 
+# tbalive
+
+Host tbalive
+    Hostname ssh.pythonanywhere.com
+    Port 22
+    user tbalive
+    IdentityFile ~/.ssh/tbalive
+
 # wogibtswas
 
 Host comrade
