@@ -6,22 +6,20 @@ Host *
     TCPKeepAlive yes
     ServerAliveInterval 60
 
+# Vagrant
+
 Host 10.66.6.*
     UserKnownHostsFile=/dev/null
     StrictHostKeyChecking no
 
-#
 # AgileAddicts
-# 
 
 Host lisa
     HostName lisa.sgoettschkes.me
     Port 22
     User sebastian
 
-#
 # wogibtswas
-#
 
 Host comrade
     HostName 54.93.170.56
