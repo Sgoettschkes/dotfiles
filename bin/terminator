@@ -73,7 +73,7 @@ main () {
     local readonly Sessionname=${1:-seg}
 
     if [[ "$TERM" == "screen-256color" ]]; then
-        error "segmux cannot run inside tmux"
+        error "terminator cannot run inside tmux"
         exit;
     fi
 
