@@ -22,6 +22,18 @@ session_agileaddicts () {
     tmux select-window -t agileaddicts:1
 }
 
+session_blossom () {
+    tmux new-session -s blossom -n sh -d
+    tmux send-keys -t blossom:1.1 'cd ~/workspace/blossom; clear' C-m
+
+    tmux new-window -n blossom -t blossom
+    tmux split-window -t blossom:2.1 -h
+    tmux send-keys -t blossom:2.1 'cd ~/workspace/blossom/blossom; clear' C-m
+    tmux send-keys -t blossom:2.2 'cd ~/workspace/blossom/blossom; clear' C-m
+
+    tmux select-window -t blossom:1
+}
+
 session_projects() {
     tmux new-session -s projects -n sh -d
     tmux send-keys -t projects:1.1 'cd ~; clear' C-m
