@@ -4,7 +4,7 @@ set -o nounset
 set -o errexit
 
 readonly Progname=$(basename "$0")
-readonly Progdir=$(readlink -m $(dirname "$0"))
+readonly Progdir="$( cd "$( dirname "$( dirname "$0" )" )" && pwd )"
 readonly Args="$@"
 
 readonly Homepath=`echo ~`
