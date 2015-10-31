@@ -25,14 +25,10 @@ alias v=vim
 alias va=vagrant
 
 # Little helpers
-alias chgrp='chgrp --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chown='chown --preserve-root'
 alias cl=clear
 alias cle='clear && pwd && ls -AFG'
 alias fuck='sudo $(history -p \!\!)'
 alias mkdir='mkdir -p'
-alias rm='rm --preserve-root'
 alias su='sudo -i'
 
 # Advanced system tools
