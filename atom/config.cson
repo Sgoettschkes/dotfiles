@@ -17,3 +17,5 @@
     tabLength: 2
     fontFamily: "Inconsolata"
     fontSize: 15
+    tabType: "soft"
+  minimap: {}
