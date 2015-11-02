@@ -14,6 +14,6 @@
     invisibles: {}
     softWrap: true
     softWrapAtPreferredLineLength: true
-    tabLength: 4
+    tabLength: 2
     fontFamily: "Inconsolata"
     fontSize: 15
