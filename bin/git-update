@@ -6,10 +6,6 @@
 set -o nounset
 set -o errexit
 
-readonly Progname=$(basename "$0")
-readonly Progdir="$( cd "$( dirname "$( dirname "$0" )" )" && pwd )"
-readonly Args="$@"
-
 main () {
     local readonly GitTargetRemote=${1:-origin}
 
@@ -23,4 +19,5 @@ main () {
     git checkout @{-1}
     cd $CurrentDir
 }
-main $Args
+
+main "$@"

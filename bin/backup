@@ -6,10 +6,6 @@
 set -o nounset
 set -o errexit
 
-readonly Progname=$(basename "$0")
-readonly Progdir="$( cd "$( dirname "$( dirname "$0" )" )" && pwd )"
-readonly Args="$@"
-
 # Helpers for printing stuff
 success () { printf "\e[32m$1\e[39m\n"; }
 warning () { printf "\e[33m$1\e[39m\n"; }
@@ -69,4 +65,5 @@ main () {
 
     success "Ending backup"
 }
-main $Args
+
+main "$@"
