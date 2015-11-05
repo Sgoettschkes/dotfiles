@@ -25,6 +25,7 @@ session_blossom () {
     tmux new-window -n blossom -t blossom
     tmux split-window -t blossom:2.1 -h
     tmux send-keys -t blossom:2.1 'cd ~/workspace/blossom/blossom; clear' C-m
+    tmux send-keys -t blossom:2.1 'vagrant up && vagrant ssh'
     tmux send-keys -t blossom:2.2 'cd ~/workspace/blossom/blossom; clear' C-m
 
     tmux select-window -t blossom:1
