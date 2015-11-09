@@ -15,6 +15,7 @@
     dic = diff --color-words
     dicc = diff --color-words=.
     diffl = diff HEAD^1..HEAD
+    dt=difftool
     f = fetch --all
     fa = fetch --all --prune --tags --verbose
     l = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%cn]" --decorate
@@ -44,12 +45,14 @@
 
 [diff]
     algorithm = patience
+    tool = diffmerge
 
 [help]
     autocorrect = 10
 
 [merge]
     conflictstyle = diff3
+    tool = diffmerge
 
 [push]
     default = current
@@ -63,3 +66,13 @@
 [user]
     email = sebastian.goettschkes@googlemail.com
     name = Sebastian Göttschkes
+
+[difftool]
+    prompt = false
+
+[difftool "diffmerge"]
+	cmd = "diffmerge \"$LOCAL\" \"$REMOTE\""
+
+[mergetool "diffmerge"]
+	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+	trustExitCode = true
