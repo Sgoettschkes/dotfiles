@@ -15,7 +15,7 @@ Host 10.66.6.*
 # AgileAddicts
 
 Host lisa
-    HostName lisa.sgoettschkes.me
+    HostName lisa.agileaddicts.com
     Port 22
     User sebastian
 
@@ -26,10 +26,3 @@ Host tbalive
     Port 22
     user tbalive
     IdentityFile ~/.ssh/tbalive
-
-# wogibtswas
-
-Host comrade
-    HostName 54.93.170.56
-    Port 22
-    User admin
