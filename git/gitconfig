@@ -30,7 +30,7 @@
     undo = reset HEAD~1 --mixed
 
 [branch]
-	autosetuprebase = always
+    autosetuprebase = always
 
 [color]
     diff = auto
@@ -74,5 +74,5 @@
 	cmd = "diffmerge \"$LOCAL\" \"$REMOTE\""
 
 [mergetool "diffmerge"]
-	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
-	trustExitCode = true
+    cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+    trustExitCode = true
