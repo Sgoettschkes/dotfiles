@@ -15,11 +15,12 @@
     dic = diff --color-words
     dicc = diff --color-words=.
     diffl = diff HEAD^1..HEAD
-    dt=difftool
+    dt = difftool
     f = fetch --all
     fa = fetch --all --prune --tags --verbose
     l = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate
     ll = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate --numstat
+    mt = mergetool
     pu = push
     pun = push --no-verify
     re = reset HEAD
