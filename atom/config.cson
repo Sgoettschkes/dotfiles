@@ -18,4 +18,16 @@
     fontFamily: "Inconsolata"
     fontSize: 15
     tabType: "soft"
+    preferredLineLength: 120
   minimap: {}
+  linter:
+    showErrorPanel: false
+    lintOnFlyInterval: 1000
+  dartlang: {}
+  "linter-flake8": {}
+".source.yaml-ext":
+  editor:
+    preferredLineLength: 120
+".dart.source":
+  editor:
+    preferredLineLength: 120
