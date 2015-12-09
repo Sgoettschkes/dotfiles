@@ -8,10 +8,17 @@ cdl() {
 }; export -f cdl
 
 finder() {
-    if [ "$#" -eq 1 ] && [ $1 == "show" ]; then
+    if [ "$#" -ne 1 ]; then
+        echo "Usage: finder show|hide"
+        exit 1
+    fi
+    if [ $1 == "show" ]; then
         defaults write com.apple.Finder AppleShowAllFiles YES
-    else
+    elif [ $1 == "hide" ]; then
         defaults write com.apple.Finder AppleShowAllFiles NO
+    else
+        echo "Usage: finder show|hide"
+        exit 1
     fi
     killall Finder
 }; export -f finder
