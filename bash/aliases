@@ -44,7 +44,3 @@ alias tmux='tmux -2'
 
 # Rest API stuff
 alias myip='curl http://ipecho.net/plain; echo'
-
-# mac
-alias findhide='defaults write com.apple.Finder AppleShowAllFiles NO'
-alias findshow='defaults write com.apple.Finder AppleShowAllFiles YES'

@@ -7,13 +7,22 @@ cdl() {
     cd -- "$@" && ls
 }; export -f cdl
 
-mkcd() {
-    mkdir -p -- "$@" && cd "$@"
-}; export -f mkcd
+finder() {
+    if [ "$#" -eq 1 ] && [ $1 == "show" ]; then
+        defaults write com.apple.Finder AppleShowAllFiles YES
+    else
+        defaults write com.apple.Finder AppleShowAllFiles NO
+    fi
+    killall Finder
+}; export -f finder
 
 lsx() {
     ls -alF $1 | grep $2
 }; export -f lsx
+
+mkcd() {
+    mkdir -p -- "$@" && cd "$@"
+}; export -f mkcd
 
 ssht() {
     ssh $* -t 'tmux a || tmux || /bin/bash'
