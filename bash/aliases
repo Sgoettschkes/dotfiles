@@ -27,6 +27,7 @@ alias va=vagrant
 # Little helpers
 alias cl=clear
 alias cle='clear && pwd && ls -AFG'
+alias fle="perl -pi -e 's/\r/\n/g' "
 alias fuck='sudo $(history -p \!\!)'
 alias mkdir='mkdir -p'
 alias su='sudo -i'
