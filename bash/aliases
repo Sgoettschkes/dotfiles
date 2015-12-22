@@ -45,3 +45,6 @@ alias tmux='tmux -2'
 
 # Rest API stuff
 alias myip='curl http://ipecho.net/plain; echo'
+
+# git shortcuts
+alias glt='git l `git describe --tags --abbrev=0`..HEAD'
