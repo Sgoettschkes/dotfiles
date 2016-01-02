@@ -31,6 +31,19 @@ session_blossom () {
     tmux select-window -t blossom:1
 }
 
+session_nwn () {
+    tmux new-session -s nwn -n sh -d
+    tmux send-keys -t nwn:1.1 'cd ~/workspace/northwestnumerics; clear' C-m
+
+    tmux new-window -n herakles -t nwn
+    tmux split-window -t nwn:2.1 -h
+    tmux send-keys -t nwn:2.1 'cd ~/workspace/northwestnumerics/herakles; clear' C-m
+    tmux send-keys -t nwn:2.1 'vagrant up && vagrant ssh'
+    tmux send-keys -t nwn:2.2 'cd ~/workspace/northwestnumerics/herakles; clear' C-m
+
+    tmux select-window -t nwn:1
+}
+
 session_projects() {
     tmux new-session -s projects -n sh -d
     tmux send-keys -t projects:1.1 'cd ~; clear' C-m
