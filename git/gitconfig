@@ -52,6 +52,9 @@
 [difftool "diffmerge"]
 	cmd = "diffmerge \"$LOCAL\" \"$REMOTE\""
 
+[fetch]
+    fsckobjects = true # see https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0
+
 [help]
     autocorrect = 10
 
@@ -69,8 +72,14 @@
 [rebase]
     autosquash = true
 
+[receive]
+    fsckObjects = true # see https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0
+
 [rerere]
     enabled = true
+
+[transfer]
+    fsckobjects = true # see https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0
 
 [user]
     email = sebastian.goettschkes@googlemail.com
