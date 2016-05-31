@@ -15,6 +15,13 @@ session_agileaddicts () {
     tmux new-session -s agileaddicts -n sh -d
     tmux send-keys -t agileaddicts:1.1 'cd ~/workspace/agileaddicts; clear' C-m
 
+    tmux new-window -n blitzlicht -t agileaddicts
+    tmux split-window -t agileaddicts:2.1 -h
+    tmux send-keys -t agileaddicts:2.1 'cd ~/workspace/agileaddicts/blitzlicht; clear' C-m
+    tmux send-keys -t agileaddicts:2.2 'cd ~/workspace/agileaddicts/blitzlicht; clear' C-m
+    sleep 1
+    tmux send-keys -t agileaddicts:2.1 'vagrant up && vagrant ssh'
+
     tmux select-window -t agileaddicts:1
 }
 
@@ -38,12 +45,12 @@ session_nwn () {
     tmux new-session -s nwn -n sh -d
     tmux send-keys -t nwn:1.1 'cd ~/workspace/northwestnumerics; clear' C-m
 
-    tmux new-window -n herakles -t nwn
+    tmux new-window -n Cerberos -t nwn
     tmux split-window -t nwn:2.1 -h
-    tmux send-keys -t nwn:2.1 'cd ~/workspace/northwestnumerics/herakles; clear' C-m
+    tmux send-keys -t nwn:2.1 'cd ~/workspace/northwestnumerics/nwnm_lab_project/Olympus; clear' C-m
+    tmux send-keys -t nwn:2.2 'cd ~/workspace/northwestnumerics/nwnm_lab_project/Cerberos; clear' C-m
     sleep 1
     tmux send-keys -t nwn:2.1 'vagrant up && vagrant ssh'
-    tmux send-keys -t nwn:2.2 'cd ~/workspace/northwestnumerics/herakles; clear' C-m
 
     tmux select-window -t nwn:1
 }
