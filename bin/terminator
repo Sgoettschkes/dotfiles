@@ -24,10 +24,12 @@ session_blossom () {
 
     tmux new-window -n blossom -t blossom
     tmux split-window -t blossom:2.1 -h
+    tmux split-window -t blossom:2.1 -v
     tmux send-keys -t blossom:2.1 'cd ~/workspace/blossom/blossom; clear' C-m
+    tmux send-keys -t blossom:2.2 'cd ~/workspace/blossom/blossom; clear' C-m
+    tmux send-keys -t blossom:2.3 'cd ~/workspace/blossom/blossom; clear' C-m
     sleep 1
     tmux send-keys -t blossom:2.1 'vagrant up && vagrant ssh'
-    tmux send-keys -t blossom:2.2 'cd ~/workspace/blossom/blossom; clear' C-m
 
     tmux select-window -t blossom:1
 }
@@ -55,13 +57,6 @@ session_projects() {
     tmux send-keys -t projects:2.1 'cd ~/workspace/Sgoettschkes/dotfiles; clear' C-m
     tmux send-keys -t projects:2.2 'cd ~/workspace/Sgoettschkes/dotfiles; clear' C-m
 
-    tmux new-window -n tbalive -t projects
-    tmux split-window -t projects:3.1 -h
-    tmux send-keys -t projects:3.1 'cd ~/workspace/tbalive/website; clear' C-m
-    sleep 1
-    tmux send-keys -t projects:3.1 'vagrant up && vagrant ssh'
-    tmux send-keys -t projects:3.2 'cd ~/workspace/tbalive/website; clear' C-m
-
     tmux select-window -t projects:1
 }
 
@@ -72,9 +67,9 @@ session_seg () {
     tmux new-window -n vimwiki -t seg
     tmux split-window -t seg:2.1 -h
     tmux send-keys -t seg:2.1 'cd ~/workspace/Sgoettschkes/vimwiki; clear' C-m
+    tmux send-keys -t seg:2.2 'cd ~/workspace/Sgoettschkes/vimwiki; clear' C-m
     sleep 1
     tmux send-keys -t seg:2.1 'vim index.wiki' C-m
-    tmux send-keys -t seg:2.2 'cd ~/workspace/Sgoettschkes/vimwiki; clear' C-m
 
     tmux select-window -t seg:1
 }
@@ -86,9 +81,9 @@ session_wgw () {
     tmux new-window -n structconverter -t wgw
     tmux split-window -t wgw:2.1 -h
     tmux send-keys -t wgw:2.1 'cd ~/workspace/wogibtswas/structconverter/vm; clear' C-m
+    tmux send-keys -t wgw:2.2 'cd ~/workspace/wogibtswas/structconverter; clear' C-m
     sleep 1
     tmux send-keys -t wgw:2.1 'vagrant up && vagrant ssh'
-    tmux send-keys -t wgw:2.2 'cd ~/workspace/wogibtswas/structconverter; clear' C-m
 
     tmux select-window -t wgw:1
 }
