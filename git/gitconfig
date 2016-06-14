@@ -11,6 +11,7 @@
     co = checkout
     cob = checkout -b
     d = diff
+    dh = !/usr/local/Cellar/git/2.9.0/share/git-core/contrib/diff-highlight/diff-highlight
     diw = diff --word-diff
     dic = diff --color-words
     dicc = diff --color-words=.
@@ -32,13 +33,14 @@
     autosetuprebase = always
 
 [color]
+    branch = auto
     diff = auto
     status = auto
-    branch = auto
     ui = auto
 
 [core]
     autocrlf = input
+    compactionHeuristic = true
     editor = vim
     excludesfile = ~/.gitignore
 
@@ -50,13 +52,16 @@
     prompt = false
 
 [difftool "diffmerge"]
-	cmd = "diffmerge \"$LOCAL\" \"$REMOTE\""
+  	cmd = "diffmerge \"$LOCAL\" \"$REMOTE\""
 
 [fetch]
     fsckobjects = true # see https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0
 
 [help]
     autocorrect = 10
+
+[interactive]
+    diffFilter = git dh
 
 [merge]
     conflictstyle = diff3
@@ -65,6 +70,11 @@
 [mergetool "diffmerge"]
     cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
     trustExitCode = true
+
+[pager]
+    diff = git dh | less
+    log = git dh | less
+    show = git dh | less
 
 [push]
     default = current
