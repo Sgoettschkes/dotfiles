@@ -37,6 +37,7 @@ session_blossom () {
     tmux send-keys -t blossom:2.3 'cd ~/workspace/blossom/blossom; clear' C-m
     sleep 1
     tmux send-keys -t blossom:2.1 'vagrant up && vagrant ssh'
+    tmux send-keys -t blossom:2.3 'vagrant ssh'
 
     tmux select-window -t blossom:1
 }
