@@ -14,6 +14,11 @@ Host 10.66.6.*
 
 # AgileAddicts
 
+Host homer
+    HostName homer.agileaddicts.com
+    Port 22
+    User sebastian
+
 Host lisa
     HostName lisa.agileaddicts.com
     Port 22
