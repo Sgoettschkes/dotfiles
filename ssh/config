@@ -12,6 +12,10 @@ Host 10.66.6.*
     UserKnownHostsFile=/dev/null
     StrictHostKeyChecking no
 
+Host 10.61.6.*
+    UserKnownHostsFile=/dev/null
+    StrictHostKeyChecking no
+
 # AgileAddicts
 
 Host homer
