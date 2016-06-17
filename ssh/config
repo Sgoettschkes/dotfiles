@@ -20,7 +20,7 @@ Host 10.61.6.*
 
 Host homer
     HostName homer.agileaddicts.com
-    Port 22
+    Port 30
     User sebastian
 
 Host lisa
