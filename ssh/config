@@ -18,15 +18,7 @@ Host 10.61.6.*
 
 # AgileAddicts
 
-Host homer
-    HostName homer.agileaddicts.com
-    Port 30
-    User sebastian
-
-Host lisa
-    HostName lisa.agileaddicts.com
-    Port 22
-    User sebastian
+## Clients
 
 # tbalive
 
