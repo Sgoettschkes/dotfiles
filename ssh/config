@@ -20,10 +20,18 @@ Host 10.61.6.*
 
 ## Clients
 
+### Northwest Numerics
+
+Host nwn.infra
+    Hostname infra.nwnumerics.at
+    Port 22
+    User sgoettschkes
+    IdentityFile ~/.ssh/nwn
+
 # tbalive
 
 Host tbalive
     Hostname ssh.pythonanywhere.com
     Port 22
-    user tbalive
+    User tbalive
     IdentityFile ~/.ssh/tbalive
