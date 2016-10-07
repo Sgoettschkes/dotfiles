@@ -42,6 +42,18 @@ session_blossom () {
     tmux select-window -t blossom:1
 }
 
+session_nml () {
+    tmux new-session -s nml -n sh -d
+    tmux send-keys -t nml:1.1 'cd ~/workspace/nextmarketlabs; clear' C-m
+
+    tmux new-window -n FitAdvisor -t nml
+    tmux split-window -t nml:2.1 -h
+    tmux send-keys -t nml:2.1 'cd ~/workspace/nextmarketlabs; clear' C-m
+    tmux send-keys -t nml:2.2 'cd ~/workspace/nextmarketlabs; clear' C-m
+
+    tmux select-window -t nml:1
+}
+
 session_nwn () {
     tmux new-session -s nwn -n sh -d
     tmux send-keys -t nwn:1.1 'cd ~/workspace/northwestnumerics; clear' C-m
