@@ -48,8 +48,13 @@ session_nml () {
 
     tmux new-window -n FitAdvisor -t nml
     tmux split-window -t nml:2.1 -h
-    tmux send-keys -t nml:2.1 'cd ~/workspace/nextmarketlabs; clear' C-m
-    tmux send-keys -t nml:2.2 'cd ~/workspace/nextmarketlabs; clear' C-m
+    tmux split-window -t nml:2.1 -v
+    tmux send-keys -t nml:2.1 'cd ~/workspace/nextmarketlabs/fitadvisor; clear' C-m
+    tmux send-keys -t nml:2.2 'cd ~/workspace/nextmarketlabs/fitadvisor; clear' C-m
+    tmux send-keys -t nml:2.3 'cd ~/workspace/nextmarketlabs/fitadvisor; clear' C-m
+    sleep 1
+    tmux send-keys -t nml:2.1 'vagrant up && vagrant ssh'
+    tmux send-keys -t nml:2.3 'vagrant ssh'
 
     tmux select-window -t nml:1
 }
