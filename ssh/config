@@ -20,6 +20,13 @@ Host 10.61.6.*
 
 ## Clients
 
+### Next Market Labs
+
+Host nml
+    Hostname v776072.kasserver.com
+    Port 22
+    User ssh-w0150e32
+
 ### Northwest Numerics
 
 Host nwn.infra
