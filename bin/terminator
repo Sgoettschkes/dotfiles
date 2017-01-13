@@ -15,10 +15,14 @@ session_agileaddicts () {
     tmux new-session -s agileaddicts -n sh -d
     tmux send-keys -t agileaddicts:1.1 'cd ~/workspace/agileaddicts; clear' C-m
 
-    tmux new-window -n blitzlicht -t agileaddicts
+    tmux new-window -n pogo.travel -t agileaddicts
     tmux split-window -t agileaddicts:2.1 -h
-    tmux send-keys -t agileaddicts:2.1 'cd ~/workspace/agileaddicts/blitzlicht; clear' C-m
-    tmux send-keys -t agileaddicts:2.2 'cd ~/workspace/agileaddicts/blitzlicht; clear' C-m
+    tmux split-window -t agileaddicts:2.1 -v
+    tmux split-window -t agileaddicts:2.3 -v
+    tmux send-keys -t agileaddicts:2.1 'cd ~/workspace/agileaddicts/pogo.travel; clear' C-m
+    tmux send-keys -t agileaddicts:2.2 'cd ~/workspace/agileaddicts/pogo.travel; clear' C-m
+    tmux send-keys -t agileaddicts:2.3 'cd ~/workspace/agileaddicts/pogo.travel; clear' C-m
+    tmux send-keys -t agileaddicts:2.4 'cd ~/workspace/agileaddicts/pogo.travel; clear' C-m
     sleep 1
     tmux send-keys -t agileaddicts:2.1 'vagrant up && vagrant ssh'
 
@@ -37,7 +41,6 @@ session_blossom () {
     tmux send-keys -t blossom:2.3 'cd ~/workspace/blossom/blossom; clear' C-m
     sleep 1
     tmux send-keys -t blossom:2.1 'vagrant up && vagrant ssh'
-    tmux send-keys -t blossom:2.3 'vagrant ssh'
 
     tmux select-window -t blossom:1
 }
@@ -54,7 +57,6 @@ session_nml () {
     tmux send-keys -t nml:2.3 'cd ~/workspace/nextmarketlabs/fitadvisor; clear' C-m
     sleep 1
     tmux send-keys -t nml:2.1 'vagrant up && vagrant ssh'
-    tmux send-keys -t nml:2.3 'vagrant ssh'
 
     tmux select-window -t nml:1
 }
