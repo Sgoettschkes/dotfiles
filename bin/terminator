@@ -58,6 +58,9 @@ session_nml () {
     sleep 1
     tmux send-keys -t nml:2.1 'vagrant up && vagrant ssh'
 
+    tmux new-window -n ssh -t nml
+    tmux send-keys -t nml:3.1 'ssh nml'
+
     tmux select-window -t nml:1
 }
 
