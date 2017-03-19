@@ -36,9 +36,6 @@ if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
 
-# Using vi keybindings in bash
-set -o vi
-
 # Load a local bashrc  file if needed
 if [ -f ~/.bashrc_locale ]; then
     . ~/.bashrc_locale
