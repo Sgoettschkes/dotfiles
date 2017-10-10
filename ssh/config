@@ -5,6 +5,7 @@ Host *
     Protocol 2
     TCPKeepAlive yes
     ServerAliveInterval 60
+    IdentityFile ~/.ssh/id_rsa
 
 # Vagrant
 
@@ -17,6 +18,14 @@ Host 10.61.6.*
     StrictHostKeyChecking no
 
 # AgileAddicts
+
+### remotehorst
+
+Host remotehorst
+    Hostname 46.101.112.77
+    Port 22
+    User root
+    IdentityFile ~/.ssh/ipad
 
 ## Clients
 
@@ -34,11 +43,3 @@ Host nwn.infra
     Port 22
     User sgoettschkes
     IdentityFile ~/.ssh/nwn
-
-# tbalive
-
-Host tbalive
-    Hostname ssh.pythonanywhere.com
-    Port 22
-    User tbalive
-    IdentityFile ~/.ssh/tbalive
