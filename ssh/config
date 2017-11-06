@@ -5,7 +5,7 @@ Host *
     Protocol 2
     TCPKeepAlive yes
     ServerAliveInterval 60
-    IdentityFile ~/.ssh/id_rsa
+    IdentityFile ~/.ssh/localhorst
 
 # Vagrant
 
@@ -24,7 +24,7 @@ Host 10.61.6.*
 Host remotehorst
     Hostname 46.101.112.77
     Port 22
-    User root
+    User sebastian
     IdentityFile ~/.ssh/ipad
 
 ## Clients
