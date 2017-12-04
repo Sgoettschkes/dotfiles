@@ -45,6 +45,20 @@ session_blossom () {
     tmux select-window -t blossom:1
 }
 
+session_diagnosia () {
+    tmux new-session -s diagnosia -n sh -d
+    tmux send-keys -t diagnosia:1.1 'cd ~/workspace/diagnosia; clear' C-m
+
+    tmux new-window -n diagnosia -t diagnosia
+    tmux split-window -t diagnosia:2.1 -h
+    tmux split-window -t diagnosia:2.1 -v
+    tmux send-keys -t diagnosia:2.1 'cd ~/workspace/diagnosia; clear' C-m
+    tmux send-keys -t diagnosia:2.2 'cd ~/workspace/diagnosia; clear' C-m
+    tmux send-keys -t diagnosia:2.3 'cd ~/workspace/diagnosia; clear' C-m
+
+    tmux select-window -t diagnosia:1
+}
+
 session_nml () {
     tmux new-session -s nml -n sh -d
     tmux send-keys -t nml:1.1 'cd ~/workspace/nextmarketlabs; clear' C-m

@@ -17,6 +17,13 @@ Host 10.61.6.*
     UserKnownHostsFile=/dev/null
     StrictHostKeyChecking no
 
+# Diagnosia
+Host git.dgns.wtf
+    Hostname git.dgns.wtf
+    Port 22
+    User sebastian
+    IdentityFile ~/.ssh/diagnosia
+
 # AgileAddicts
 
 ### remotehorst
