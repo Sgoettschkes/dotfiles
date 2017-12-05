@@ -84,6 +84,9 @@ copy $Progdir/bash/functionrc $Homepath/.functionrc
 copy $Progdir/bin/ $Homepath/bin/
 chmod 764 $Homepath/bin/*
 
+# emacs
+copy $Progdir/emacs/emacs.el $Homepath/.emacs.el
+
 # git
 copy $Progdir/git/gitconfig $Homepath/.gitconfig
 copy $Progdir/git/gitignore $Homepath/.gitignore
