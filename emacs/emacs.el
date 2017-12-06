@@ -35,12 +35,28 @@
 
 (set-language-environment "UTF-8")
 
+(defvar emacs-autosave-directory
+  (concat user-emacs-directory "autosaves/")
+  "This variable dictates where to put auto saves. It is set to a
+  directory called autosaves located wherever your .emacs.d/ is
+  located.")
+
+;; Sets all files to be backed up and auto saved in a single directory.
+(setq backup-directory-alist
+      `((".*" . ,emacs-autosave-directory))
+      auto-save-file-name-transforms
+      `((".*" ,emacs-autosave-directory t)))
+
 ; Modes
 
 (dolist (mode
          '(tool-bar-mode                ; No toolbars, more room for text
            blink-cursor-mode))          ; The blinking cursor gets old
   (funcall mode 0))
+
+(dolist (mode
+         '(global-linum-mode))
+  (funcall mode 1))
 
 ; Themes
 
