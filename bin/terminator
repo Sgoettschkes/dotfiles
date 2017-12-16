@@ -73,39 +73,6 @@ session_diagnosia () {
     tmux select-window -t diagnosia:1
 }
 
-session_nml () {
-    tmux new-session -s nml -n sh -d
-    tmux send-keys -t nml:1.1 'cd ~/workspace/nextmarketlabs; clear' C-m
-
-    tmux new-window -n FitAdvisor -t nml
-    tmux split-window -t nml:2.1 -h
-    tmux split-window -t nml:2.1 -v
-    tmux send-keys -t nml:2.1 'cd ~/workspace/nextmarketlabs/fitadvisor; clear' C-m
-    tmux send-keys -t nml:2.2 'cd ~/workspace/nextmarketlabs/fitadvisor; clear' C-m
-    tmux send-keys -t nml:2.3 'cd ~/workspace/nextmarketlabs/fitadvisor; clear' C-m
-    sleep 1
-    tmux send-keys -t nml:2.1 'vagrant up && vagrant ssh'
-
-    tmux new-window -n ssh -t nml
-    tmux send-keys -t nml:3.1 'ssh nml'
-
-    tmux select-window -t nml:1
-}
-
-session_nwn () {
-    tmux new-session -s nwn -n sh -d
-    tmux send-keys -t nwn:1.1 'cd ~/workspace/northwestnumerics; clear' C-m
-
-    tmux new-window -n Cerberos -t nwn
-    tmux split-window -t nwn:2.1 -h
-    tmux send-keys -t nwn:2.1 'cd ~/workspace/northwestnumerics/nwnm_lab_project/Olympus; clear' C-m
-    tmux send-keys -t nwn:2.2 'cd ~/workspace/northwestnumerics/nwnm_lab_project/Cerberos; clear' C-m
-    sleep 1
-    tmux send-keys -t nwn:2.1 'vagrant up && vagrant ssh'
-
-    tmux select-window -t nwn:1
-}
-
 session_projects() {
     tmux new-session -s projects -n sh -d
     tmux send-keys -t projects:1.1 'cd ~; clear' C-m
@@ -130,20 +97,6 @@ session_seg () {
     tmux send-keys -t seg:2.1 'vim index.wiki' C-m
 
     tmux select-window -t seg:1
-}
-
-session_wgw () {
-    tmux new-session -s wgw -n sh -d
-    tmux send-keys -t wgw:1.1 'cd ~/workspace/wogibtswas; clear' C-m
-
-    tmux new-window -n structconverter -t wgw
-    tmux split-window -t wgw:2.1 -h
-    tmux send-keys -t wgw:2.1 'cd ~/workspace/wogibtswas/structconverter/vm; clear' C-m
-    tmux send-keys -t wgw:2.2 'cd ~/workspace/wogibtswas/structconverter; clear' C-m
-    sleep 1
-    tmux send-keys -t wgw:2.1 'vagrant up && vagrant ssh'
-
-    tmux select-window -t wgw:1
 }
 
 main () {
