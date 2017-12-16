@@ -49,12 +49,26 @@ session_diagnosia () {
     tmux new-session -s diagnosia -n sh -d
     tmux send-keys -t diagnosia:1.1 'cd ~/workspace/diagnosia; clear' C-m
 
-    tmux new-window -n diagnosia -t diagnosia
+    tmux new-window -n phoenix -t diagnosia
     tmux split-window -t diagnosia:2.1 -h
     tmux split-window -t diagnosia:2.1 -v
-    tmux send-keys -t diagnosia:2.1 'cd ~/workspace/diagnosia; clear' C-m
-    tmux send-keys -t diagnosia:2.2 'cd ~/workspace/diagnosia; clear' C-m
-    tmux send-keys -t diagnosia:2.3 'cd ~/workspace/diagnosia; clear' C-m
+    tmux send-keys -t diagnosia:2.1 'cd ~/workspace/diagnosia/phoenix; clear' C-m
+    tmux send-keys -t diagnosia:2.2 'cd ~/workspace/diagnosia/phoenix; clear' C-m
+    tmux send-keys -t diagnosia:2.3 'cd ~/workspace/diagnosia/phoenix; clear' C-m
+
+    tmux new-window -n app -t diagnosia
+    tmux split-window -t diagnosia:3.1 -h
+    tmux split-window -t diagnosia:3.1 -v
+    tmux send-keys -t diagnosia:3.1 'cd ~/workspace/diagnosia/app; clear' C-m
+    tmux send-keys -t diagnosia:3.2 'cd ~/workspace/diagnosia/app; clear' C-m
+    tmux send-keys -t diagnosia:3.3 'cd ~/workspace/diagnosia/app; clear' C-m
+
+    tmux new-window -n pages -t diagnosia
+    tmux split-window -t diagnosia:4.1 -h
+    tmux split-window -t diagnosia:4.1 -v
+    tmux send-keys -t diagnosia:4.1 'cd ~/workspace/diagnosia/pages; clear' C-m
+    tmux send-keys -t diagnosia:4.2 'cd ~/workspace/diagnosia/pages; clear' C-m
+    tmux send-keys -t diagnosia:4.3 'cd ~/workspace/diagnosia/pages; clear' C-m
 
     tmux select-window -t diagnosia:1
 }

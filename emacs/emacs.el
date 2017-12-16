@@ -9,7 +9,9 @@
 ; Install packages if not present
 (let* ((package--builtins nil)
        (packages
-        '(evil              ; Evil is an extensible vi layer for Emacs
+        '(elixir-mode       ; Emacs major mode for Elixir
+          evil              ; Evil is an extensible vi layer for Emacs
+          flx-ido           ; 
           material-theme))) ; A Theme based on Google Material Design
   (ignore-errors
     (let ((packages (remove-if 'package-installed-p packages)))
@@ -24,7 +26,8 @@
       initial-scratch-message nil       ; Clean scratch buffer
       recentf-max-saved-items 100       ; Show more recent files
       ring-bell-function 'ignore        ; Quiet
-      sentence-end-double-space nil)    ; No double space
+      sentence-end-double-space nil     ; No double space
+      ns-right-alternate-modifier nil)  ; Unbind right ALT key
 
 (setq-default fill-column 79                    ; Maximum line width
               truncate-lines t                  ; Don't fold lines
@@ -34,6 +37,10 @@
               auto-fill-function 'do-auto-fill) ; Auto-fill-mode everywhere
 
 (set-language-environment "UTF-8")
+
+(global-auto-revert-mode 1)
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (defvar emacs-autosave-directory
   (concat user-emacs-directory "autosaves/")
@@ -67,6 +74,17 @@
       ((member "Inconsolata" (font-family-list))
        (set-face-attribute 'default nil :font "Inconsolata-14")))
 
+; ido
+(require 'ido)
+(ido-mode 1)
+(ido-everywhere 1)
+
 ; evil package config
 (require 'evil)
 (evil-mode 1)
+
+; flx package config
+(require 'flx-ido)
+(flx-ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)

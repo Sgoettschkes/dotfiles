@@ -19,6 +19,7 @@ alias ll='ls -alF'
 alias a=ansible
 alias ag=ansible-galaxy
 alias ap=ansible-playbook
+alias e=emacs
 alias g=git
 alias gg='git grep'
 alias v=vim
