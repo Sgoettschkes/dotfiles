@@ -11,7 +11,7 @@
        (packages
         '(elixir-mode       ; Emacs major mode for Elixir
           evil              ; Evil is an extensible vi layer for Emacs
-          flx-ido           ; 
+          flx-ido           ;
           material-theme))) ; A Theme based on Google Material Design
   (ignore-errors
     (let ((packages (remove-if 'package-installed-p packages)))
@@ -31,7 +31,6 @@
 
 (setq-default fill-column 79                    ; Maximum line width
               truncate-lines t                  ; Don't fold lines
-              indent-tabs-mode nil              ; Use spaces instead of tabs
               split-width-threshold 160         ; Split verticly by default
               split-height-threshold nil        ; Split verticly by default
               auto-fill-function 'do-auto-fill) ; Auto-fill-mode everywhere
@@ -47,6 +46,10 @@
   "This variable dictates where to put auto saves. It is set to a
   directory called autosaves located wherever your .emacs.d/ is
   located.")
+
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
+(defvaralias 'c-basic-offset 'tab-with)
 
 ;; Sets all files to be backed up and auto saved in a single directory.
 (setq backup-directory-alist
