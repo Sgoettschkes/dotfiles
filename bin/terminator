@@ -15,34 +15,7 @@ session_agileaddicts () {
     tmux new-session -s agileaddicts -n sh -d
     tmux send-keys -t agileaddicts:1.1 'cd ~/workspace/agileaddicts; clear' C-m
 
-    tmux new-window -n pogo.travel -t agileaddicts
-    tmux split-window -t agileaddicts:2.1 -h
-    tmux split-window -t agileaddicts:2.1 -v
-    tmux split-window -t agileaddicts:2.3 -v
-    tmux send-keys -t agileaddicts:2.1 'cd ~/workspace/agileaddicts/pogo.travel; clear' C-m
-    tmux send-keys -t agileaddicts:2.2 'cd ~/workspace/agileaddicts/pogo.travel; clear' C-m
-    tmux send-keys -t agileaddicts:2.3 'cd ~/workspace/agileaddicts/pogo.travel; clear' C-m
-    tmux send-keys -t agileaddicts:2.4 'cd ~/workspace/agileaddicts/pogo.travel; clear' C-m
-    sleep 1
-    tmux send-keys -t agileaddicts:2.1 'vagrant up && vagrant ssh'
-
     tmux select-window -t agileaddicts:1
-}
-
-session_blossom () {
-    tmux new-session -s blossom -n sh -d
-    tmux send-keys -t blossom:1.1 'cd ~/workspace/blossom; clear' C-m
-
-    tmux new-window -n blossom -t blossom
-    tmux split-window -t blossom:2.1 -h
-    tmux split-window -t blossom:2.1 -v
-    tmux send-keys -t blossom:2.1 'cd ~/workspace/blossom/blossom; clear' C-m
-    tmux send-keys -t blossom:2.2 'cd ~/workspace/blossom/blossom; clear' C-m
-    tmux send-keys -t blossom:2.3 'cd ~/workspace/blossom/blossom; clear' C-m
-    sleep 1
-    tmux send-keys -t blossom:2.1 'vagrant up && vagrant ssh'
-
-    tmux select-window -t blossom:1
 }
 
 session_diagnosia () {
@@ -72,6 +45,22 @@ session_diagnosia () {
 
     tmux select-window -t diagnosia:1
 }
+
+session_elevant () {
+    tmux new-session -s elevant -n sh -d
+    tmux send-keys -t elevant:1.1 'cd ~/workspace/elevantorg; clear' C-m
+            
+    tmux new-window -n beta.elevant.org -t elevant
+    tmux split-window -t elevant:2.1 -h
+    tmux split-window -t elevant:2.1 -v
+    tmux send-keys -t elevant:2.1 'cd ~/workspace/elevantorg/beta.elevant.org; clear' C-m
+    tmux send-keys -t elevant:2.2 'cd ~/workspace/elevantorg/beta.elevant.org; clear' C-m
+    tmux send-keys -t elevant:2.3 'cd ~/workspace/elevantorg/beta.elevant.org; clear' C-m
+                                      
+    tmux select-window -t elevant:1
+}
+
+
 
 session_projects() {
     tmux new-session -s projects -n sh -d
