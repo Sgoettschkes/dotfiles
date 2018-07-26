@@ -18,10 +18,52 @@ Host 10.61.6.*
     StrictHostKeyChecking no
 
 # Diagnosia
+
+Host app-1
+    HostName phoenix-1.diagnosia.com
+    User chuck
+    Port 62371
+    IdentityFile ~/.ssh/diagnosia
+
+Host app-2
+    HostName phoenix-2.diagnosia.com
+    User chuck
+    Port 62371
+    IdentityFile ~/.ssh/diagnosia
+
+Host elk
+    HostName elk.dgns.wtf
+    User chuck
+    Port 62371
+    IdentityFile ~/.ssh/diagnosia
+
 Host git.dgns.wtf
     Hostname git.dgns.wtf
     Port 22
     User sebastian
+    IdentityFile ~/.ssh/diagnosia
+
+Host rancher
+    HostName 35.157.105.157
+    User rancher
+    Port 22
+    IdentityFile ~/.ssh/diagnosia
+
+Host stage
+    HostName stage.dgns.wtf
+    User chuck
+    Port 62371
+    IdentityFile ~/.ssh/diagnosia
+
+Host stage2
+    HostName stage2.dgns.wtf
+    User chuck
+    Port 62371
+    IdentityFile ~/.ssh/diagnosia
+
+Host website-wordpress
+    HostName website-wordpress.diagnosia.com
+    User ubuntu
     IdentityFile ~/.ssh/diagnosia
 
 # AgileAddicts

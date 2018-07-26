@@ -43,20 +43,34 @@ session_diagnosia () {
     tmux send-keys -t diagnosia:4.2 'cd ~/workspace/diagnosia/pages; clear' C-m
     tmux send-keys -t diagnosia:4.3 'cd ~/workspace/diagnosia/pages; clear' C-m
 
+    tmux new-window -n residential -t diagnosia
+    tmux split-window -t diagnosia:5.1 -h
+    tmux split-window -t diagnosia:5.1 -v
+    tmux send-keys -t diagnosia:5.1 'cd ~/workspace/diagnosia/residential; clear' C-m
+    tmux send-keys -t diagnosia:5.2 'cd ~/workspace/diagnosia/residential; clear' C-m
+    tmux send-keys -t diagnosia:5.3 'cd ~/workspace/diagnosia/residential; clear' C-m
+
+    tmux new-window -n matrix -t diagnosia
+    tmux split-window -t diagnosia:6.1 -h
+    tmux split-window -t diagnosia:6.1 -v
+    tmux send-keys -t diagnosia:6.1 'cd ~/workspace/diagnosia/matrix; clear' C-m
+    tmux send-keys -t diagnosia:6.2 'cd ~/workspace/diagnosia/matrix; clear' C-m
+    tmux send-keys -t diagnosia:6.3 'cd ~/workspace/diagnosia/matrix; clear' C-m
+
     tmux select-window -t diagnosia:1
 }
 
 session_elevant () {
     tmux new-session -s elevant -n sh -d
     tmux send-keys -t elevant:1.1 'cd ~/workspace/elevantorg; clear' C-m
-            
+
     tmux new-window -n beta.elevant.org -t elevant
     tmux split-window -t elevant:2.1 -h
     tmux split-window -t elevant:2.1 -v
     tmux send-keys -t elevant:2.1 'cd ~/workspace/elevantorg/beta.elevant.org; clear' C-m
     tmux send-keys -t elevant:2.2 'cd ~/workspace/elevantorg/beta.elevant.org; clear' C-m
     tmux send-keys -t elevant:2.3 'cd ~/workspace/elevantorg/beta.elevant.org; clear' C-m
-                                      
+
     tmux select-window -t elevant:1
 }
 
