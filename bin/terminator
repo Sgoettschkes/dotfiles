@@ -53,9 +53,9 @@ session_diagnosia () {
     tmux new-window -n matrix -t diagnosia
     tmux split-window -t diagnosia:6.1 -h
     tmux split-window -t diagnosia:6.1 -v
-    tmux send-keys -t diagnosia:6.1 'cd ~/workspace/diagnosia/matrix; clear' C-m
-    tmux send-keys -t diagnosia:6.2 'cd ~/workspace/diagnosia/matrix; clear' C-m
-    tmux send-keys -t diagnosia:6.3 'cd ~/workspace/diagnosia/matrix; clear' C-m
+    tmux send-keys -t diagnosia:6.1 'cd ~/workspace/diagnosia/docker; clear' C-m
+    tmux send-keys -t diagnosia:6.2 'cd ~/workspace/diagnosia/docker; clear' C-m
+    tmux send-keys -t diagnosia:6.3 'cd ~/workspace/diagnosia/docker; clear' C-m
 
     tmux select-window -t diagnosia:1
 }

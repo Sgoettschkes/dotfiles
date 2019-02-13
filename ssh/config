@@ -70,11 +70,11 @@ Host website-wordpress
 
 ### remotehorst
 
-Host remotehorst
-    Hostname 46.101.112.77
+Host ingress.boo.sh
+    Hostname 159.65.121.74
     Port 22
     User sebastian
-    IdentityFile ~/.ssh/ipad
+    IdentityFile ~/.ssh/localhorst
 
 ## Clients
 
