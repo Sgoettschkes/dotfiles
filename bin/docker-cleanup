@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# File managed by Sgoettschkes/dotfiles
+# Do not change
+
+set -o nounset
+set -o errexit
+
+main () {
+    # Stop and remove all containers
+    docker container stop $(docker ps -qa --no-trunc)
+    docker rm $(docker ps -qa --no-trunc)
+
+    # Delete all images
+    docker rmi --force $(docker images -q --no-trunc)
+
+    # Delete all volumes
+    docker volume rm $(docker volume ls -qf dangling=true)
+
+    # Delete all networks
+    docker network rm $(docker network ls | awk '$3 == "bridge" && $2 != "bridge" { print $1 }')
+
+    # Prune
+    docker system prune -a --volumes --force
+}
+
+main "$@"
