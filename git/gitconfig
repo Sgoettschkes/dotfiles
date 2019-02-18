@@ -44,6 +44,9 @@
     editor = vim
     excludesfile = ~/.gitignore
 
+[credential]
+    helper = osxkeychain
+
 [diff]
     algorithm = patience
     tool = diffmerge
