@@ -43,12 +43,12 @@ session_diagnosia () {
     tmux send-keys -t diagnosia:4.2 'cd ~/workspace/diagnosia/pages; clear' C-m
     tmux send-keys -t diagnosia:4.3 'cd ~/workspace/diagnosia/pages; clear' C-m
 
-    tmux new-window -n residential -t diagnosia
+    tmux new-window -n plexus -t diagnosia
     tmux split-window -t diagnosia:5.1 -h
     tmux split-window -t diagnosia:5.1 -v
-    tmux send-keys -t diagnosia:5.1 'cd ~/workspace/diagnosia/residential; clear' C-m
-    tmux send-keys -t diagnosia:5.2 'cd ~/workspace/diagnosia/residential; clear' C-m
-    tmux send-keys -t diagnosia:5.3 'cd ~/workspace/diagnosia/residential; clear' C-m
+    tmux send-keys -t diagnosia:5.1 'cd ~/workspace/diagnosia/plexus; clear' C-m
+    tmux send-keys -t diagnosia:5.2 'cd ~/workspace/diagnosia/plexus; clear' C-m
+    tmux send-keys -t diagnosia:5.3 'cd ~/workspace/diagnosia/plexus; clear' C-m
 
     tmux new-window -n matrix -t diagnosia
     tmux split-window -t diagnosia:6.1 -h
