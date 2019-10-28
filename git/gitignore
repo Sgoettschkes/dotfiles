@@ -42,6 +42,8 @@ nbproject
 .settings
 .classpath
 .project
+.vscode
+.devcontainer
 
 # OS generated files #
 ######################
