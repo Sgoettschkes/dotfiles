@@ -26,6 +26,11 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
+# set PATH so it includes homebrew bin if it exists
+if [ -d "/usr/local/sbin" ] ; then
+    PATH="/usr/local/sbin:$PATH"
+fi
+
 # set PATH so it includes cabal bin if exists
 if [ -d "$HOME/.cabal/bin" ] ; then
     PATH="$HOME/.cabal/bin:$PATH"
