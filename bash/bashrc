@@ -65,3 +65,6 @@ fi
 if [ -f /opt/ansible/hacking/env-setup ]; then
     source /opt/ansible/hacking/env-setup -q
 fi
+
+# Add psql bins
+PATH="/usr/local/opt/libpq/bin/:$PATH"
