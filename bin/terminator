@@ -73,6 +73,11 @@ main () {
         exit;
     fi
 
+    if [[ "$Sessionname" == "kill" ]]; then
+        tmux kill-server
+        exit;
+    fi
+
     if [[ ! `tmux has-session -t $Sessionname &> /dev/null` ]]; then
         session_$Sessionname
     fi
