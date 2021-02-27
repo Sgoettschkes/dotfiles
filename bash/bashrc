@@ -68,3 +68,9 @@ fi
 
 # Add psql bins
 PATH="/usr/local/opt/libpq/bin/:$PATH"
+
+# Add openjdk bins
+PATH="/usr/local/opt/openjdk@11/bin:$PATH"
+
+# Add node
+PATH="/usr/local/opt/node@14/bin:$PATH"
