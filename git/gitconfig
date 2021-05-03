@@ -7,23 +7,14 @@
     br = branch
     bra = branch --all --color -vv
     ci = commit
-    cin = commit --no-verify
     co = checkout
     cob = checkout -b
     d = diff
-    dh = !$(brew --prefix git)/share/git-core/contrib/diff-highlight/diff-highlight
-    diw = diff --word-diff
-    dic = diff --color-words
-    dicc = diff --color-words=.
-    diffl = diff HEAD^1..HEAD
-    dt = difftool
     f = fetch --all
     fa = fetch --all --prune --tags --verbose
     l = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate
     ll = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate --numstat
-    mt = mergetool
     pu = push
-    pun = push --no-verify
     re = reset HEAD
     st = status --short
     stu = status --short --untracked-files
@@ -49,13 +40,9 @@
 
 [diff]
     algorithm = patience
-    tool = diffmerge
 
 [difftool]
     prompt = false
-
-[difftool "diffmerge"]
-  	cmd = "diffmerge \"$LOCAL\" \"$REMOTE\""
 
 [fetch]
     fsckobjects = true # see https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0
@@ -68,11 +55,6 @@
 
 [merge]
     conflictstyle = diff3
-    tool = diffmerge
-
-[mergetool "diffmerge"]
-    cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
-    trustExitCode = true
 
 [pager]
     diff = git dh | less
