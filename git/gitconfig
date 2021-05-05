@@ -50,16 +50,8 @@
 [help]
     autocorrect = 10
 
-[interactive]
-    diffFilter = git dh
-
 [merge]
     conflictstyle = diff3
-
-[pager]
-    diff = git dh | less
-    log = git dh | less
-    show = git dh | less
 
 [push]
     default = current
