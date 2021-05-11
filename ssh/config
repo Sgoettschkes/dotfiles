@@ -1,29 +1,29 @@
 # File managed by Sgoettschkes/dotfiles
 # Do not change
 
+# General
+
 Host *
     Protocol 2
     TCPKeepAlive yes
     ServerAliveInterval 60
-    IdentityFile ~/.ssh/localhorst
-
-# Vagrant
-
-Host 10.66.6.*
-    UserKnownHostsFile=/dev/null
-    StrictHostKeyChecking no
-
-Host 10.61.6.*
-    UserKnownHostsFile=/dev/null
-    StrictHostKeyChecking no
 
 # Diagnosia
+
+Host bastion
+    HostName bastion.dgns.wtf
+    IdentityFile ~/.ssh/bastion.pem
+    User ubuntu
+    Port 22
+
+## Phoenix
 
 Host app-1
     HostName phoenix-1.diagnosia.com
     User chuck
     Port 62371
     IdentityFile ~/.ssh/diagnosia
+    ProxyJump bastion
 
 Host app-2
     HostName phoenix-2.diagnosia.com
@@ -31,16 +31,16 @@ Host app-2
     Port 62371
     IdentityFile ~/.ssh/diagnosia
 
-Host elk
-    HostName elk.dgns.wtf
+Host stage-1
+    HostName stage.dgns.wtf
     User chuck
     Port 62371
     IdentityFile ~/.ssh/diagnosia
 
-Host git.dgns.wtf
-    Hostname git.dgns.wtf
-    Port 22
-    User sebastian
+Host stage-2
+    HostName stage2.dgns.wtf
+    User chuck
+    Port 62371
     IdentityFile ~/.ssh/diagnosia
 
 Host rancher
@@ -49,46 +49,7 @@ Host rancher
     Port 22
     IdentityFile ~/.ssh/diagnosia
 
-Host stage
-    HostName stage.dgns.wtf
-    User chuck
-    Port 62371
-    IdentityFile ~/.ssh/diagnosia
-
-Host stage2
-    HostName stage2.dgns.wtf
-    User chuck
-    Port 62371
-    IdentityFile ~/.ssh/diagnosia
-
 Host website-wordpress
     HostName website-wordpress.diagnosia.com
     User ubuntu
     IdentityFile ~/.ssh/diagnosia
-
-# AgileAddicts
-
-### remotehorst
-
-Host ingress.boo.sh
-    Hostname 159.65.121.74
-    Port 22
-    User sebastian
-    IdentityFile ~/.ssh/localhorst
-
-## Clients
-
-### Next Market Labs
-
-Host nml
-    Hostname v776072.kasserver.com
-    Port 22
-    User ssh-w0150e32
-
-### Northwest Numerics
-
-Host nwn.infra
-    Hostname infra.nwnumerics.at
-    Port 22
-    User sgoettschkes
-    IdentityFile ~/.ssh/nwn
