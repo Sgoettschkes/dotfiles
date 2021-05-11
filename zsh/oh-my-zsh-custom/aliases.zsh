@@ -12,7 +12,7 @@ alias ll='ls -alF'
 
 # Shortcuts
 alias d=docker
-alias dc=docker compose
+alias dc='docker compose'
 alias g=git
 
 # Little helpers
