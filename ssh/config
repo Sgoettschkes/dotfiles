@@ -17,10 +17,9 @@ Host bastion
     User ubuntu
 
 Host rancher
-    HostName 35.157.105.157
+    HostName 10.10.1.107
+    ProxyJump bastion
     User rancher
-    Port 22
-    IdentityFile ~/.ssh/diagnosia
     
 ## Phoenix
 
@@ -38,10 +37,3 @@ Host stage-1
     HostName stage.dgns.wtf
     Port 62371
     User chuck
-
-## Wordpress
-
-Host website-wordpress
-    HostName website-wordpress.diagnosia.com
-    User ubuntu
-    IdentityFile ~/.ssh/diagnosia
