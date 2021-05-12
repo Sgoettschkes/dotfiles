@@ -13,41 +13,33 @@ Host *
 Host bastion
     HostName bastion.dgns.wtf
     IdentityFile ~/.ssh/bastion.pem
-    User ubuntu
     Port 22
-
-## Phoenix
-
-Host app-1
-    HostName phoenix-1.diagnosia.com
-    User chuck
-    Port 62371
-    IdentityFile ~/.ssh/diagnosia
-    ProxyJump bastion
-
-Host app-2
-    HostName phoenix-2.diagnosia.com
-    User chuck
-    Port 62371
-    IdentityFile ~/.ssh/diagnosia
-
-Host stage-1
-    HostName stage.dgns.wtf
-    User chuck
-    Port 62371
-    IdentityFile ~/.ssh/diagnosia
-
-Host stage-2
-    HostName stage2.dgns.wtf
-    User chuck
-    Port 62371
-    IdentityFile ~/.ssh/diagnosia
+    User ubuntu
 
 Host rancher
     HostName 35.157.105.157
     User rancher
     Port 22
     IdentityFile ~/.ssh/diagnosia
+    
+## Phoenix
+
+Host app-1
+    HostName phoenix-1.diagnosia.com
+    Port 62371
+    User chuck
+
+Host app-2
+    HostName phoenix-2.diagnosia.com
+    Port 62371
+    User chuck
+
+Host stage-1
+    HostName stage.dgns.wtf
+    Port 62371
+    User chuck
+
+## Wordpress
 
 Host website-wordpress
     HostName website-wordpress.diagnosia.com
