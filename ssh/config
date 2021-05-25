@@ -37,3 +37,9 @@ Host stage-1
     HostName stage.dgns.wtf
     Port 62371
     User chuck
+
+## Wordpress
+
+Host website-wordpress
+    HostName website-wordpress.diagnosia.com
+    User ubuntu
