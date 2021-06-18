@@ -16,10 +16,22 @@ Host bastion
     Port 22
     User ubuntu
 
+## Infrastruktur
+
+Host gitlab
+	HostName git.dgns.wtf
+	User chuck
+	Port 22
+
 Host rancher
     HostName 10.10.1.107
     ProxyJump bastion
     User rancher
+
+Host sentry
+	HostName sentry.dgns.wtf
+	User chuck
+	Port 62371
     
 ## Phoenix
 
