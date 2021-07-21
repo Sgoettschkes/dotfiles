@@ -8,7 +8,7 @@ alias ..='cd ..'
 alias l='ls -CF'
 alias la='ls -A'
 alias lg='ls -alF | grep'
-alias ll='ls -alF'
+alias ll='ls -aFhl'
 
 # Shortcuts
 alias d=docker
