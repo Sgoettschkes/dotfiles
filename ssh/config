@@ -21,20 +21,8 @@ Host gitlab
 	HostName git.dgns.wtf
 	User chuck
 
-Host gitlab-ci-runner
-    Hostname ip-10-10-1-88.eu-central-1.compute.internal
-    IdentityFile ~/.ssh/gitlab-ci-runner.pem
-    ProxyJump bastion
-    User ubuntu
-
 Host gitlab-ci-runner-1
     Hostname ip-10-10-1-22.eu-central-1.compute.internal
-    IdentityFile ~/.ssh/gitlab-ci-runner.pem
-    ProxyJump bastion
-    User ubuntu
-
-Host gitlab-ci-runner-2
-    Hostname ip-10-10-1-231.eu-central-1.compute.internal
     IdentityFile ~/.ssh/gitlab-ci-runner.pem
     ProxyJump bastion
     User ubuntu
