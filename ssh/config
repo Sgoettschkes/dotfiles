@@ -1,61 +1,11 @@
 # File managed by Sgoettschkes/dotfiles
 # Do not change
 
+Include ~/.ssh/config.local
+
 # General
 
 Host *
     Protocol 2
     TCPKeepAlive yes
     ServerAliveInterval 60
-
-# Diagnosia
-
-Host bastion
-    HostName bastion.dgns.wtf
-    IdentityFile ~/.ssh/bastion.pem
-    User ubuntu
-
-## Infrastruktur
-
-Host gitlab
-	HostName git.dgns.wtf
-	User chuck
-
-Host gitlab-ci-runner-1
-    Hostname ip-10-10-1-22.eu-central-1.compute.internal
-    IdentityFile ~/.ssh/gitlab-ci-runner.pem
-    ProxyJump bastion
-    User ubuntu
-
-Host rancher
-    HostName 10.10.1.107
-    ProxyJump bastion
-    User rancher
-
-Host sentry
-	HostName sentry.dgns.wtf
-	Port 62371
-    User chuck
-    
-## Phoenix
-
-Host app-1
-    HostName phoenix-1.diagnosia.com
-    Port 62371
-    User chuck
-
-Host app-2
-    HostName phoenix-2.diagnosia.com
-    Port 62371
-    User chuck
-
-Host stage-1
-    HostName stage.dgns.wtf
-    Port 62371
-    User chuck
-
-## Wordpress
-
-Host website-wordpress
-    HostName website-wordpress.diagnosia.com
-    User ubuntu
