@@ -71,3 +71,6 @@
 [user]
     email = sebastian.goettschkes@googlemail.com
     name = Sebastian Göttschkes
+
+[includeIf "gitdir:~/workspace/agileaddicts/"]
+    path = ~/.gitconfig_agileaddicts
