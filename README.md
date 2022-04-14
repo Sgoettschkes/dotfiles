@@ -15,6 +15,7 @@ Currently, I don't use any install scripts as I trimmed my dotfiles and the few 
   * Install git (using brew)
   * `ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig`
   * `ln -s ~/.dotfiles/git/gitconfig_agileaddicts ~/.gitconfig_agileaddicts`
+  * `ln -s ~/.dotfiles/git/gitconfig_workera ~/.gitconfig_workera`
   * `ln -s ~/.dotfiles/git/gitignore ~/.gitignore`
   * `mkdir -p ~/.config/git && ln -s ~/.dotfiles/git/gitattributes ~/.config/git/attributes`
 * ssh

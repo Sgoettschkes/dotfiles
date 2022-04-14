@@ -74,3 +74,6 @@
 
 [includeIf "gitdir:~/workspace/agileaddicts/"]
     path = ~/.gitconfig_agileaddicts
+
+[includeIf "gitdir:~/workspace/workera/"]
+    path = ~/.gitconfig_workera
