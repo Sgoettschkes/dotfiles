@@ -1,0 +1,8 @@
+{
+    "workbench.colorTheme": "One Dark Pro Flat",
+    "editor.fontFamily": "'Cascadia Code', 'Courier New', monospace",
+    "editor.tabSize": 2,
+    "editor.formatOnSave": true,
+    "workbench.editor.enablePreview": false,
+    "editor.wordWrap": "bounded"
+}
