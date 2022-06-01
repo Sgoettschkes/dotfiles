@@ -40,6 +40,7 @@ You can put local ssh config (which should not be in git) in `~.ssh/config.local
 I install the following tools with homebrew:
 
 * asdf
+* awscli
 * git
 
 The following software is installed as cask with homebrew:
@@ -48,11 +49,18 @@ The following software is installed as cask with homebrew:
 * iterm2
 * rectangle
 * stay
+* tableplus
 * visual-studio-code
 
 ## Fonts
 
 For Visual Studio Code and iTerm, I am using [Cascadia Code](https://github.com/microsoft/cascadia-code).
+
+## Development environment
+
+### Elixir
+
+
 
 ## License
 
