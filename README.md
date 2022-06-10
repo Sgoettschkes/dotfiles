@@ -3,7 +3,7 @@ Sgoettschkes/dotfiles
 
 [@Sgoettschkes](https://twitter.com/Sgoettschkes) on dotfiles
 
-A collection of my dotfiles. 
+A collection of my dotfiles; A list of the software I use; A set of instructions used to setup my environment
 
 ## Installation
 
@@ -42,12 +42,16 @@ I install the following tools with homebrew:
 * asdf
 * awscli
 * git
+* libpq
 
 The following software is installed as cask with homebrew:
 
 * docker
 * iterm2
+* loom
+* obsidian
 * rectangle
+* spotify
 * stay
 * tableplus
 * visual-studio-code
