@@ -49,6 +49,7 @@ The following software is installed as cask with homebrew:
 * docker
 * iterm2
 * loom
+* meld
 * obsidian
 * rectangle
 * spotify
