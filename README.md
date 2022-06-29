@@ -43,6 +43,8 @@ I install the following tools with homebrew:
 * awscli
 * git
 * libpq
+* nvm
+* pyenv
 
 The following software is installed as cask with homebrew:
 
@@ -65,7 +67,15 @@ For Visual Studio Code and iTerm, I am using [Cascadia Code](https://github.com/
 
 ### Elixir
 
+Using asdf
 
+### Node
+
+Using asdf or nvm
+
+### Python
+
+Using pyenv
 
 ## License
 
