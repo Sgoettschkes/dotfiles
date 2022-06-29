@@ -43,8 +43,6 @@ I install the following tools with homebrew:
 * awscli
 * git
 * libpq
-* nvm
-* pyenv
 
 The following software is installed as cask with homebrew:
 
@@ -71,11 +69,11 @@ Using asdf
 
 ### Node
 
-Using asdf or nvm
+Using asdf
 
 ### Python
 
-Using pyenv
+Using asdf
 
 ## License
 
