@@ -42,6 +42,7 @@ I install the following tools with homebrew:
 * asdf
 * awscli
 * git
+* k6
 * libpq
 
 The following software is installed as cask with homebrew:
@@ -63,17 +64,49 @@ For Visual Studio Code and iTerm, I am using [Cascadia Code](https://github.com/
 
 ## Development environment
 
+### ASDF
+
+
+
 ### Elixir
 
-Using asdf
+Check [Before asdf install](https://github.com/asdf-vm/asdf-erlang#before-asdf-install) to see prerequisites. Then install Erlang:
+
+```
+asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
+export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac --without-wx"
+asdf install erlang 25.0
+asdf global erlang 25.0
+```
+
+And install elixir:
+
+```
+asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf install elixir 1.13.4-otp-25
+asdf global elixir 1.13.4-otp-25
+```
+
 
 ### Node
 
-Using asdf
+Install node:
+
+```
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf install nodejs lts-gallium
+sdf global nodejs lts-gallium
+```
 
 ### Python
 
-Using asdf
+Install python:
+
+```
+asdf plugin-add python https://github.com/danhper/asdf-python.git
+asdf install python 3.10.0
+asdf global python 3.10.0
+```
 
 ## License
 
