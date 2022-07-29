@@ -105,3 +105,6 @@ path+=~/.local/bin/
 
 # Add libpq (PostgreSQL client) path
 path+=/opt/homebrew/opt/libpq/bin
+
+# Add escript (mix) path
+path+=~/.mix/escripts
