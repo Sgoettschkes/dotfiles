@@ -42,6 +42,7 @@ I install the following tools with homebrew:
 * asdf
 * awscli
 * git
+* gnupg
 * k6
 * libpq
 
@@ -64,9 +65,7 @@ For Visual Studio Code and iTerm, I am using [Cascadia Code](https://github.com/
 
 ## Development environment
 
-### ASDF
-
-
+### asdf
 
 ### Elixir
 
@@ -83,10 +82,9 @@ And install elixir:
 
 ```
 asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
-asdf install elixir 1.13.4-otp-25
-asdf global elixir 1.13.4-otp-25
+asdf install elixir 1.14.0-otp-25
+asdf global elixir 1.14.0-otp-25
 ```
-
 
 ### Node
 
@@ -95,7 +93,9 @@ Install node:
 ```
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf install nodejs lts-gallium
-sdf global nodejs lts-gallium
+asdf global nodejs lts-gallium
+asdf install yarn 1.22.19
+asdf global yarn 1.22.19
 ```
 
 ### Python

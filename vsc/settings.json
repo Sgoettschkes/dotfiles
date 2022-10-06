@@ -7,5 +7,6 @@
     "editor.wordWrap": "bounded",
     "elixirLS.enableTestLenses": true,
     "extensions.ignoreRecommendations": true,
-    "diffEditor.codeLens": true
+    "diffEditor.codeLens": true,
+    "files.insertFinalNewline": true
 }
