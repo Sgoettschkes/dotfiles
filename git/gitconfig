@@ -83,3 +83,6 @@
 
 [includeIf "gitdir:~/workspace/workera/"]
     path = ~/.gitconfig_workera
+
+[includeIf "gitdir:~/workspace/mateogrando/"]
+    path = ~/.gitconfig_mateogrando
