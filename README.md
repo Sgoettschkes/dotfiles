@@ -11,30 +11,20 @@ First, install homebrew according to https://docs.brew.sh/Installation. Use home
 
 Checkout this repo into `~/.dotfiles`.
 
-Currently, I don't use any install scripts as I trimmed my dotfiles and the few files remaining can be symlinked manually. Here is the list of files and where they need to be placed:
+Currently, I don't use any install scripts as I trimmed my dotfiles and the few files remaining can be symlinked manually as outlined below.
 
-* git
-  * `ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig`
-  * `ln -s ~/.dotfiles/git/gitconfig_agileaddicts ~/.gitconfig_agileaddicts`
-  * `ln -s ~/.dotfiles/git/gitconfig_mateogrando ~/.gitconfig_mateogrando`
-  * `ln -s ~/.dotfiles/git/gitconfig_workera ~/.gitconfig_workera`
-  * `ln -s ~/.dotfiles/git/gitignore ~/.gitignore`
-  * `mkdir -p ~/.config/git && ln -s ~/.dotfiles/git/gitattributes ~/.config/git/attributes`
-* ssh
-  * `mkdir -p ~/.ssh && ln -s ~/.dotfiles/ssh/config ~/.ssh/config`
-* zsh
-  * Make zsh your shell and install oh-my-zsh (https://ohmyz.sh/#install)
-  * `rm ~/.zprofile & ln -s ~/.dotfiles/zsh/zprofile ~/.zprofile`
-  * `rm ~/.zshrc & ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc`
-* Visual Studio Code
-  * Install vscode: `brew install --cask visual-studio-code`
-  * `rm ~/Library/Application\ Support/Code/User/settings.json & ln -s ~/.dotfiles/vsc/settings.json ~/Library/Application\ Support/Code/User/settings.json`
-  * `rm ~/Library/Application\ Support/Code/User/keybindings.json & ln -s ~/.dotfiles/vsc/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
-  * `./.dotfiles/vsc/install-extensions.sh`
+### SSH configuration
 
-## SSH configuration
+Run `mkdir -p ~/.ssh && ln -s ~/.dotfiles/ssh/config ~/.ssh/config` to symlink the SSH configuration.
 
 You can put local ssh config (which should not be in git) in `~.ssh/config.local`.
+
+### zsh configuration
+
+Install oh-my-zsh (https://ohmyz.sh/#install) and symlink the following files:
+
+* `rm ~/.zprofile && ln -s ~/.dotfiles/zsh/zprofile ~/.zprofile`
+* `rm ~/.zshrc && ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc`
 
 ## Additional software
 
@@ -51,7 +41,7 @@ The following software is installed as cask with homebrew:
 
 * docker
 * iterm2
-* loom
+* (loom)
 * meld
 * obsidian
 * rectangle
@@ -60,9 +50,37 @@ The following software is installed as cask with homebrew:
 * tableplus
 * visual-studio-code
 
-## Fonts
+### git configuration
 
-For Visual Studio Code and iTerm, I am using [Cascadia Code](https://github.com/microsoft/cascadia-code).
+Symlink all git config files:
+
+* `ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig`
+* `ln -s ~/.dotfiles/git/gitconfig_agileaddicts ~/.gitconfig_agileaddicts`
+* `ln -s ~/.dotfiles/git/gitconfig_mateogrando ~/.gitconfig_mateogrando`
+* `ln -s ~/.dotfiles/git/gitconfig_workera ~/.gitconfig_workera`
+* `ln -s ~/.dotfiles/git/gitignore ~/.gitignore`
+* `mkdir -p ~/.config/git && ln -s ~/.dotfiles/git/gitattributes ~/.config/git/attributes`
+
+### iterm2 configuration
+
+The config for iterm2 can be found in the `iterm2/` folder. In iTerm2, go to Settings -> General -> Preferences and select this file to be the place where the config should be loaded from and saved to.
+
+## rectangle configuration
+
+The rectangle configuration is stored in the `rectangle/` folder. It can be imported through the settings.
+
+## Visual Studio Code configuration
+
+The following symlinks should be put in place:
+
+* `rm ~/Library/Application\ Support/Code/User/settings.json && ln -s ~/.dotfiles/vsc/settings.json ~/Library/Application\ Support/Code/User/settings.json`
+* `rm ~/Library/Application\ Support/Code/User/keybindings.json && ln -s ~/.dotfiles/vsc/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
+
+Also install all extensions by running `./.dotfiles/vsc/install-extensions.sh`.
+
+### Fonts
+
+For Visual Studio Code and iTerm, I am using [Cascadia Code](https://github.com/microsoft/cascadia-code). The font can be found in the `fonts/` folder.
 
 ## Development environment
 
