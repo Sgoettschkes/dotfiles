@@ -24,12 +24,12 @@ Currently, I don't use any install scripts as I trimmed my dotfiles and the few 
   * `mkdir -p ~/.ssh && ln -s ~/.dotfiles/ssh/config ~/.ssh/config`
 * zsh
   * Make zsh your shell and install oh-my-zsh (https://ohmyz.sh/#install)
-  * `rm ~/.zprofile && ln -s ~/.dotfiles/zsh/zprofile ~/.zprofile`
-  * `rm ~/.zshrc && ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc`
+  * `rm ~/.zprofile & ln -s ~/.dotfiles/zsh/zprofile ~/.zprofile`
+  * `rm ~/.zshrc & ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc`
 * Visual Studio Code
   * Install vscode: `brew install --cask visual-studio-code`
-  * `rm ~/Library/Application\ Support/Code/User/settings.json && ln -s ~/.dotfiles/vsc/settings.json ~/Library/Application\ Support/Code/User/settings.json`
-  * `rm ~/Library/Application\ Support/Code/User/keybindings.json && ln -s ~/.dotfiles/vsc/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
+  * `rm ~/Library/Application\ Support/Code/User/settings.json & ln -s ~/.dotfiles/vsc/settings.json ~/Library/Application\ Support/Code/User/settings.json`
+  * `rm ~/Library/Application\ Support/Code/User/keybindings.json & ln -s ~/.dotfiles/vsc/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
   * `./.dotfiles/vsc/install-extensions.sh`
 
 ## SSH configuration
@@ -44,7 +44,7 @@ I install the following tools with homebrew:
 * awscli
 * git
 * gnupg
-* k6
+* (k6)
 * libpq
 
 The following software is installed as cask with homebrew:
