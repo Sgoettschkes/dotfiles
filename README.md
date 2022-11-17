@@ -50,6 +50,12 @@ The following software is installed as cask with homebrew:
 * tableplus
 * visual-studio-code
 
+The following tools are installed manually:
+
+* 1password
+* Chrome
+* Nirvana
+
 ### git configuration
 
 Symlink all git config files:
@@ -93,16 +99,16 @@ Check [Before asdf install](https://github.com/asdf-vm/asdf-erlang#before-asdf-i
 ```
 asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
 export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac --without-wx"
-asdf install erlang 25.0
-asdf global erlang 25.0
+asdf install erlang 25.1
+asdf global erlang 25.1
 ```
 
 And install elixir:
 
 ```
-asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
-asdf install elixir 1.14.0-otp-25
-asdf global elixir 1.14.0-otp-25
+asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf install elixir 1.14.2-otp-25
+asdf global elixir 1.14.2-otp-25
 ```
 
 ### Node
@@ -111,8 +117,9 @@ Install node:
 
 ```
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs lts-gallium
-asdf global nodejs lts-gallium
+asdf install nodejs lts-hydrogen
+asdf global nodejs lts-hydrogen
+asdf plugin add yarn https://github.com/twuni/asdf-yarn.git
 asdf install yarn 1.22.19
 asdf global yarn 1.22.19
 ```
