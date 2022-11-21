@@ -54,6 +54,7 @@ The following tools are installed manually:
 
 * 1password
 * Chrome
+* Google Drive
 * Nirvana
 
 ### git configuration
@@ -122,6 +123,17 @@ asdf global nodejs lts-hydrogen
 asdf plugin add yarn https://github.com/twuni/asdf-yarn.git
 asdf install yarn 1.22.19
 asdf global yarn 1.22.19
+```
+
+### PHP
+
+Install PHP:
+
+```
+brew install autoconf automake bison freetype gd gettext icu4c krb5 libedit libiconv libjpeg libpng libsodium libxml2 libzip oniguruma pkg-config re2c zlib
+asdf plugin-add php https://github.com/asdf-community/asdf-php.git
+asdf install php 8.1.1
+asdf global php 8.1.1
 ```
 
 ### Python
