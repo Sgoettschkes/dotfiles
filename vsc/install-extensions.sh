@@ -3,6 +3,8 @@
 # Generate package list using code --list-extensions
 pkglist=(
 JakeBecker.elixir-ls
+eamodio.gitlens
+josecfreittas.livebook
 shd101wyy.markdown-preview-enhanced
 zhuangtongfa.material-theme
 phoenixframework.phoenix
