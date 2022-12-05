@@ -8,5 +8,6 @@
     "elixirLS.enableTestLenses": true,
     "extensions.ignoreRecommendations": true,
     "diffEditor.codeLens": true,
-    "files.insertFinalNewline": true
+    "files.insertFinalNewline": true,
+    "projectManager.tags": []
 }
