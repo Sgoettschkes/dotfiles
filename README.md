@@ -56,6 +56,7 @@ The following tools are installed manually:
 * Chrome
 * Google Drive
 * Nirvana
+* Zoom
 
 ### git configuration
 
