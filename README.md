@@ -34,6 +34,7 @@ I install the following tools with homebrew:
 * awscli
 * git
 * gnupg
+* flyctl
 * (k6)
 * libpq
 
@@ -53,6 +54,7 @@ The following software is installed as cask with homebrew:
 The following tools are installed manually:
 
 * 1password
+* Adobe Digital Editions
 * Chrome
 * Google Drive
 * Nirvana
