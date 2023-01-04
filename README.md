@@ -83,6 +83,7 @@ The following symlinks should be put in place:
 
 * `rm ~/Library/Application\ Support/Code/User/settings.json && ln -s ~/.dotfiles/vsc/settings.json ~/Library/Application\ Support/Code/User/settings.json`
 * `rm ~/Library/Application\ Support/Code/User/keybindings.json && ln -s ~/.dotfiles/vsc/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
+`rm -rf ~/Library/Application\ Support/Code/User/snippets && ln -s ~/.dotfiles/vsc/snippets ~/Library/Application\ Support/Code/User/snippets`
 
 Also install all extensions by running `./.dotfiles/vsc/install-extensions.sh`.
 
