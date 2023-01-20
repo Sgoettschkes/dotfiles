@@ -4,8 +4,8 @@
 pkglist=(
 JakeBecker.elixir-ls
 eamodio.gitlens
-josecfreittas.livebook
 shd101wyy.markdown-preview-enhanced
+mjmlio.vscode-mjml
 zhuangtongfa.material-theme
 phoenixframework.phoenix
 zobo.php-intellisense
