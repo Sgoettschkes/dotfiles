@@ -97,7 +97,7 @@ For Visual Studio Code and iTerm, I am using [Cascadia Code](https://github.com/
 
 ### asdf
 
-### Elixir
+#### Elixir
 
 Check [Before asdf install](https://github.com/asdf-vm/asdf-erlang#before-asdf-install) to see prerequisites. Then install Erlang:
 
@@ -116,7 +116,7 @@ asdf install elixir 1.14.2-otp-25
 asdf global elixir 1.14.2-otp-25
 ```
 
-### Node
+#### Node
 
 Install node:
 
@@ -129,7 +129,7 @@ asdf install yarn 1.22.19
 asdf global yarn 1.22.19
 ```
 
-### PHP
+#### PHP
 
 Install PHP:
 
@@ -140,7 +140,7 @@ asdf install php 8.1.1
 asdf global php 8.1.1
 ```
 
-### Python
+#### Python
 
 Install python:
 
@@ -148,6 +148,16 @@ Install python:
 asdf plugin-add python https://github.com/danhper/asdf-python.git
 asdf install python 3.10.0
 asdf global python 3.10.0
+```
+
+#### Terraform
+
+Install terraform:
+
+```
+asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
+asdf install terraform 1.1.2
+asdf global terraform 1.1.2
 ```
 
 ## License
