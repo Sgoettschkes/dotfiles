@@ -150,6 +150,14 @@ asdf install python 3.10.0
 asdf global python 3.10.0
 ```
 
+Install poetry:
+
+```
+asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git
+asdf install poetry 1.3.2
+asdf global poetry 1.3.2
+```
+
 #### Terraform
 
 Install terraform:
