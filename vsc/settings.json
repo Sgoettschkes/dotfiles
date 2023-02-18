@@ -8,5 +8,9 @@
     "extensions.ignoreRecommendations": true,
     "diffEditor.codeLens": true,
     "files.insertFinalNewline": true,
-    "projectManager.tags": []
+    "projectManager.tags": [],
+    "files.associations": {
+        "*.mjml.eex": "mjml"
+    },
+    "intelephense.environment.phpVersion": "8.1.0"
 }

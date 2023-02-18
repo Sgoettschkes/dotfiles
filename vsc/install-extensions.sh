@@ -8,7 +8,7 @@ shd101wyy.markdown-preview-enhanced
 mjmlio.vscode-mjml
 zhuangtongfa.material-theme
 phoenixframework.phoenix
-zobo.php-intellisense
+bmewburn.vscode-intelephense-client
 alefragnani.project-manager
 bradlc.vscode-tailwindcss
 whatwedo.twig
