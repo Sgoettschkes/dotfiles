@@ -16,7 +16,7 @@
     l = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate
     ll = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate --numstat
     pa = pull --all --prune --tags --verbose
-    pu = push
+    pu = push -u origin
     re = reset HEAD
     st = status --short
     stu = status --short --untracked-files
