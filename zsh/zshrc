@@ -109,4 +109,6 @@ path+=/opt/homebrew/opt/libpq/bin
 # Add escript (mix) path
 path+=~/.mix/escripts
 
-source /Users/sebastian/.docker/init-zsh.sh || true # Added by Docker Desktop
+if [ -f /Users/sebastian/.docker/init-zsh.sh ]; then
+  source /Users/sebastian/.docker/init-zsh.sh # Added by Docker Desktop
+fi
