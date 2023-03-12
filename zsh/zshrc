@@ -100,6 +100,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Add vi keybindings
+bindkey -v
+
 # Add stack (haskell) path
 path+=~/.local/bin/
 
