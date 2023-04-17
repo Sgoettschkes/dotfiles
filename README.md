@@ -32,6 +32,7 @@ I install the following tools with homebrew:
 
 * asdf
 * awscli
+* colima
 * git
 * gnupg
 * flyctl
