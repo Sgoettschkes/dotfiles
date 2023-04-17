@@ -19,6 +19,11 @@ alias g=git
 alias cl=clear
 alias cle='clear && pwd && ls -AFG'
 
+# Deps update
+alias up_yarn='yarn upgrade && yarn outdated'
+alias up_mix='mix deps.update --all && mix hex.outdated'
+alias up_npm='npm update && npx ncu'
+
 # Advanced system tools
 alias df='df -Tha --total'
 alias du='du -ach | sort -h'
