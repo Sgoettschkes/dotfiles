@@ -33,6 +33,8 @@ I install the following tools with homebrew:
 * asdf
 * awscli
 * colima
+* docker
+* docker-compose
 * git
 * gnupg
 * flyctl
@@ -41,7 +43,6 @@ I install the following tools with homebrew:
 
 The following software is installed as cask with homebrew:
 
-* docker
 * iterm2
 * (loom)
 * meld
@@ -60,6 +61,19 @@ The following tools are installed manually:
 * Google Drive
 * Nirvana
 * Zoom
+
+### Docker
+
+After installing docker and docker-compose via brew, run:
+
+```
+mkdir -p ~/.docker/cli-plugins
+ln -sfn $HOMEBREW_PREFIX/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
+```
+
+After installing colima, run
+
+`rm ~/.colima/default/colima.yaml && ln -s ~/.dotfiles/colima/colima.yaml ~/.colima/default/colima.yaml`
 
 ### git configuration
 
