@@ -35,17 +35,19 @@ I install the following tools with homebrew:
 * colima
 * docker
 * docker-compose
+* flyctl
 * git
 * gnupg
-* flyctl
 * (k6)
 * libpq
 
 The following software is installed as cask with homebrew:
 
+* freac
 * iterm2
 * (loom)
 * meld
+* musicbrainz-picard
 * obsidian
 * rectangle
 * spotify
