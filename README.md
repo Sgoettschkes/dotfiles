@@ -114,6 +114,9 @@ For Visual Studio Code and iTerm, I am using [Cascadia Code](https://github.com/
 
 ### asdf
 
+Symlink the asdf tool-versions file:
+
+`rm ~/.tool-versions && ln -s ~/.dotfiles/asdf/tool-versions ~/.tool-versions`
 #### Elixir
 
 Check [Before asdf install](https://github.com/asdf-vm/asdf-erlang#before-asdf-install) to see prerequisites. Then install Erlang:
@@ -121,16 +124,13 @@ Check [Before asdf install](https://github.com/asdf-vm/asdf-erlang#before-asdf-i
 ```
 asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
 export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac --without-wx"
-asdf install erlang 25.1
-asdf global erlang 25.1
+export KERL_BUILD_DOCS=yes
 ```
 
 And install elixir:
 
 ```
 asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git
-asdf install elixir 1.14.2-otp-25
-asdf global elixir 1.14.2-otp-25
 ```
 
 #### Node
@@ -139,11 +139,7 @@ Install node:
 
 ```
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs lts-hydrogen
-asdf global nodejs lts-hydrogen
 asdf plugin add yarn https://github.com/twuni/asdf-yarn.git
-asdf install yarn 1.22.19
-asdf global yarn 1.22.19
 ```
 
 #### PHP
@@ -153,8 +149,6 @@ Install PHP:
 ```
 brew install autoconf automake bison freetype gd gettext icu4c krb5 libedit libiconv libjpeg libpng libsodium libxml2 libzip oniguruma pkg-config re2c zlib
 asdf plugin-add php https://github.com/asdf-community/asdf-php.git
-asdf install php 8.1.1
-asdf global php 8.1.1
 ```
 
 #### Python
@@ -163,16 +157,20 @@ Install python:
 
 ```
 asdf plugin-add python https://github.com/danhper/asdf-python.git
-asdf install python 3.10.0
-asdf global python 3.10.0
 ```
 
 Install poetry:
 
 ```
 asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git
-asdf install poetry 1.3.2
-asdf global poetry 1.3.2
+```
+
+#### Install all
+
+Run
+
+```
+asdf install
 ```
 
 #### Terraform
