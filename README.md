@@ -165,14 +165,6 @@ Install poetry:
 asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git
 ```
 
-#### Install all
-
-Run
-
-```
-asdf install
-```
-
 #### Terraform
 
 Install terraform:
@@ -181,6 +173,14 @@ Install terraform:
 asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
 asdf install terraform 1.1.2
 asdf global terraform 1.1.2
+```
+
+#### Install all
+
+Run
+
+```
+asdf install
 ```
 
 ## License
