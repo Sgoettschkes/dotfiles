@@ -115,3 +115,6 @@ path+=~/.mix/escripts
 if [ -f /Users/sebastian/.docker/init-zsh.sh ]; then
   source /Users/sebastian/.docker/init-zsh.sh # Added by Docker Desktop
 fi
+
+# Shopify Hydrogen alias to local projects
+alias h2='$(yarn prefix -s)/node_modules/.bin/shopify hydrogen'
