@@ -14,6 +14,7 @@ alias ll='ls -aFhl'
 alias d=docker
 alias dc='docker compose'
 alias g=git
+alias v=nvim
 
 # Little helpers
 alias cl=clear

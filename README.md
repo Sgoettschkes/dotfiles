@@ -40,6 +40,7 @@ I install the following tools with homebrew:
 * gnupg
 * (k6)
 * libpq
+* neovim
 
 The following software is installed as cask with homebrew:
 
@@ -92,11 +93,17 @@ Symlink all git config files:
 
 The config for iterm2 can be found in the `iterm2/` folder. In iTerm2, go to Settings -> General -> Preferences and select this file to be the place where the config should be loaded from and saved to.
 
-## rectangle configuration
+### rectangle configuration
 
 The rectangle configuration is stored in the `rectangle/` folder. It can be imported through the settings.
 
-## Visual Studio Code configuration
+### nvim
+
+The following symlinks should be put in place:
+
+`rm ~/.config/nvim/init.vim && ln -s ~/.dotfiles/nvim/init.vim ~/.config/nvim/init.vim`
+
+### Visual Studio Code configuration
 
 The following symlinks should be put in place:
 
