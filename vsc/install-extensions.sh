@@ -2,14 +2,16 @@
 
 # Generate package list using code --list-extensions
 pkglist=(
+# Enabled plugins
+GitHub.copilot
+GitHub.copilot-chat
+zhuangtongfa.material-theme
+alefragnani.project-manager
+# Disabled plugins
 JakeBecker.elixir-ls
 eamodio.gitlens
-shd101wyy.markdown-preview-enhanced
-mjmlio.vscode-mjml
-zhuangtongfa.material-theme
 phoenixframework.phoenix
 bmewburn.vscode-intelephense-client
-alefragnani.project-manager
 bradlc.vscode-tailwindcss
 whatwedo.twig
 )
