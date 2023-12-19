@@ -32,18 +32,16 @@ I install the following tools with homebrew:
 
 * asdf
 * awscli
-* colima
-* docker
-* docker-compose
+* exercism
 * flyctl
 * git
 * gnupg
 * (k6)
 * libpq
-* neovim
 
 The following software is installed as cask with homebrew:
 
+* docker
 * freac
 * iterm2
 * (loom)
@@ -74,10 +72,6 @@ mkdir -p ~/.docker/cli-plugins
 ln -sfn $HOMEBREW_PREFIX/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
 ```
 
-After installing colima, run
-
-`rm ~/.colima/default/colima.yaml && ln -s ~/.dotfiles/colima/colima.yaml ~/.colima/default/colima.yaml`
-
 ### git configuration
 
 Symlink all git config files:
@@ -96,12 +90,6 @@ The config for iterm2 can be found in the `iterm2/` folder. In iTerm2, go to Set
 ### rectangle configuration
 
 The rectangle configuration is stored in the `rectangle/` folder. It can be imported through the settings.
-
-### nvim
-
-The following symlinks should be put in place:
-
-`rm ~/.config/nvim/init.vim && ln -s ~/.dotfiles/nvim/init.vim ~/.config/nvim/init.vim`
 
 ### Visual Studio Code configuration
 
