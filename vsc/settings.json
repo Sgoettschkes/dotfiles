@@ -12,5 +12,12 @@
     "files.associations": {
         "*.mjml.eex": "mjml"
     },
-    "intelephense.environment.phpVersion": "8.1.0"
+    "intelephense.environment.phpVersion": "8.1.0",
+    "git.openRepositoryInParentFolders": "always",
+    "codeium.enableConfig": {
+        "*": true,
+        "wat": true,
+        "twig": true
+    },
+    "workbench.startupEditor": "none"
 }
