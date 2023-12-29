@@ -1,7 +1,7 @@
-elixir 1.15.6-otp-26
-erlang 26.1
-yarn 1.22.19
-nodejs 18.18.0
+elixir 1.16.0-otp-26
+erlang 26.2
+yarn 1.22.21
+nodejs 21.5.0
 php 8.2.10
 poetry 1.6.1
 python 3.11.5
