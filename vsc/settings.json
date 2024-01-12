@@ -1,6 +1,6 @@
 {
     "workbench.colorTheme": "One Dark Pro",
-    "editor.fontFamily": "'Cascadia Code', 'Courier New', monospace",
+    "editor.fontFamily": "'JetBrains Mono', 'Courier New', monospace",
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
     "workbench.editor.enablePreview": false,
@@ -19,5 +19,8 @@
         "wat": true,
         "twig": true
     },
-    "workbench.startupEditor": "none"
+    "workbench.startupEditor": "none",
+    "workbench.settings.applyToAllProfiles": [
+        "editor.fontFamily"
+    ]
 }

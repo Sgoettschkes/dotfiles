@@ -33,6 +33,9 @@ I install the following tools with homebrew:
 * asdf
 * awscli
 * exercism
+* docker
+* docker-compose
+* dvc
 * flyctl
 * git
 * gnupg
@@ -103,7 +106,7 @@ Also install all extensions by running `./.dotfiles/vsc/install-extensions.sh`.
 
 ### Fonts
 
-For Visual Studio Code and iTerm, I am using [Cascadia Code](https://github.com/microsoft/cascadia-code). The font can be found in the `fonts/` folder.
+For Visual Studio Code and iTerm, I am using [JetBrains Mono](https://www.jetbrains.com/lp/mono). The font can be found in the `fonts/` folder.
 
 ## Development environment
 
