@@ -103,6 +103,10 @@ source $ZSH/oh-my-zsh.sh
 # Add vi keybindings
 bindkey -v
 
+# Add asdf path
+export ASDF_DATA_DIR=/Users/sebastian/.asdf
+path+=$ASDF_DATA_DIR/shims
+
 # Add stack (haskell) path
 path+=~/.local/bin/
 
