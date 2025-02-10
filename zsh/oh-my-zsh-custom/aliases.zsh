@@ -22,6 +22,7 @@ alias cle='clear && pwd && ls -AFG'
 
 # Deps update
 alias up_brew='brew update && brew upgrade'
+alias up_bun='./_build/bun upgrade && ./_build/bun update'
 alias up_yarn='yarn upgrade && yarn outdated'
 alias up_mix='mix deps.update --all && mix hex.outdated'
 alias up_npm='npm update && npx ncu'
