@@ -11,7 +11,6 @@ alias ..='cd ..'
 alias ll='ls -aFhl'
 
 # Git shortcuts
-alias glt='git l `git describe --tags --abbrev=0`..HEAD'
 
 # Network utilities
 alias myip='curl http://ipecho.net/plain; echo'
