@@ -9,6 +9,8 @@ alias ll='ls -aFhl'
 
 # Shortcuts
 alias dc='docker compose'
+alias k=kubectl
+alias m=mix
 
 # Little helpers
 alias cl=clear
