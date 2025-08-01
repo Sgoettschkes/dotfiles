@@ -65,69 +65,15 @@ Symlink the asdf tool-versions file:
 
 `rm ~/.tool-versions && ln -s ~/.dotfiles/asdf/tool-versions ~/.tool-versions`
 
-#### Elixir
-
-Check [Before asdf install](https://github.com/asdf-vm/asdf-erlang#before-asdf-install) to see prerequisites. Then install Erlang:
+Install all asdf plugins and tools:
 
 ```
-asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
-export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac --without-wx"
-export KERL_BUILD_DOCS=yes
+./asdf/setup.sh
 ```
 
-And install elixir:
+**Note:** For Erlang/Elixir, check [prerequisites](https://github.com/asdf-vm/asdf-erlang#before-asdf-install) before running the script.
 
-```
-asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git
-```
-
-#### Node
-
-Install node:
-
-```
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf plugin add yarn https://github.com/twuni/asdf-yarn.git
-```
-
-#### PHP
-
-Install PHP:
-
-```
-brew install autoconf automake bison freetype gd gettext icu4c krb5 libedit libiconv libjpeg libpng libsodium libxml2 libzip oniguruma pkg-config re2c zlib
-asdf plugin-add php https://github.com/asdf-community/asdf-php.git
-```
-
-#### Python
-
-Install python:
-
-```
-asdf plugin-add python https://github.com/danhper/asdf-python.git
-```
-
-Install poetry:
-
-```
-asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git
-```
-
-#### Terraform
-
-Install terraform:
-
-```
-asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git
-```
-
-#### Install all
-
-Run
-
-```
-asdf install
-```
+**Note:** For PHP, check [prerequisites](https://github.com/asdf-vm/asdf-php#before-asdf-install) before running the script.
 
 ## License
 
