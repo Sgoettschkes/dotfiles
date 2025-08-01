@@ -5,15 +5,12 @@
     a = add
     amend = commit --all --amend
     br = branch
-    bra = branch --all --color -vv
     ci = commit
     cim = commit --message
     cinvm = commit --no-verify --message
     co = checkout
     cob = checkout -b
     d = diff
-    f = fetch --all
-    fa = fetch --all --prune --tags --verbose
     l = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate
     ll = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate --numstat
     pa = pull --all --prune --tags --verbose
@@ -21,7 +18,6 @@
     punv = push -u origin --no-verify
     re = reset HEAD
     st = status --short
-    stu = status --short --untracked-files
     undo = reset HEAD~1 --mixed
 
 [branch]
