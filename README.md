@@ -13,6 +13,28 @@ Checkout this repo into `~/.dotfiles`.
 
 Currently, I don't use any install scripts as I trimmed my dotfiles and the few files remaining can be symlinked manually as outlined below.
 
+## Software installation
+
+I install the following tools with homebrew:
+
+* asdf
+* docker
+* git
+* iterm2
+* rectangle
+
+## Fonts
+
+* [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FiraCode.zip)
+* [JetBrainsMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip)
+* [SauceCodePro Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/SourceCodePro.zip)
+
+### rectangle configuration
+
+The rectangle configuration is stored in the `rectangle/` folder. It can be imported through the settings.
+
+## Development environment
+
 ### SSH configuration
 
 Run `mkdir -p ~/.ssh && ln -s ~/.dotfiles/ssh/config ~/.ssh/config` to symlink the SSH configuration.
@@ -26,46 +48,6 @@ Install oh-my-zsh (https://ohmyz.sh/#install) and symlink the following files:
 * `rm ~/.zprofile && ln -s ~/.dotfiles/zsh/zprofile ~/.zprofile`
 * `rm ~/.zshrc && ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc`
 
-## Additional software
-
-I install the following tools with homebrew:
-
-* asdf
-* awscli
-* exercism
-* docker
-* docker-compose
-* dvc
-* flyctl
-* git
-* gnupg
-* (k6)
-* libpq
-
-The following software is installed as cask with homebrew:
-
-* docker
-* freac
-* iterm2
-* (loom)
-* meld
-* musicbrainz-picard
-* obsidian
-* rectangle
-* spotify
-* stay
-* tableplus
-* visual-studio-code
-
-The following tools are installed manually:
-
-* 1password
-* Adobe Digital Editions
-* Chrome
-* Google Drive
-* Nirvana
-* Zoom
-
 ### git configuration
 
 Symlink all git config files:
@@ -77,35 +59,12 @@ Symlink all git config files:
 * `ln -s ~/.dotfiles/git/gitignore ~/.gitignore`
 * `mkdir -p ~/.config/git && ln -s ~/.dotfiles/git/gitattributes ~/.config/git/attributes`
 
-### iterm2 configuration
-
-The config for iterm2 can be found in the `iterm2/` folder. In iTerm2, go to Settings -> General -> Preferences and select this file to be the place where the config should be loaded from and saved to.
-
-### rectangle configuration
-
-The rectangle configuration is stored in the `rectangle/` folder. It can be imported through the settings.
-
-### Visual Studio Code configuration
-
-The following symlinks should be put in place:
-
-* `rm ~/Library/Application\ Support/Code/User/settings.json && ln -s ~/.dotfiles/vsc/settings.json ~/Library/Application\ Support/Code/User/settings.json`
-* `rm ~/Library/Application\ Support/Code/User/keybindings.json && ln -s ~/.dotfiles/vsc/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
-* `rm -rf ~/Library/Application\ Support/Code/User/snippets && ln -s ~/.dotfiles/vsc/snippets ~/Library/Application\ Support/Code/User/snippets`
-
-Also install all extensions by running `./.dotfiles/vsc/install-extensions.sh`.
-
-### Fonts
-
-For Visual Studio Code and iTerm, I am using [JetBrains Mono](https://www.jetbrains.com/lp/mono). The font can be found in the `fonts/` folder.
-
-## Development environment
-
 ### asdf
 
 Symlink the asdf tool-versions file:
 
 `rm ~/.tool-versions && ln -s ~/.dotfiles/asdf/tool-versions ~/.tool-versions`
+
 #### Elixir
 
 Check [Before asdf install](https://github.com/asdf-vm/asdf-erlang#before-asdf-install) to see prerequisites. Then install Erlang:
