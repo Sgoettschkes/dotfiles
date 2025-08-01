@@ -18,6 +18,7 @@
     ll = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate --numstat
     pa = pull --all --prune --tags --verbose
     pu = push -u origin
+    punv = push -u origin --no-verify
     re = reset HEAD
     st = status --short
     stu = status --short --untracked-files
