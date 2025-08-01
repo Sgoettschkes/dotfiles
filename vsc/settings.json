@@ -22,5 +22,16 @@
     "workbench.startupEditor": "none",
     "workbench.settings.applyToAllProfiles": [
         "editor.fontFamily"
-    ]
+    ],
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": "off"
+    }
 }
