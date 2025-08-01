@@ -17,7 +17,7 @@ Currently, I don't use any install scripts as I trimmed my dotfiles and the few 
 
 Run `mkdir -p ~/.ssh && ln -s ~/.dotfiles/ssh/config ~/.ssh/config` to symlink the SSH configuration.
 
-You can put local ssh config (which should not be in git) in `~.ssh/config.local`.
+You can put local ssh config (which should not be in git) in `~/.ssh/config.local`.
 
 ### zsh configuration
 
@@ -66,15 +66,6 @@ The following tools are installed manually:
 * Nirvana
 * Zoom
 
-### Docker
-
-After installing docker and docker-compose via brew, run:
-
-```
-mkdir -p ~/.docker/cli-plugins
-ln -sfn $HOMEBREW_PREFIX/opt/docker-compose/bin/docker-compose ~/.docker/cli-plugins/docker-compose
-```
-
 ### git configuration
 
 Symlink all git config files:
@@ -100,7 +91,7 @@ The following symlinks should be put in place:
 
 * `rm ~/Library/Application\ Support/Code/User/settings.json && ln -s ~/.dotfiles/vsc/settings.json ~/Library/Application\ Support/Code/User/settings.json`
 * `rm ~/Library/Application\ Support/Code/User/keybindings.json && ln -s ~/.dotfiles/vsc/keybindings.json ~/Library/Application\ Support/Code/User/keybindings.json`
-`rm -rf ~/Library/Application\ Support/Code/User/snippets && ln -s ~/.dotfiles/vsc/snippets ~/Library/Application\ Support/Code/User/snippets`
+* `rm -rf ~/Library/Application\ Support/Code/User/snippets && ln -s ~/.dotfiles/vsc/snippets ~/Library/Application\ Support/Code/User/snippets`
 
 Also install all extensions by running `./.dotfiles/vsc/install-extensions.sh`.
 
