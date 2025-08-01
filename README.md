@@ -20,6 +20,8 @@ make install
 
 Or use the script directly: `./install.sh`
 
+To remove all symlinks: `make clean`
+
 ## Software installation
 
 I install the following tools with homebrew:

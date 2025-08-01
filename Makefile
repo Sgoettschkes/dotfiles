@@ -1,7 +1,7 @@
 # Makefile for dotfiles management
 # Run 'make help' for usage information
 
-.PHONY: help install asdf
+.PHONY: help install asdf clean
 
 # Default target
 .DEFAULT_GOAL := help
@@ -26,3 +26,7 @@ install: ## Install dotfiles (run install.sh)
 asdf: ## Setup asdf plugins and tools
 	@echo "$(YELLOW)Setting up asdf...$(NC)"
 	@./asdf/setup.sh
+
+clean: ## Remove all dotfile symlinks
+	@echo "$(YELLOW)Cleaning dotfiles...$(NC)"
+	@./cleanup.sh
