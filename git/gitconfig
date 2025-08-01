@@ -13,10 +13,13 @@
     d = diff
     l = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate
     ll = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate --numstat
+    me = merge
+    met = mergetool
     pa = pull --all --prune --tags --verbose
     pu = push -u origin
     punv = push -u origin --no-verify
     re = reset HEAD
+    s = stash
     st = status --short
     undo = reset HEAD~1 --mixed
 
