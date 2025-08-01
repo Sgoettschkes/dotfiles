@@ -11,12 +11,14 @@ First, install homebrew according to https://docs.brew.sh/Installation. Use home
 
 Install Oh My Zsh: https://ohmyz.sh/#install
 
-Checkout this repo into `~/.dotfiles` and run the installation script:
+Checkout this repo into `~/.dotfiles` and run the installation:
 
 ```bash
 cd ~/.dotfiles
-./install.sh
+make install
 ```
+
+Or use the script directly: `./install.sh`
 
 ## Software installation
 
