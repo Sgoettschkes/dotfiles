@@ -52,13 +52,13 @@ You can put local ssh config (which should not be in git) in `~/.ssh/config.loca
 
 After running the installation script, install all asdf plugins and tools:
 
-```
-./asdf/setup.sh
+```bash
+make asdf
 ```
 
-**Note:** For Erlang/Elixir, check [prerequisites](https://github.com/asdf-vm/asdf-erlang#before-asdf-install) before running the script.
+**Note:** For Erlang/Elixir, check [prerequisites](https://github.com/asdf-vm/asdf-erlang#before-asdf-install) before running.
 
-**Note:** For PHP, check [prerequisites](https://github.com/asdf-vm/asdf-php#before-asdf-install) before running the script.
+**Note:** For PHP, check [prerequisites](https://github.com/asdf-vm/asdf-php#before-asdf-install) before running.
 
 ## License
 
