@@ -43,6 +43,7 @@ nbproject
 .project
 .vscode
 .devcontainer
+.claude
 
 # OS generated files #
 ######################
