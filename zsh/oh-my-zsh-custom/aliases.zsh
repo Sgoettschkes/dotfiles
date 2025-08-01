@@ -1,31 +1,27 @@
 # File managed by Sgoettschkes/dotfiles
 # Do not change
 
-# Dir navigation
-alias ..='cd ..'
-
-# Some ls aliases
-alias ll='ls -aFhl'
-
-# Shortcuts
+# Development tools
 alias dc='docker compose'
 alias k=kubectl
 alias m=mix
 
-# Little helpers
-alias cl=clear
+# File system
+alias ..='cd ..'
+alias ll='ls -aFhl'
 
-# Deps update
-alias up_brew='brew update && brew upgrade'
-alias up_bun='./_build/bun upgrade && ./_build/bun update'
-alias up_yarn='yarn upgrade && yarn outdated'
-alias up_mix='mix deps.update --all && mix hex.outdated'
-alias up_npm='npm update && npx ncu'
+# Git shortcuts
+alias glt='git l `git describe --tags --abbrev=0`..HEAD'
 
-# Advanced system tools
-
-# Rest API stuff
+# Network utilities
 alias myip='curl http://ipecho.net/plain; echo'
 
-# git shortcuts
-alias glt='git l `git describe --tags --abbrev=0`..HEAD'
+# Package updates
+alias up_brew='brew update && brew upgrade'
+alias up_bun='./_build/bun upgrade && ./_build/bun update'
+alias up_mix='mix deps.update --all && mix hex.outdated'
+alias up_npm='npm update && npx ncu'
+alias up_yarn='yarn upgrade && yarn outdated'
+
+# System utilities
+alias cl=clear
