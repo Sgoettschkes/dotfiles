@@ -13,7 +13,6 @@ alias ll='ls -aFhl'
 # Shortcuts
 alias d=docker
 alias dc='docker compose'
-alias g=git
 alias v=nvim
 
 # Little helpers
