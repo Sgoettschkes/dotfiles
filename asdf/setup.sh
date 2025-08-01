@@ -32,26 +32,26 @@ asdf plugin add yarn https://github.com/twuni/asdf-yarn.git 2>/dev/null || echo 
 
 # PHP
 echo "Installing PHP plugin..."
-asdf plugin-add php https://github.com/asdf-community/asdf-php.git 2>/dev/null || echo "PHP plugin already exists"
+asdf plugin add php https://github.com/asdf-community/asdf-php.git 2>/dev/null || echo "PHP plugin already exists"
 
 # Python and Poetry
 echo "Installing Python plugin..."
-asdf plugin-add python https://github.com/danhper/asdf-python.git 2>/dev/null || echo "Python plugin already exists"
+asdf plugin add python https://github.com/danhper/asdf-python.git 2>/dev/null || echo "Python plugin already exists"
 
 echo "Installing Poetry plugin..."
-asdf plugin-add poetry https://github.com/asdf-community/asdf-poetry.git 2>/dev/null || echo "Poetry plugin already exists"
+asdf plugin add poetry https://github.com/asdf-community/asdf-poetry.git 2>/dev/null || echo "Poetry plugin already exists"
 
 # Terraform
 echo "Installing Terraform plugin..."
-asdf plugin-add terraform https://github.com/asdf-community/asdf-hashicorp.git 2>/dev/null || echo "Terraform plugin already exists"
+asdf plugin add terraform https://github.com/asdf-community/asdf-hashicorp.git 2>/dev/null || echo "Terraform plugin already exists"
 
 # Golang
 echo "Installing Golang plugin..."
-asdf plugin-add golang https://github.com/asdf-community/asdf-golang.git 2>/dev/null || echo "Golang plugin already exists"
+asdf plugin add golang https://github.com/asdf-community/asdf-golang.git 2>/dev/null || echo "Golang plugin already exists"
 
 # jq
 echo "Installing jq plugin..."
-asdf plugin-add jq https://github.com/AZMCode/asdf-jq.git 2>/dev/null || echo "jq plugin already exists"
+asdf plugin add jq https://github.com/AZMCode/asdf-jq.git 2>/dev/null || echo "jq plugin already exists"
 
 echo "All plugins installed successfully!"
 
@@ -62,5 +62,8 @@ export KERL_BUILD_DOCS=yes
 echo "Installing tools from .tool-versions..."
 asdf install
 
+echo "Reshimming to update PATH..."
+asdf reshim
+
 echo "asdf setup complete!"
-echo "Note: You may need to restart your shell or run 'asdf reshim' for changes to take effect."
+echo "Note: You may need to restart your shell for changes to take effect."
