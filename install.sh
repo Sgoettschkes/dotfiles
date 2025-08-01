@@ -70,15 +70,20 @@ echo
 
 # Git configuration
 echo "Setting up Git configuration..."
-create_symlink "$DOTFILES_DIR/git/gitconfig" "$HOME/.gitconfig"
-create_symlink "$DOTFILES_DIR/git/gitconfig_agileaddicts" "$HOME/.gitconfig_agileaddicts"
-create_symlink "$DOTFILES_DIR/git/gitconfig_mateogrando" "$HOME/.gitconfig_mateogrando"
-create_symlink "$DOTFILES_DIR/git/gitconfig_workera" "$HOME/.gitconfig_workera"
-create_symlink "$DOTFILES_DIR/git/gitignore" "$HOME/.gitignore"
 
-# Create git attributes directory and symlink
-mkdir -p ~/.config/git
-create_symlink "$DOTFILES_DIR/git/gitattributes" "$HOME/.config/git/attributes"
+# Dynamically link all git files (except gitattributes which goes to .config/git)
+for file in "$DOTFILES_DIR"/git/*; do
+    filename=$(basename "$file")
+    
+    if [ "$filename" = "gitattributes" ]; then
+        # Special case: gitattributes goes to .config/git/attributes
+        mkdir -p ~/.config/git
+        create_symlink "$file" "$HOME/.config/git/attributes"
+    else
+        # All other git files get a dot prefix in home directory
+        create_symlink "$file" "$HOME/.${filename}"
+    fi
+done
 echo
 
 # asdf configuration
