@@ -3,7 +3,8 @@
 # File managed by Sgoettschkes/dotfiles
 # Setup script for asdf plugins and tools
 
-set -e
+# Don't exit on errors - we want to continue if one tool fails
+set +e
 
 echo "Setting up asdf plugins and tools..."
 
@@ -60,10 +61,42 @@ export KERL_CONFIGURE_OPTIONS="--disable-debug --without-javac --without-wx"
 export KERL_BUILD_DOCS=yes
 
 echo "Installing tools from .tool-versions..."
-asdf install
+echo "Note: If any tool fails to install, the script will continue with others..."
+
+# Install tools one by one to avoid stopping on failures
+failed_tools=()
+while IFS= read -r line || [[ -n "$line" ]]; do
+    # Skip empty lines and comments
+    [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
+    
+    # Extract tool name and version
+    tool=$(echo "$line" | awk '{print $1}')
+    version=$(echo "$line" | awk '{print $2}')
+    
+    echo "Installing $tool $version..."
+    if asdf install "$tool" "$version"; then
+        echo "✓ Successfully installed $tool $version"
+    else
+        echo "✗ Failed to install $tool $version"
+        failed_tools+=("$tool $version")
+    fi
+done < "$HOME/.tool-versions"
 
 echo "Reshimming to update PATH..."
 asdf reshim
 
 echo "asdf setup complete!"
+
+if [ ${#failed_tools[@]} -gt 0 ]; then
+    echo ""
+    echo "⚠️  The following tools failed to install:"
+    for tool in "${failed_tools[@]}"; do
+        echo "  - $tool"
+    done
+    echo ""
+    echo "You can try installing them manually later with: asdf install <tool> <version>"
+else
+    echo "✅ All tools installed successfully!"
+fi
+
 echo "Note: You may need to restart your shell for changes to take effect."
