@@ -7,30 +7,32 @@ A collection of my dotfiles; A list of the software I use; A set of instructions
 
 ## Installation
 
-First, install homebrew according to https://docs.brew.sh/Installation. Use homebrew to install git: `brew install git`.
-
-Install Oh My Zsh: https://ohmyz.sh/#install
-
-Checkout this repo into `~/.dotfiles` and run the installation:
+Clone this repo into `~/.dotfiles` and run the installation:
 
 ```bash
+git clone https://github.com/Sgoettschkes/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 make install
 ```
 
 Or use the script directly: `./install.sh`
 
+The installation script will automatically install:
+- Homebrew
+- Git
+- asdf
+- iTerm2 (macOS only)
+- Oh My Zsh
+- Neovim
+- ripgrep
+
 To remove all symlinks: `make clean`
 
-## Software installation
+## Additional Software
 
-I install the following tools with homebrew:
+Additional tools I install with homebrew:
 
-* asdf
 * docker
-* git
-* iterm2
-* neovim
 * rectangle
 
 ## Fonts
