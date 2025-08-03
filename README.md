@@ -30,6 +30,7 @@ I install the following tools with homebrew:
 * docker
 * git
 * iterm2
+* neovim
 * rectangle
 
 ## Fonts

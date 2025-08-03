@@ -36,7 +36,7 @@
 [core]
     autocrlf = input
     compactionHeuristic = true
-    editor = vim
+    editor = nvim
     excludesfile = ~/.gitignore
 
 [credential]
@@ -58,7 +58,14 @@
 	defaultBranch = main
 
 [merge]
-    tool = meld
+    tool = nvim
+
+[mergetool]
+	keepBackup = false
+	prompt = false
+
+[mergetool "nvim"]
+	cmd = "nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\""
 
 [pull]
     rebase = true

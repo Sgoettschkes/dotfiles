@@ -21,18 +21,18 @@ echo
 create_symlink() {
     local source=$1
     local target=$2
-    
+
     # If target exists and is not a symlink, back it up
     if [ -e "$target" ] && [ ! -L "$target" ]; then
         echo -e "${YELLOW}⚠️  Backing up existing $target to $target.backup${NC}"
         mv "$target" "$target.backup"
     fi
-    
+
     # Remove existing symlink if it exists
     if [ -L "$target" ]; then
         rm "$target"
     fi
-    
+
     # Create the symlink
     ln -s "$source" "$target"
     echo -e "${GREEN}✓ Linked $source -> $target${NC}"
@@ -40,12 +40,6 @@ create_symlink() {
 
 # Check prerequisites
 echo "Checking prerequisites..."
-
-if ! command -v brew &> /dev/null; then
-    echo -e "${RED}❌ Homebrew is not installed. Please install it first:${NC}"
-    echo "   /bin/bash -c \"\$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
-    exit 1
-fi
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo -e "${RED}❌ Oh My Zsh is not installed. Please install it first:${NC}"
@@ -56,25 +50,22 @@ fi
 echo -e "${GREEN}✓ All prerequisites met${NC}"
 echo
 
-# SSH configuration
 echo "Setting up SSH configuration..."
 mkdir -p ~/.ssh
 create_symlink "$DOTFILES_DIR/ssh/config" "$HOME/.ssh/config"
 echo
 
-# Zsh configuration
 echo "Setting up Zsh configuration..."
 create_symlink "$DOTFILES_DIR/zsh/zprofile" "$HOME/.zprofile"
 create_symlink "$DOTFILES_DIR/zsh/zshrc" "$HOME/.zshrc"
 echo
 
-# Git configuration
 echo "Setting up Git configuration..."
 
 # Dynamically link all git files (except gitattributes which goes to .config/git)
 for file in "$DOTFILES_DIR"/git/*; do
     filename=$(basename "$file")
-    
+
     if [ "$filename" = "gitattributes" ]; then
         # Special case: gitattributes goes to .config/git/attributes
         mkdir -p ~/.config/git
@@ -86,7 +77,11 @@ for file in "$DOTFILES_DIR"/git/*; do
 done
 echo
 
-# asdf configuration
+echo "Setting up neovim configuration..."
+mkdir -p $HOME/.config/nvim
+create_symlink "$DOTFILES_DIR/neovim/init.lua" "$HOME/.config/nvim/init.lua"
+echo
+
 echo "Setting up asdf configuration..."
 create_symlink "$DOTFILES_DIR/asdf/tool-versions" "$HOME/.tool-versions"
 echo

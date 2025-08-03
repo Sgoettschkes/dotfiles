@@ -16,6 +16,10 @@ source $ZSH/oh-my-zsh.sh
 # Set git language to English
 export LANG=en_US.UTF-8
 
+# Set default editor
+export VISUAL=nvim
+export EDITOR=nvim
+
 # Add vi keybindings
 bindkey -v
 
@@ -32,8 +36,8 @@ path+=/opt/homebrew/opt/libpq/bin
 # Add escript (mix) path
 path+=~/.mix/escripts
 
-if [ -f /Users/sebastian/.docker/init-zsh.sh ]; then
-  source /Users/sebastian/.docker/init-zsh.sh # Added by Docker Desktop
+if [ -f ~/.docker/init-zsh.sh ]; then
+  source ~/.docker/init-zsh.sh # Added by Docker Desktop
 fi
 
 # Shopify Hydrogen alias to local projects
