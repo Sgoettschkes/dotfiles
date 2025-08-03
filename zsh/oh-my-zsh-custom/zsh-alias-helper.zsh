@@ -2,7 +2,7 @@
 # Do not change
 
 # Zsh command wrapper function to suggest aliases
-preexec() {
+alias_suggestion_preexec() {
     # Get the command that's about to be executed
     local cmd="$1"
     local first_word="${cmd%% *}"
@@ -30,3 +30,7 @@ preexec() {
         fi
     done
 }
+
+# Add our function to the preexec_functions array instead of overriding preexec
+autoload -U add-zsh-hook
+add-zsh-hook preexec alias_suggestion_preexec
