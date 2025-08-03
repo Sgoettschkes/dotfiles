@@ -65,6 +65,8 @@ make asdf
 
 **Note:** For PHP, check [prerequisites](https://github.com/asdf-vm/asdf-php#before-asdf-install) before running.
 
+**Note:** Lua 5.1 is used because it's the one needed by lazy neovim plugin manager
+
 ## License
 
 MIT. Please see [LICENSE](LICENSE).
