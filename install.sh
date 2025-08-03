@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # File managed by Sgoettschkes/dotfiles
-# Installation script for dotfiles
 
 set -e
 
@@ -11,13 +10,11 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Script directory
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo "🚀 Installing dotfiles from ${DOTFILES_DIR}"
 echo
 
-# Function to create symlink with backup
 create_symlink() {
     local source=$1
     local target=$2
@@ -38,16 +35,96 @@ create_symlink() {
     echo -e "${GREEN}✓ Linked $source -> $target${NC}"
 }
 
-# Check prerequisites
-echo "Checking prerequisites..."
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
 
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo -e "${RED}❌ Oh My Zsh is not installed. Please install it first:${NC}"
-    echo "   sh -c \"\$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
-    exit 1
+echo "Checking for Homebrew..."
+if ! command_exists brew; then
+    echo -e "${YELLOW}Installing Homebrew...${NC}"
+    # Using main branch instead of HEAD for more stability
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/main/install.sh)"
+
+    # Add brew to PATH for the current session
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        if [[ $(uname -m) == "arm64" ]]; then
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        else
+            eval "$(/usr/local/bin/brew shellenv)"
+        fi
+    else
+        # Linux
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    fi
+
+    echo -e "${GREEN}✓ Homebrew installed${NC}"
+else
+    echo -e "${GREEN}✓ Homebrew already installed${NC}"
 fi
 
-echo -e "${GREEN}✓ All prerequisites met${NC}"
+echo
+echo "Installing git..."
+if ! command_exists git; then
+    echo -e "${YELLOW}Installing git via Homebrew...${NC}"
+    brew install git
+    echo -e "${GREEN}✓ git installed${NC}"
+else
+    echo -e "${GREEN}✓ git already installed${NC}"
+fi
+
+echo
+echo "Installing asdf..."
+if ! command_exists asdf; then
+    echo -e "${YELLOW}Installing asdf via Homebrew...${NC}"
+    brew install asdf
+    echo -e "${GREEN}✓ asdf installed${NC}"
+else
+    echo -e "${GREEN}✓ asdf already installed${NC}"
+fi
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo
+    echo "Installing iTerm2..."
+    if ! ls /Applications/iTerm.app >/dev/null 2>&1; then
+        echo -e "${YELLOW}Installing iTerm2 via Homebrew...${NC}"
+        brew install --cask iterm2
+        echo -e "${GREEN}✓ iTerm2 installed${NC}"
+    else
+        echo -e "${GREEN}✓ iTerm2 already installed${NC}"
+    fi
+fi
+
+echo
+echo "Installing Oh My Zsh..."
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    echo -e "${YELLOW}Installing Oh My Zsh...${NC}"
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    echo -e "${GREEN}✓ Oh My Zsh installed${NC}"
+else
+    echo -e "${GREEN}✓ Oh My Zsh already installed${NC}"
+fi
+
+echo
+echo "Installing neovim..."
+if ! command_exists nvim; then
+    echo -e "${YELLOW}Installing neovim via Homebrew...${NC}"
+    brew install neovim
+    echo -e "${GREEN}✓ neovim installed${NC}"
+else
+    echo -e "${GREEN}✓ neovim already installed${NC}"
+fi
+
+echo
+echo "Installing ripgrep..."
+if ! command_exists rg; then
+    echo -e "${YELLOW}Installing ripgrep via Homebrew...${NC}"
+    brew install ripgrep
+    echo -e "${GREEN}✓ ripgrep installed${NC}"
+else
+    echo -e "${GREEN}✓ ripgrep already installed${NC}"
+fi
+
 echo
 
 echo "Setting up SSH configuration..."
