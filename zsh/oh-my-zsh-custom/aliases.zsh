@@ -5,6 +5,7 @@
 alias dc='docker compose'
 alias k=kubectl
 alias m=mix
+alias nv=nvim
 
 # File system
 alias ..='cd ..'
