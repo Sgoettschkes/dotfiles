@@ -20,12 +20,6 @@ vim.g.have_nerd_font = true
 -- Make line numbers default
 vim.o.number = true
 
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.o.mouse = 'a'
-
--- Don't show the mode, since it's already in the status line
-vim.o.showmode = false
-
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
@@ -44,19 +38,6 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- Keep signcolumn on by default
-vim.o.signcolumn = 'yes'
-
--- Decrease update time
-vim.o.updatetime = 250
-
--- Decrease mapped sequence wait time
-vim.o.timeoutlen = 300
-
--- Configure how new splits should be opened
-vim.o.splitright = true
-vim.o.splitbelow = true
-
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
@@ -68,9 +49,6 @@ vim.o.splitbelow = true
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
--- Preview substitutions live, as you type!
-vim.o.inccommand = 'split'
-
 -- Show which line your cursor is on
 vim.o.cursorline = true
 
@@ -81,16 +59,6 @@ vim.o.scrolloff = 10
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
-
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
--- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -132,8 +100,9 @@ rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup(
-  {
+require('lazy').setup({
+  'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+  { -- Github neovim theme
     'projekt0n/github-nvim-theme',
     name = 'github-theme',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -142,13 +111,30 @@ require('lazy').setup(
       require('github-theme').setup({})
       vim.cmd('colorscheme github_dark')
     end,
-  })
+  },
+  { -- Statusline for the bottom of neovim
+  	'beauwilliams/statusline.lua',
+  	dependencies = {
+  		'nvim-lua/lsp-status.nvim',
+  	},
+  	config = function()
+  		require('statusline').setup({
+        match_colorscheme = true, -- Enable colorscheme inheritance (Default: false)
+	  		tabline = true, -- Enable the tabline (Default: true)
+        lsp_diagnostics = false, -- Enable Native LSP diagnostics (Default: true)
+	  		ale_diagnostics = false, -- Enable ALE diagnostics (Default: false)
+	  	})
+  	end,
+  }
+})
 
 -- My own additions
 vim.g.loaded_node_provider = 0
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_python3_provider = 0
 vim.g.loaded_ruby_provider = 0
+
+vim.o.laststatus = 3
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
