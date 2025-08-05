@@ -85,10 +85,11 @@ spaceship_dir_truncated() {
       local last_part="${path_parts[-1]}"
 
       # Handle case where first part is empty (absolute path)
+      local truncation_indicator="${SPACESHIP_DIR_TRUNC_PREFIX:-}"
       if [[ -z "$first_part" && ${#path_parts[@]} -gt 3 ]]; then
-        dir="/${path_parts[2]}/.../${last_part}"
+        dir="${truncation_indicator}/${path_parts[2]}/.../${last_part}"
       elif [[ -n "$first_part" ]]; then
-        dir="${first_part}/.../${last_part}"
+        dir="${truncation_indicator}${first_part}/.../${last_part}"
       else
         # Fallback to original if edge case
         dir="$dir_expanded"
