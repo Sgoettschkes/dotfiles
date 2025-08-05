@@ -3,7 +3,7 @@
 
 # oh-my-zsh configuration
 export ZSH=~/.oh-my-zsh
-ZSH_THEME="robbyrussell"
+ZSH_THEME="spaceship"
 ZSH_CUSTOM=~/.dotfiles/zsh/oh-my-zsh-custom
 
 # Plugins

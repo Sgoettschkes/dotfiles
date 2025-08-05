@@ -106,6 +106,12 @@ else
 fi
 
 echo
+echo "Setting up Spaceship theme..."
+echo -e "${YELLOW}Initializing git submodules...${NC}"
+git -C "$DOTFILES_DIR" submodule update --init --recursive
+echo -e "${GREEN}✓ Git submodules initialized${NC}"
+
+echo
 echo "Installing neovim..."
 if ! command_exists nvim; then
     echo -e "${YELLOW}Installing neovim via Homebrew...${NC}"
