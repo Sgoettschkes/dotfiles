@@ -4,13 +4,19 @@
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_TIME_FORMAT='%D %*'
 
+SPACESHIP_DIR_MAX_LENGTH=30
+
+SPACESHIP_GIT_BRANCH_MAX_LENGTH=20
+
 SPACESHIP_EXEC_TIME_ELAPSED=10
 
 SPACESHIP_BATTERY_SHOW=false
 
 SPACESHIP_EXIT_CODE_SHOW=true
 
-SPACESHIP_GIT_BRANCH_MAX_LENGTH=20
+# ============================================================================
+# CUSTOM TRUNCATION FUNCTIONS
+# ============================================================================
 
 # Custom git branch function to truncate long branch names
 spaceship_git_branch_truncated() {
@@ -34,16 +40,6 @@ spaceship_git_branch_truncated() {
     --color "$SPACESHIP_GIT_BRANCH_COLOR" \
     "$SPACESHIP_GIT_BRANCH_PREFIX$git_current_branch$SPACESHIP_GIT_BRANCH_SUFFIX"
 }
-
-# Override the git_branch function after spaceship loads all sections
-# This ensures our custom function isn't overwritten by the built-in one
-autoload -Uz add-zsh-hook
-override_git_branch() {
-  functions[spaceship_git_branch]=$functions[spaceship_git_branch_truncated]
-}
-add-zsh-hook precmd override_git_branch
-
-SPACESHIP_DIR_MAX_LENGTH=30
 
 # Custom directory function with smart truncation
 spaceship_dir_truncated() {
@@ -113,8 +109,17 @@ spaceship_dir_truncated() {
     "$dir"
 }
 
-# Override the dir function after spaceship loads
-override_dir() {
+# ============================================================================
+# HOOK SETUP - Override functions after spaceship loads
+# ============================================================================
+
+autoload -Uz add-zsh-hook
+
+# Combined override function for all customizations
+spaceship_apply_customizations() {
+  functions[spaceship_git_branch]=$functions[spaceship_git_branch_truncated]
   functions[spaceship_dir]=$functions[spaceship_dir_truncated]
 }
-add-zsh-hook precmd override_dir
+
+# Apply customizations on each prompt
+add-zsh-hook precmd spaceship_apply_customizations
