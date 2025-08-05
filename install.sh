@@ -110,6 +110,7 @@ echo "Setting up Spaceship theme..."
 echo -e "${YELLOW}Initializing git submodules...${NC}"
 git -C "$DOTFILES_DIR" submodule update --init --recursive
 echo -e "${GREEN}✓ Git submodules initialized${NC}"
+create_symlink "$DOTFILES_DIR/zsh/spaceshiprc.zsh" "$HOME/.spaceshiprc.zsh"
 
 echo
 echo "Installing neovim..."
