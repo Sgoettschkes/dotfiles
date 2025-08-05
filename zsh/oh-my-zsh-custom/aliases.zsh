@@ -25,3 +25,4 @@ alias up_yarn='yarn upgrade && yarn outdated'
 
 # System utilities
 alias cl=clear
+alias reload='exec zsh'
