@@ -58,6 +58,7 @@
 	defaultBranch = main
 
 [merge]
+    conflictstyle = diff3
     tool = nvim
 
 [mergetool]
