@@ -174,8 +174,7 @@ echo
 echo -e "${GREEN}✨ Dotfiles installation complete!${NC}"
 echo
 echo "Next steps:"
-echo "1. Restart your terminal or run: source ~/.zshrc"
-echo "2. Install asdf plugins by running: ./asdf/setup.sh"
+echo "2. Install asdf plugins by running: make asdf"
 echo "3. Import Rectangle settings from: $DOTFILES_DIR/rectangle/config.json"
 echo
 echo -e "${YELLOW}Note: If any existing files were backed up, they have .backup extension${NC}"
