@@ -159,7 +159,12 @@ rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
+  { -- Detect tabstop and shiftwidth automatically
+    'NMAC427/guess-indent.nvim',
+    config = function()
+      require('guess-indent').setup({})
+    end,
+  },
   { -- Github neovim theme
     'projekt0n/github-nvim-theme',
     name = 'github-theme',
