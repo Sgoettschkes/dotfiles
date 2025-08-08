@@ -165,6 +165,18 @@ require('lazy').setup({
       require('guess-indent').setup({})
     end,
   },
+  { -- Adds git related signs to the gutter, as well as utilities for managing changes
+    'lewis6991/gitsigns.nvim',
+    opts = {
+      signs = {
+        add = { text = '+' },
+        change = { text = '~' },
+        delete = { text = '_' },
+        topdelete = { text = '‾' },
+        changedelete = { text = '~' },
+      },
+    },
+  },
   { -- Github neovim theme
     'projekt0n/github-nvim-theme',
     name = 'github-theme',
