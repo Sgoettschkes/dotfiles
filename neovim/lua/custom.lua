@@ -62,5 +62,30 @@ return {
         },
       },
     },
+    { -- Highlight, edit, and navigate code with Tree-sitter
+      "nvim-treesitter/nvim-treesitter",
+      build = ":TSUpdate",
+      config = function()
+        require("nvim-treesitter.configs").setup({
+          ensure_installed = {
+            "lua",
+            "vim",
+            "vimdoc",
+            "elixir",
+            "heex",
+            "bash",
+            "markdown",
+            "markdown_inline",
+          },
+          auto_install = true,
+          highlight = {
+            enable = true,
+          },
+          indent = {
+            enable = true,
+          },
+        })
+      end,
+    },
   },
 }
