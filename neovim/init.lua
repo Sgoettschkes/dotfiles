@@ -158,7 +158,11 @@ rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup({
+-- Load custom configuration
+local custom = require('custom')
+
+-- Setup lazy with both kickstart and custom plugins
+local plugins = {
   { -- Detect tabstop and shiftwidth automatically
     'NMAC427/guess-indent.nvim',
     config = function()
@@ -253,15 +257,20 @@ require('lazy').setup({
 	  	})
   	end,
   }
-})
+}
 
--- My own additions
-vim.g.loaded_node_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_python3_provider = 0
-vim.g.loaded_ruby_provider = 0
+-- Merge with custom plugins
+for _, plugin in ipairs(custom.plugins) do
+  table.insert(plugins, plugin)
+end
 
-vim.o.laststatus = 3
+-- Initialize lazy with merged plugins
+require('lazy').setup(plugins)
+
+-- Run custom configuration
+if custom.config then
+  custom.config()
+end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

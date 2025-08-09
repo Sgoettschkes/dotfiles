@@ -164,6 +164,7 @@ echo
 echo "Setting up neovim configuration..."
 mkdir -p $HOME/.config/nvim
 create_symlink "$DOTFILES_DIR/neovim/init.lua" "$HOME/.config/nvim/init.lua"
+create_symlink "$DOTFILES_DIR/neovim/lua" "$HOME/.config/nvim/lua"
 echo
 
 echo "Setting up asdf configuration..."
