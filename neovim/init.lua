@@ -245,30 +245,6 @@ local plugins = {
       },
     },
   },
-  { -- Github neovim theme
-    "projekt0n/github-nvim-theme",
-    name = "github-theme",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      require("github-theme").setup({})
-      vim.cmd("colorscheme github_dark")
-    end,
-  },
-  { -- Statusline for the bottom of neovim
-    "beauwilliams/statusline.lua",
-    dependencies = {
-      "nvim-lua/lsp-status.nvim",
-    },
-    config = function()
-      require("statusline").setup({
-        match_colorscheme = true, -- Enable colorscheme inheritance (Default: false)
-        tabline = true, -- Enable the tabline (Default: true)
-        lsp_diagnostics = false, -- Enable Native LSP diagnostics (Default: true)
-        ale_diagnostics = false, -- Enable ALE diagnostics (Default: false)
-      })
-    end,
-  },
 }
 
 -- Merge with custom plugins
