@@ -27,7 +27,7 @@ vim.o.number = true
 -- vim.o.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
--- vim.o.showmode = false
+vim.o.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
@@ -104,10 +104,10 @@ vim.o.confirm = true
 -- vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -193,36 +193,7 @@ local plugins = {
         mappings = vim.g.have_nerd_font,
         -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
         -- default which-key.nvim defined Nerd Font icons, otherwise define a string table
-        keys = vim.g.have_nerd_font and {} or {
-          Up = "<Up> ",
-          Down = "<Down> ",
-          Left = "<Left> ",
-          Right = "<Right> ",
-          C = "<C-…> ",
-          M = "<M-…> ",
-          D = "<D-…> ",
-          S = "<S-…> ",
-          CR = "<CR> ",
-          Esc = "<Esc> ",
-          ScrollWheelDown = "<ScrollWheelDown> ",
-          ScrollWheelUp = "<ScrollWheelUp> ",
-          NL = "<NL> ",
-          BS = "<BS> ",
-          Space = "<Space> ",
-          Tab = "<Tab> ",
-          F1 = "<F1>",
-          F2 = "<F2>",
-          F3 = "<F3>",
-          F4 = "<F4>",
-          F5 = "<F5>",
-          F6 = "<F6>",
-          F7 = "<F7>",
-          F8 = "<F8>",
-          F9 = "<F9>",
-          F10 = "<F10>",
-          F11 = "<F11>",
-          F12 = "<F12>",
-        },
+        keys = {},
       },
 
       -- Document existing key chains
@@ -265,6 +236,7 @@ local plugins = {
       end,
       formatters_by_ft = {
         lua = { "stylua" },
+        elixir = { "mix" },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
