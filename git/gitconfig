@@ -22,6 +22,7 @@
     re = reset HEAD
     s = stash
     st = status --short
+    stu = status -u
     undo = reset HEAD~1 --mixed
 
 [branch]
