@@ -2,8 +2,8 @@
 # Do not change
 
 [alias]
-    a = add
-    aa = add .
+    ad = add
+    ada = add .
     amend = commit --all --amend
     br = branch
     ci = commit
@@ -11,8 +11,7 @@
     cinvm = commit --no-verify --message
     co = checkout
     cob = checkout -b
-    d = diff
-    l = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate
+    di = diff
     ll = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate --numstat
     me = merge
     met = mergetool
@@ -20,7 +19,6 @@
     pu = push -u origin
     punv = push -u origin --no-verify
     re = reset HEAD
-    s = stash
     st = status --short
     stu = status -u
     undo = reset HEAD~1 --mixed
