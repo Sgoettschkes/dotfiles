@@ -12,7 +12,7 @@
     co = checkout
     cob = checkout -b
     di = diff
-    ll = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate --numstat
+    ll = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate
     me = merge
     met = mergetool
     pa = pull --all --prune --tags --verbose
