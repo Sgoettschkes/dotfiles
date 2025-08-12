@@ -39,7 +39,7 @@ return {
         })
       end,
     },
-    -- Mason and LSP configuration
+    -- Mason
     {
       "williamboman/mason.nvim",
       cmd = "Mason",
@@ -68,14 +68,18 @@ return {
       config = function()
         require("nvim-treesitter.configs").setup({
           ensure_installed = {
-            "lua",
-            "vim",
-            "vimdoc",
+            "bash",
             "elixir",
             "heex",
-            "bash",
+            "javascript",
+            "lua",
             "markdown",
             "markdown_inline",
+            "python",
+            "sql",
+            "vim",
+            "vimdoc",
+            "yaml",
           },
           auto_install = true,
           highlight = {
