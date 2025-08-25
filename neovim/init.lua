@@ -228,8 +228,10 @@ local plugins = {
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
+          -- Increase timeout for Elixir files as mix format can be slower
+          local timeout = vim.bo[bufnr].filetype == "elixir" and 2000 or 500
           return {
-            timeout_ms = 500,
+            timeout_ms = timeout,
             lsp_format = "fallback",
           }
         end
