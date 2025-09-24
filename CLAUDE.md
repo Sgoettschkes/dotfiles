@@ -87,3 +87,4 @@ Additional software can be installed via Homebrew as needed (e.g., Docker, Recta
 - This configuration is macOS-specific and tested only on macOS systems
 - Local/private configurations (SSH keys, tokens, etc.) should never be committed
 - The repository follows a "convention over configuration" approach for simplicity
+- **IGNORE the `/claude/` folder completely** - it contains Claude Code configuration files that should not be analyzed or modified

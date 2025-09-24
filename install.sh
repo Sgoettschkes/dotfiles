@@ -171,6 +171,11 @@ echo "Setting up asdf configuration..."
 create_symlink "$DOTFILES_DIR/asdf/tool-versions" "$HOME/.tool-versions"
 echo
 
+echo "Setting up Claude configuration..."
+mkdir -p "$HOME/.claude"
+create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+echo
+
 # Final instructions
 echo -e "${GREEN}✨ Dotfiles installation complete!${NC}"
 echo
