@@ -7,7 +7,7 @@ ZSH_THEME="spaceship"
 ZSH_CUSTOM=~/.dotfiles/zsh/oh-my-zsh-custom
 
 # Plugins
-plugins=(asdf brew docker docker-compose git iterm2 mix npm)
+plugins=(asdf brew docker docker-compose dotenv git iterm2 mix npm)
 
 source $ZSH/oh-my-zsh.sh
 
