@@ -22,6 +22,9 @@ asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git 2>/dev/null ||
 echo "Installing Elixir plugin..."
 asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git 2>/dev/null || echo "Elixir plugin already exists"
 
+echo "Installing Postgres plugin..."
+asdf plugin add postgres https://github.com/smashedtoatoms/asdf-postgres.git 2>/dev/null || echo "Postgres plugin already exists"
+
 echo "Installing Python plugin..."
 asdf plugin add python https://github.com/danhper/asdf-python.git 2>/dev/null || echo "Python plugin already exists"
 
@@ -51,7 +54,7 @@ while IFS= read -r line || [[ -n "$line" ]]; do
     version=$(echo "$line" | awk '{print $2}')
 
     echo "Installing $tool $version..."
-    if asdf install "$tool" "$version"; then
+    if env -u MAKELEVEL asdf install "$tool" "$version"; then
         echo "✓ Successfully installed $tool $version"
     else
         echo "✗ Failed to install $tool $version"

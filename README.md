@@ -32,6 +32,8 @@ To remove all symlinks: `make clean`
 
 Additional tools I install with homebrew:
 
+* claude
+* claude-code
 * docker
 * rectangle
 

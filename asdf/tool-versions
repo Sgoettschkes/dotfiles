@@ -1,5 +1,6 @@
 erlang 28.0.2
 elixir 1.18.4-otp-28
+postgres 18.4
 python 3.13.5
 poetry 1.6.1
 lua 5.1
