@@ -25,6 +25,7 @@ The installation script will automatically install:
 - Oh My Zsh
 - Neovim
 - ripgrep
+- tree-sitter CLI
 
 To remove all symlinks: `make clean`
 

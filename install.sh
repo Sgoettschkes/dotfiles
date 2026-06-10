@@ -133,6 +133,16 @@ else
 fi
 
 echo
+echo "Installing tree-sitter CLI..."
+if ! command_exists tree-sitter; then
+    echo -e "${YELLOW}Installing tree-sitter CLI via Homebrew...${NC}"
+    brew install tree-sitter-cli
+    echo -e "${GREEN}✓ tree-sitter CLI installed${NC}"
+else
+    echo -e "${GREEN}✓ tree-sitter CLI already installed${NC}"
+fi
+
+echo
 
 echo "Setting up SSH configuration..."
 mkdir -p ~/.ssh

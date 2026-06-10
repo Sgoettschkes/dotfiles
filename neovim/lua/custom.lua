@@ -64,31 +64,44 @@ return {
     },
     { -- Highlight, edit, and navigate code with Tree-sitter
       "nvim-treesitter/nvim-treesitter",
-      branch = "master",
+      lazy = false,
       build = ":TSUpdate",
       config = function()
-        require("nvim-treesitter.configs").setup({
-          ensure_installed = {
+        require("nvim-treesitter").install({
+          "bash",
+          "elixir",
+          "heex",
+          "javascript",
+          "lua",
+          "markdown",
+          "markdown_inline",
+          "python",
+          "sql",
+          "vim",
+          "vimdoc",
+          "yaml",
+        })
+
+        vim.api.nvim_create_autocmd("FileType", {
+          pattern = {
             "bash",
+            "sh",
             "elixir",
+            "eelixir",
             "heex",
             "javascript",
             "lua",
             "markdown",
-            "markdown_inline",
             "python",
             "sql",
             "vim",
-            "vimdoc",
+            "help",
             "yaml",
           },
-          auto_install = true,
-          highlight = {
-            enable = true,
-          },
-          indent = {
-            enable = true,
-          },
+          callback = function()
+            vim.treesitter.start()
+            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end,
         })
       end,
     },

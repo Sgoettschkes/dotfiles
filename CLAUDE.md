@@ -80,6 +80,7 @@ The installation script automatically installs:
 - Oh My Zsh
 - Neovim
 - ripgrep (for fast searching)
+- tree-sitter CLI (required by nvim-treesitter to compile parsers)
 
 Additional software can be installed via Homebrew as needed (e.g., Docker, Rectangle).
 
