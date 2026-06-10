@@ -64,35 +64,26 @@ else
 fi
 
 echo
-echo "Installing git..."
-if ! command_exists git; then
-    echo -e "${YELLOW}Installing git via Homebrew...${NC}"
-    brew install git
-    echo -e "${GREEN}✓ git installed${NC}"
-else
-    echo -e "${GREEN}✓ git already installed${NC}"
-fi
-
-echo
-echo "Installing asdf..."
-if ! command_exists asdf; then
-    echo -e "${YELLOW}Installing asdf via Homebrew...${NC}"
-    brew install asdf
-    echo -e "${GREEN}✓ asdf installed${NC}"
-else
-    echo -e "${GREEN}✓ asdf already installed${NC}"
-fi
+BREW_FORMULAE=(
+    git
+    asdf
+    neovim
+    ripgrep
+    tree-sitter-cli
+)
+for package in "${BREW_FORMULAE[@]}"; do
+    echo "Installing ${package}..."
+    brew install "${package}"
+done
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    echo
-    echo "Installing iTerm2..."
-    if ! ls /Applications/iTerm.app >/dev/null 2>&1; then
-        echo -e "${YELLOW}Installing iTerm2 via Homebrew...${NC}"
-        brew install --cask iterm2
-        echo -e "${GREEN}✓ iTerm2 installed${NC}"
-    else
-        echo -e "${GREEN}✓ iTerm2 already installed${NC}"
-    fi
+    BREW_CASKS=(
+        iterm2
+    )
+    for package in "${BREW_CASKS[@]}"; do
+        echo "Installing ${package}..."
+        brew install --cask "${package}"
+    done
 fi
 
 echo
@@ -113,37 +104,6 @@ echo -e "${GREEN}✓ Git submodules initialized${NC}"
 create_symlink "$DOTFILES_DIR/zsh/spaceshiprc.zsh" "$HOME/.spaceshiprc.zsh"
 
 echo
-echo "Installing neovim..."
-if ! command_exists nvim; then
-    echo -e "${YELLOW}Installing neovim via Homebrew...${NC}"
-    brew install neovim
-    echo -e "${GREEN}✓ neovim installed${NC}"
-else
-    echo -e "${GREEN}✓ neovim already installed${NC}"
-fi
-
-echo
-echo "Installing ripgrep..."
-if ! command_exists rg; then
-    echo -e "${YELLOW}Installing ripgrep via Homebrew...${NC}"
-    brew install ripgrep
-    echo -e "${GREEN}✓ ripgrep installed${NC}"
-else
-    echo -e "${GREEN}✓ ripgrep already installed${NC}"
-fi
-
-echo
-echo "Installing tree-sitter CLI..."
-if ! command_exists tree-sitter; then
-    echo -e "${YELLOW}Installing tree-sitter CLI via Homebrew...${NC}"
-    brew install tree-sitter-cli
-    echo -e "${GREEN}✓ tree-sitter CLI installed${NC}"
-else
-    echo -e "${GREEN}✓ tree-sitter CLI already installed${NC}"
-fi
-
-echo
-
 echo "Setting up SSH configuration..."
 mkdir -p ~/.ssh
 create_symlink "$DOTFILES_DIR/ssh/config" "$HOME/.ssh/config"
