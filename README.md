@@ -18,12 +18,12 @@ make install
 Or use the script directly: `./install.sh`
 
 The installation script will automatically install:
-- Homebrew
-- Git
 - asdf
+- Git
+- Homebrew
 - iTerm2 (macOS only)
-- Oh My Zsh
 - Neovim
+- Oh My Zsh
 - ripgrep
 - tree-sitter CLI
 
