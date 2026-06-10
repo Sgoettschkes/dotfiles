@@ -79,6 +79,12 @@ done
 if [[ "$OSTYPE" == "darwin"* ]]; then
     BREW_CASKS=(
         iterm2
+        claude-code
+        docker-desktop
+        rectangle
+        font-fira-code-nerd-font
+        font-jetbrains-mono-nerd-font
+        font-sauce-code-pro-nerd-font
     )
     for package in "${BREW_CASKS[@]}"; do
         echo "Installing ${package}..."

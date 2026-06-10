@@ -31,14 +31,15 @@ To remove all symlinks: `make clean`
 
 ## Additional Software
 
-Additional tools I install with homebrew:
+Also installed automatically via Homebrew (macOS only):
 
-* claude
 * claude-code
-* docker
+* docker (Docker Desktop)
 * rectangle
 
 ## Fonts
+
+Also installed automatically via Homebrew (macOS only):
 
 * [FiraCode Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FiraCode.zip)
 * [JetBrainsMono Nerd Font](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip)
