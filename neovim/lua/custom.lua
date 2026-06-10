@@ -64,6 +64,7 @@ return {
     },
     { -- Highlight, edit, and navigate code with Tree-sitter
       "nvim-treesitter/nvim-treesitter",
+      branch = "master",
       build = ":TSUpdate",
       config = function()
         require("nvim-treesitter.configs").setup({
