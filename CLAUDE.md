@@ -7,13 +7,18 @@ My personal and professional dotfiles repository to sync configuration across al
 This repository manages my development environment configuration through symlinks, ensuring consistency across multiple macOS systems while maintaining a single source of truth for all configurations.
 
 ## Software Managed
-- **Homebrew**: Package manager for macOS software installation
-- **Git**: Version control and collaboration
 - **asdf**: Version manager for programming languages and tools (Node.js, Python, Ruby, etc.)
+- **Claude Code**: Anthropic CLI for AI-assisted coding
+- **Docker Desktop**: Container runtime
+- **Git**: Version control and collaboration
+- **Homebrew**: Package manager for macOS software installation
 - **iTerm2**: Terminal emulator of choice
-- **Zsh + Oh-My-Zsh + Spaceship**: Shell environment with custom prompt and plugins
 - **Neovim**: Modern text editor with Lua configuration
+- **Nerd Fonts**: FiraCode, JetBrainsMono, SauceCodePro
 - **Rectangle**: Window management utility
+- **ripgrep**: Fast recursive search tool
+- **tree-sitter CLI**: Parser builder required by nvim-treesitter
+- **Zsh + Oh-My-Zsh + Spaceship**: Shell environment with custom prompt and plugins
 
 ## Conventions
 - **Opinionated**: This is my personal dotfiles repository with specific workflow preferences
@@ -36,6 +41,7 @@ make install
 1. Install asdf plugins and tools: `make asdf`
 2. Import Rectangle settings from `rectangle/` folder manually
 3. Configure local SSH settings in `~/.ssh/config.local` (not tracked in Git)
+4. Select a Nerd Font in iTerm2 (Preferences → Profiles → Text)
 
 ### Maintenance Commands
 - `make install` - Run installation/update of dotfiles
@@ -48,7 +54,9 @@ make install
 - `/asdf/` - asdf configuration and setup scripts
   - `setup.sh` - Script to install all asdf plugins
   - `cleanup.sh` - Script to remove unused plugin versions
-  - `.tool-versions` - Global tool versions configuration
+  - `tool-versions` - Global tool versions configuration (symlinked to `~/.tool-versions`)
+- `/claude/` - Global Claude Code configuration
+  - `CLAUDE.md` - Global instructions (symlinked to `~/.claude/CLAUDE.md`)
 - `/git/` - Git configurations for different contexts
   - Includes organization-specific gitconfig files
 - `/neovim/` - Neovim configuration using Lua
@@ -59,9 +67,10 @@ make install
   - Supports local overrides via `~/.ssh/config.local`
 - `/wallpapers/` - Desktop wallpaper images (optional)
 - `/zsh/` - Zsh shell configuration
-  - `.zshrc` - Main configuration file
-  - Custom functions and aliases
-  - Spaceship prompt customizations
+  - `zshrc` - Main configuration file (symlinked to `~/.zshrc`)
+  - `zprofile` - Login shell profile (symlinked to `~/.zprofile`)
+  - `spaceshiprc.zsh` - Spaceship prompt customizations
+  - `oh-my-zsh-custom/` - Oh My Zsh custom directory (git submodule providing the Spaceship theme)
 
 ## Important Files
 - `install.sh` - Main installation script that sets up all symlinks and dependencies
@@ -73,19 +82,23 @@ make install
 
 ## Dependencies
 The installation script automatically installs:
-- Homebrew (if not present)
-- Git
 - asdf version manager
+- Claude Code
+- Docker Desktop
+- FiraCode Nerd Font
+- Git
+- Homebrew (if not present)
 - iTerm2
-- Oh My Zsh
+- JetBrainsMono Nerd Font
 - Neovim
+- Oh My Zsh
+- Rectangle
 - ripgrep (for fast searching)
+- SauceCodePro Nerd Font
 - tree-sitter CLI (required by nvim-treesitter to compile parsers)
-
-Additional software can be installed via Homebrew as needed (e.g., Docker, Rectangle).
 
 ## Notes
 - This configuration is macOS-specific and tested only on macOS systems
 - Local/private configurations (SSH keys, tokens, etc.) should never be committed
 - The repository follows a "convention over configuration" approach for simplicity
-- **IGNORE the `/claude/` folder completely** - it contains Claude Code configuration files that should not be analyzed or modified
+- The `/claude/` folder holds the global Claude Code instructions that get symlinked into `~/.claude/`. Treat them as configuration, not as code to analyze or refactor as part of repo work.
