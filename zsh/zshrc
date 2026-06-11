@@ -45,3 +45,7 @@ fi
 
 # Shopify Hydrogen alias to local projects
 alias h2='$(yarn prefix -s)/node_modules/.bin/shopify hydrogen'
+
+# Postgres (via asdf)
+alias pgstart='pg_ctl start -l "$(asdf where postgres)/data/server.log"'
+alias pgstop='pg_ctl stop'
