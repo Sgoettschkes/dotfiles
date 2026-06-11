@@ -15,8 +15,10 @@ This repository manages my development environment configuration through symlink
 - **iTerm2**: Terminal emulator of choice
 - **Neovim**: Modern text editor with Lua configuration
 - **Nerd Fonts**: FiraCode, JetBrainsMono, SauceCodePro
+- **Obsidian**: Note-taking app
 - **Rectangle**: Window management utility
 - **ripgrep**: Fast recursive search tool
+- **Spotify**: Music streaming client
 - **tree-sitter CLI**: Parser builder required by nvim-treesitter
 - **Zsh + Oh-My-Zsh + Spaceship**: Shell environment with custom prompt and plugins
 
@@ -91,10 +93,12 @@ The installation script automatically installs:
 - iTerm2
 - JetBrainsMono Nerd Font
 - Neovim
+- Obsidian
 - Oh My Zsh
 - Rectangle
 - ripgrep (for fast searching)
 - SauceCodePro Nerd Font
+- Spotify
 - tree-sitter CLI (required by nvim-treesitter to compile parsers)
 
 ## Notes

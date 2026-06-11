@@ -35,7 +35,9 @@ Also installed automatically via Homebrew (macOS only):
 
 * claude-code
 * docker (Docker Desktop)
+* obsidian
 * rectangle
+* spotify
 
 ## Fonts
 
