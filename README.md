@@ -33,6 +33,7 @@ To remove all symlinks: `make clean`
 
 Also installed automatically via Homebrew (macOS only):
 
+* 1Password CLI (`op`)
 * claude-code
 * docker (Docker Desktop)
 * obsidian
@@ -58,6 +59,16 @@ The installation script sets up symlinks for SSH, Zsh, Git, and asdf configurati
 ### Local SSH configuration
 
 You can put local ssh config (which should not be in git) in `~/.ssh/config.local`.
+
+### Claude Code MCP servers
+
+Register per machine with `make mcp`. Secrets are read from the `Private` 1Password vault via `op read`. Enable the 1Password app → Settings → Developer → **Integrate with 1Password CLI**, then `op whoami` to verify.
+
+Each MCP is a `register` call in `claude/setup.sh`. Currently configured:
+
+* **GitHub** — reads `Private / GitHub / mcp`
+
+Re-run `make mcp` after editing the script, rotating a token, or pulling new MCPs. Verify with `/mcp` in Claude Code.
 
 ### asdf
 

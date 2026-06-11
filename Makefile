@@ -1,7 +1,7 @@
 # Makefile for dotfiles management
 # Run 'make help' for usage information
 
-.PHONY: help install clean asdf asdf-clean
+.PHONY: help install clean asdf asdf-clean mcp
 
 # Default target
 .DEFAULT_GOAL := help
@@ -34,3 +34,7 @@ asdf: ## Setup asdf plugins and tools
 asdf-clean: ## Remove all unused asdf plugin installations
 	@echo "$(YELLOW)Cleaning up asdf installations...$(NC)"
 	@./asdf/cleanup.sh
+
+mcp: ## Register Claude Code MCP servers (requires 1Password CLI signed in)
+	@echo "$(YELLOW)Registering Claude Code MCP servers...$(NC)"
+	@./claude/setup.sh
