@@ -89,11 +89,8 @@
     email = sebastian.goettschkes@googlemail.com
     name = Sebastian Göttschkes
 
+[includeIf "gitdir:~/workspace/accessowl/"]
+    path = ~/.gitconfig_accessowl
+
 [includeIf "gitdir:~/workspace/agileaddicts/"]
     path = ~/.gitconfig_agileaddicts
-
-[includeIf "gitdir:~/workspace/workera/"]
-    path = ~/.gitconfig_workera
-
-[includeIf "gitdir:~/workspace/mateogrando/"]
-    path = ~/.gitconfig_mateogrando
