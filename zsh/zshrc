@@ -49,3 +49,10 @@ alias h2='$(yarn prefix -s)/node_modules/.bin/shopify hydrogen'
 # Postgres (via asdf)
 alias pgstart='pg_ctl start -l "$(asdf where postgres)/data/server.log"'
 alias pgstop='pg_ctl stop'
+pgstatus() {
+    local pg_path
+    pg_path=$(asdf where postgres) || return 1
+    echo "Version: $(basename "$pg_path")"
+    echo "Logfile: $pg_path/data/server.log"
+    pg_ctl status
+}
