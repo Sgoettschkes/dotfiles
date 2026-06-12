@@ -50,6 +50,7 @@ echo
 echo "Cleaning Zsh configuration..."
 remove_symlink "$HOME/.zprofile" ".zprofile"
 remove_symlink "$HOME/.zshrc" ".zshrc"
+remove_symlink "$HOME/.spaceshiprc.zsh" ".spaceshiprc.zsh"
 echo
 
 # Git configuration
@@ -65,13 +66,20 @@ remove_symlink "$HOME/.gitignore" ".gitignore"
 remove_symlink "$HOME/.config/git/attributes" "git attributes"
 echo
 
+# Neovim configuration
+echo "Cleaning Neovim configuration..."
+remove_symlink "$HOME/.config/nvim/init.lua" "nvim init.lua"
+remove_symlink "$HOME/.config/nvim/lua" "nvim lua/"
+echo
+
 # asdf configuration
 echo "Cleaning asdf configuration..."
 remove_symlink "$HOME/.tool-versions" ".tool-versions"
 echo
 
-# Claude skills
-echo "Cleaning Claude skills..."
+# Claude configuration
+echo "Cleaning Claude configuration..."
+remove_symlink "$HOME/.claude/CLAUDE.md" "Claude CLAUDE.md"
 remove_symlink "$HOME/.claude/skills/daily-log" "daily-log skill"
 echo
 
