@@ -70,6 +70,11 @@ echo "Cleaning asdf configuration..."
 remove_symlink "$HOME/.tool-versions" ".tool-versions"
 echo
 
+# Claude skills
+echo "Cleaning Claude skills..."
+remove_symlink "$HOME/.claude/skills/daily-log" "daily-log skill"
+echo
+
 echo -e "${GREEN}✨ Cleanup complete!${NC}"
 echo
 echo "Your dotfiles repository at ~/.dotfiles is still intact."

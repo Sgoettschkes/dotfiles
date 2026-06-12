@@ -6,3 +6,6 @@
 
 ## General
 - If clarifying questions are needed, ask them
+
+## Daily Log
+- After completing a substantial task (a feature, a non-trivial bug fix, a meaningful piece of work), ask the user whether to log it via the `daily-log` skill.
