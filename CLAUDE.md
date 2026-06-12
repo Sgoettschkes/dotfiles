@@ -20,6 +20,7 @@ This repository manages my development environment configuration through symlink
 - **ripgrep**: Fast recursive search tool
 - **Spotify**: Music streaming client
 - **tree-sitter CLI**: Parser builder required by nvim-treesitter
+- **uv**: Python package runner (used to launch the Docker MCP server via `uvx`)
 - **Zsh + Oh-My-Zsh + Spaceship**: Shell environment with custom prompt and plugins
 
 ## Conventions
@@ -100,6 +101,7 @@ The installation script automatically installs:
 - SauceCodePro Nerd Font
 - Spotify
 - tree-sitter CLI (required by nvim-treesitter to compile parsers)
+- uv (Python package runner for `uvx`)
 
 ## Notes
 - This configuration is macOS-specific and tested only on macOS systems

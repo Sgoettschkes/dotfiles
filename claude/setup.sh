@@ -42,6 +42,8 @@ register github \
     --env "GITHUB_PERSONAL_ACCESS_TOKEN=$(op read 'op://Private/GitHub/mcp')" \
     -- docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server
 
+register docker -- uvx mcp-server-docker
+
 echo ""
 echo -e "${GREEN}MCP setup complete.${NC}"
 echo -e "${YELLOW}Restart Claude Code for the MCP servers to take effect.${NC}"

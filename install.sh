@@ -70,6 +70,7 @@ BREW_FORMULAE=(
     neovim
     ripgrep
     tree-sitter-cli
+    uv
 )
 for package in "${BREW_FORMULAE[@]}"; do
     echo "Installing ${package}..."
