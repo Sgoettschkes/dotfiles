@@ -86,6 +86,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         font-jetbrains-mono-nerd-font
         font-sauce-code-pro-nerd-font
         iterm2
+        ngrok/ngrok/ngrok
         obsidian
         rectangle
         spotify

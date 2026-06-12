@@ -15,6 +15,7 @@ This repository manages my development environment configuration through symlink
 - **iTerm2**: Terminal emulator of choice
 - **Neovim**: Modern text editor with Lua configuration
 - **Nerd Fonts**: FiraCode, JetBrainsMono, SauceCodePro
+- **ngrok**: Secure tunnels to localhost
 - **Obsidian**: Note-taking app
 - **Rectangle**: Window management utility
 - **ripgrep**: Fast recursive search tool
@@ -94,6 +95,7 @@ The installation script automatically installs:
 - iTerm2
 - JetBrainsMono Nerd Font
 - Neovim
+- ngrok
 - Obsidian
 - Oh My Zsh
 - Rectangle
