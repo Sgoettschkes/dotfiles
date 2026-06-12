@@ -20,16 +20,28 @@ if ! op whoami &> /dev/null; then
     eval "$(op signin)"
 fi
 
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
 register() {
     local name=$1
     shift
-    echo "Registering MCP: $name"
-    claude mcp remove "$name" -s user 2>/dev/null || true
-    claude mcp add "$name" -s user "$@"
+    printf "  %s ... " "$name"
+    claude mcp remove "$name" -s user &> /dev/null || true
+    if claude mcp add "$name" -s user "$@" &> /dev/null; then
+        printf "${GREEN}registered${NC}\n"
+    else
+        printf "${RED}failed${NC}\n"
+        return 1
+    fi
 }
 
 register github \
     --env "GITHUB_PERSONAL_ACCESS_TOKEN=$(op read 'op://Private/GitHub/mcp')" \
-    -- npx -y @modelcontextprotocol/server-github
+    -- docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server
 
-echo "MCP setup complete."
+echo ""
+echo -e "${GREEN}MCP setup complete.${NC}"
+echo -e "${YELLOW}Restart Claude Code for the MCP servers to take effect.${NC}"
