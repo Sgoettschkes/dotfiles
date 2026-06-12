@@ -34,6 +34,9 @@ asdf plugin add poetry https://github.com/asdf-community/asdf-poetry.git 2>/dev/
 echo "Installing Lua plugin..."
 asdf plugin add lua https://github.com/Stratus3D/asdf-lua.git 2>/dev/null || echo "Lua plugin already exists"
 
+echo "Installing Node.js plugin..."
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git 2>/dev/null || echo "Node.js plugin already exists"
+
 echo "All plugins installed successfully!"
 
 # Set Erlang build options for better compatibility

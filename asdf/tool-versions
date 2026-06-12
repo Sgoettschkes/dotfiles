@@ -4,3 +4,4 @@ postgres 18.4
 python 3.13.5
 poetry 1.6.1
 lua 5.1
+nodejs 26.3.0
