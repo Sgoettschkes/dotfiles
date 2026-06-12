@@ -64,13 +64,29 @@ Steps:
    - Bullets: `•` at line start
    - Bold: `*bold*`
 
+   Structure:
+   - Line 1: `Good night.` (always — exact text).
+   - Line 2 (blank).
+   - Line 3: a **unique one-line summary** of the day, written fresh each time — not a paraphrase of the bullets. Captures the theme/mood (e.g. "Mostly setup + small process wins."). Avoid templated phrasing.
+   - Line 4 (blank).
+   - Bullets: today's log entries, one per line, prefixed with `•`.
+
+   Filter the bullets for colleague-readability:
+   - **Exclude private items.** Skip anything that's clearly for the user only (personal notes, internal thoughts, friction logs, items pointing at private pages they wouldn't want shared).
+   - **Strip links to private Notion pages** (anything under the user's `Scratchpad`, personal `Welcome …` onboarding page, `Daily Log`, etc.). If a bullet's only link is private, drop the link and keep the prose; if the bullet itself is private, drop the bullet entirely.
+   - Public-safe links stay: shared team pages (Architecture, Database Overview, anything under Product Engineering), GitHub PRs, Linear tickets, Slack threads.
+   - When unsure, ask the user before posting.
+
    Example:
    ```
-   Heute:
+   Good night.
+
+   Mostly setup + small process wins — feels like the workflow is starting to click.
+
    • Migrated the X service to Y (<https://github.com/...|PR #123>)
    • Investigated the flaky test in Z
    ```
-4. Show the draft to the user. **Always** wait for explicit confirmation before posting — Slack messages are visible to colleagues.
+4. Show the draft to the user. **Always** wait for explicit confirmation before posting — Slack messages are visible to colleagues. If the user requests changes, redraft, show again, and wait for another explicit OK.
 5. Resolve the `#check-in-out` channel ID via `slack_search_channels` if not already known.
 6. Post via `mcp__claude_ai_Slack__slack_send_message`.
 7. Confirm with the message URL or timestamp returned by Slack.
