@@ -44,6 +44,8 @@ register github \
 
 register docker -- uvx mcp-server-docker
 
+register nirvana --transport http https://mcp.nirvanahq.com/mcp
+
 echo ""
 echo -e "${GREEN}MCP setup complete.${NC}"
 echo -e "${YELLOW}Restart Claude Code for the MCP servers to take effect.${NC}"
