@@ -10,20 +10,23 @@ if ! command -v claude &> /dev/null; then
     exit 1
 fi
 
-if ! command -v op &> /dev/null; then
-    echo "Error: 1Password CLI (op) is not installed. Run 'make install' first."
-    exit 1
-fi
-
-if ! op whoami &> /dev/null; then
-    echo "Signing in to 1Password..."
-    eval "$(op signin)"
-fi
-
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
+
+# 1Password signin is deferred until an op-using MCP actually needs to register.
+# This keeps steady-state runs free of macOS TCC prompts triggered by op<->1Password XPC.
+ensure_op_signed_in() {
+    if ! command -v op &> /dev/null; then
+        echo "Error: 1Password CLI (op) is not installed. Run 'make install' first."
+        exit 1
+    fi
+    if ! op whoami &> /dev/null; then
+        echo "Signing in to 1Password..."
+        eval "$(op signin)"
+    fi
+}
 
 register() {
     local name=$1
@@ -41,9 +44,14 @@ register() {
     fi
 }
 
-register github \
-    --env "GITHUB_PERSONAL_ACCESS_TOKEN=$(op read 'op://Private/GitHub/mcp')" \
-    -- docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server
+if claude mcp get github &> /dev/null; then
+    printf "  github ... ${GREEN}kept (already registered)${NC}\n"
+else
+    ensure_op_signed_in
+    register github \
+        --env "GITHUB_PERSONAL_ACCESS_TOKEN=$(op read 'op://Private/GitHub/mcp')" \
+        -- docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server
+fi
 
 register docker -- uvx mcp-server-docker
 
