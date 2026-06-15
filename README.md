@@ -68,6 +68,9 @@ Register per machine with `make mcp`. Secrets are read from the `Private` 1Passw
 Each MCP is a `register` call in `claude/setup.sh`. Currently configured:
 
 * **GitHub** — reads `Private / GitHub / mcp`
+* **Docker** — `uvx mcp-server-docker`
+* **Nirvana** — HTTP transport at `mcp.nirvanahq.com`
+* **Obsidian** — `mcpvault` against the `~/Documents/Second Brain` vault
 
 Re-run `make mcp` after editing the script, rotating a token, or pulling new MCPs. Verify with `/mcp` in Claude Code.
 
