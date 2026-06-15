@@ -156,7 +156,7 @@ echo "Setting up Claude configuration..."
 mkdir -p "$HOME/.claude"
 create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 mkdir -p "$HOME/.claude/skills"
-create_symlink "$DOTFILES_DIR/claude/skills/daily-log" "$HOME/.claude/skills/daily-log"
+create_symlink "$DOTFILES_DIR/claude/skills/daily-notion-log" "$HOME/.claude/skills/daily-notion-log"
 echo
 
 # Final instructions

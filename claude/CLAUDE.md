@@ -8,4 +8,4 @@
 - If clarifying questions are needed, ask them
 
 ## Daily Log
-- After completing a substantial task (a feature, a non-trivial bug fix, a meaningful piece of work), ask the user whether to log it via the `daily-log` skill.
+- After completing a substantial **work** task at the user's job (a feature, a non-trivial bug fix, a meaningful piece of work in an AccessOwl context — repo, Linear ticket, internal Notion/Slack), ask whether to log it via the `daily-notion-log` skill. Do NOT offer for personal projects, dotfiles changes, or other non-work contexts.

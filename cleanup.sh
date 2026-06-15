@@ -80,7 +80,7 @@ echo
 # Claude configuration
 echo "Cleaning Claude configuration..."
 remove_symlink "$HOME/.claude/CLAUDE.md" "Claude CLAUDE.md"
-remove_symlink "$HOME/.claude/skills/daily-log" "daily-log skill"
+remove_symlink "$HOME/.claude/skills/daily-notion-log" "daily-notion-log skill"
 echo
 
 echo -e "${GREEN}✨ Cleanup complete!${NC}"

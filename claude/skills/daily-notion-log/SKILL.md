@@ -1,11 +1,20 @@
 ---
-name: daily-log
-description: Maintain a running "Daily Log" Notion page in the user's personal area, and post an end-of-day summary to Slack channel #check-in-out in the AccessOwl workspace. Use when the user asks to log a completed task ("log this", "log to daily log"), or to wrap up the day with a Slack summary ("end of day", "wrap up", "post to slack"). Also offer proactively after the user finishes a substantial task — ask whether to log it.
+name: daily-notion-log
+description: Maintain a running "Daily Log" Notion page in the user's personal area, and post an end-of-day summary to Slack channel #check-in-out in the AccessOwl workspace. This is a WORK log — use ONLY for tasks tied to the user's job at AccessOwl. Use when the user asks to log a completed work task ("log this", "log to daily log"), or to wrap up the workday with a Slack summary ("end of day", "wrap up", "post to slack"). Also offer proactively after the user finishes a substantial work task — ask whether to log it. Do NOT use for personal projects, dotfiles changes, side projects, or anything outside the user's job.
 ---
 
-# Daily Log
+# Daily Notion Log
 
-Maintains a daily work log on Notion and posts an end-of-day summary to Slack.
+Maintains a daily **work** log on Notion and posts an end-of-day summary to Slack.
+
+## Scope: work only
+
+This log is exclusively for the user's job at AccessOwl. Do not use it for:
+- Personal projects (dotfiles, side projects, hobby code)
+- Personal tasks (errands, life admin, notes)
+- Anything not tied to the user's paid work
+
+When offering proactively, only do so if the completed task is clearly job-related (e.g., changes in an AccessOwl repo, a Linear ticket, an AccessOwl Notion/Slack thread). Skip the offer for work in this `.dotfiles` repo or other personal contexts. If you're unsure whether a task qualifies as work, ask before logging.
 
 ## Configuration
 
