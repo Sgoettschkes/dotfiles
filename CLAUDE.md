@@ -7,21 +7,13 @@ My personal and professional dotfiles repository to sync configuration across al
 This repository manages my development environment configuration through symlinks, ensuring consistency across multiple macOS systems while maintaining a single source of truth for all configurations.
 
 ## Software Managed
+
+See `README.md` for the full software inventory; `install.sh` is the canonical list. The items below are the ones that shape how I work in this repo:
+
 - **1Password CLI (`op`)**: Used by `make mcp` to read MCP secrets from the `Private` vault
 - **asdf**: Version manager for programming languages and tools (Node.js, Python, Ruby, etc.)
 - **Claude Code**: Anthropic CLI for AI-assisted coding
-- **Docker Desktop**: Container runtime
-- **Git**: Version control and collaboration
-- **Homebrew**: Package manager for macOS software installation
-- **iTerm2**: Terminal emulator of choice
 - **Neovim**: Modern text editor with Lua configuration
-- **Nerd Fonts**: FiraCode, JetBrainsMono, SauceCodePro
-- **ngrok**: Secure tunnels to localhost
-- **Obsidian**: Note-taking app
-- **Rectangle**: Window management utility
-- **ripgrep**: Fast recursive search tool
-- **Spotify**: Music streaming client
-- **tree-sitter CLI**: Parser builder required by nvim-treesitter
 - **uv**: Python package runner (used to launch the Docker MCP server via `uvx`)
 - **Zsh + Oh-My-Zsh + Spaceship**: Shell environment with custom prompt and plugins
 
@@ -88,28 +80,6 @@ make install
 - `README.md` - Public documentation for the repository
 - `.editorconfig` - Editor configuration for consistent coding style
 - `.gitmodules` - Git submodule definitions (if any)
-
-## Dependencies
-The installation script automatically installs:
-- 1Password CLI (`op`, for `make mcp`)
-- asdf version manager
-- Claude Code
-- Docker Desktop
-- FiraCode Nerd Font
-- Git
-- Homebrew (if not present)
-- iTerm2
-- JetBrainsMono Nerd Font
-- Neovim
-- ngrok
-- Obsidian
-- Oh My Zsh
-- Rectangle
-- ripgrep (for fast searching)
-- SauceCodePro Nerd Font
-- Spotify
-- tree-sitter CLI (required by nvim-treesitter to compile parsers)
-- uv (Python package runner for `uvx`)
 
 ## Notes
 - This configuration is macOS-specific and tested only on macOS systems
