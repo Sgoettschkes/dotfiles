@@ -46,6 +46,8 @@ register docker -- uvx mcp-server-docker
 
 register nirvana --transport http https://mcp.nirvanahq.com/mcp
 
+register obsidian -- npx @bitbonsai/mcpvault@latest "$HOME/Documents/Second Brain"
+
 echo ""
 echo -e "${GREEN}MCP setup complete.${NC}"
 echo -e "${YELLOW}Restart Claude Code for the MCP servers to take effect.${NC}"
