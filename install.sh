@@ -163,7 +163,10 @@ echo
 echo -e "${GREEN}✨ Dotfiles installation complete!${NC}"
 echo
 echo "Next steps:"
-echo "2. Install asdf plugins by running: make asdf"
-echo "3. Import Rectangle settings from: $DOTFILES_DIR/rectangle/config.json"
+echo "1. Install asdf plugins by running: make asdf"
+echo "2. Import Rectangle settings from: $DOTFILES_DIR/rectangle/config.json"
+echo "3. Configure local SSH overrides in: ~/.ssh/config.local (not tracked in Git)"
+echo "4. Select a Nerd Font in iTerm2 (Preferences → Profiles → Text)"
+echo "5. Register Claude Code MCP servers: make mcp (requires 1Password CLI signed in)"
 echo
 echo -e "${YELLOW}Note: If any existing files were backed up, they have .backup extension${NC}"

@@ -47,6 +47,7 @@ make install
 2. Import Rectangle settings from `rectangle/` folder manually
 3. Configure local SSH settings in `~/.ssh/config.local` (not tracked in Git)
 4. Select a Nerd Font in iTerm2 (Preferences → Profiles → Text)
+5. Register Claude Code MCP servers: `make mcp` (requires 1Password CLI signed in)
 
 ### Maintenance Commands
 - `make install` - Run installation/update of dotfiles
