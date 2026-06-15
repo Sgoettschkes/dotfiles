@@ -74,7 +74,7 @@ Each MCP is a `register` call in `claude/setup.sh`. Currently configured:
 * **Obsidian** — `mcpvault` against the `~/Documents/Second Brain` vault
 * **Chrome DevTools** — `chrome-devtools-mcp` for browser automation (requires Chrome installed separately)
 
-Re-run `make mcp` after editing the script, rotating a token, or pulling new MCPs. Verify with `/mcp` in Claude Code.
+`make mcp` skips MCPs that are already registered (so HTTP/OAuth servers like Nirvana don't re-auth on every run). To force a re-register after editing the config or rotating a token: `claude mcp remove <name> -s user && make mcp`. Verify with `/mcp` in Claude Code.
 
 ### asdf
 

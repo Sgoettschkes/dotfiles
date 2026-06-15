@@ -29,7 +29,10 @@ register() {
     local name=$1
     shift
     printf "  %s ... " "$name"
-    claude mcp remove "$name" -s user &> /dev/null || true
+    if claude mcp get "$name" &> /dev/null; then
+        printf "${GREEN}kept (already registered)${NC}\n"
+        return 0
+    fi
     if claude mcp add "$name" -s user "$@" &> /dev/null; then
         printf "${GREEN}registered${NC}\n"
     else
@@ -53,3 +56,5 @@ register chrome-devtools -- npx chrome-devtools-mcp@latest
 echo ""
 echo -e "${GREEN}MCP setup complete.${NC}"
 echo -e "${YELLOW}Restart Claude Code for the MCP servers to take effect.${NC}"
+echo -e "${YELLOW}To force a re-register (after editing config or rotating secrets):${NC}"
+echo -e "${YELLOW}  claude mcp remove <name> -s user && make mcp${NC}"
