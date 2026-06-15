@@ -81,6 +81,7 @@ echo
 echo "Cleaning Claude configuration..."
 remove_symlink "$HOME/.claude/CLAUDE.md" "Claude CLAUDE.md"
 remove_symlink "$HOME/.claude/skills/daily-notion-log" "daily-notion-log skill"
+remove_symlink "$HOME/.claude/skills/daily-obsidian-log" "daily-obsidian-log skill"
 echo
 
 echo -e "${GREEN}✨ Cleanup complete!${NC}"
