@@ -26,6 +26,7 @@ The installation script will automatically install:
 - Oh My Zsh
 - ripgrep
 - tree-sitter CLI
+- uv (Python package runner for `uvx`)
 
 To remove all symlinks: `make clean`
 

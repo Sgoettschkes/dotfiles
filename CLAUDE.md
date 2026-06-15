@@ -7,6 +7,7 @@ My personal and professional dotfiles repository to sync configuration across al
 This repository manages my development environment configuration through symlinks, ensuring consistency across multiple macOS systems while maintaining a single source of truth for all configurations.
 
 ## Software Managed
+- **1Password CLI (`op`)**: Used by `make mcp` to read MCP secrets from the `Private` vault
 - **asdf**: Version manager for programming languages and tools (Node.js, Python, Ruby, etc.)
 - **Claude Code**: Anthropic CLI for AI-assisted coding
 - **Docker Desktop**: Container runtime
@@ -52,6 +53,7 @@ make install
 - `make clean` - Remove all symlinks
 - `make asdf` - Setup asdf plugins and tools
 - `make asdf-clean` - Remove unused asdf installations
+- `make mcp` - Register Claude Code MCP servers (requires 1Password CLI signed in)
 - `make help` - Show all available commands
 
 ## Folder Structure
@@ -61,6 +63,8 @@ make install
   - `tool-versions` - Global tool versions configuration (symlinked to `~/.tool-versions`)
 - `/claude/` - Global Claude Code configuration
   - `CLAUDE.md` - Global instructions (symlinked to `~/.claude/CLAUDE.md`)
+  - `setup.sh` - Registers MCP servers with `claude mcp add` (run via `make mcp`)
+  - `skills/` - Custom skills symlinked into `~/.claude/skills/` (e.g. `daily-log`)
 - `/git/` - Git configurations for different contexts
   - Includes organization-specific gitconfig files
 - `/neovim/` - Neovim configuration using Lua
@@ -86,6 +90,7 @@ make install
 
 ## Dependencies
 The installation script automatically installs:
+- 1Password CLI (`op`, for `make mcp`)
 - asdf version manager
 - Claude Code
 - Docker Desktop
