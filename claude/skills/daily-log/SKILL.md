@@ -49,7 +49,11 @@ Entry shape in Notion:
 ## 12.06.2026
 - Migrated the X service to Y. [PR #123](https://github.com/...) [Ticket](https://notion.so/...)
 - Investigated the flaky test in Z.
+## 13.06.2026
+- Reviewed PR feedback and shipped follow-ups.
 ```
+
+Do **not** leave a blank line between the last bullet of one day and the next day's `## DD.MM.YYYY` heading — the new heading must follow the previous day's final bullet directly.
 
 ## Mode 2: End-of-day Slack post
 
