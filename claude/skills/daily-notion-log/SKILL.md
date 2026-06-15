@@ -47,10 +47,17 @@ Steps:
    - Ask the user whether anything else should be linked.
 4. Resolve the Daily Log page ID via `notion-search` if not already known.
 5. `notion-fetch` the page and check whether a heading `## DD.MM.YYYY` for today already exists.
-6. Append the entry:
+6. **Preview the change as a fenced ` ```diff ` block in chat** before calling `notion-update-page`. Notion MCP edits don't trigger Claude Code's built-in diff renderer, so the user has no visual confirmation otherwise. Show one or two lines of unchanged context (leading space) plus the added bullet (leading `+`). Wait for explicit approval before continuing. Example:
+
+   ```diff
+      ## 15.06.2026
+      - Earlier bullet for today …
+   +  - New bullet being added.
+   ```
+7. Append the entry:
    - Heading exists → `notion-update-page` with `update_content`, adding a new bullet under that heading.
    - Heading missing → `notion-update-page` with `insert_content` (position end), appending the new heading followed by the bullet.
-7. Confirm to the user: `Logged: {summary}`.
+8. Confirm to the user: `Logged: {summary}`.
 
 Entry shape in Notion:
 

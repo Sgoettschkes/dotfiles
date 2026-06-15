@@ -15,9 +15,10 @@ For work tasks, the [[daily-notion-log]] skill mirrors the entry to Notion + pos
 
 ## Configuration
 
-- **File path** (in Obsidian vault): `0 - Inbox/Daily Log.md`
+- **Vault path** (on disk): `~/Documents/Second Brain`
+- **Daily Log file** (absolute): `~/Documents/Second Brain/0 - Inbox/Daily Log.md`
 - **Date format**: German numeric `DD.MM.YYYY` (e.g. `15.06.2026`)
-- **Tools**: Obsidian MCP — `mcp__obsidian__read_note` and `mcp__obsidian__write_note`
+- **Tools**: Direct file access — `Read` and `Edit`. The vault is a local directory, so editing the markdown file directly is simpler and more reliable than routing through the Obsidian MCP server.
 
 Today's date comes from the conversation environment's `currentDate` value, formatted as `DD.MM.YYYY`.
 
@@ -28,11 +29,11 @@ Triggers: "log this", "add to daily log", "log to obsidian", "I'm done with X", 
 1. Confirm the task is actually done.
 2. Draft a **short bullet** (a few words) summarizing what was completed. Show it to the user for approval; use their edit verbatim if they tweak it.
 3. Include relevant links inline using markdown link syntax `[label](url)`: GitHub PRs, Notion pages, Linear tickets, Slack threads, etc. Ask the user whether anything else should be linked.
-4. `mcp__obsidian__read_note` the Daily Log file at `0 - Inbox/Daily Log.md` to get current content and frontmatter.
+4. `Read` the Daily Log file at `~/Documents/Second Brain/0 - Inbox/Daily Log.md` to see current content (frontmatter and existing day sections).
 5. Check whether a heading `## DD.MM.YYYY` for today already exists in the content:
-   - **Exists** → append the new bullet directly under the existing bullets for that day.
+   - **Exists** → append the new bullet directly under the existing bullets for that day (anchor the `Edit` on the day's current last bullet).
    - **Missing** → add the new heading at the end of the file, directly after the previous day's last bullet (no blank line between them), followed by the new bullet.
-6. Write the full updated content back via `mcp__obsidian__write_note` in `overwrite` mode, passing the existing `frontmatter` object unchanged.
+6. Apply the change with `Edit`, leaving the existing frontmatter untouched.
 7. Confirm to the user: `Logged: {bullet text}`.
 
 ## File shape
