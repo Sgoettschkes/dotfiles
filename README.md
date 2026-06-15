@@ -72,6 +72,7 @@ Each MCP is a `register` call in `claude/setup.sh`. Currently configured:
 * **Docker** — `uvx mcp-server-docker`
 * **Nirvana** — HTTP transport at `mcp.nirvanahq.com`
 * **Obsidian** — `mcpvault` against the `~/Documents/Second Brain` vault
+* **Chrome DevTools** — `chrome-devtools-mcp` for browser automation (requires Chrome installed separately)
 
 Re-run `make mcp` after editing the script, rotating a token, or pulling new MCPs. Verify with `/mcp` in Claude Code.
 
