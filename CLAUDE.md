@@ -57,7 +57,7 @@ make install
 - `/claude/` - Global Claude Code configuration
   - `CLAUDE.md` - Global instructions (symlinked to `~/.claude/CLAUDE.md`)
   - `setup.sh` - Registers MCP servers with `claude mcp add` (run via `make mcp`)
-  - `skills/` - Custom skills symlinked into `~/.claude/skills/` (e.g. `daily-notion-log`, `daily-obsidian-log`)
+  - `skills/` - Custom skills symlinked into `~/.claude/skills/` (e.g. `daily-notion-log`, `daily-obsidian-log`, `eod-slack-post`)
 - `/git/` - Git configurations for different contexts
   - Includes organization-specific gitconfig files
 - `/neovim/` - Neovim configuration using Lua
