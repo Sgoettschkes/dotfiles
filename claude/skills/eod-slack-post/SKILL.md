@@ -1,11 +1,15 @@
 ---
 name: eod-slack-post
-description: Post an end-of-day summary of today's work to Slack channel #check-in-out in the AccessOwl workspace. Pulls today's bullets from the user's Notion Daily Log (maintained by [[daily-notion-log]]) and composes a "Good night" message. Use when the user asks to wrap up the workday ("end of day", "wrap up", "post to slack", "good night", "EOD summary"). Always shows a draft and waits for explicit confirmation before posting — Slack messages are visible to colleagues.
+description: Post an end-of-day summary of today's work to Slack channel #check-in-out in the AccessOwl workspace. Pulls today's bullets from the user's Notion Daily Log (maintained by [[daily-notion-log]]) and composes a "Good night" message. Use ONLY when the user explicitly asks to post the EOD ("end of day", "wrap up", "post to slack", "good night", "EOD summary"). NEVER offer this skill proactively and NEVER invoke it on your own — the user always initiates it manually. Always shows a draft and waits for explicit confirmation before posting — Slack messages are visible to colleagues.
 ---
 
 # End-of-Day Slack Post
 
 Composes and posts a daily summary to `#check-in-out` based on today's entries in the Notion Daily Log.
+
+## Invocation rule — user-initiated only
+
+This skill is **never** invoked proactively. Do not suggest it, offer it, or run it as a follow-up to other skills (e.g. after `daily-notion-log` or `daily-obsidian-log`). The user will ask explicitly when they want to wrap up the day. If you find yourself considering whether to mention this skill — don't.
 
 ## Configuration
 
@@ -38,7 +42,7 @@ Steps:
    - Bold: `*bold*`
 
    Structure:
-   - Line 1: `Good night.` (always — exact text).
+   - Line 1: a **short professional sign-off** (a few words) ending with a Slack emoji fitting end-of-day/night/sleep — never a period before the emoji. Vary the phrasing each day; keep it professional (no slang, no jokes). Examples: `Good night :crescent_moon:`, `Calling it a day :city_sunset:`, `Signing off for today :waning_crescent_moon:`, `Heading out :sunset:`, `Logging off :night_with_stars:`, `That's a wrap :zzz:`. Pick an emoji from the night/sleep/sunset family: `:crescent_moon:`, `:waning_crescent_moon:`, `:full_moon:`, `:moon:`, `:night_with_stars:`, `:sunset:`, `:city_sunset:`, `:zzz:`, `:sleeping:`, `:bed:`.
    - Line 2 (blank).
    - Line 3: a **unique one-line summary** of the day, written fresh each time — not a paraphrase of the bullets. Captures the theme/mood (e.g. "Mostly setup + small process wins."). Avoid templated phrasing.
    - Line 4 (blank).
@@ -52,7 +56,7 @@ Steps:
 
    Example:
    ```
-   Good night.
+   Good night :crescent_moon:
 
    Mostly setup + small process wins — feels like the workflow is starting to click.
 

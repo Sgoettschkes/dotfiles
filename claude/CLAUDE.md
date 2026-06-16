@@ -17,3 +17,7 @@ Logging rule — applies whenever the user asks to "log this" / "add to daily lo
 - **If it's unclear whether a task is work-related, ASK before logging.** Don't guess. Personal projects (dotfiles, side projects, hobby code) and personal admin (errands, life admin) are Obsidian-only.
 
 Proactive offers after a substantial completed task: ask whether to log it. If the task is clearly work, offer both Obsidian + Notion. If clearly personal, offer Obsidian only. If ambiguous, ask which.
+
+## EOD Slack Post
+
+The `eod-slack-post` skill is **user-initiated only**. Never offer it, never suggest it, never invoke it on your own — not after a log entry, not at the end of the day, not as a follow-up. The user will explicitly ask ("post EOD", "wrap up", "good night", etc.) when they want it.
