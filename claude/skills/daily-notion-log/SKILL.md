@@ -1,18 +1,20 @@
 ---
 name: daily-notion-log
-description: Maintain a running "Daily Log" Notion page in the user's personal area. This is a WORK log — use ONLY for tasks tied to the user's job at AccessOwl. Use when the user asks to log a completed work task ("log this", "log to daily log"). Also offer proactively after the user finishes a substantial work task — ask whether to log it. Do NOT use for personal projects, dotfiles changes, side projects, or anything outside the user's job. For end-of-day Slack summaries, see [[eod-slack-post]].
+description: Mirror a completed WORK task to the user's "Daily Log" Notion page (in addition to Obsidian). Use ONLY for tasks tied to the user's job at AccessOwl, and ALWAYS pair with [[daily-obsidian-log]] — Notion is never logged in isolation. Use when the user asks to log a completed work task ("log this", "log to daily log"). Also offer proactively after the user finishes a substantial work task — ask whether to log it. Do NOT use for personal projects, dotfiles changes, side projects, or anything outside the user's job. For end-of-day Slack summaries, see [[eod-slack-post]].
 ---
 
 # Daily Notion Log
 
-Appends completed work tasks to the user's running Daily Log Notion page.
+Mirrors a completed work task to the user's running Daily Log Notion page. The Obsidian Daily Log is the source of truth; Notion is the work-only mirror.
 
-## Scope: work only
+## Scope: work only — AND never alone
 
 This log is exclusively for the user's job at AccessOwl. Do not use it for:
 - Personal projects (dotfiles, side projects, hobby code)
 - Personal tasks (errands, life admin, notes)
 - Anything not tied to the user's paid work
+
+**Notion is never logged on its own.** Every Notion entry must also exist in Obsidian — invoke [[daily-obsidian-log]] for the same task, either before this skill or right after. If the user only asks to log to Notion, proactively also log to Obsidian (or ask if they want both, but default is both). If you find yourself about to log to Notion without an Obsidian counterpart, stop and add the Obsidian entry too.
 
 When offering proactively, only do so if the completed task is clearly job-related (e.g., changes in an AccessOwl repo, a Linear ticket, an AccessOwl Notion/Slack thread). Skip the offer for work in this `.dotfiles` repo or other personal contexts. If you're unsure whether a task qualifies as work, ask before logging.
 
@@ -54,7 +56,8 @@ Steps:
 7. Append the entry:
    - Heading exists → `notion-update-page` with `update_content`, adding a new bullet under that heading.
    - Heading missing → `notion-update-page` with `insert_content` (position end), appending the new heading followed by the bullet.
-8. Confirm to the user: `Logged: {summary}`.
+8. **Pair with Obsidian.** Confirm the same task has been (or will be) logged via [[daily-obsidian-log]]. If not, invoke that skill now with the same summary. Notion entries must never exist without an Obsidian counterpart.
+9. Confirm to the user: `Logged: {summary}` (and note both destinations: `Logged to Notion + Obsidian: {summary}`).
 
 ## Entry shape in Notion
 

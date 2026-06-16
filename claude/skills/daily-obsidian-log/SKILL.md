@@ -1,17 +1,21 @@
 ---
 name: daily-obsidian-log
-description: Append completed tasks to the running "Daily Log" file in the user's Obsidian vault (at `0 - Inbox/Daily Log.md`). Use for BOTH work and private tasks — anything substantial the user wants to remember they did today. Use when the user asks to log a completed task to Obsidian ("log this", "add to daily log", "log to obsidian"), or after the user confirms a proactive offer following a substantial completed task.
+description: Append completed tasks to the running "Daily Log" file in the user's Obsidian vault (at `0 - Inbox/Daily Log.md`). This is the source of truth for the daily log — EVERY logged task lands here (work and private). Use when the user asks to log a completed task ("log this", "add to daily log", "log to obsidian"), or after the user confirms a proactive offer following a substantial completed task. For work tasks (AccessOwl-related), also invoke [[daily-notion-log]] to mirror the entry to Notion — Notion is never logged without Obsidian.
 ---
 
 # Daily Obsidian Log
 
-Appends completed tasks to the user's Obsidian Daily Log file.
+Appends completed tasks to the user's Obsidian Daily Log file. This is the **source of truth** for the daily log.
 
 ## Scope
 
 Both work and private tasks. Anything substantial the user wants to remember they did today — AccessOwl work, dotfiles changes, side projects, personal admin, anything.
 
-For work tasks, the [[daily-notion-log]] skill mirrors the entry to Notion + posts an EOD Slack summary. The two are independent — the user may invoke either, both, or neither.
+## Pairing with Notion
+
+Whenever the task is work-related (AccessOwl repos, Linear tickets, internal Notion/Slack threads, meetings with colleagues), the [[daily-notion-log]] skill must also be invoked to mirror the entry to Notion (Notion drives the EOD Slack post). Obsidian comes first, Notion second — never Notion alone.
+
+If you're unsure whether a task is work-related, ASK the user before logging. Don't guess.
 
 ## Configuration
 
@@ -34,7 +38,8 @@ Triggers: "log this", "add to daily log", "log to obsidian", "I'm done with X", 
    - **Exists** → append the new bullet directly under the existing bullets for that day (anchor the `Edit` on the day's current last bullet).
    - **Missing** → add the new heading at the end of the file, directly after the previous day's last bullet (no blank line between them), followed by the new bullet.
 6. Apply the change with `Edit`, leaving the existing frontmatter untouched.
-7. Confirm to the user: `Logged: {bullet text}`.
+7. **If the task is work-related**, also invoke [[daily-notion-log]] with the same summary (Obsidian first, Notion second). If unsure whether it's work, ask the user before deciding.
+8. Confirm to the user: `Logged: {bullet text}` (mention both destinations when applicable: `Logged to Obsidian + Notion: {bullet text}`).
 
 ## File shape
 
