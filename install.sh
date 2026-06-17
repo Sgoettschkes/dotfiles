@@ -90,6 +90,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         obsidian
         rectangle
         spotify
+        tablepro
     )
     for package in "${BREW_CASKS[@]}"; do
         echo "Installing ${package}..."

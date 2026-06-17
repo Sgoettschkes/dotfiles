@@ -41,6 +41,7 @@ Also installed automatically via Homebrew (macOS only):
 * obsidian
 * rectangle
 * spotify
+* tablepro
 
 ## Fonts
 
