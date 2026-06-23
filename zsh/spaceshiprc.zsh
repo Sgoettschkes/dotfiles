@@ -217,7 +217,10 @@ spaceship_git_status_spaced() {
   echo "$INDEX" | command grep -E '^(U[UDA]|AA|DD|[DA]U) ' &> /dev/null \
     && parts+=("$SPACESHIP_GIT_STATUS_UNMERGED")
 
-  command git rev-parse --verify refs/stash &> /dev/null \
+  # refs/stash is a single global stack, so match only entries whose
+  # recorded branch (WIP on <branch>: / On <branch>:) is the current one.
+  command git stash list 2> /dev/null \
+    | command grep -qE "^stash@\{[0-9]+\}: (WIP on|On) ${git_branch}: " \
     && parts+=("$SPACESHIP_GIT_STATUS_STASHED")
 
   echo "$INDEX" | command grep -E '^([MARCDU ]D|D[ UM]) ' &> /dev/null \
