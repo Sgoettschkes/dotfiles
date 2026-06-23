@@ -32,11 +32,19 @@ SPACESHIP_GLEAM_SHOW=false
 SPACESHIP_TERRAFORM_SHOW=false
 SPACESHIP_DOCKER_SHOW=false
 
-SPACESHIP_EXEC_TIME_SHOW=false
+# Only surface duration for slow commands (mix compile/test, migrations)
+SPACESHIP_EXEC_TIME_SHOW=true
+SPACESHIP_EXEC_TIME_ELAPSED=5
 
 SPACESHIP_BATTERY_SHOW=false
 
 SPACESHIP_EXIT_CODE_SHOW=true
+
+# Move the timestamp to the right prompt to keep the left side focused on
+# dir + git. Sourced after Spaceship sets the default orders, so the left
+# order already contains `time` and can be filtered here.
+SPACESHIP_PROMPT_ORDER=(${SPACESHIP_PROMPT_ORDER:#time})
+SPACESHIP_RPROMPT_ORDER=(time)
 
 # ============================================================================
 # CUSTOM TRUNCATION FUNCTIONS
