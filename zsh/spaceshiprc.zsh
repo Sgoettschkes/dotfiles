@@ -8,6 +8,11 @@ SPACESHIP_DIR_MAX_LENGTH=30
 
 SPACESHIP_GIT_BRANCH_MAX_LENGTH=20
 
+# Plain arrows read easier than the default ⇡⇣⇕
+SPACESHIP_GIT_STATUS_AHEAD='↑'
+SPACESHIP_GIT_STATUS_BEHIND='↓'
+SPACESHIP_GIT_STATUS_DIVERGED='↕'
+
 SPACESHIP_NODE_SHOW=false
 SPACESHIP_BUN_SHOW=false
 SPACESHIP_PYTHON_SHOW=false
@@ -186,6 +191,58 @@ spaceship_dir_truncated() {
     "$dir"
 }
 
+# Custom git status that separates indicators with spaces for readability.
+# The stock section concatenates symbols (e.g. [↑$!?]); joining an array
+# with spaces is the only way to avoid a stray space at one bracket edge.
+spaceship_git_status_spaced() {
+  [[ $SPACESHIP_GIT_STATUS_SHOW == false ]] && return
+
+  spaceship::is_git || return
+
+  local INDEX git_branch="$vcs_info_msg_0_"
+  local -a parts
+  INDEX=$(command git status --porcelain -b 2> /dev/null)
+
+  # Leftmost: divergence from upstream
+  local ahead=$(command git rev-list --count ${git_branch}@{upstream}..HEAD 2>/dev/null)
+  local behind=$(command git rev-list --count HEAD..${git_branch}@{upstream} 2>/dev/null)
+  if (( ${ahead:-0} )) && (( ${behind:-0} )); then
+    parts+=("$SPACESHIP_GIT_STATUS_DIVERGED")
+  elif (( ${ahead:-0} )); then
+    parts+=("$SPACESHIP_GIT_STATUS_AHEAD")
+  elif (( ${behind:-0} )); then
+    parts+=("$SPACESHIP_GIT_STATUS_BEHIND")
+  fi
+
+  echo "$INDEX" | command grep -E '^(U[UDA]|AA|DD|[DA]U) ' &> /dev/null \
+    && parts+=("$SPACESHIP_GIT_STATUS_UNMERGED")
+
+  command git rev-parse --verify refs/stash &> /dev/null \
+    && parts+=("$SPACESHIP_GIT_STATUS_STASHED")
+
+  echo "$INDEX" | command grep -E '^([MARCDU ]D|D[ UM]) ' &> /dev/null \
+    && parts+=("$SPACESHIP_GIT_STATUS_DELETED")
+
+  echo "$INDEX" | command grep -E '^R[ MD] ' &> /dev/null \
+    && parts+=("$SPACESHIP_GIT_STATUS_RENAMED")
+
+  echo "$INDEX" | command grep -E '^[ MARC]M ' &> /dev/null \
+    && parts+=("$SPACESHIP_GIT_STATUS_MODIFIED")
+
+  echo "$INDEX" | command grep -E '^(A[ MDAU]|M[ MD]|UA) ' &> /dev/null \
+    && parts+=("$SPACESHIP_GIT_STATUS_ADDED")
+
+  # Rightmost: untracked
+  echo "$INDEX" | command grep -E '^\?\? ' &> /dev/null \
+    && parts+=("$SPACESHIP_GIT_STATUS_UNTRACKED")
+
+  [[ ${#parts[@]} -eq 0 ]] && return
+
+  spaceship::section \
+    --color "$SPACESHIP_GIT_STATUS_COLOR" \
+    "$SPACESHIP_GIT_STATUS_PREFIX${(j: :)parts}$SPACESHIP_GIT_STATUS_SUFFIX"
+}
+
 # ============================================================================
 # HOOK SETUP - Override functions after spaceship loads
 # ============================================================================
@@ -196,6 +253,7 @@ autoload -Uz add-zsh-hook
 spaceship_apply_customizations() {
   functions[spaceship_git_branch]=$functions[spaceship_git_branch_truncated]
   functions[spaceship_dir]=$functions[spaceship_dir_truncated]
+  functions[spaceship_git_status]=$functions[spaceship_git_status_spaced]
 
   # Add asdf_local section to the prompt order after git
   if [[ ! " ${SPACESHIP_PROMPT_ORDER[*]} " =~ " asdf_local " ]]; then
