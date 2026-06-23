@@ -219,8 +219,10 @@ spaceship_git_status_spaced() {
 
   # refs/stash is a single global stack, so match only entries whose
   # recorded branch (WIP on <branch>: / On <branch>:) is the current one.
+  # Resolve the branch directly: vcs_info_msg_0_ is empty in the async worker.
+  local stash_branch=$(command git rev-parse --abbrev-ref HEAD 2> /dev/null)
   command git stash list 2> /dev/null \
-    | command grep -qE "^stash@\{[0-9]+\}: (WIP on|On) ${git_branch}: " \
+    | command grep -qE "^stash@\{[0-9]+\}: (WIP on|On) ${stash_branch}: " \
     && parts+=("$SPACESHIP_GIT_STATUS_STASHED")
 
   echo "$INDEX" | command grep -E '^([MARCDU ]D|D[ UM]) ' &> /dev/null \
