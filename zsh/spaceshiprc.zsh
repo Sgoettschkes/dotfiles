@@ -39,63 +39,6 @@ SPACESHIP_BATTERY_SHOW=false
 SPACESHIP_EXIT_CODE_SHOW=true
 
 # ============================================================================
-# CUSTOM ASDF SECTION
-# ============================================================================
-
-# Custom asdf section that shows tools sourced from current directory or parent
-spaceship_asdf_local() {
-  [[ $SPACESHIP_ASDF_LOCAL_SHOW == false ]] && return
-
-  spaceship::exists asdf || return
-
-  # Get current working directory and home directory
-  local current_dir="$(pwd)"
-  local home_dir="$HOME"
-  local asdf_tools=()
-
-  # Parse asdf current output to find tools sourced from current directory or parent
-  # Skip the header line and parse the tabular format
-  while IFS= read -r line; do
-    # Skip header line and empty lines
-    if [[ "$line" == "Name"* ]] || [[ -z "$line" ]]; then
-      continue
-    fi
-
-    # Parse the columns (tool, version, source, installed)
-    local tool=$(echo "$line" | awk '{print $1}')
-    local version=$(echo "$line" | awk '{print $2}')
-    local source=$(echo "$line" | awk '{print $3}')
-
-    # Skip if no version is set or source is missing
-    if [[ "$version" == "______" ]] || [[ "$source" == "______" ]]; then
-      continue
-    fi
-
-    # Check if source is from current directory or a parent (but not home global)
-    if [[ "$source" != "$home_dir/.tool-versions" ]]; then
-      # Get the directory containing the .tool-versions file
-      local source_dir="$(dirname "$source")"
-      # Check if current directory is inside the source directory
-      if [[ "$current_dir" == "$source_dir"* ]]; then
-        asdf_tools+=("$tool:$version")
-      fi
-    fi
-  done < <(asdf current 2>/dev/null)
-
-  # If no local tools found, return
-  [[ ${#asdf_tools[@]} -eq 0 ]] && return
-
-  # Join tools with spaces
-  local tools_display="${(j: :)asdf_tools}"
-
-  spaceship::section \
-    --color "${SPACESHIP_ASDF_LOCAL_COLOR:-magenta}" \
-    --prefix "${SPACESHIP_ASDF_LOCAL_PREFIX- with 🔧 }" \
-    --suffix "${SPACESHIP_ASDF_LOCAL_SUFFIX- }" \
-    "$tools_display"
-}
-
-# ============================================================================
 # CUSTOM TRUNCATION FUNCTIONS
 # ============================================================================
 
@@ -259,15 +202,6 @@ spaceship_apply_customizations() {
   functions[spaceship_git_branch]=$functions[spaceship_git_branch_truncated]
   functions[spaceship_dir]=$functions[spaceship_dir_truncated]
   functions[spaceship_git_status]=$functions[spaceship_git_status_spaced]
-
-  # Add asdf_local section to the prompt order after git
-  if [[ ! " ${SPACESHIP_PROMPT_ORDER[*]} " =~ " asdf_local " ]]; then
-    # Find the index of 'git' and insert 'asdf_local' after it
-    local git_index=${SPACESHIP_PROMPT_ORDER[(i)git]}
-    if [[ $git_index -le ${#SPACESHIP_PROMPT_ORDER} ]]; then
-      SPACESHIP_PROMPT_ORDER=("${SPACESHIP_PROMPT_ORDER[@]:0:$git_index}" "asdf_local" "${SPACESHIP_PROMPT_ORDER[@]:$git_index}")
-    fi
-  fi
 }
 
 # Apply customizations on each prompt
