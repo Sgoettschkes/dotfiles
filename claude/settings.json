@@ -1,7 +1,4 @@
 {
-  "alwaysThinkingEnabled": true,
-  "skipWorkflowUsageWarning": true,
-  "theme": "dark",
   "permissions": {
     "allow": [
       "WebSearch",
@@ -24,5 +21,9 @@
       "mcp__github__list_pull_requests",
       "mcp__github__search_pull_requests"
     ]
-  }
+  },
+  "alwaysThinkingEnabled": true,
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark",
+  "tui": "fullscreen"
 }
