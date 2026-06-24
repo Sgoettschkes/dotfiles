@@ -87,6 +87,7 @@ remove_symlink "$HOME/.claude/skills/eod-slack-post" "eod-slack-post skill"
 remove_symlink "$HOME/.claude/skills/para-clear-inboxes" "para-clear-inboxes skill"
 remove_symlink "$HOME/.claude/skills/para-finish-project" "para-finish-project skill"
 remove_symlink "$HOME/.claude/skills/para-sync-projects" "para-sync-projects skill"
+remove_symlink "$HOME/.claude/skills/unify-claude-settings" "unify-claude-settings skill"
 echo
 
 echo -e "${GREEN}✨ Cleanup complete!${NC}"
