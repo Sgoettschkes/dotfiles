@@ -1,6 +1,7 @@
 {
   "alwaysThinkingEnabled": true,
   "skipWorkflowUsageWarning": true,
+  "theme": "dark",
   "permissions": {
     "allow": [
       "WebSearch",
