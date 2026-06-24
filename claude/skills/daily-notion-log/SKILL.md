@@ -53,9 +53,9 @@ Steps:
       - Earlier bullet for today …
    +  - New bullet being added.
    ```
-7. Append the entry:
-   - Heading exists → `notion-update-page` with `update_content`, adding a new bullet under that heading.
-   - Heading missing → `notion-update-page` with `insert_content` (position end), appending the new heading followed by the bullet.
+7. Append the entry. **Prefer `insert_content` (position end) over `update_content`** — today's section is always last on the page, so appending to the end lands the bullet in the right place, and (unlike `update_content`) it never re-sends existing bullets in an `old_str`. That matters because of the WAF caveat below.
+   - Heading exists → `notion-update-page` with `insert_content` (position end), content = just the new bullet.
+   - Heading missing → `notion-update-page` with `insert_content` (position end), content = the new heading followed by the bullet.
 8. **Pair with Obsidian.** Confirm the same task has been (or will be) logged via [[daily-obsidian-log]]. If not, invoke that skill now with the same summary. Notion entries must never exist without an Obsidian counterpart.
 9. Confirm to the user: `Logged: {summary}` (and note both destinations: `Logged to Notion + Obsidian: {summary}`).
 
@@ -70,3 +70,13 @@ Steps:
 ```
 
 Do **not** leave a blank line between the last bullet of one day and the next day's `## DD.MM.YYYY` heading — the new heading must follow the previous day's final bullet directly.
+
+## Cloudflare WAF caveat — keep path-like strings out of the request body
+
+The Notion MCP write path sits behind a Cloudflare WAF that inspects the **request body** and blocks anything matching a file-disclosure / path-traversal signature — most commonly literal paths like `/etc/hosts` or `/etc/passwd`. A blocked call returns a Cloudflare `Sorry, you have been blocked` HTML page instead of a normal error.
+
+This is **payload-based, not IP- or rate-based.** Retrying, waiting, or reconnecting the MCP (`/mcp`) will **not** help — the same payload fails every time, while other Notion writes in the same session succeed. Don't waste turns retrying; fix the payload.
+
+How to avoid it:
+- **Use `insert_content` with only the new bullet as content** (see step 7). `update_content` echoes surrounding existing bullets in `old_str`, so if any earlier entry contains a trigger string the write is blocked even though your new bullet is clean.
+- **If the new bullet itself must mention such a path, reword it** so the literal string isn't in the body — e.g. write "the hosts-file step" instead of `` `/etc/hosts` ``. If wording it out isn't acceptable, tell the user the WAF will block it and ask them to paste that bullet into Notion manually (the Obsidian copy can keep the exact path).
