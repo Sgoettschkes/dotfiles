@@ -12,7 +12,17 @@
       "mcp__obsidian__search_notes",
       "mcp__obsidian__list_directory",
       "mcp__nirvana__get_tasks",
-      "mcp__nirvana__get_inbox"
+      "mcp__nirvana__get_inbox",
+      "mcp__claude_ai_Notion__notion-fetch",
+      "mcp__claude_ai_Notion__notion-search",
+      "mcp__claude_ai_Notion__notion-get-teams",
+      "mcp__claude_ai_Notion__notion-get-users",
+      "mcp__claude_ai_Notion__notion-query-data-sources",
+      "mcp__claude_ai_Slack__slack_read_file",
+      "mcp__claude_ai_Slack__slack_read_thread",
+      "mcp__github__pull_request_read",
+      "mcp__github__list_pull_requests",
+      "mcp__github__search_pull_requests"
     ]
   }
 }
