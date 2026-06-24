@@ -4,10 +4,14 @@
   "permissions": {
     "allow": [
       "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:hub.docker.com)",
       "mcp__obsidian__read_note",
       "mcp__obsidian__search_notes",
       "mcp__obsidian__list_directory",
-      "mcp__nirvana__get_tasks"
+      "mcp__nirvana__get_tasks",
+      "mcp__nirvana__get_inbox"
     ]
   }
 }
