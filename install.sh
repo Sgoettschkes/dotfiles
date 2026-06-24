@@ -164,6 +164,7 @@ create_symlink "$DOTFILES_DIR/claude/skills/eod-slack-post" "$HOME/.claude/skill
 create_symlink "$DOTFILES_DIR/claude/skills/para-clear-inboxes" "$HOME/.claude/skills/para-clear-inboxes"
 create_symlink "$DOTFILES_DIR/claude/skills/para-finish-project" "$HOME/.claude/skills/para-finish-project"
 create_symlink "$DOTFILES_DIR/claude/skills/para-sync-projects" "$HOME/.claude/skills/para-sync-projects"
+create_symlink "$DOTFILES_DIR/claude/skills/unify-claude-settings" "$HOME/.claude/skills/unify-claude-settings"
 echo
 
 # Final instructions
