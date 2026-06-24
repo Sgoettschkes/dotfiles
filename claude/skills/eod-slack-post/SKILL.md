@@ -36,13 +36,28 @@ Steps:
 
 1. Resolve the Daily Log page and `notion-fetch` it.
 2. Find today's `## DD.MM.YYYY` section. If it's missing or empty, tell the user and stop.
-3. Compose a Slack message in **Slack mrkdwn** (not standard markdown):
+3. **Pick the sign-off line randomly — do not choose it yourself.** The model cannot be relied on to vary this; the shell must.
+   a. Resolve the `#check-in-out` channel ID (`slack_search_channels`) and read its recent messages (`slack_read_channel`) to find your own most recent EOD post. Note the emoji it ended its first line with — this is `LAST`. If you can't find a prior post, leave `LAST` empty.
+   b. Run this command and use its output verbatim. Re-running it is fine; never override its choice with your own preference:
+   ```bash
+   LAST=':crescent_moon:'   # the emoji from your previous EOD post, or leave empty
+   printf '%s\n' \
+     'Good night|:crescent_moon:' 'Calling it a day|:city_sunset:' \
+     'Signing off for today|:waning_crescent_moon:' 'Heading out|:sunset:' \
+     'Logging off|:night_with_stars:' "That's a wrap|:zzz:" \
+     'Wrapping up|:full_moon:' 'Done for today|:bed:' \
+     'Calling it here|:moon:' 'Out for the day|:sleeping:' \
+     | grep -v "|${LAST}\$" \
+     | awk -v seed=$RANDOM 'BEGIN{srand(seed)} {a[NR]=$0} END{if(NR>0) print a[int(rand()*NR)+1]}'
+   ```
+   The part before `|` is the sign-off phrase; the part after is the emoji. The `grep -v` drops yesterday's emoji so it never repeats two days running. (`shuf` is intentionally avoided — it's not on macOS by default; this uses `awk` seeded from `$RANDOM`.)
+4. Compose a Slack message in **Slack mrkdwn** (not standard markdown):
    - Links: `<url|label>`
    - Bullets: `•` at line start
    - Bold: `*bold*`
 
    Structure:
-   - Line 1: a **short professional sign-off** (a few words) ending with a Slack emoji fitting end-of-day/night/sleep — never a period before the emoji. Vary the phrasing each day; keep it professional (no slang, no jokes). Examples: `Good night :crescent_moon:`, `Calling it a day :city_sunset:`, `Signing off for today :waning_crescent_moon:`, `Heading out :sunset:`, `Logging off :night_with_stars:`, `That's a wrap :zzz:`. Pick an emoji from the night/sleep/sunset family: `:crescent_moon:`, `:waning_crescent_moon:`, `:full_moon:`, `:moon:`, `:night_with_stars:`, `:sunset:`, `:city_sunset:`, `:zzz:`, `:sleeping:`, `:bed:`.
+   - Line 1: the **sign-off phrase + emoji produced by the `shuf` command in step 3** — use it verbatim (e.g. `Heading out :sunset:`). Never a period before the emoji. Do not substitute your own phrasing or emoji.
    - Line 2 (blank).
    - Line 3: a **unique one-line summary** of the day, written fresh each time — not a paraphrase of the bullets. Captures the theme/mood (e.g. "Mostly setup + small process wins."). Avoid templated phrasing.
    - Line 4 (blank).
@@ -63,7 +78,6 @@ Steps:
    • Migrated the X service to Y (<https://github.com/...|PR #123>)
    • Investigated the flaky test in Z
    ```
-4. Show the draft to the user. **Always** wait for explicit confirmation before posting — Slack messages are visible to colleagues. If the user requests changes, redraft, show again, and wait for another explicit OK.
-5. Resolve the `#check-in-out` channel ID via `slack_search_channels` if not already known.
-6. Post via `mcp__claude_ai_Slack__slack_send_message`.
+5. Show the draft to the user. **Always** wait for explicit confirmation before posting — Slack messages are visible to colleagues. If the user requests changes, redraft, show again, and wait for another explicit OK.
+6. Post via `mcp__claude_ai_Slack__slack_send_message` to the `#check-in-out` channel resolved in step 3.
 7. Confirm with the message URL or timestamp returned by Slack.
