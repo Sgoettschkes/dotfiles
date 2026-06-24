@@ -56,6 +56,8 @@ Show each item with its source (which project, which file — shared or local), 
 
 Use the `AskUserQuestion` tool. When several items share an obvious destination, you may batch them into one question with multiple items, but never auto-decide — every item the user hasn't explicitly placed stays put.
 
+**Never group read-only operations with others.** Read-only operations (read, list, get, search, fetch — anything that only observes) must be presented separately from operations that can mutate state (write, update, create, delete, comment, run arbitrary SQL, etc.). If you cannot determine whether an action is read-only, **assume it is not** and group it with the mutating ones. This keeps the user from accidentally globally auto-allowing a destructive action alongside a batch of read-only ones.
+
 ## Merge semantics (when moving to a global destination)
 
 Read the destination file first, then merge by type:
@@ -83,7 +85,8 @@ If an item already exists identically in the destination, treat it as already-gl
    2. Break it into items.
    3. For each item, ask the decision and apply it immediately (merge into destination + remove from project, keep, or delete).
 3. **After each project** — see below.
-4. **Done** — summarize.
+4. **Prune redundant local rules** — see below.
+5. **Done**.
 
 ## After each project
 
@@ -91,18 +94,22 @@ If an item already exists identically in the destination, treat it as already-gl
 - If you changed a **project shared** file (`<repo>/.claude/settings.json`, committed to that repo), do **not** commit it. Tell the user it's a change to a team-shared repo they'll need to review/commit/PR themselves.
 - Project **local** files (`settings.local.json`) are gitignored — just edit, nothing to commit.
 
+## Prune redundant local rules
+
+As a final pass, remove rules from every `settings.local.json` that are already covered by the matching `settings.json`. Because Claude Code merges `settings.local.json` on top of `settings.json`, anything present in both is dead weight in the local file. Check each pair:
+
+- **Global**: `~/.claude/settings.local.json` against `~/.dotfiles/claude/settings.json` (the global shared file).
+- **Project**: each `<repo>/.claude/settings.local.json` against its sibling `<repo>/.claude/settings.json`.
+
+For each item in a local file that is identically present in the corresponding shared file, drop it from the local file. After pruning, if a local file is empty (`{}` or only empty containers), delete it.
+
 ## Committing the global changes
 
-- Changes to **global shared** (`~/.dotfiles/claude/settings.json`) are in the dotfiles repo. Do **not** auto-commit — report what changed and let the user ask to commit (per their global convention).
+- Changes to **global shared** (`~/.dotfiles/claude/settings.json`) are in the dotfiles repo. Do **not** auto-commit — let the user ask to commit (per their global convention).
 - Changes to **global local** (`~/.claude/settings.local.json`) are untracked; nothing to commit.
 
 ## Done
 
-Summarize as a short table or list:
-- Items moved to global shared / global local.
-- Items kept in projects (and where).
-- Items deleted.
-- Project files emptied/removed.
-- Which **team-shared** project repos were modified and still need the user to commit.
+Do **not** show a report or summary of what changed. Just apply the decisions and stop.
 
 Don't offer to log this or post EOD — the user will ask.
