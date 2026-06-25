@@ -16,6 +16,14 @@ trust_level = "trusted"
 [plugins."superpowers@openai-curated"]
 enabled = true
 
+[plugins."ecc@ecc"]
+enabled = true
+
 [mcp_servers.chrome-devtools]
 command = "npx"
 args = ["chrome-devtools-mcp@latest"]
+
+[marketplaces.ecc]
+last_updated = "2026-06-25T17:40:10Z"
+source_type = "git"
+source = "https://github.com/affaan-m/ECC.git"

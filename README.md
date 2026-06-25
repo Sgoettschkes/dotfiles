@@ -109,14 +109,23 @@ Unlike Claude, Codex keeps MCP servers (and their secrets) inline in `config.tom
 
 ### Codex plugins
 
-Codex ships the `openai-curated` marketplace built in, so there's no marketplace to register. `config.toml` tracks the enable flag (`[plugins."<name>@openai-curated"] enabled = true`) the same way Claude's `enabledPlugins` does — Codex writes it on install. That flag doesn't fetch the plugin payload, which lives in a machine-local cache (`~/.codex/plugins/cache/`); enabling a plugin whose files aren't installed is a harmless no-op. On a fresh machine, install the files once for each plugin you want. Verify with `codex plugin list`.
+`config.toml` tracks the enable flag (`[plugins."<name>@<marketplace>"] enabled = true`) the same way Claude's `enabledPlugins` does, and the plugins below are enabled there by default. That flag doesn't fetch the plugin payload, which lives in a machine-local cache (`~/.codex/plugins/cache/`); enabling a plugin whose files aren't installed is a harmless no-op. So on a fresh machine you install each plugin once by hand (commands below) — `make codex` does not do it for you. Plugins from the built-in `openai-curated` marketplace only need `plugin add`; plugins from a Git-sourced marketplace also need `marketplace add` first, which writes a `[marketplaces.<name>]` block to `config.toml` — that's per-machine runtime state, so leave it uncommitted (discard it like the other Codex writes noted above). Verify with `codex plugin list`.
 
 #### superpowers
 
-A composable, skill-based software-development methodology, see [github.com/obra/superpowers](https://github.com/obra/superpowers).
+A composable, skill-based software-development methodology, see [github.com/obra/superpowers](https://github.com/obra/superpowers). Built-in `openai-curated` marketplace:
 
 ```bash
 codex plugin add superpowers@openai-curated
+```
+
+#### ECC
+
+An agent-harness "operating system" — skills, instincts, memory, and security rules for coding agents, see [github.com/affaan-m/ECC](https://github.com/affaan-m/ECC). Git-sourced marketplace, so register it before installing:
+
+```bash
+codex plugin marketplace add affaan-m/ECC
+codex plugin add ecc@ecc
 ```
 
 ### asdf
