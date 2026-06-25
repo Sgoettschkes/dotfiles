@@ -64,9 +64,9 @@ The installation script sets up symlinks for SSH, Zsh, Git, and asdf configurati
 
 You can put local ssh config (which should not be in git) in `~/.ssh/config.local`.
 
-### Claude Code MCP servers
+### Claude Code setup
 
-Register per machine with `make claude`. Secrets are read from the `Private` 1Password vault via `op read`. Enable the 1Password app → Settings → Developer → **Integrate with 1Password CLI**, then `op whoami` to verify.
+`make install` no longer touches Claude — run `make claude` per machine. It symlinks the Claude config (`CLAUDE.md`, `settings.json`, skills) into `~/.claude`, then registers MCP servers. Secrets are read from the `Private` 1Password vault via `op read`. Enable the 1Password app → Settings → Developer → **Integrate with 1Password CLI**, then `op whoami` to verify.
 
 Each MCP is a `register` call in `claude/setup.sh`. Currently configured:
 
@@ -95,6 +95,12 @@ Elixir/Phoenix support, see [phxagents.dev](https://phxagents.dev/).
 claude plugin marketplace add oliver-kriska/claude-elixir-phoenix
 claude plugin install elixir-phoenix@oliver-kriska
 ```
+
+### Codex setup
+
+Run `make codex` per machine. It symlinks the Codex config (`AGENTS.md`, `config.toml`) into `~/.codex`, then registers MCP servers via `codex mcp add` (none configured yet — add `register` calls in `codex/setup.sh`). Like `make claude`, it skips MCPs that are already registered; verify with `codex mcp list`.
+
+Unlike Claude, Codex keeps MCP servers (and their secrets) inline in `config.toml` and treats it as a read-write file — it writes runtime state there itself (project trust, UI flags). Since `config.toml` is symlinked into this repo, those writes show up as uncommitted changes in `git status`; discard them, and never let a secret land in the tracked file. When a Codex MCP does need a secret, pull it from 1Password the same way `claude/setup.sh` does (see the Claude Code setup note above).
 
 ### asdf
 

@@ -35,10 +35,10 @@ asdf-clean: ## Remove all unused asdf plugin installations
 	@echo "$(YELLOW)Cleaning up asdf installations...$(NC)"
 	@./asdf/cleanup.sh
 
-claude: ## Register Claude Code MCP servers (requires 1Password CLI signed in)
-	@echo "$(YELLOW)Registering Claude Code MCP servers...$(NC)"
+claude: ## Set up Claude Code: symlinks + MCP servers (requires 1Password CLI signed in)
+	@echo "$(YELLOW)Setting up Claude Code...$(NC)"
 	@./claude/setup.sh
 
-codex: ## Register Codex MCP servers
-	@echo "$(YELLOW)Registering Codex MCP servers...$(NC)"
+codex: ## Set up Codex: symlinks + MCP servers
+	@echo "$(YELLOW)Setting up Codex...$(NC)"
 	@./codex/setup.sh

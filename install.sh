@@ -154,26 +154,6 @@ echo "Setting up asdf configuration..."
 create_symlink "$DOTFILES_DIR/asdf/tool-versions" "$HOME/.tool-versions"
 echo
 
-echo "Setting up Claude configuration..."
-mkdir -p "$HOME/.claude"
-create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
-create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
-mkdir -p "$HOME/.claude/skills"
-create_symlink "$DOTFILES_DIR/claude/skills/daily-notion-log" "$HOME/.claude/skills/daily-notion-log"
-create_symlink "$DOTFILES_DIR/claude/skills/daily-obsidian-log" "$HOME/.claude/skills/daily-obsidian-log"
-create_symlink "$DOTFILES_DIR/claude/skills/eod-slack-post" "$HOME/.claude/skills/eod-slack-post"
-create_symlink "$DOTFILES_DIR/claude/skills/para-clear-inboxes" "$HOME/.claude/skills/para-clear-inboxes"
-create_symlink "$DOTFILES_DIR/claude/skills/para-finish-project" "$HOME/.claude/skills/para-finish-project"
-create_symlink "$DOTFILES_DIR/claude/skills/para-sync-projects" "$HOME/.claude/skills/para-sync-projects"
-create_symlink "$DOTFILES_DIR/claude/skills/unify-claude-settings" "$HOME/.claude/skills/unify-claude-settings"
-echo
-
-echo "Setting up Codex configuration..."
-mkdir -p "$HOME/.codex"
-create_symlink "$DOTFILES_DIR/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
-create_symlink "$DOTFILES_DIR/codex/config.toml" "$HOME/.codex/config.toml"
-echo
-
 # Final instructions
 echo -e "${GREEN}✨ Dotfiles installation complete!${NC}"
 echo
@@ -182,6 +162,7 @@ echo "1. Install asdf plugins by running: make asdf"
 echo "2. Import Rectangle settings from: $DOTFILES_DIR/rectangle/config.json"
 echo "3. Configure local SSH overrides in: ~/.ssh/config.local (not tracked in Git)"
 echo "4. Select a Nerd Font in iTerm2 (Preferences → Profiles → Text)"
-echo "5. Register Claude Code MCP servers: make claude (requires 1Password CLI signed in)"
+echo "5. Set up Claude Code (symlinks + MCP servers): make claude (requires 1Password CLI signed in)"
+echo "6. Set up Codex (symlinks + MCP servers): make codex"
 echo
 echo -e "${YELLOW}Note: If any existing files were backed up, they have .backup extension${NC}"

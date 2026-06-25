@@ -40,15 +40,16 @@ make install
 2. Import Rectangle settings from `rectangle/` folder manually
 3. Configure local SSH settings in `~/.ssh/config.local` (not tracked in Git)
 4. Select a Nerd Font in iTerm2 (Preferences → Profiles → Text)
-5. Register Claude Code MCP servers: `make claude` (requires 1Password CLI signed in)
+5. Set up Claude Code (symlinks + MCP servers): `make claude` (requires 1Password CLI signed in)
+6. Set up Codex (symlinks + MCP servers): `make codex`
 
 ### Maintenance Commands
 - `make install` - Run installation/update of dotfiles
 - `make clean` - Remove all symlinks
 - `make asdf` - Setup asdf plugins and tools
 - `make asdf-clean` - Remove unused asdf installations
-- `make claude` - Register Claude Code MCP servers (requires 1Password CLI signed in)
-- `make codex` - Register Codex MCP servers
+- `make claude` - Set up Claude Code: symlinks + MCP servers (requires 1Password CLI signed in)
+- `make codex` - Set up Codex: symlinks + MCP servers
 - `make help` - Show all available commands
 
 ## Folder Structure
@@ -58,12 +59,12 @@ make install
   - `tool-versions` - Global tool versions configuration (symlinked to `~/.tool-versions`)
 - `/claude/` - Global Claude Code configuration
   - `CLAUDE.md` - Global instructions (symlinked to `~/.claude/CLAUDE.md`)
-  - `setup.sh` - Registers MCP servers with `claude mcp add` (run via `make claude`)
+  - `setup.sh` - Symlinks config + skills into `~/.claude` and registers MCP servers (run via `make claude`)
   - `skills/` - Custom skills symlinked into `~/.claude/skills/`: `daily-notion-log`, `daily-obsidian-log`, `eod-slack-post`, `para-clear-inboxes`, `para-finish-project`, `para-sync-projects`, `unify-claude-settings`
 - `/codex/` - Global Codex configuration
   - `AGENTS.md` - Global instructions (symlinked to `~/.codex/AGENTS.md`)
   - `config.toml` - Codex configuration (symlinked to `~/.codex/config.toml`)
-  - `setup.sh` - Registers MCP servers with `codex mcp add` (run via `make codex`)
+  - `setup.sh` - Symlinks config into `~/.codex` and registers MCP servers (run via `make codex`)
 - `/git/` - Git configurations for different contexts
   - Includes organization-specific gitconfig files
 - `/neovim/` - Neovim configuration using Lua
