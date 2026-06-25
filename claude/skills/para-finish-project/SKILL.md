@@ -48,7 +48,7 @@ For each artifact present `[<app> · artifact N/total] <name/title> — <one-lin
 5. **Skip** → leave it for now.
 
 Apply each move before the next artifact. Paths:
-- Obsidian: `~/Documents/Second Brain/{2 - AoR | 3 - Resources | 4 - Archives}/` — use `mcp__obsidian__move_note` so links update.
+- Obsidian: `~/Documents/Second Brain/{2 - AoR | 3 - Resources | 4 - Archives}/` — filesystem move (`mv`); there's no Obsidian MCP. After moving, fix links by hand: `grep -rl` the vault for the note's old basename/path and rewrite any explicit-path markdown links or embeds pointing to the old location (plain `[[wikilinks]]` resolve by name and usually survive a move).
 - Drive: `~/My Drive/{2 - AoR | 3 - Resources | 4 - Archives}/` — filesystem move.
 
 After the artifacts are distributed, deal with the leftover **project container**:

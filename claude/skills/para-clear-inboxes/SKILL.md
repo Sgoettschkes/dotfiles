@@ -21,7 +21,7 @@ For each inbox in the Spaces list, decide if Claude can actually read it **right
 
 | Inbox | How to reach it | Notes |
 |---|---|---|
-| Obsidian | `0 - Inbox/` folder in the vault (`mcp__obsidian__list_directory` / `read_note`) | Always reachable (local). |
+| Obsidian | `0 - Inbox/` folder in the vault `~/Documents/Second Brain` (read with `Bash`/`Read`) | Always reachable (local). |
 | Nirvana | `mcp__nirvana__get_tasks` with `state=inbox` | Always reachable. |
 | AccessOwl Slack | Unread @-mentions, DMs, and saved/"Later" items via the Slack MCP | Connector — may be unauthenticated. |
 | Gmail privat / AgileAddicts / AccessOwl | Unread / inbox messages per account via the Gmail MCP | Connector — may be unauthenticated. Three separate accounts. |
@@ -62,7 +62,7 @@ Apply the decision with the right tool before moving to the next item, then conf
 - **Nirvana states are explicit.** New standalone tasks go to the state the user picked from the menu — never silently assume `next` or `inbox`. Tasks created **under a project** default to `next` (or waiting/scheduled), never inbox.
 - **New project** → when creating a Nirvana project, also auto-create the matching Obsidian stub and Drive folder, and tell the user which Gmail labels to add. Project names are outcome-oriented (Verb + Sache + optional Jahr). Follow the `para_create_project_workflow` memory.
 - **Reference filing** follows the Resources-bucket rule: Obsidian = notes/knowledge, Gmail = correspondence, Drive = files. Don't mirror across tools — file where the material lives.
-- **Obsidian inbox items** can be a single `.md` or a folder; either is fine. To file one, move it out of `0 - Inbox/` into the right PARA bucket with `mcp__obsidian__move_note`.
+- **Obsidian inbox items** can be a single `.md` or a folder; either is fine. To file one, move it out of `0 - Inbox/` into the right PARA bucket with `mv`. The vault is a local directory, so there's no Obsidian MCP — after the move, fix links by hand: `grep -rl` the vault for the note's old basename/path and rewrite any explicit-path markdown links or embeds that now point to the old location (plain `[[wikilinks]]` resolve by name and usually survive a move).
 - When in doubt about where something belongs or whether it's work vs private, **ask** rather than guess.
 
 ## Step 3 — Hand off the unreachable inboxes
