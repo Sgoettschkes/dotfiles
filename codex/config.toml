@@ -15,3 +15,7 @@ trust_level = "trusted"
 
 [plugins."superpowers@openai-curated"]
 enabled = true
+
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = ["chrome-devtools-mcp@latest"]
