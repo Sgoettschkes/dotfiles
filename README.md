@@ -66,7 +66,7 @@ You can put local ssh config (which should not be in git) in `~/.ssh/config.loca
 
 ### Claude Code MCP servers
 
-Register per machine with `make mcp`. Secrets are read from the `Private` 1Password vault via `op read`. Enable the 1Password app → Settings → Developer → **Integrate with 1Password CLI**, then `op whoami` to verify.
+Register per machine with `make claude`. Secrets are read from the `Private` 1Password vault via `op read`. Enable the 1Password app → Settings → Developer → **Integrate with 1Password CLI**, then `op whoami` to verify.
 
 Each MCP is a `register` call in `claude/setup.sh`. Currently configured:
 
@@ -76,7 +76,7 @@ Each MCP is a `register` call in `claude/setup.sh`. Currently configured:
 * **Obsidian** — `mcpvault` against the `~/Documents/Second Brain` vault
 * **Chrome DevTools** — `chrome-devtools-mcp` for browser automation (requires Chrome installed separately)
 
-`make mcp` skips MCPs that are already registered (so HTTP/OAuth servers like Nirvana don't re-auth on every run). To force a re-register after editing the config or rotating a token: `claude mcp remove <name> -s user && make mcp`. Verify with `/mcp` in Claude Code.
+`make claude` skips MCPs that are already registered (so HTTP/OAuth servers like Nirvana don't re-auth on every run). To force a re-register after editing the config or rotating a token: `claude mcp remove <name> -s user && make claude`. Verify with `/mcp` in Claude Code.
 
 ### Claude Code plugins
 

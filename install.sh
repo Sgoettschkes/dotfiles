@@ -168,6 +168,12 @@ create_symlink "$DOTFILES_DIR/claude/skills/para-sync-projects" "$HOME/.claude/s
 create_symlink "$DOTFILES_DIR/claude/skills/unify-claude-settings" "$HOME/.claude/skills/unify-claude-settings"
 echo
 
+echo "Setting up Codex configuration..."
+mkdir -p "$HOME/.codex"
+create_symlink "$DOTFILES_DIR/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
+create_symlink "$DOTFILES_DIR/codex/config.toml" "$HOME/.codex/config.toml"
+echo
+
 # Final instructions
 echo -e "${GREEN}✨ Dotfiles installation complete!${NC}"
 echo
@@ -176,6 +182,6 @@ echo "1. Install asdf plugins by running: make asdf"
 echo "2. Import Rectangle settings from: $DOTFILES_DIR/rectangle/config.json"
 echo "3. Configure local SSH overrides in: ~/.ssh/config.local (not tracked in Git)"
 echo "4. Select a Nerd Font in iTerm2 (Preferences → Profiles → Text)"
-echo "5. Register Claude Code MCP servers: make mcp (requires 1Password CLI signed in)"
+echo "5. Register Claude Code MCP servers: make claude (requires 1Password CLI signed in)"
 echo
 echo -e "${YELLOW}Note: If any existing files were backed up, they have .backup extension${NC}"

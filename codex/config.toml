@@ -1,0 +1,7 @@
+# File managed by Sgoettschkes/dotfiles
+
+[tui]
+theme = "catppuccin-mocha"
+
+[projects."/Users/sebastian/.dotfiles"]
+trust_level = "trusted"

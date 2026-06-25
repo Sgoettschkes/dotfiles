@@ -90,6 +90,12 @@ remove_symlink "$HOME/.claude/skills/para-sync-projects" "para-sync-projects ski
 remove_symlink "$HOME/.claude/skills/unify-claude-settings" "unify-claude-settings skill"
 echo
 
+# Codex configuration
+echo "Cleaning Codex configuration..."
+remove_symlink "$HOME/.codex/AGENTS.md" "Codex AGENTS.md"
+remove_symlink "$HOME/.codex/config.toml" "Codex config.toml"
+echo
+
 echo -e "${GREEN}✨ Cleanup complete!${NC}"
 echo
 echo "Your dotfiles repository at ~/.dotfiles is still intact."

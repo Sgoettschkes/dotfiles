@@ -10,7 +10,7 @@ This repository manages my development environment configuration through symlink
 
 See `README.md` for the full software inventory; `install.sh` is the canonical list. The items below are the ones that shape how I work in this repo:
 
-- **1Password CLI (`op`)**: Used by `make mcp` to read MCP secrets from the `Private` vault
+- **1Password CLI (`op`)**: Used by `make claude` to read MCP secrets from the `Private` vault
 - **asdf**: Version manager for programming languages and tools (Node.js, Python, Ruby, etc.)
 - **Claude Code**: Anthropic CLI for AI-assisted coding
 - **Codex**: OpenAI's terminal coding agent
@@ -40,14 +40,15 @@ make install
 2. Import Rectangle settings from `rectangle/` folder manually
 3. Configure local SSH settings in `~/.ssh/config.local` (not tracked in Git)
 4. Select a Nerd Font in iTerm2 (Preferences → Profiles → Text)
-5. Register Claude Code MCP servers: `make mcp` (requires 1Password CLI signed in)
+5. Register Claude Code MCP servers: `make claude` (requires 1Password CLI signed in)
 
 ### Maintenance Commands
 - `make install` - Run installation/update of dotfiles
 - `make clean` - Remove all symlinks
 - `make asdf` - Setup asdf plugins and tools
 - `make asdf-clean` - Remove unused asdf installations
-- `make mcp` - Register Claude Code MCP servers (requires 1Password CLI signed in)
+- `make claude` - Register Claude Code MCP servers (requires 1Password CLI signed in)
+- `make codex` - Register Codex MCP servers
 - `make help` - Show all available commands
 
 ## Folder Structure
@@ -57,8 +58,12 @@ make install
   - `tool-versions` - Global tool versions configuration (symlinked to `~/.tool-versions`)
 - `/claude/` - Global Claude Code configuration
   - `CLAUDE.md` - Global instructions (symlinked to `~/.claude/CLAUDE.md`)
-  - `setup.sh` - Registers MCP servers with `claude mcp add` (run via `make mcp`)
+  - `setup.sh` - Registers MCP servers with `claude mcp add` (run via `make claude`)
   - `skills/` - Custom skills symlinked into `~/.claude/skills/`: `daily-notion-log`, `daily-obsidian-log`, `eod-slack-post`, `para-clear-inboxes`, `para-finish-project`, `para-sync-projects`, `unify-claude-settings`
+- `/codex/` - Global Codex configuration
+  - `AGENTS.md` - Global instructions (symlinked to `~/.codex/AGENTS.md`)
+  - `config.toml` - Codex configuration (symlinked to `~/.codex/config.toml`)
+  - `setup.sh` - Registers MCP servers with `codex mcp add` (run via `make codex`)
 - `/git/` - Git configurations for different contexts
   - Includes organization-specific gitconfig files
 - `/neovim/` - Neovim configuration using Lua
