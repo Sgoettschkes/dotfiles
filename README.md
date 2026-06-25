@@ -20,6 +20,7 @@ Or use the script directly: `./install.sh`
 The installation script will automatically install:
 - asdf
 - Git
+- GitHub CLI (`gh`)
 - Homebrew
 - iTerm2 (macOS only)
 - Neovim

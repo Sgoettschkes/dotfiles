@@ -66,6 +66,7 @@ fi
 echo
 BREW_FORMULAE=(
     asdf
+    gh
     git
     neovim
     ripgrep
