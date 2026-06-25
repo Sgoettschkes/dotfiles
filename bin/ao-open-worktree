@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+WORKTREE_PATH="${1:-}"
+
+if [ -z "$WORKTREE_PATH" ]; then
+  echo "Usage: ao-open-worktree /path/to/worktree"
+  exit 1
+fi
+
+if [ ! -d "$WORKTREE_PATH" ]; then
+  echo "Directory does not exist: $WORKTREE_PATH"
+  exit 1
+fi
+
+osascript <<EOF
+tell application "iTerm2"
+  activate
+
+  if (count of windows) = 0 then
+    create window with default profile
+  end if
+
+  tell current window
+    create tab with default profile
+
+    tell current session of current tab
+      write text "cd \"$WORKTREE_PATH\""
+      split vertically with default profile
+    end tell
+
+    delay 0.2
+
+    tell first session of current tab
+      write text "cd \"$WORKTREE_PATH\" && claude"
+    end tell
+
+    tell second session of current tab
+      write text "cd \"$WORKTREE_PATH\""
+      write text "cl"
+    end tell
+  end tell
+end tell
+EOF

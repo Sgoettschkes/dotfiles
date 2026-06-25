@@ -53,6 +53,7 @@ make install
 - `make help` - Show all available commands
 
 ## Folder Structure
+- `/bin/` - Personal executable scripts, each symlinked into `~/.local/bin` (already on PATH) by `install.sh`. Drop a new executable here and re-run `make install` — no per-script edits needed.
 - `/asdf/` - asdf configuration and setup scripts
   - `setup.sh` - Script to install all asdf plugins
   - `cleanup.sh` - Script to remove unused plugin versions

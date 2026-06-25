@@ -155,6 +155,13 @@ echo "Setting up asdf configuration..."
 create_symlink "$DOTFILES_DIR/asdf/tool-versions" "$HOME/.tool-versions"
 echo
 
+echo "Setting up personal scripts..."
+mkdir -p "$HOME/.local/bin"
+for script in "$DOTFILES_DIR"/bin/*; do
+    create_symlink "$script" "$HOME/.local/bin/$(basename "$script")"
+done
+echo
+
 # Final instructions
 echo -e "${GREEN}✨ Dotfiles installation complete!${NC}"
 echo

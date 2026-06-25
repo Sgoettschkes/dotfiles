@@ -77,6 +77,15 @@ echo "Cleaning asdf configuration..."
 remove_symlink "$HOME/.tool-versions" ".tool-versions"
 echo
 
+# Personal scripts
+echo "Cleaning personal scripts..."
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+for script in "$DOTFILES_DIR"/bin/*; do
+    name=$(basename "$script")
+    remove_symlink "$HOME/.local/bin/$name" "$name"
+done
+echo
+
 # Claude configuration
 echo "Cleaning Claude configuration..."
 remove_symlink "$HOME/.claude/CLAUDE.md" "Claude CLAUDE.md"

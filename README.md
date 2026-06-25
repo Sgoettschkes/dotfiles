@@ -65,6 +65,10 @@ The installation script sets up symlinks for SSH, Zsh, Git, and asdf configurati
 
 You can put local ssh config (which should not be in git) in `~/.ssh/config.local`.
 
+### Personal scripts
+
+Executable scripts in `bin/` are symlinked into `~/.local/bin` (already on PATH) by `install.sh`. To add a command, drop an executable file in `bin/` and run `make install` — the symlink name matches the filename.
+
 ### Claude Code setup
 
 `make install` no longer touches Claude — run `make claude` per machine. It symlinks the Claude config (`CLAUDE.md`, `settings.json`, skills) into `~/.claude`, then registers MCP servers. Secrets are read from the `Private` 1Password vault via `op read`. Enable the 1Password app → Settings → Developer → **Integrate with 1Password CLI**, then `op whoami` to verify.
