@@ -5,3 +5,6 @@ theme = "catppuccin-mocha"
 
 [projects."/Users/sebastian/.dotfiles"]
 trust_level = "trusted"
+
+[plugins."superpowers@openai-curated"]
+enabled = true

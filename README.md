@@ -102,6 +102,18 @@ Run `make codex` per machine. It symlinks the Codex config (`AGENTS.md`, `config
 
 Unlike Claude, Codex keeps MCP servers (and their secrets) inline in `config.toml` and treats it as a read-write file — it writes runtime state there itself (project trust, UI flags). Since `config.toml` is symlinked into this repo, those writes show up as uncommitted changes in `git status`; discard them, and never let a secret land in the tracked file. When a Codex MCP does need a secret, pull it from 1Password the same way `claude/setup.sh` does (see the Claude Code setup note above).
 
+### Codex plugins
+
+Codex ships the `openai-curated` marketplace built in, so there's no marketplace to register. `config.toml` tracks the enable flag (`[plugins."<name>@openai-curated"] enabled = true`) the same way Claude's `enabledPlugins` does — Codex writes it on install. That flag doesn't fetch the plugin payload, which lives in a machine-local cache (`~/.codex/plugins/cache/`); enabling a plugin whose files aren't installed is a harmless no-op. On a fresh machine, install the files once for each plugin you want. Verify with `codex plugin list`.
+
+#### superpowers
+
+A composable, skill-based software-development methodology, see [github.com/obra/superpowers](https://github.com/obra/superpowers).
+
+```bash
+codex plugin add superpowers@openai-curated
+```
+
 ### asdf
 
 After running the installation script, install all asdf plugins and tools:
