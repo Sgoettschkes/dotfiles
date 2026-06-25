@@ -81,6 +81,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     BREW_CASKS=(
         1password-cli
         claude-code
+        codex
         docker-desktop
         font-fira-code-nerd-font
         font-jetbrains-mono-nerd-font

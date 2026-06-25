@@ -36,6 +36,7 @@ Also installed automatically via Homebrew (macOS only):
 
 * 1Password CLI (`op`)
 * claude-code
+* codex (OpenAI terminal coding agent)
 * docker (Docker Desktop)
 * ngrok
 * obsidian
