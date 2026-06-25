@@ -28,5 +28,8 @@
   "alwaysThinkingEnabled": true,
   "skipWorkflowUsageWarning": true,
   "theme": "dark",
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "enabledPlugins": {
+    "elixir-phoenix@oliver-kriska": true
+  }
 }

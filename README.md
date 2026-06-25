@@ -77,6 +77,24 @@ Each MCP is a `register` call in `claude/setup.sh`. Currently configured:
 
 `make mcp` skips MCPs that are already registered (so HTTP/OAuth servers like Nirvana don't re-auth on every run). To force a re-register after editing the config or rotating a token: `claude mcp remove <name> -s user && make mcp`. Verify with `/mcp` in Claude Code.
 
+### Claude Code plugins
+
+Plugin config is split across two files because Claude Code honors the keys differently:
+
+* **`claude/settings.json`** (tracked, symlinked to `~/.claude/settings.json`) holds `enabledPlugins`. This is the only file the enable toggle is read from — `enabledPlugins` in `settings.local.json` is silently ignored.
+* **`~/.claude/settings.local.json`** (per machine, untracked) holds `extraKnownMarketplaces`, which registers where a plugin is fetched from.
+
+Neither file fetches plugin code, and enabling a plugin whose files aren't installed is a harmless no-op. On a fresh machine, register the marketplace in `settings.local.json`, then install the files once for each plugin you want. Verify with `claude plugin list`.
+
+#### elixir-phoenix
+
+Elixir/Phoenix support, see [phxagents.dev](https://phxagents.dev/).
+
+```bash
+claude plugin marketplace add oliver-kriska/claude-elixir-phoenix
+claude plugin install elixir-phoenix@oliver-kriska
+```
+
 ### asdf
 
 After running the installation script, install all asdf plugins and tools:
