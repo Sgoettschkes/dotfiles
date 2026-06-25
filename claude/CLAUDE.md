@@ -1,3 +1,6 @@
+<!-- File managed by Sgoettschkes/dotfiles -->
+<!-- Do not change -->
+
 # Coding Guidelines
 
 ## Comments

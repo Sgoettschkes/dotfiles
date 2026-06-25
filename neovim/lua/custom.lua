@@ -1,3 +1,6 @@
+-- File managed by Sgoettschkes/dotfiles
+-- Do not change
+
 -- Custom configuration and plugins for Neovim
 -- This file contains additions beyond the base kickstart.nvim config
 
