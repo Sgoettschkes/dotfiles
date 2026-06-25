@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # File managed by Sgoettschkes/dotfiles
-# Sets up Claude Code: symlinks config + skills, then registers MCP servers (secrets from 1Password)
+# Sets up Claude Code: symlinks config + skills, then registers MCP servers
 
 set -e
 
@@ -46,19 +46,6 @@ if ! command -v claude &> /dev/null; then
     exit 1
 fi
 
-# 1Password signin is deferred until an op-using MCP actually needs to register.
-# This keeps steady-state runs free of macOS TCC prompts triggered by op<->1Password XPC.
-ensure_op_signed_in() {
-    if ! command -v op &> /dev/null; then
-        echo "Error: 1Password CLI (op) is not installed. Run 'make install' first."
-        exit 1
-    fi
-    if ! op whoami &> /dev/null; then
-        echo "Signing in to 1Password..."
-        eval "$(op signin)"
-    fi
-}
-
 register() {
     local name=$1
     shift
@@ -75,20 +62,7 @@ register() {
     fi
 }
 
-if claude mcp get github &> /dev/null; then
-    printf "  github ... ${GREEN}kept (already registered)${NC}\n"
-else
-    ensure_op_signed_in
-    register github \
-        --env "GITHUB_PERSONAL_ACCESS_TOKEN=$(op read 'op://Private/GitHub/mcp')" \
-        -- docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server
-fi
-
-register docker -- uvx mcp-server-docker
-
 register nirvana --transport http https://mcp.nirvanahq.com/mcp
-
-register obsidian -- npx @bitbonsai/mcpvault@latest "$HOME/Documents/Second Brain"
 
 register chrome-devtools -- npx chrome-devtools-mcp@latest
 
