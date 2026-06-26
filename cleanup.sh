@@ -103,7 +103,7 @@ echo
 # Codex configuration
 echo "Cleaning Codex configuration..."
 remove_symlink "$HOME/.codex/AGENTS.md" "Codex AGENTS.md"
-remove_symlink "$HOME/.codex/config.toml" "Codex config.toml"
+# config.toml is a machine-local file (not symlinked), so it is left in place.
 echo
 
 echo -e "${GREEN}✨ Cleanup complete!${NC}"

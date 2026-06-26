@@ -64,8 +64,7 @@ make install
   - `skills/` - Custom skills symlinked into `~/.claude/skills/`: `daily-notion-log`, `daily-obsidian-log`, `eod-slack-post`, `para-clear-inboxes`, `para-finish-project`, `para-sync-projects`, `unify-claude-settings`
 - `/codex/` - Global Codex configuration
   - `AGENTS.md` - Global instructions (symlinked to `~/.codex/AGENTS.md`)
-  - `config.toml` - Codex configuration (symlinked to `~/.codex/config.toml`)
-  - `setup.sh` - Symlinks config into `~/.codex` and registers MCP servers (run via `make codex`)
+  - `setup.sh` - Symlinks `AGENTS.md` into `~/.codex` and registers MCP servers (run via `make codex`). `config.toml` is machine-local (not tracked); Codex rewrites it at runtime.
 - `/git/` - Git configurations for different contexts
   - Includes organization-specific gitconfig files
 - `/neovim/` - Neovim configuration using Lua

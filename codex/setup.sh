@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # File managed by Sgoettschkes/dotfiles
-# Sets up Codex: symlinks config and AGENTS.md into ~/.codex
+# Sets up Codex: symlinks AGENTS.md into ~/.codex
+#
+# config.toml is intentionally NOT symlinked: Codex rewrites it at runtime
+# (project trust, marketplace revisions, UI state), so it is kept machine-local
+# and edited in place per machine.
 
 set -e
 
@@ -29,7 +33,6 @@ create_symlink() {
 echo "Setting up Codex configuration..."
 mkdir -p "$HOME/.codex"
 create_symlink "$DOTFILES_DIR/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
-create_symlink "$DOTFILES_DIR/codex/config.toml" "$HOME/.codex/config.toml"
 echo
 
 echo -e "${GREEN}Codex setup complete.${NC}"

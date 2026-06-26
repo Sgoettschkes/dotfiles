@@ -103,13 +103,13 @@ claude plugin install elixir-phoenix@oliver-kriska
 
 ### Codex setup
 
-Run `make codex` per machine. It symlinks the Codex config (`AGENTS.md`, `config.toml`) into `~/.codex`, then registers MCP servers via `codex mcp add` (none configured yet — add `register` calls in `codex/setup.sh`). Like `make claude`, it skips MCPs that are already registered; verify with `codex mcp list`.
+Run `make codex` per machine. It symlinks `AGENTS.md` into `~/.codex`, then registers MCP servers via `codex mcp add` (none configured yet — add `register` calls in `codex/setup.sh`). Like `make claude`, it skips MCPs that are already registered; verify with `codex mcp list`.
 
-Unlike Claude, Codex keeps MCP servers (and their secrets) inline in `config.toml` and treats it as a read-write file — it writes runtime state there itself (project trust, UI flags). Since `config.toml` is symlinked into this repo, those writes show up as uncommitted changes in `git status`; discard them, and never let a secret land in the tracked file. When a Codex MCP does need a secret, pull it from 1Password the same way `claude/setup.sh` does (see the Claude Code setup note above).
+Codex rewrites `config.toml` at runtime and won't load plugins/MCP from a shareable overlay, so we can't sync it — it stays machine-local at `~/.codex/config.toml`, edited by hand per machine.
 
 ### Codex plugins
 
-`config.toml` tracks the enable flag (`[plugins."<name>@<marketplace>"] enabled = true`) the same way Claude's `enabledPlugins` does, and the plugins below are enabled there by default. That flag doesn't fetch the plugin payload, which lives in a machine-local cache (`~/.codex/plugins/cache/`); enabling a plugin whose files aren't installed is a harmless no-op. So on a fresh machine you install each plugin once by hand (commands below) — `make codex` does not do it for you. Plugins from the built-in `openai-curated` marketplace only need `plugin add`; plugins from a Git-sourced marketplace also need `marketplace add` first, which writes a `[marketplaces.<name>]` block to `config.toml` — that's per-machine runtime state, so leave it uncommitted (discard it like the other Codex writes noted above). Verify with `codex plugin list`.
+Install these plugins by hand on each machine (`make codex` doesn't); verify with `codex plugin list`.
 
 #### superpowers
 
