@@ -7,6 +7,7 @@ INSTRUCTION="${2:-}"
 if [ -z "$WORKTREE_PATH" ]; then
   echo "Usage: ao-open-worktree /path/to/worktree [initial instruction]"
   echo "The instruction may be multi-line, e.g. \"\$(cat prompt.txt)\"."
+  echo "With no instruction the panes are opened (cd'd into the worktree) without launching claude."
   exit 1
 fi
 
@@ -24,18 +25,34 @@ WORKTREE_PATH="$(cd "$WORKTREE_PATH" && pwd)"
 # from a path containing quotes, backticks, or command substitution.
 QUOTED_PATH="$(printf '%q' "$WORKTREE_PATH")"
 
-# Assemble the command typed into the claude session. printf '%q' also collapses
-# any newlines in a multi-line instruction into $'...\n...' form, so it is typed
-# as a single safe line while claude still receives the original multi-line text.
-CLAUDE_CMD="cd $QUOTED_PATH && claude --permission-mode auto"
+# Clean up the temp prompt file if we fail before the panes are launched. On
+# success the left pane deletes it itself (see below), so this only fires on error.
+cleanup_on_error() {
+  [ -n "${PROMPT_FILE:-}" ] && rm -f "$PROMPT_FILE"
+}
+trap cleanup_on_error ERR
+
+# Left-pane command. With an instruction we write the (possibly multi-line)
+# prompt to a temp file and have the pane read it back via "$(cat …)", so the
+# line typed into iTerm stays short — typing the whole prompt inline as a giant
+# $'…\n…' literal corrupts mid-stream when it races with the other pane's writes.
+# The pane reads the prompt into a var and deletes the file before launching
+# claude, so nothing is left behind. Without an instruction we just cd in
+# (handy for testing the pane layout).
 if [ -n "$INSTRUCTION" ]; then
-  CLAUDE_CMD="$CLAUDE_CMD $(printf '%q' "$INSTRUCTION")"
+  TMP_DIR="${TMPDIR:-/tmp}"
+  PROMPT_FILE="$(mktemp "${TMP_DIR%/}/ao-prompt.XXXXXX")"
+  printf '%s' "$INSTRUCTION" > "$PROMPT_FILE"
+  QUOTED_PROMPT_FILE="$(printf '%q' "$PROMPT_FILE")"
+  LEFT_CMD="cd $QUOTED_PATH && _ao_prompt=\"\$(cat $QUOTED_PROMPT_FILE)\" && rm -f $QUOTED_PROMPT_FILE && claude --permission-mode auto \"\$_ao_prompt\""
+else
+  LEFT_CMD="cd $QUOTED_PATH"
 fi
 
-osascript - "$QUOTED_PATH" "$CLAUDE_CMD" <<'EOF'
+osascript - "$QUOTED_PATH" "$LEFT_CMD" <<'EOF'
 on run argv
   set qpath to item 1 of argv
-  set claudeCmd to item 2 of argv
+  set leftCmd to item 2 of argv
 
   tell application "iTerm2"
     activate
@@ -47,22 +64,43 @@ on run argv
     tell current window
       create tab with default profile
 
-      tell current session of current tab
-        write text "cd " & qpath
-        split vertically with default profile
-      end tell
+      tell current tab
+        -- Capture explicit session handles. "first/second session" is
+        -- unreliable right after a split, which let writes land in the wrong
+        -- pane (or interleave) before.
+        set leftSession to current session
+        delay 0.4
 
-      delay 0.2
+        tell leftSession
+          set rightSession to (split vertically with default profile)
+        end tell
+        delay 0.6
 
-      tell first session of current tab
-        write text claudeCmd
-      end tell
+        -- Right pane first (short writes), so it finishes before the left
+        -- pane's command is typed and nothing races into the left pane.
+        tell rightSession
+          write text "cd " & qpath
+          delay 0.4
+          write text "cl"
+        end tell
+        delay 0.5
 
-      tell second session of current tab
-        write text "cd " & qpath
-        write text "cl"
+        -- Left pane last. Nothing is written after it, so even a longer
+        -- command can't be corrupted by a competing write.
+        tell leftSession
+          write text leftCmd
+        end tell
+
+        -- Land focus on the claude pane, not the spare shell created by split.
+        select leftSession
       end tell
     end tell
   end tell
 end run
 EOF
+
+if [ -n "${PROMPT_FILE:-}" ]; then
+  echo "Launched claude in $WORKTREE_PATH (prompt: $PROMPT_FILE)"
+else
+  echo "Opened panes in $WORKTREE_PATH (no instruction → claude not launched)"
+fi
