@@ -57,6 +57,12 @@ Also installed automatically via Homebrew (macOS only):
 
 The rectangle configuration is stored in the `rectangle/` folder. It can be imported through the settings.
 
+## iTerm2 configuration
+
+iTerm2 keeps all of its settings in a single plist. Rather than symlinking it (macOS' `cfprefsd` rewrites the system plist and breaks symlinks), the install script points iTerm2 at the `iterm2/` folder using its built-in "load preferences from a custom folder" feature. iTerm2 then reads and writes `iterm2/com.googlecode.iterm2.plist` directly.
+
+After installing on a new machine, open iTerm2 → Settings → General → Settings and set the "Save changes" dropdown to **Automatically** so edits are written back to the repo. Commit `iterm2/com.googlecode.iterm2.plist` to sync settings across machines.
+
 ## Development environment
 
 The installation script sets up symlinks for SSH, Zsh, Git, and asdf configurations.

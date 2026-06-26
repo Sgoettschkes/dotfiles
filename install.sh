@@ -162,6 +162,16 @@ for script in "$DOTFILES_DIR"/bin/*; do
 done
 echo
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "Setting up iTerm2 configuration..."
+    # iTerm2 reads/writes its plist from a custom folder instead of being symlinked,
+    # because cfprefsd rewrites the system plist and would break a symlink.
+    defaults write com.googlecode.iterm2 PrefsCustomFolder -string "$DOTFILES_DIR/iterm2"
+    defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
+    echo -e "${GREEN}✓ iTerm2 set to load preferences from $DOTFILES_DIR/iterm2${NC}"
+    echo
+fi
+
 # Final instructions
 echo -e "${GREEN}✨ Dotfiles installation complete!${NC}"
 echo
@@ -169,7 +179,7 @@ echo "Next steps:"
 echo "1. Install asdf plugins by running: make asdf"
 echo "2. Import Rectangle settings from: $DOTFILES_DIR/rectangle/config.json"
 echo "3. Configure local SSH overrides in: ~/.ssh/config.local (not tracked in Git)"
-echo "4. Select a Nerd Font in iTerm2 (Preferences → Profiles → Text)"
+echo "4. Restart iTerm2, then set Settings → General → Settings → Save changes to: Automatically"
 echo "5. Set up Claude Code (symlinks + MCP servers): make claude (requires 1Password CLI signed in)"
 echo "6. Set up Codex (symlinks + MCP servers): make codex"
 echo
