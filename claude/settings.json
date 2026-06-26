@@ -25,11 +25,19 @@
       "mcp__github__search_pull_requests"
     ]
   },
-  "alwaysThinkingEnabled": true,
-  "skipWorkflowUsageWarning": true,
-  "theme": "dark",
-  "tui": "fullscreen",
   "enabledPlugins": {
     "elixir-phoenix@oliver-kriska": true
-  }
+  },
+  "extraKnownMarketplaces": {
+    "oliver-kriska": {
+      "source": {
+        "source": "github",
+        "repo": "oliver-kriska/claude-elixir-phoenix"
+      }
+    }
+  },
+  "alwaysThinkingEnabled": true,
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
+  "theme": "dark"
 }
