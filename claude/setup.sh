@@ -72,3 +72,7 @@ echo -e "${GREEN}MCP setup complete.${NC}"
 echo -e "${YELLOW}Restart Claude Code for the MCP servers to take effect.${NC}"
 echo -e "${YELLOW}To force a re-register (after editing config or rotating secrets):${NC}"
 echo -e "${YELLOW}  claude mcp remove <name> -s user && make claude${NC}"
+echo
+echo "Install plugins by hand if not already installed (see README → Claude Code plugins):"
+echo "  claude plugin marketplace add oliver-kriska/claude-elixir-phoenix"
+echo "  claude plugin install elixir-phoenix@oliver-kriska"

@@ -36,3 +36,8 @@ create_symlink "$DOTFILES_DIR/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
 echo
 
 echo -e "${GREEN}Codex setup complete.${NC}"
+echo
+echo "Install plugins by hand if not already installed (see README → Codex plugins):"
+echo "  codex plugin add superpowers@openai-curated"
+echo "  codex plugin marketplace add affaan-m/ECC"
+echo "  codex plugin add ecc@ecc"
