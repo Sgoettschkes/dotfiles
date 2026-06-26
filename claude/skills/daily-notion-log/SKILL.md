@@ -53,7 +53,7 @@ Steps:
       - Earlier bullet for today …
    +  - New bullet being added.
    ```
-7. Append the entry. **Prefer `insert_content` (position end) over `update_content`** — today's section is always last on the page, so appending to the end lands the bullet in the right place, and (unlike `update_content`) it never re-sends existing bullets in an `old_str`. That matters because of the WAF caveat below.
+7. Append the entry. **New entries are ALWAYS added to the very end of the page — never inserted between existing days or mid-section.** Always use `insert_content` with `position` end, never `update_content` — today's section is always last on the page, so appending to the end lands the bullet in the right place, and (unlike `update_content`) it never re-sends existing bullets in an `old_str`. That matters because of the WAF caveat below.
    - Heading exists → `notion-update-page` with `insert_content` (position end), content = just the new bullet.
    - Heading missing → `notion-update-page` with `insert_content` (position end), content = the new heading followed by the bullet.
 8. **Pair with Obsidian.** Confirm the same task has been (or will be) logged via [[daily-obsidian-log]]. If not, invoke that skill now with the same summary. Notion entries must never exist without an Obsidian counterpart.

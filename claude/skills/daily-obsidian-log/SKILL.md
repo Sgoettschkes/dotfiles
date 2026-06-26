@@ -33,11 +33,11 @@ Triggers: "log this", "add to daily log", "log to obsidian", "I'm done with X", 
 1. Confirm the task is actually done.
 2. Draft a **short bullet** (a few words) summarizing what was completed. Show it to the user for approval; use their edit verbatim if they tweak it.
 3. Include relevant links inline using markdown link syntax `[label](url)`: GitHub PRs, Notion pages, Linear tickets, Slack threads, etc. Ask the user whether anything else should be linked.
-4. `Read` the Daily Log file at `~/Documents/Second Brain/3 - Resources/Daily Log.md` to see current content (frontmatter and existing day sections).
-5. Check whether a heading `## DD.MM.YYYY` for today already exists in the content:
-   - **Exists** → append the new bullet directly under the existing bullets for that day (anchor the `Edit` on the day's current last bullet).
-   - **Missing** → add the new heading at the end of the file, directly after the previous day's last bullet (no blank line between them), followed by the new bullet.
-6. Apply the change with `Edit`, leaving the existing frontmatter untouched.
+4. `Read` the Daily Log file at `~/Documents/Second Brain/3 - Resources/Daily Log.md`, and make sure you see the **true end of the file** — the current final line. The file grows over time and is long, so reading only the top (or relying on an earlier read) risks anchoring your edit mid-file. If in doubt, read the tail again right before editing.
+5. **New entries are ALWAYS appended to the very end of the file** — never inserted between existing days or in the middle of today's section. Today's `## DD.MM.YYYY` heading, when it exists, is always the last heading in the file, so "end of today's section" and "end of file" are the same place:
+   - **Today's heading exists** → add the new bullet as a new last line, immediately after the file's current final line.
+   - **Today's heading missing** → append the new `## DD.MM.YYYY` heading directly after the file's final bullet (no blank line between them), then the new bullet.
+6. Apply the change with `Edit`, anchoring `old_string` on the file's **actual last non-empty line** (confirm it really is the last line — not a heading or a mid-file bullet). Leave the existing frontmatter untouched.
 7. **If the task is work-related**, also invoke [[daily-notion-log]] with the same summary (Obsidian first, Notion second). If unsure whether it's work, ask the user before deciding.
 8. Confirm to the user: `Logged: {bullet text}` (mention both destinations when applicable: `Logged to Obsidian + Notion: {bullet text}`).
 
