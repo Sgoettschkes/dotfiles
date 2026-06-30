@@ -77,15 +77,12 @@ Executable scripts in `bin/` are symlinked into `~/.local/bin` (already on PATH)
 
 ### Claude Code setup
 
-`make install` no longer touches Claude — run `make claude` per machine. It symlinks the Claude config (`CLAUDE.md`, `settings.json`, skills) into `~/.claude`, then registers MCP servers. Secrets are read from the `Private` 1Password vault via `op read`. Enable the 1Password app → Settings → Developer → **Integrate with 1Password CLI**, then `op whoami` to verify.
+`make install` no longer touches Claude — run `make claude` per machine. It symlinks the Claude config (`CLAUDE.md`, `settings.json`, skills) into `~/.claude`, then registers MCP servers.
 
 Each MCP is a `register` call in `claude/setup.sh`. Currently configured:
 
-* **GitHub** — reads `Private / GitHub / mcp`
-* **Docker** — `uvx mcp-server-docker`
 * **Nirvana** — HTTP transport at `mcp.nirvanahq.com`
-* **Obsidian** — `mcpvault` against the `~/Documents/Second Brain` vault
-* **Chrome DevTools** — `chrome-devtools-mcp` for browser automation (requires Chrome installed separately)
+* **Chrome DevTools** — `chrome-devtools-mcp@1.4.0` for browser automation (requires Chrome installed separately)
 
 `make claude` skips MCPs that are already registered (so HTTP/OAuth servers like Nirvana don't re-auth on every run). To force a re-register after editing the config or rotating a token: `claude mcp remove <name> -s user && make claude`. Verify with `/mcp` in Claude Code.
 
