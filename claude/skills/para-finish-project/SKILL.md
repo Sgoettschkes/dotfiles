@@ -34,6 +34,8 @@ Confirm: `✓ Nirvana: project "<name>" completed` (or report the open tasks and
 
 For each project mirror location from `Spaces.md` that is **reachable**, gather the project's artifacts and go through them **one at a time**. Default destination is that app's Archive; the point of going one-by-one is to catch the artifacts that should instead live on as reference or area material.
 
+**Empty containers and stubs are deleted, not archived.** If a location's project material has no real content — an empty project folder, or a headline-only stub (e.g. an Obsidian note that is just `# <name>`) — delete it outright. Don't archive it, and don't ask per-artifact; there's nothing worth keeping findable. This is the intended exception to the usual rule that project stubs in `1 - Projects/` are preserved — that rule protects *active* projects, and a project being finished is no longer active. Still confirm before deleting anything that turns out to hold actual content.
+
 Reachability:
 - **Obsidian** — always (local). Project at `~/Documents/Second Brain/1 - Projects/<name>` — a single `<name>.md` **or** a `<name>/` folder of notes.
 - **Google Drive privat** — always (local sync). Project folder at `~/My Drive/1 - Projects/<name>/`.
@@ -52,8 +54,8 @@ Apply each move before the next artifact. Paths:
 - Drive: `~/My Drive/{2 - AoR | 3 - Resources | 4 - Archives}/` — filesystem move.
 
 After the artifacts are distributed, deal with the leftover **project container**:
-- Single-file Obsidian project → it was the artifact; it's already moved.
-- Folder → move whatever remains (the archived artifacts) as the project folder into `4 - Archives/`; if the folder ended up empty because everything was pulled into AoR/Resources, remove it.
+- Single-file Obsidian project → it was the artifact; it's already moved (or deleted, if it was just a stub).
+- Folder → move whatever remains (the archived artifacts) as the project folder into `4 - Archives/`; if the folder is empty — whether it started empty or everything was pulled into AoR/Resources — delete it rather than archiving an empty folder.
 
 ### Gmail (reachable or not)
 Gmail label moves aren't automated. Tell the user explicitly which project label to move from `1 - Projects` to `4 - Archives` in each account where it exists, respecting scope (privat = all; AgileAddicts/AccessOwl = work projects only). If an artifact-level decision sent something to an AoR/Resource, mention the matching label move too.
