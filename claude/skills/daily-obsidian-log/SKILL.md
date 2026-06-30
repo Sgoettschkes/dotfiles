@@ -64,5 +64,6 @@ date: 2026-06-15
 
 - A few words — enough to recognize the task later, no more.
 - Past tense, action-led ("Fixed X", "Shipped Y", "Reviewed Z", "Installed N").
+- **Match the verb to the actual state of the work — do not imply more completion than happened.** A merged/deployed change is "Fixed"/"Shipped"; a change that only got as far as an open, unmerged PR is **not**. For work that stopped at PR creation, use wording that reflects that: "Opened PR for X", "Raised PR to do Y", "Created PR …". Reserve "Fixed"/"Shipped"/"Merged" for work that actually landed. When in doubt about the state, ask the user rather than assume it's done.
 - Inline links where they exist: `Reviewed [PR #123](https://github.com/...)`.
 - No internal commentary or private notes that wouldn't make sense rereading later.

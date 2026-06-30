@@ -39,7 +39,7 @@ Triggers: "log this", "log to daily log", "add to daily log", "I'm done with X",
 Steps:
 
 1. Confirm the task is actually done before doing anything else.
-2. Draft a **one-sentence summary** of what was accomplished and show it to the user for approval. Use their edit verbatim if they tweak it.
+2. Draft a **one-sentence summary** of what was accomplished and show it to the user for approval. Use their edit verbatim if they tweak it. **Match the wording to the actual state of the work — do not imply more completion than happened.** Reserve "Fixed"/"Shipped"/"Merged"/"Deployed" for work that actually landed. If the task only got as far as an open, unmerged PR, phrase it that way ("Opened PR for X", "Raised PR to do Y", "Created PR …"). When unsure of the state, ask the user rather than assume it's done.
 3. Identify resources to link:
    - Notion tickets / pages: find by name with `notion-search`, include the URL.
    - GitHub PRs, Linear tickets, Slack threads, other URLs: include directly.
