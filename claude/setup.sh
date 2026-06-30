@@ -65,7 +65,7 @@ register() {
 
 register nirvana --transport http https://mcp.nirvanahq.com/mcp
 
-register chrome-devtools -- npx chrome-devtools-mcp@latest
+register chrome-devtools -- npx chrome-devtools-mcp@1.4.0
 
 echo ""
 echo -e "${GREEN}MCP setup complete.${NC}"
