@@ -32,6 +32,15 @@ create_symlink() {
 
 echo "Setting up Codex configuration..."
 mkdir -p "$HOME/.codex"
+# Codex recreates its state/log/memory SQLite files at mode 644 on each run;
+# re-assert owner-only here so logs, memories, and state aren't group/world readable
+chmod 700 "$HOME/.codex"
+for f in logs_2.sqlite logs_2.sqlite-shm logs_2.sqlite-wal \
+         memories_1.sqlite \
+         state_5.sqlite state_5.sqlite-shm state_5.sqlite-wal \
+         goals_1.sqlite; do
+    [ -e "$HOME/.codex/$f" ] && chmod 600 "$HOME/.codex/$f"
+done
 create_symlink "$DOTFILES_DIR/codex/AGENTS.md" "$HOME/.codex/AGENTS.md"
 echo
 

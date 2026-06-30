@@ -29,6 +29,8 @@ create_symlink() {
 
 echo "Setting up Claude configuration..."
 mkdir -p "$HOME/.claude"
+# Claude state (history, sessions, projects) is owner-only sensitive
+chmod 700 "$HOME/.claude"
 create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
 mkdir -p "$HOME/.claude/skills"
