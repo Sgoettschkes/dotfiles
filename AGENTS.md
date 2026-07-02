@@ -70,8 +70,6 @@ make install
 - `/neovim/` - Neovim configuration using Lua
 - `/rectangle/` - Rectangle window manager settings
   - Configuration must be imported manually through the app
-- `/iterm2/` - iTerm2 preferences (`com.googlecode.iterm2.plist`)
-  - Not symlinked; `install.sh` points iTerm2 here via its native "custom folder" feature (`defaults write ... PrefsCustomFolder`), and iTerm2 reads/writes the plist directly
 - `/ssh/` - SSH configurations for various systems
   - Symlinked to `~/.ssh/config`
   - Supports local overrides via `~/.ssh/config.local`
