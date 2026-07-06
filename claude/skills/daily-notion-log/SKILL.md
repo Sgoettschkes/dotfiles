@@ -5,61 +5,39 @@ description: Mirror a completed WORK task to the user's "Daily Log" Notion page 
 
 # Daily Notion Log
 
-Mirrors a completed work task to the user's running Daily Log Notion page. The Obsidian Daily Log is the source of truth; Notion is the work-only mirror.
+Mirror a completed **work** task to the Notion Daily Log. Obsidian ([[daily-obsidian-log]]) is the source of truth; Notion is the work-only mirror that feeds the EOD Slack post.
 
-## Scope: work only — AND never alone
+## Scope
 
-This log is exclusively for the user's job at AccessOwl. Do not use it for:
-- Personal projects (dotfiles, side projects, hobby code)
-- Personal tasks (errands, life admin, notes)
-- Anything not tied to the user's paid work
-
-**Notion is never logged on its own.** Every Notion entry must also exist in Obsidian — invoke [[daily-obsidian-log]] for the same task, either before this skill or right after. If the user only asks to log to Notion, proactively also log to Obsidian (or ask if they want both, but default is both). If you find yourself about to log to Notion without an Obsidian counterpart, stop and add the Obsidian entry too.
-
-When offering proactively, only do so if the completed task is clearly job-related (e.g., changes in an AccessOwl repo, a Linear ticket, an AccessOwl Notion/Slack thread). Skip the offer for work in this `.dotfiles` repo or other personal contexts. If you're unsure whether a task qualifies as work, ask before logging.
+- Work = the user's job at AccessOwl: AccessOwl repos, Linear tickets, internal Notion/Slack threads, meetings with colleagues. Personal projects (dotfiles, side projects), personal admin, and notes never go here.
+- **Never Notion alone.** Every Notion entry needs an Obsidian counterpart. If the user only asks to log to Notion, log to Obsidian too (default is both).
+- Offer proactively only when the completed task is clearly job-related. If unsure whether something counts as work, ask before logging.
 
 ## Configuration
 
-Names — these are the canonical references. Resolve to IDs at runtime via MCP.
-
-- **Notion page name**: `Daily Log` (lives under the user's personal `Scratchpad` page)
-- **Date format**: German numeric `DD.MM.YYYY` (e.g. `12.06.2026`)
-
-ID resolution (do not persist these — re-resolve each session):
-- Notion: `mcp__claude_ai_Notion__notion-search` with query `"Daily Log"`, pick the result titled `Daily Log` whose ancestor is `Scratchpad`.
-
-You may cache the resolved ID in your working context for the duration of the session.
-
-Today's date comes from the conversation environment's `currentDate` value, formatted as `DD.MM.YYYY`.
+- **Page**: `Daily Log`, under the user's personal `Scratchpad` page. Resolve the ID each session via `mcp__claude_ai_Notion__notion-search` for `"Daily Log"` — pick the result whose ancestor is `Scratchpad`. Cache the ID for the session only; never persist it.
+- **Date format**: German numeric `DD.MM.YYYY`, derived from the environment's `currentDate`.
 
 ## Workflow
 
-Triggers: "log this", "log to daily log", "add to daily log", "I'm done with X", or after the user confirms a proactive offer.
-
-Steps:
-
-1. Confirm the task is actually done before doing anything else.
-2. Draft a **one-sentence summary** of what was accomplished and show it to the user for approval. Use their edit verbatim if they tweak it. **Match the wording to the actual state of the work — do not imply more completion than happened.** Reserve "Fixed"/"Shipped"/"Merged"/"Deployed" for work that actually landed. If the task only got as far as an open, unmerged PR, phrase it that way ("Opened PR for X", "Raised PR to do Y", "Created PR …"). When unsure of the state, ask the user rather than assume it's done.
-3. Identify resources to link:
-   - Notion tickets / pages: find by name with `notion-search`, include the URL.
-   - GitHub PRs, Linear tickets, Slack threads, other URLs: include directly.
-   - Ask the user whether anything else should be linked.
-4. Resolve the Daily Log page ID via `notion-search` if not already known.
-5. `notion-fetch` the page and check whether a heading `## DD.MM.YYYY` for today already exists.
-6. **Preview the change as a fenced ` ```diff ` block in chat** before calling `notion-update-page`. Notion MCP edits don't trigger Claude Code's built-in diff renderer, so the user has no visual confirmation otherwise. Show one or two lines of unchanged context (leading space) plus the added bullet (leading `+`). Wait for explicit approval before continuing. Example:
+1. Confirm the task is actually done.
+2. Draft a one-sentence summary and show it for approval; use the user's edit verbatim. **The wording must match the actual state of the work**: "Fixed"/"Shipped"/"Merged"/"Deployed" only for work that landed; an open, unmerged PR is "Opened PR for X". Unsure → ask.
+3. Gather links: Notion tickets/pages via `notion-search`; GitHub PRs, Linear tickets, Slack threads as direct URLs. Ask whether anything else should be linked.
+4. `notion-fetch` the Daily Log page and check whether today's `## DD.MM.YYYY` heading exists.
+5. **Preview the change as a fenced ```` ```diff ```` block and wait for explicit approval.** Notion MCP edits don't trigger Claude Code's diff renderer, so this preview is the user's only visual confirmation. Show one or two unchanged context lines (leading space) plus the added bullet (leading `+`):
 
    ```diff
       ## 15.06.2026
       - Earlier bullet for today …
    +  - New bullet being added.
    ```
-7. Append the entry. **New entries are ALWAYS added to the very end of the page — never inserted between existing days or mid-section.** Always use `insert_content` with `position` end, never `update_content` — today's section is always last on the page, so appending to the end lands the bullet in the right place, and (unlike `update_content`) it never re-sends existing bullets in an `old_str`. That matters because of the WAF caveat below.
-   - Heading exists → `notion-update-page` with `insert_content` (position end), content = just the new bullet.
-   - Heading missing → `notion-update-page` with `insert_content` (position end), content = the new heading followed by the bullet.
-8. **Pair with Obsidian.** Confirm the same task has been (or will be) logged via [[daily-obsidian-log]]. If not, invoke that skill now with the same summary. Notion entries must never exist without an Obsidian counterpart.
-9. Confirm to the user: `Logged: {summary}` (and note both destinations: `Logged to Notion + Obsidian: {summary}`).
+6. Append via `notion-update-page` with `insert_content`, position **end** — never `update_content`, never mid-page. Today's section is always last on the page, so appending to the end is always correct, and `insert_content` doesn't re-send existing bullets (see the WAF section).
+   - Heading exists → content = just the new bullet.
+   - Heading missing → content = the new heading followed by the bullet.
+7. Confirm the Obsidian counterpart exists; if not, invoke [[daily-obsidian-log]] now with the same summary.
+8. Confirm: `Logged to Notion + Obsidian: {summary}`.
 
-## Entry shape in Notion
+## Entry shape
 
 ```
 ## 12.06.2026
@@ -69,14 +47,13 @@ Steps:
 - Reviewed PR feedback and shipped follow-ups.
 ```
 
-Do **not** leave a blank line between the last bullet of one day and the next day's `## DD.MM.YYYY` heading — the new heading must follow the previous day's final bullet directly.
+No blank line between one day's last bullet and the next day's heading.
 
-## Cloudflare WAF caveat — keep path-like strings out of the request body
+## Cloudflare WAF — keep path-like strings out of the request body
 
-The Notion MCP write path sits behind a Cloudflare WAF that inspects the **request body** and blocks anything matching a file-disclosure / path-traversal signature — most commonly literal paths like `/etc/hosts` or `/etc/passwd`. A blocked call returns a Cloudflare `Sorry, you have been blocked` HTML page instead of a normal error.
+The Notion MCP write path sits behind a Cloudflare WAF that blocks any request body matching a file-disclosure signature — most commonly literal paths like `/etc/hosts` or `/etc/passwd`. A blocked call returns a Cloudflare "Sorry, you have been blocked" HTML page.
 
-This is **payload-based, not IP- or rate-based.** Retrying, waiting, or reconnecting the MCP (`/mcp`) will **not** help — the same payload fails every time, while other Notion writes in the same session succeed. Don't waste turns retrying; fix the payload.
+This is **payload-based, not IP- or rate-based**: retrying, waiting, or reconnecting the MCP will not help — the same payload fails every time while other writes succeed. Fix the payload instead:
 
-How to avoid it:
-- **Use `insert_content` with only the new bullet as content** (see step 7). `update_content` echoes surrounding existing bullets in `old_str`, so if any earlier entry contains a trigger string the write is blocked even though your new bullet is clean.
-- **If the new bullet itself must mention such a path, reword it** so the literal string isn't in the body — e.g. write "the hosts-file step" instead of `` `/etc/hosts` ``. If wording it out isn't acceptable, tell the user the WAF will block it and ask them to paste that bullet into Notion manually (the Obsidian copy can keep the exact path).
+- Use `insert_content` with only the new bullet (this is why step 6 forbids `update_content`, whose `old_str` echoes existing bullets — a trigger string in any earlier entry blocks the write even when the new bullet is clean).
+- If the new bullet itself must mention such a path, reword it (e.g. "the hosts-file step"). If the literal path is essential, tell the user the WAF will block it and ask them to paste that bullet into Notion manually — the Obsidian copy can keep the exact path.

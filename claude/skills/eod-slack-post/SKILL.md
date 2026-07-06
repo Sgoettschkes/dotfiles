@@ -5,42 +5,27 @@ description: Post an end-of-day summary of today's work to Slack channel #check-
 
 # End-of-Day Slack Post
 
-Composes and posts a daily summary to `#check-in-out` based on today's entries in the Notion Daily Log.
+Compose and post a daily summary to `#check-in-out` from today's entries in the Notion Daily Log.
 
-## Invocation rule — user-initiated only
-
-This skill is **never** invoked proactively. Do not suggest it, offer it, or run it as a follow-up to other skills (e.g. after `daily-notion-log` or `daily-obsidian-log`). The user will ask explicitly when they want to wrap up the day. If you find yourself considering whether to mention this skill — don't.
+**User-initiated only.** Never suggest, offer, or run this as a follow-up to other skills. The user asks explicitly when they want to wrap up.
 
 ## Configuration
 
-Names — resolve to IDs at runtime via MCP.
+Resolve IDs at runtime each session (cache for the session only):
 
-- **Notion page name**: `Daily Log` (lives under the user's personal `Scratchpad` page)
-- **Slack workspace**: AccessOwl
-- **Slack channel name**: `check-in-out`
-- **Date format**: German numeric `DD.MM.YYYY` (e.g. `12.06.2026`)
-
-ID resolution (do not persist these — re-resolve each session):
-- Notion: `mcp__claude_ai_Notion__notion-search` with query `"Daily Log"`, pick the result titled `Daily Log` whose ancestor is `Scratchpad`.
-- Slack: `mcp__claude_ai_Slack__slack_search_channels` with query `"check-in-out"`.
-
-You may cache the resolved IDs in your working context for the duration of the session.
-
-Today's date comes from the conversation environment's `currentDate` value, formatted as `DD.MM.YYYY`.
+- **Notion page**: `Daily Log`, under the personal `Scratchpad` page — `mcp__claude_ai_Notion__notion-search` for `"Daily Log"`, pick the result whose ancestor is `Scratchpad`.
+- **Slack channel**: `check-in-out` in the AccessOwl workspace — `mcp__claude_ai_Slack__slack_search_channels`.
+- **Date format**: German numeric `DD.MM.YYYY`, from the environment's `currentDate`.
 
 ## Workflow
 
-Triggers: "end of day", "wrap up the day", "EOD summary", "post to slack", "good night".
-
-Steps:
-
-1. Resolve the Daily Log page and `notion-fetch` it.
-2. Find today's `## DD.MM.YYYY` section. If it's missing or empty, tell the user and stop.
-3. **Pick the sign-off line randomly — do not choose it yourself.** The model cannot be relied on to vary this; the shell must.
-   a. Resolve the `#check-in-out` channel ID (`slack_search_channels`) and read its recent messages (`slack_read_channel`) to find your own most recent EOD post. Note the emoji it ended its first line with — this is `LAST`. If you can't find a prior post, leave `LAST` empty.
-   b. Run this command and use its output verbatim. Re-running it is fine; never override its choice with your own preference:
+1. Resolve and `notion-fetch` the Daily Log page.
+2. Find today's `## DD.MM.YYYY` section. Missing or empty → tell the user and stop.
+3. **Pick the sign-off line with the shell, never yourself** — the model cannot be relied on to vary it day to day.
+   a. Resolve the channel and `slack_read_channel` its recent messages to find your own most recent EOD post. The emoji ending its first line is `LAST` (empty if no prior post found).
+   b. Run this and use its output verbatim — never override its choice:
    ```bash
-   LAST=':crescent_moon:'   # the emoji from your previous EOD post, or leave empty
+   LAST=':crescent_moon:'   # emoji from the previous EOD post, or leave empty
    printf '%s\n' \
      'Good night|:crescent_moon:' 'Calling it a day|:city_sunset:' \
      'Signing off for today|:waning_crescent_moon:' 'Heading out|:sunset:' \
@@ -50,24 +35,21 @@ Steps:
      | grep -v "|${LAST}\$" \
      | awk -v seed=$RANDOM 'BEGIN{srand(seed)} {a[NR]=$0} END{if(NR>0) print a[int(rand()*NR)+1]}'
    ```
-   The part before `|` is the sign-off phrase; the part after is the emoji. The `grep -v` drops yesterday's emoji so it never repeats two days running. (`shuf` is intentionally avoided — it's not on macOS by default; this uses `awk` seeded from `$RANDOM`.)
-4. Compose a Slack message in **Slack mrkdwn** (not standard markdown):
-   - Links: `<url|label>`
-   - Bullets: `•` at line start
-   - Bold: `*bold*`
+   Phrase before `|`, emoji after. The `grep -v` prevents repeating yesterday's emoji. (`awk` seeded from `$RANDOM` because `shuf` isn't on macOS by default.)
+4. Compose the message in **Slack mrkdwn** (not standard markdown): links `<url|label>`, bullets `•`, bold `*bold*`.
 
    Structure:
-   - Line 1: the **sign-off phrase + emoji produced by the `shuf` command in step 3** — use it verbatim (e.g. `Heading out :sunset:`). Never a period before the emoji. Do not substitute your own phrasing or emoji.
-   - Line 2 (blank).
-   - Line 3: a **unique one-line summary** of the day, written fresh each time — not a paraphrase of the bullets. Captures the theme/mood (e.g. "Mostly setup + small process wins."). Avoid templated phrasing.
-   - Line 4 (blank).
-   - Bullets: today's log entries, one per line, prefixed with `•`.
+   - Line 1: the sign-off phrase + emoji from step 3, verbatim (e.g. `Heading out :sunset:`). No period before the emoji.
+   - Line 2: blank.
+   - Line 3: a **fresh one-line summary** of the day's theme/mood — not a paraphrase of the bullets, not templated (e.g. "Mostly setup + small process wins.").
+   - Line 4: blank.
+   - Then today's log entries, one `•` bullet per line.
 
-   Filter the bullets for colleague-readability:
-   - **Exclude private items.** Skip anything that's clearly for the user only (personal notes, internal thoughts, friction logs, items pointing at private pages they wouldn't want shared).
-   - **Strip links to private Notion pages** (anything under the user's `Scratchpad`, personal `Welcome …` onboarding page, `Daily Log`, etc.). If a bullet's only link is private, drop the link and keep the prose; if the bullet itself is private, drop the bullet entirely.
+   Filter for colleague-readability:
+   - **Drop private items** (personal notes, internal thoughts, friction logs, anything the user wouldn't share).
+   - **Strip links to private Notion pages** (anything under `Scratchpad`, the personal `Welcome …` page, `Daily Log` itself). Private link on an otherwise fine bullet → drop the link, keep the prose. Bullet itself private → drop it.
    - Public-safe links stay: shared team pages (Architecture, Database Overview, anything under Product Engineering), GitHub PRs, Linear tickets, Slack threads.
-   - When unsure, ask the user before posting.
+   - When unsure, ask before posting.
 
    Example:
    ```
@@ -78,6 +60,6 @@ Steps:
    • Migrated the X service to Y (<https://github.com/...|PR #123>)
    • Investigated the flaky test in Z
    ```
-5. Show the draft to the user. **Always** wait for explicit confirmation before posting — Slack messages are visible to colleagues. If the user requests changes, redraft, show again, and wait for another explicit OK.
-6. Post via `mcp__claude_ai_Slack__slack_send_message` to the `#check-in-out` channel resolved in step 3.
-7. Confirm with the message URL or timestamp returned by Slack.
+5. Show the draft and **wait for explicit confirmation** — the post is visible to colleagues. On requested changes: redraft, show again, wait for another explicit OK.
+6. Post via `mcp__claude_ai_Slack__slack_send_message` to the resolved channel.
+7. Confirm with the message URL or timestamp Slack returns.

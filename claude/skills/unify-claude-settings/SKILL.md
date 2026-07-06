@@ -5,7 +5,7 @@ description: Sweep every project's Claude Code settings (.claude/settings.json a
 
 # Unify Claude Settings
 
-Reconcile per-project Claude Code settings against the global config. Walk every project's `.claude/settings.json` and `.claude/settings.local.json`, and for **each item** ask the user where it belongs.
+Reconcile per-project Claude Code settings against the global config: walk every project's `.claude/settings.json` and `.claude/settings.local.json` and ask the user where **each item** belongs.
 
 ## The four settings locations
 
@@ -13,16 +13,14 @@ Reconcile per-project Claude Code settings against the global config. Walk every
 |---|---|---|---|
 | **Global shared** | `~/.dotfiles/claude/settings.json` | All the user's machines | Versioned (symlinked to `~/.claude/settings.json`) |
 | **Global local** | `~/.claude/settings.local.json` | This machine only | Untracked |
-| **Project shared** | `<repo>/.claude/settings.json` | Everyone who clones that repo (team) | Committed in the project repo |
+| **Project shared** | `<repo>/.claude/settings.json` | Everyone who clones the repo (team) | Committed in that repo |
 | **Project local** | `<repo>/.claude/settings.local.json` | This machine only | Gitignored |
 
-**Always edit the real file, never through a symlink.** The global shared target is `~/.dotfiles/claude/settings.json` (its `~/.claude/settings.json` form is just a symlink). The global local target is `~/.claude/settings.local.json`.
-
-Project **shared** settings are committed to that project's repo, so they exist for the whole team. Moving an item out of one is a change to a shared repo — flag that to the user (see [[#After each project]]). Project **local** settings are personal to this machine.
+**Always edit the real file, never through a symlink** — the global shared target is `~/.dotfiles/claude/settings.json` (`~/.claude/settings.json` is just the symlink).
 
 ## Discovery
 
-Scan these roots: `~/.dotfiles` and every git repo under `~/workspace` (repos can be nested, e.g. `~/workspace/accessowl/access_owl`, and may include git worktrees). Find every `.claude/settings.json` and `.claude/settings.local.json` under them.
+Scan `~/.dotfiles` and every git repo under `~/workspace` (repos may be nested, e.g. `~/workspace/accessowl/access_owl`, and include worktrees):
 
 ```bash
 find ~/.dotfiles ~/workspace \
@@ -31,85 +29,70 @@ find ~/.dotfiles ~/workspace \
   -path '*/.claude/settings.local.json' -print
 ```
 
-- **Never** touch `~/.claude/settings.json` or `~/.claude/settings.local.json` as *sources* — those are the global destinations, not projects to sweep.
-- If a project has neither file, skip it silently.
-- Announce the plan up front: which projects have settings files, and how many items total.
+- **Never** sweep `~/.claude/settings.json` or `~/.claude/settings.local.json` as sources — those are the global destinations.
+- Projects with neither file: skip silently.
+- Announce the plan up front: which projects have settings files, how many items total.
 
 ## What counts as an item
 
 Go finer than top-level keys so each decision is meaningful:
 
-- **Each permission entry** in `permissions.allow` / `permissions.deny` / `permissions.ask` — one item per string (e.g. `"WebSearch"`, `"Bash(mix test:*)"`).
-- **Each plugin key** in `enabledPlugins` — one item per plugin.
-- **Each top-level scalar** (e.g. `theme`, `model`, `alwaysThinkingEnabled`) — one item.
-- **Each hook group**, keyed by event (`PreToolUse`, `Stop`, …) — one item per event.
-- Anything else: present the smallest self-contained unit you can.
+- Each permission entry in `permissions.allow` / `deny` / `ask` — one item per string (e.g. `"Bash(mix test:*)"`).
+- Each plugin key in `enabledPlugins`.
+- Each top-level scalar (`theme`, `model`, `alwaysThinkingEnabled`, …).
+- Each hook group, keyed by event (`PreToolUse`, `Stop`, …).
+- Anything else: the smallest self-contained unit.
 
 ## The decision (per item)
 
-Show each item with its source (which project, which file — shared or local), then ask for one of:
+Show each item with its source (project + file, shared or local), then ask via `AskUserQuestion`:
 
-1. **Global shared** → `~/.dotfiles/claude/settings.json` — syncs to all the user's machines via dotfiles.
-2. **Global local** → `~/.claude/settings.local.json` — this machine only, untracked.
-3. **Keep in project** → leave it where it is.
-4. **Delete** → remove it from the project file.
+1. **Global shared** → `~/.dotfiles/claude/settings.json` — all machines, via dotfiles.
+2. **Global local** → `~/.claude/settings.local.json` — this machine only.
+3. **Keep in project** → leave it.
+4. **Delete** → remove from the project file.
 
-Use the `AskUserQuestion` tool. When several items share an obvious destination, you may batch them into one question with multiple items, but never auto-decide — every item the user hasn't explicitly placed stays put.
+Items sharing an obvious destination may be batched into one question — but never auto-decide; anything the user hasn't explicitly placed stays put.
 
-**Never group read-only operations with others.** Read-only operations (read, list, get, search, fetch — anything that only observes) must be presented separately from operations that can mutate state (write, update, create, delete, comment, run arbitrary SQL, etc.). If you cannot determine whether an action is read-only, **assume it is not** and group it with the mutating ones. This keeps the user from accidentally globally auto-allowing a destructive action alongside a batch of read-only ones.
+**Never group read-only operations with mutating ones.** Read-only (read, list, get, search, fetch — anything that only observes) must be asked separately from anything that can mutate state (write, update, create, delete, comment, arbitrary SQL). Can't tell? Treat it as mutating. This prevents accidentally auto-allowing a destructive action inside a batch of harmless ones.
 
-## Merge semantics (when moving to a global destination)
+## Merge semantics (moving to a global destination)
 
-Read the destination file first, then merge by type:
+Read the destination first, then merge by type:
 
-- **Permission entry** → add to the matching `permissions.allow/deny/ask` array; **dedupe** (union). If it's already there identically, it's redundant — just remove it from the project (no-op add).
-- **Plugin key** → set the key under `enabledPlugins`.
-- **Scalar** → set the key.
-- **Hook group** → add under `hooks.<Event>`; if that event already has hooks, append rather than replace.
+- **Permission entry** → union into the matching `permissions.*` array (dedupe).
+- **Plugin key / scalar** → set the key.
+- **Hook group** → add under `hooks.<Event>`; append to existing hooks for that event, never replace.
 
-After a successful move, **remove the item from the project file**.
+After a successful move, remove the item from the project file.
 
-### Conflicts
-
-If the destination already has that key with a **different** value (e.g. `theme` differs, or a hook event already defined differently), stop and ask the user which value wins. Never silently overwrite a global value.
-
-### Redundancy
-
-If an item already exists identically in the destination, treat it as already-global: drop it from the project file and tell the user it was redundant (no global change needed).
+- **Conflict** (destination has the key with a *different* value) → stop and ask which wins. Never silently overwrite a global value.
+- **Redundant** (identical value already global) → just drop it from the project file and say it was redundant.
 
 ## Workflow
 
-1. **Discover** all project settings files (see above) and announce the plan.
-2. For each project, for each file (`settings.json` then `settings.local.json`):
-   1. Read and parse it.
-   2. Break it into items.
-   3. For each item, ask the decision and apply it immediately (merge into destination + remove from project, keep, or delete).
-3. **After each project** — see below.
-4. **Prune redundant local rules** — see below.
-5. **Done**.
-
-## After each project
-
-- If a project's settings file is now empty (`{}` or only empty containers), offer to delete the file.
-- If you changed a **project shared** file (`<repo>/.claude/settings.json`, committed to that repo), do **not** commit it. Tell the user it's a change to a team-shared repo they'll need to review/commit/PR themselves.
-- Project **local** files (`settings.local.json`) are gitignored — just edit, nothing to commit.
+1. Discover all project settings files; announce the plan.
+2. Per project, per file (`settings.json` then `settings.local.json`): read, break into items, ask each decision, apply immediately.
+3. After each project:
+   - File now empty (`{}` or only empty containers) → offer to delete it.
+   - Changed a **project shared** file → do **not** commit; tell the user it's a team-shared change they must review/commit/PR themselves. (Project local files are gitignored — nothing to do.)
+4. Prune redundant local rules (below).
+5. Done.
 
 ## Prune redundant local rules
 
-As a final pass, remove rules from every `settings.local.json` that are already covered by the matching `settings.json`. Because Claude Code merges `settings.local.json` on top of `settings.json`, anything present in both is dead weight in the local file. Check each pair:
+Claude Code merges `settings.local.json` on top of `settings.json`, so anything present identically in both is dead weight in the local file. Check each pair:
 
-- **Global**: `~/.claude/settings.local.json` against `~/.dotfiles/claude/settings.json` (the global shared file).
-- **Project**: each `<repo>/.claude/settings.local.json` against its sibling `<repo>/.claude/settings.json`.
+- **Global**: `~/.claude/settings.local.json` vs `~/.dotfiles/claude/settings.json`.
+- **Project**: each `<repo>/.claude/settings.local.json` vs its sibling `settings.json`.
 
-For each item in a local file that is identically present in the corresponding shared file, drop it from the local file. After pruning, if a local file is empty (`{}` or only empty containers), delete it.
+Drop duplicated items from the local file; delete the local file if it ends up empty.
 
-## Committing the global changes
+## Committing
 
-- Changes to **global shared** (`~/.dotfiles/claude/settings.json`) are in the dotfiles repo. Do **not** auto-commit — let the user ask to commit (per their global convention).
-- Changes to **global local** (`~/.claude/settings.local.json`) are untracked; nothing to commit.
+- **Global shared** changes live in the dotfiles repo — do **not** auto-commit; the user asks when they want a commit.
+- **Global local** is untracked — nothing to commit.
 
 ## Done
 
-Do **not** show a report or summary of what changed. Just apply the decisions and stop.
-
-Don't offer to log this or post EOD — the user will ask.
+Apply the decisions and stop — no report or summary of what changed. Don't offer to log this or post EOD — the user will ask.

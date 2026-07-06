@@ -5,37 +5,35 @@ description: Process the user's PARA inboxes to zero, GTD-style. Walks every inb
 
 # PARA — Clear Inboxes
 
-Walk the user through emptying their PARA inboxes one item at a time, applying a GTD decision to each. The goal is **inbox zero across every reachable inbox**, plus a clear hand-off list for the ones Claude can't touch.
+Empty the user's PARA inboxes one item at a time, applying a GTD decision to each. Goal: **inbox zero across every reachable inbox**, plus a hand-off list for the rest.
 
-## Source of truth for the inbox list
+## Source of truth
 
-The canonical list of inboxes lives in the **Spaces** note, section `## Inboxes`:
+The canonical inbox list lives in the Spaces note, section `## Inboxes`:
 
 `~/Documents/Second Brain/1 - Projects/PARA umsetzen/Spaces.md`
 
-**Always read this first** — don't hardcode the list. The user maintains it; it may have changed since this skill was written. As of writing it contains: Gmail privat, Gmail AgileAddicts, Gmail AccessOwl, Nirvana, Obsidian, Google Drive privat, Physical Inbox, AccessOwl Slack.
+**Read this first** — the user maintains it; never hardcode the list. As of writing: Gmail privat, Gmail AgileAddicts, Gmail AccessOwl, Nirvana, Obsidian, Google Drive privat, Physical Inbox, AccessOwl Slack.
 
-## Step 1 — Triage which inboxes are reachable
+## Step 1 — Triage reachability
 
-For each inbox in the Spaces list, decide if Claude can actually read it **right now** in this session. Connectors (Gmail, Slack, Drive) may not be authenticated in a CLI session — if a tool call fails or the connector isn't available, treat that inbox as **unreachable** and move on; don't keep retrying.
+For each inbox, decide whether it's readable **right now**. Connectors (Gmail, Slack) may be unauthenticated in a CLI session — one failed tool call means unreachable; move on, don't retry.
 
 | Inbox | How to reach it | Notes |
 |---|---|---|
-| Obsidian | `0 - Inbox/` folder in the vault `~/Documents/Second Brain` (read with `Bash`/`Read`) | Always reachable (local). |
+| Obsidian | `0 - Inbox/` in `~/Documents/Second Brain` (`Bash`/`Read`) | Always reachable (local). |
 | Nirvana | `mcp__nirvana__get_tasks` with `state=inbox` | Always reachable. |
-| AccessOwl Slack | Unread @-mentions, DMs, and saved/"Later" items via the Slack MCP | Connector — may be unauthenticated. |
-| Gmail privat / AgileAddicts / AccessOwl | Unread / inbox messages per account via the Gmail MCP | Connector — may be unauthenticated. Three separate accounts. |
-| Google Drive privat | Local synced folder `~/My Drive/0 - Inbox` (read with `Bash`/`Read`) | Always reachable (synced locally) — no connector needed. |
-| Downloads folder | Local folder `~/Downloads` (read with `Bash`/`Read`) | Always reachable (local). |
-| Physical Inbox | **Not reachable** — physical paper. | Always goes on the manual hand-off list. |
+| AccessOwl Slack | Unread @-mentions, DMs, saved/"Later" items via Slack MCP | Connector — may be unauthenticated. |
+| Gmail privat / AgileAddicts / AccessOwl | Unread/inbox messages per account via Gmail MCP | Connector — three separate accounts. |
+| Google Drive privat | Local synced folder `~/My Drive/0 - Inbox` (`Bash`/`Read`) | Always reachable — no connector needed. |
+| Downloads | `~/Downloads` (`Bash`/`Read`) | Always reachable (local). |
+| Physical Inbox | Not reachable — paper. | Always on the manual hand-off list. |
 
-Announce the plan before starting: list which inboxes you'll process now and which you'll defer to manual hand-off, and roughly how many items each reachable inbox holds.
+Announce the plan before starting: which inboxes now, which deferred, and roughly how many items each reachable one holds.
 
-## Step 2 — Process reachable inboxes, one item at a time
+## Step 2 — Process, one item at a time
 
-Go inbox by inbox (reachable ones only). For **each item**, present it compactly and ask what to do. Show one item at a time — do not dump the whole inbox and batch-ask.
-
-Present each item as:
+Go inbox by inbox. Present **one item at a time** — never dump the whole inbox and batch-ask:
 
 ```
 [<inbox> · item N/total]
@@ -44,30 +42,30 @@ When: …
 Summary: <one line of what it is / what it's asking>
 ```
 
-Then offer the GTD decision menu (let the user just reply with a number or natural language):
+Then offer the GTD menu (the user may reply with a number or natural language):
 
-1. **Trash** — delete / archive it; nothing to keep.
-2. **Do now** — it's a <2-minute action; do it immediately if Claude can, else tell the user to.
-3. **Next action** → create a Nirvana task in `next`.
-4. **Defer** → create a Nirvana task in `scheduled` with a start date.
-5. **Waiting for** → create a Nirvana task in `waiting` (delegated / blocked).
-6. **Someday** → create a Nirvana task in `someday`.
-7. **Reference** → file into Obsidian Resources or Drive (it's material to keep, not an action).
-8. **New project** → it needs multiple steps / has an outcome → create a Nirvana project (see project rule below).
+1. **Trash** — delete/archive; nothing to keep.
+2. **Do now** — <2-minute action; do it immediately if Claude can, else tell the user to.
+3. **Next action** → Nirvana task in `next`.
+4. **Defer** → Nirvana task in `scheduled` with a start date.
+5. **Waiting for** → Nirvana task in `waiting`.
+6. **Someday** → Nirvana task in `someday`.
+7. **Reference** → file into Obsidian Resources or Drive (material to keep, not an action).
+8. **New project** → multiple steps / has an outcome → create a Nirvana project (see rules).
 
-Apply the decision with the right tool before moving to the next item, then confirm briefly (`✓ Filed to …` / `✓ Nirvana next: …`). Keep moving until the inbox is empty, then move to the next reachable inbox.
+Apply each decision before moving on, confirm briefly (`✓ Filed to …` / `✓ Nirvana next: …`), and continue until the inbox is empty.
 
-## Decision rules (respect these)
+## Decision rules
 
-- **Nirvana states are explicit.** New standalone tasks go to the state the user picked from the menu — never silently assume `next` or `inbox`. Tasks created **under a project** default to `next` (or waiting/scheduled), never inbox.
-- **New project** → when creating a Nirvana project, also auto-create the matching Obsidian stub and Drive folder, and tell the user which Gmail labels to add. Project names are outcome-oriented (Verb + Sache + optional Jahr). Follow the `para_create_project_workflow` memory.
-- **Reference filing** follows the Resources-bucket rule: Obsidian = notes/knowledge, Gmail = correspondence, Drive = files. Don't mirror across tools — file where the material lives.
-- **Obsidian inbox items** can be a single `.md` or a folder; either is fine. To file one, move it out of `0 - Inbox/` into the right PARA bucket with `mv`. The vault is a local directory, so there's no Obsidian MCP — after the move, fix links by hand: `grep -rl` the vault for the note's old basename/path and rewrite any explicit-path markdown links or embeds that now point to the old location (plain `[[wikilinks]]` resolve by name and usually survive a move).
-- When in doubt about where something belongs or whether it's work vs private, **ask** rather than guess.
+- **Nirvana states are explicit.** Standalone tasks get exactly the state the user picked — never silently assume `next` or `inbox`. Tasks created under a project default to `next` (or waiting/scheduled), never inbox.
+- **New project** → also auto-create the matching Obsidian stub and Drive folder, and tell the user which Gmail labels to add. Names are outcome-oriented (Verb + Sache + optional Jahr). Follow the `para_create_project_workflow` memory.
+- **Reference filing** follows the Resources-bucket rule: Obsidian = notes/knowledge, Gmail = correspondence, Drive = files. File where the material lives — don't mirror across tools.
+- **Obsidian inbox items** are a single `.md` or a folder. File by `mv` out of `0 - Inbox/` into the right PARA bucket (no Obsidian MCP — the vault is local). After moving, fix links: `grep -rl` the vault for the old basename/path and rewrite explicit-path markdown links/embeds (plain `[[wikilinks]]` resolve by name and usually survive).
+- In doubt about placement or work-vs-private → **ask**.
 
 ## Step 3 — Hand off the unreachable inboxes
 
-After every reachable inbox is at zero, list the inboxes Claude could **not** process — the Physical Inbox plus any connector that wasn't authenticated — and tell the user to go through those manually now. For example:
+Once every reachable inbox is at zero, list what Claude couldn't process (Physical Inbox + unauthenticated connectors) for the user to do manually now:
 
 ```
 Reachable inboxes cleared ✓
@@ -81,4 +79,4 @@ Process these the same way: trash / do / defer / file.
 
 ## Done
 
-Confirm the overall result: which inboxes hit zero, how many items were processed, what was created (tasks/projects), and the manual hand-off list. Don't offer to log this or post EOD — the user will ask if they want that.
+Report: which inboxes hit zero, items processed, tasks/projects created, and the manual hand-off list. Don't offer to log this or post EOD — the user will ask.

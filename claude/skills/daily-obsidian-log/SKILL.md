@@ -5,41 +5,25 @@ description: Append completed tasks to the running "Daily Log" file in the user'
 
 # Daily Obsidian Log
 
-Appends completed tasks to the user's Obsidian Daily Log file. This is the **source of truth** for the daily log.
-
-## Scope
-
-Both work and private tasks. Anything substantial the user wants to remember they did today — AccessOwl work, dotfiles changes, side projects, personal admin, anything.
-
-## Pairing with Notion
-
-Whenever the task is work-related (AccessOwl repos, Linear tickets, internal Notion/Slack threads, meetings with colleagues), the [[daily-notion-log]] skill must also be invoked to mirror the entry to Notion (Notion drives the EOD Slack post). Obsidian comes first, Notion second — never Notion alone.
-
-If you're unsure whether a task is work-related, ASK the user before logging. Don't guess.
+Append a completed task to the Obsidian Daily Log — the source of truth for everything logged, work and private alike.
 
 ## Configuration
 
-- **Vault path** (on disk): `~/Documents/Second Brain`
-- **Daily Log file** (absolute): `~/Documents/Second Brain/3 - Resources/Daily Log.md`
-- **Date format**: German numeric `DD.MM.YYYY` (e.g. `15.06.2026`)
-- **Tools**: Direct file access — `Read` and `Edit`. The vault is a local directory, so editing the markdown file directly is simpler and more reliable than routing through the Obsidian MCP server.
-
-Today's date comes from the conversation environment's `currentDate` value, formatted as `DD.MM.YYYY`.
+- **File**: `~/Documents/Second Brain/3 - Resources/Daily Log.md`
+- **Date format**: German numeric `DD.MM.YYYY`, derived from the environment's `currentDate`
+- **Tools**: plain `Read`/`Edit` — the vault is a local directory; don't route through an Obsidian MCP server
 
 ## Workflow
 
-Triggers: "log this", "add to daily log", "log to obsidian", "I'm done with X", or after the user confirms a proactive offer.
-
 1. Confirm the task is actually done.
-2. Draft a **short bullet** (a few words) summarizing what was completed. Show it to the user for approval; use their edit verbatim if they tweak it.
-3. Include relevant links inline using markdown link syntax `[label](url)`: GitHub PRs, Notion pages, Linear tickets, Slack threads, etc. Ask the user whether anything else should be linked.
-4. `Read` the Daily Log file at `~/Documents/Second Brain/3 - Resources/Daily Log.md`, and make sure you see the **true end of the file** — the current final line. The file grows over time and is long, so reading only the top (or relying on an earlier read) risks anchoring your edit mid-file. If in doubt, read the tail again right before editing.
-5. **New entries are ALWAYS appended to the very end of the file** — never inserted between existing days or in the middle of today's section. Today's `## DD.MM.YYYY` heading, when it exists, is always the last heading in the file, so "end of today's section" and "end of file" are the same place:
-   - **Today's heading exists** → add the new bullet as a new last line, immediately after the file's current final line.
-   - **Today's heading missing** → append the new `## DD.MM.YYYY` heading directly after the file's final bullet (no blank line between them), then the new bullet.
-6. Apply the change with `Edit`, anchoring `old_string` on the file's **actual last non-empty line** (confirm it really is the last line — not a heading or a mid-file bullet). Leave the existing frontmatter untouched.
-7. **If the task is work-related**, also invoke [[daily-notion-log]] with the same summary (Obsidian first, Notion second). If unsure whether it's work, ask the user before deciding.
-8. Confirm to the user: `Logged: {bullet text}` (mention both destinations when applicable: `Logged to Obsidian + Notion: {bullet text}`).
+2. Draft a short bullet (see style below) and show it for approval; use the user's edit verbatim.
+3. `Read` the file and make sure you see its **true final line**. The file is long and grows daily — anchoring an edit mid-file (from a partial or stale read) is the main failure mode. Re-read the tail right before editing if in doubt.
+4. Append at the very end of the file — never insert mid-file. Today's `## DD.MM.YYYY` heading, when present, is always the last heading, so "end of today's section" and "end of file" are the same place:
+   - Heading exists → add the bullet as the new last line.
+   - Heading missing → add `## DD.MM.YYYY` directly after the current final bullet (no blank line), then the bullet.
+5. Apply with `Edit`, anchoring `old_string` on the file's actual last non-empty line. Leave the frontmatter untouched.
+6. **Work task?** Also invoke [[daily-notion-log]] with the same summary — Obsidian first, Notion second. If unsure whether it's work, ask before deciding.
+7. Confirm: `Logged: {bullet}` (or `Logged to Obsidian + Notion: {bullet}`).
 
 ## File shape
 
@@ -58,12 +42,11 @@ date: 2026-06-15
 - Renamed daily-log skill to daily-notion-log
 ```
 
-**No empty line** between the last bullet of one day and the next day's `## DD.MM.YYYY` heading — the new heading must follow the previous day's final bullet directly.
+No blank line between one day's last bullet and the next day's heading.
 
 ## Bullet style
 
-- A few words — enough to recognize the task later, no more.
-- Past tense, action-led ("Fixed X", "Shipped Y", "Reviewed Z", "Installed N").
-- **Match the verb to the actual state of the work — do not imply more completion than happened.** A merged/deployed change is "Fixed"/"Shipped"; a change that only got as far as an open, unmerged PR is **not**. For work that stopped at PR creation, use wording that reflects that: "Opened PR for X", "Raised PR to do Y", "Created PR …". Reserve "Fixed"/"Shipped"/"Merged" for work that actually landed. When in doubt about the state, ask the user rather than assume it's done.
-- Inline links where they exist: `Reviewed [PR #123](https://github.com/...)`.
-- No internal commentary or private notes that wouldn't make sense rereading later.
+- A few words — enough to recognize the task later, no more. Past tense, action-led ("Fixed X", "Shipped Y", "Reviewed Z").
+- **The verb must match the actual state of the work.** "Fixed"/"Shipped"/"Merged" only for work that landed; work that stopped at an open, unmerged PR is "Opened PR for X" / "Raised PR to do Y". Unsure of the state → ask, don't assume done.
+- Inline links where they exist: `Reviewed [PR #123](https://github.com/...)`. Ask whether anything else should be linked.
+- No private commentary that wouldn't make sense on reread.
