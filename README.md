@@ -125,6 +125,17 @@ codex plugin marketplace add affaan-m/ECC
 codex plugin add ecc@ecc
 ```
 
+#### ponytail
+
+Pushes the agent toward minimal code — reuse and built-ins before writing anything new, see [github.com/DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail). Git-sourced marketplace, so register it before installing:
+
+```bash
+codex plugin marketplace add DietrichGebert/ponytail
+codex plugin add ponytail@ponytail
+```
+
+Ponytail ships two lifecycle hooks; review and trust them via `/hooks` in Codex, then start a new thread.
+
 ### asdf
 
 After running the installation script, install all asdf plugins and tools:

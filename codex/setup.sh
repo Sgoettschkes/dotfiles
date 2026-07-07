@@ -50,3 +50,5 @@ echo "Install plugins by hand if not already installed (see README → Codex plu
 echo "  codex plugin add superpowers@openai-curated"
 echo "  codex plugin marketplace add affaan-m/ECC"
 echo "  codex plugin add ecc@ecc"
+echo "  codex plugin marketplace add DietrichGebert/ponytail"
+echo "  codex plugin add ponytail@ponytail"
