@@ -31,6 +31,8 @@ SPACESHIP_ZIG_SHOW=false
 SPACESHIP_GLEAM_SHOW=false
 SPACESHIP_TERRAFORM_SHOW=false
 SPACESHIP_DOCKER_SHOW=false
+# gcloud is only installed for gws auth; the active project is noise
+SPACESHIP_GCLOUD_SHOW=false
 
 # Only surface duration for slow commands (mix compile/test, migrations)
 SPACESHIP_EXEC_TIME_SHOW=true
