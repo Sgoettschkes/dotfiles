@@ -21,6 +21,7 @@ The installation script will automatically install:
 - asdf
 - Git
 - GitHub CLI (`gh`)
+- Google Workspace CLI (`gws`)
 - Homebrew
 - iTerm2 (macOS only)
 - Neovim
@@ -39,6 +40,7 @@ Also installed automatically via Homebrew (macOS only):
 * claude-code
 * codex (OpenAI terminal coding agent)
 * docker (Docker Desktop)
+* gcloud CLI (needed by `gws auth setup`)
 * ngrok
 * obsidian
 * rectangle

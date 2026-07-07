@@ -68,6 +68,7 @@ BREW_FORMULAE=(
     asdf
     gh
     git
+    googleworkspace-cli
     neovim
     ripgrep
     tree-sitter-cli
@@ -87,6 +88,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
         font-fira-code-nerd-font
         font-jetbrains-mono-nerd-font
         font-sauce-code-pro-nerd-font
+        gcloud-cli
         iterm2
         ngrok/ngrok/ngrok
         obsidian
