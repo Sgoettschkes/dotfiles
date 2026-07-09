@@ -60,6 +60,7 @@ Apply each decision before moving on, confirm briefly (`✓ Filed to …` / `✓
 ## Decision rules
 
 - **Nirvana states are explicit.** Standalone tasks get exactly the state the user picked — never silently assume `next` or `inbox`. Tasks created under a project default to `next` (or waiting/scheduled), never inbox.
+- **Nirvana project tasks inherit their area — don't re-tag.** A task created under a project (`parentid` set) inherits the project's area (`private`, `AccessOwl`, etc.); passing that area again in `tags` makes it show up twice. Create child tasks with `tags: []` (or only context tags like `computer`/`home`/`call`). Standalone tasks with no parent still get the area tag explicitly.
 - **Nirvana inbox captures: complete, don't trash.** When a Nirvana inbox capture has been actioned or folded into a project/task, mark it `completed: true` (it stays as a record and drops out of the inbox) — never set state `trash`. Trashing soft-deletes and loses the record; completing preserves it. This applies only to Nirvana items; Gmail/Drive/Obsidian items are still archived/deleted per the user's choice.
 - **New project** → also auto-create the matching Obsidian stub and Drive folder, and tell the user which Gmail labels to add. Names are outcome-oriented (Verb + Sache + optional Jahr). Follow the `para_create_project_workflow` memory.
 - **Reference filing** follows the Resources-bucket rule: Obsidian = notes/knowledge, Gmail = correspondence, Drive = files. File where the material lives — don't mirror across tools.
