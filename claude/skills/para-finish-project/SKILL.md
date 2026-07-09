@@ -39,7 +39,9 @@ For each reachable mirror location from `Spaces.md`, gather the project's artifa
 Reachability:
 - **Obsidian** — always (local). `~/Documents/Second Brain/1 - Projects/<name>` — a single `<name>.md` **or** a `<name>/` folder.
 - **Google Drive privat** — always (local sync). `~/My Drive/1 - Projects/<name>/`.
-- **Gmail** (privat / AgileAddicts / AccessOwl) — connector; if unauthenticated, defer to Step 4.
+- **Gmail privat** — always via the `gws` CLI, never the Gmail MCP; if gws auth has expired, defer to Step 4.
+- **Gmail AccessOwl** — Gmail MCP connector; if unauthenticated, defer to Step 4.
+- **Gmail AgileAddicts** — never accessed (Claude touches no Gmail account beyond privat and AccessOwl); always Step 4.
 
 Present each artifact as `[<app> · artifact N/total] <name/title> — <one-line of what it is>` and ask:
 

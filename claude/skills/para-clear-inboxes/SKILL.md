@@ -24,7 +24,9 @@ For each inbox, decide whether it's readable **right now**. Connectors (Gmail, S
 | Obsidian | `0 - Inbox/` in `~/Documents/Second Brain` (`Bash`/`Read`) | Always reachable (local). |
 | Nirvana | `mcp__nirvana__get_tasks` with `state=inbox` | Always reachable. |
 | AccessOwl Slack | Unread @-mentions, DMs, saved/"Later" items via Slack MCP | Connector — may be unauthenticated. |
-| Gmail privat / AgileAddicts / AccessOwl | Unread/inbox messages per account via Gmail MCP | Connector — three separate accounts. |
+| Gmail privat | `gws` CLI (e.g. `gws gmail users messages list --params '{"userId": "me", ...}'`) — never the Gmail MCP | If auth expired, mark unreachable and suggest `gws auth login`. |
+| Gmail AccessOwl | Gmail MCP | Connector — may be unauthenticated. |
+| Gmail AgileAddicts | Not reachable — **never access any other Gmail account**. | Always on the manual hand-off list. |
 | Google Drive privat | Local synced folder `~/My Drive/0 - Inbox` (`Bash`/`Read`) | Always reachable — no connector needed. |
 | Downloads | `~/Downloads` (`Bash`/`Read`) | Always reachable (local). |
 | Physical Inbox | Not reachable — paper. | Always on the manual hand-off list. |
@@ -72,6 +74,7 @@ Reachable inboxes cleared ✓
 
 Still to do yourself (no access):
 - Physical Inbox — paper on your desk
+- Gmail AgileAddicts — Claude never accesses this account
 - Gmail AccessOwl — connector not authenticated this session
 
 Process these the same way: trash / do / defer / file.

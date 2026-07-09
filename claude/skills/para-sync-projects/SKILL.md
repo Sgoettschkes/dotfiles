@@ -27,11 +27,11 @@ Mirror locations live in the Spaces note, section `## Projects`:
 | **Nirvana** (master) | `mcp__nirvana__get_tasks` with `type=project`, `state=active` | Always. |
 | Obsidian | `~/Documents/Second Brain/1 - Projects/` — one `.md` **or** folder per project | Always (local). |
 | Google Drive privat | `~/My Drive/1 - Projects/` — one folder per project | Always (local sync). |
-| Gmail privat | Project labels via Gmail MCP — **all** projects | Connector — may be unauthenticated. |
-| Gmail AgileAddicts | Project labels — **work projects only** (AA/AO areas) | Connector — may be unauthenticated. |
-| Gmail AccessOwl | Project labels — **work projects only** (AA/AO areas) | Connector — may be unauthenticated. |
+| Gmail privat | Project labels via the `gws` CLI (never the Gmail MCP) — **all** projects | If gws auth expired, unreachable; suggest `gws auth login`. |
+| Gmail AgileAddicts | Project labels — **work projects only** (AA/AO areas) | Never accessed by Claude — always on the manual list. |
+| Gmail AccessOwl | Project labels via Gmail MCP — **work projects only** (AA/AO areas) | Connector — may be unauthenticated. |
 
-One failed Gmail call → mark that account unreachable and defer to the manual list; don't retry.
+One failed Gmail call (gws or MCP) → mark that account unreachable and defer to the manual list; don't retry. **Never access any Gmail account other than privat (gws) and AccessOwl (Gmail MCP).**
 
 ## What counts as a project
 
@@ -85,8 +85,9 @@ List unreachable locations for the user to check by hand against the master list
 Synced against Nirvana ✓ (Obsidian, Drive)
 
 Check these yourself (no access):
-- Gmail privat — connector not authenticated
-- Gmail AgileAddicts / AccessOwl — connector not authenticated
+- Gmail privat — gws auth expired (re-run `gws auth login`)
+- Gmail AgileAddicts — Claude never accesses this account
+- Gmail AccessOwl — connector not authenticated
 
 Compare each against the active Nirvana project list; add/remove labels to match (work projects only in the AA/AO mailboxes).
 ```
