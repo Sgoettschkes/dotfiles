@@ -46,7 +46,7 @@ Summary: <one line of what it is / what it's asking>
 
 Then offer the GTD menu (the user may reply with a number or natural language):
 
-1. **Trash** — delete/archive; nothing to keep.
+1. **Trash** — delete/archive; nothing to keep. For a **Nirvana** inbox capture, complete it instead of trashing (see Decision rules).
 2. **Do now** — <2-minute action; do it immediately if Claude can, else tell the user to.
 3. **Next action** → Nirvana task in `next`.
 4. **Defer** → Nirvana task in `scheduled` with a start date.
@@ -60,6 +60,7 @@ Apply each decision before moving on, confirm briefly (`✓ Filed to …` / `✓
 ## Decision rules
 
 - **Nirvana states are explicit.** Standalone tasks get exactly the state the user picked — never silently assume `next` or `inbox`. Tasks created under a project default to `next` (or waiting/scheduled), never inbox.
+- **Nirvana inbox captures: complete, don't trash.** When a Nirvana inbox capture has been actioned or folded into a project/task, mark it `completed: true` (it stays as a record and drops out of the inbox) — never set state `trash`. Trashing soft-deletes and loses the record; completing preserves it. This applies only to Nirvana items; Gmail/Drive/Obsidian items are still archived/deleted per the user's choice.
 - **New project** → also auto-create the matching Obsidian stub and Drive folder, and tell the user which Gmail labels to add. Names are outcome-oriented (Verb + Sache + optional Jahr). Follow the `para_create_project_workflow` memory.
 - **Reference filing** follows the Resources-bucket rule: Obsidian = notes/knowledge, Gmail = correspondence, Drive = files. File where the material lives — don't mirror across tools.
 - **Obsidian inbox items** are a single `.md` or a folder. File by `mv` out of `0 - Inbox/` into the right PARA bucket (no Obsidian MCP — the vault is local). After moving, fix links: `grep -rl` the vault for the old basename/path and rewrite explicit-path markdown links/embeds (plain `[[wikilinks]]` resolve by name and usually survive).
