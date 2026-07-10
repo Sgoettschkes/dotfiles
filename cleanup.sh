@@ -98,6 +98,7 @@ remove_symlink "$HOME/.claude/skills/gtd-clear-inboxes" "gtd-clear-inboxes skill
 remove_symlink "$HOME/.claude/skills/gtd-create-project" "gtd-create-project skill"
 remove_symlink "$HOME/.claude/skills/gtd-finish-project" "gtd-finish-project skill"
 remove_symlink "$HOME/.claude/skills/gtd-sync-projects" "gtd-sync-projects skill"
+remove_symlink "$HOME/.claude/skills/gtd-weekly-review" "gtd-weekly-review skill"
 remove_symlink "$HOME/.claude/skills/unify-claude-settings" "unify-claude-settings skill"
 echo
 

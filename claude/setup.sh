@@ -42,6 +42,7 @@ create_symlink "$DOTFILES_DIR/claude/skills/gtd-clear-inboxes" "$HOME/.claude/sk
 create_symlink "$DOTFILES_DIR/claude/skills/gtd-create-project" "$HOME/.claude/skills/gtd-create-project"
 create_symlink "$DOTFILES_DIR/claude/skills/gtd-finish-project" "$HOME/.claude/skills/gtd-finish-project"
 create_symlink "$DOTFILES_DIR/claude/skills/gtd-sync-projects" "$HOME/.claude/skills/gtd-sync-projects"
+create_symlink "$DOTFILES_DIR/claude/skills/gtd-weekly-review" "$HOME/.claude/skills/gtd-weekly-review"
 create_symlink "$DOTFILES_DIR/claude/skills/unify-claude-settings" "$HOME/.claude/skills/unify-claude-settings"
 echo
 
