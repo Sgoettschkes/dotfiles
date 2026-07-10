@@ -38,9 +38,9 @@ create_symlink "$DOTFILES_DIR/claude/skills/daily-notion-log" "$HOME/.claude/ski
 create_symlink "$DOTFILES_DIR/claude/skills/daily-obsidian-log" "$HOME/.claude/skills/daily-obsidian-log"
 create_symlink "$DOTFILES_DIR/claude/skills/do-dev-work" "$HOME/.claude/skills/do-dev-work"
 create_symlink "$DOTFILES_DIR/claude/skills/eod-slack-post" "$HOME/.claude/skills/eod-slack-post"
-create_symlink "$DOTFILES_DIR/claude/skills/para-clear-inboxes" "$HOME/.claude/skills/para-clear-inboxes"
-create_symlink "$DOTFILES_DIR/claude/skills/para-finish-project" "$HOME/.claude/skills/para-finish-project"
-create_symlink "$DOTFILES_DIR/claude/skills/para-sync-projects" "$HOME/.claude/skills/para-sync-projects"
+create_symlink "$DOTFILES_DIR/claude/skills/gtd-clear-inboxes" "$HOME/.claude/skills/gtd-clear-inboxes"
+create_symlink "$DOTFILES_DIR/claude/skills/gtd-finish-project" "$HOME/.claude/skills/gtd-finish-project"
+create_symlink "$DOTFILES_DIR/claude/skills/gtd-sync-projects" "$HOME/.claude/skills/gtd-sync-projects"
 create_symlink "$DOTFILES_DIR/claude/skills/unify-claude-settings" "$HOME/.claude/skills/unify-claude-settings"
 echo
 

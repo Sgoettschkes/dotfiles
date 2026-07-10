@@ -1,11 +1,13 @@
 ---
-name: para-clear-inboxes
-description: Process the user's PARA inboxes to zero, GTD-style. Walks every inbox Claude can reach (Obsidian, Nirvana, Slack, Gmail, Drive, Downloads), shows each item one at a time, and asks what to do with it — then applies the decision. Inboxes Claude can't reach (e.g. the Physical Inbox, or any connector that isn't authenticated) are collected and handed back to the user to process manually at the end. Use when the user asks to "clear inboxes", "process my inbox", "inbox zero", "do a PARA sweep", or similar.
+name: gtd-clear-inboxes
+description: Process the user's GTD inboxes to zero. Walks every inbox Claude can reach (Obsidian, Nirvana, Slack, Gmail, Drive, Downloads), shows each item one at a time, and asks what to do with it — then applies the decision. Inboxes Claude can't reach (e.g. the Physical Inbox, or any connector that isn't authenticated) are collected and handed back to the user to process manually at the end. Use when the user asks to "clear inboxes", "process my inbox", "inbox zero", "do a GTD sweep" (or a "PARA sweep" — old name), or similar.
 ---
 
-# PARA — Clear Inboxes
+# GTD — Clear Inboxes
 
-Empty the user's PARA inboxes one item at a time, applying a GTD decision to each. Goal: **inbox zero across every reachable inbox**, plus a hand-off list for the rest.
+Empty the user's inboxes one item at a time, applying a GTD decision to each. Goal: **inbox zero across every reachable inbox**, plus a hand-off list for the rest.
+
+**GTD vs. PARA:** this is a GTD (Getting Things Done) workflow — capture lands in inboxes, and processing each item (trash / do / defer / delegate / file) is the GTD clarify step. PARA is the *filing structure* the outputs land in: reference material files into the PARA buckets (Projects / AoR / Resources / Archives) across Obsidian, Drive, and Gmail, while actions become Nirvana tasks. Mentions of PARA below refer to that folder structure, not to the workflow itself.
 
 ## Source of truth
 

@@ -1,11 +1,13 @@
 ---
-name: para-finish-project
-description: Close out a finished PARA project end to end. Finds the exact project in Nirvana; if it still has un-logged (incomplete) tasks, warns and asks what to do instead of completing; once all tasks are logged, marks the project done. Then walks every app that holds projects (Obsidian, Drive, Gmail), surfaces each artifact one at a time, and asks where it goes — most into that app's Archive, but some into an AoR or Resource. Unreachable locations are listed at the end for manual handling. Use when the user asks to "finish project X", "close out project X", "complete project X", or "archive project X" with a full close-out.
+name: gtd-finish-project
+description: Close out a finished GTD project end to end. Finds the exact project in Nirvana; if it still has un-logged (incomplete) tasks, warns and asks what to do instead of completing; once all tasks are logged, marks the project done. Then walks every app that holds projects (Obsidian, Drive, Gmail), surfaces each artifact one at a time, and asks where it goes — most into that app's Archive, but some into an AoR or Resource. Unreachable locations are listed at the end for manual handling. Use when the user asks to "finish project X", "close out project X", "complete project X", or "archive project X" with a full close-out.
 ---
 
-# PARA — Finish Project
+# GTD — Finish Project
 
 Close a completed project everywhere: complete it in Nirvana (the master), then file each artifact to its final home. Most artifacts go to **Archive**; pull out the ones that are really reference material (→ Resources) or ongoing area material (→ AoR) before archiving the rest.
+
+**GTD vs. PARA:** closing out a project — resolving its open loops in Nirvana and getting it off the active list — is GTD practice. PARA is the *filing structure* the artifacts move within: projects live in `1 - Projects/` while active and their material lands in AoR / Resources / Archives when done. Mentions of PARA below refer to that folder structure.
 
 ## Source of truth
 
