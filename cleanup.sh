@@ -94,9 +94,10 @@ remove_symlink "$HOME/.claude/skills/daily-notion-log" "daily-notion-log skill"
 remove_symlink "$HOME/.claude/skills/daily-obsidian-log" "daily-obsidian-log skill"
 remove_symlink "$HOME/.claude/skills/do-dev-work" "do-dev-work skill"
 remove_symlink "$HOME/.claude/skills/eod-slack-post" "eod-slack-post skill"
-remove_symlink "$HOME/.claude/skills/para-clear-inboxes" "para-clear-inboxes skill"
-remove_symlink "$HOME/.claude/skills/para-finish-project" "para-finish-project skill"
-remove_symlink "$HOME/.claude/skills/para-sync-projects" "para-sync-projects skill"
+remove_symlink "$HOME/.claude/skills/gtd-clear-inboxes" "gtd-clear-inboxes skill"
+remove_symlink "$HOME/.claude/skills/gtd-create-project" "gtd-create-project skill"
+remove_symlink "$HOME/.claude/skills/gtd-finish-project" "gtd-finish-project skill"
+remove_symlink "$HOME/.claude/skills/gtd-sync-projects" "gtd-sync-projects skill"
 remove_symlink "$HOME/.claude/skills/unify-claude-settings" "unify-claude-settings skill"
 echo
 
