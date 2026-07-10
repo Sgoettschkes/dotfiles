@@ -1,6 +1,6 @@
 ---
 name: gtd-sync-projects
-description: Reconcile the user's GTD project lists across every location. Nirvana is the master — every active Nirvana project must exist in each reachable mirror location (Obsidian, Google Drive, and the Gmail accounts per scope); create the ones that are missing. Projects that exist in a mirror but NOT in Nirvana are surfaced one at a time and the user decides what to do. Locations Claude can't reach are listed at the end for manual checking. Use when the user asks to "sync projects", "reconcile projects", "check my project lists match", or do a GTD (or PARA — old name) project sweep.
+description: Reconcile the user's GTD project lists across every location. Nirvana is the master — every active Nirvana project must exist in each reachable mirror location (Obsidian, Google Drive, and the Gmail accounts per scope); create the ones that are missing. Projects that exist in a mirror but NOT in Nirvana are surfaced one at a time and the user decides what to do. Locations Claude can't reach are listed at the end for manual checking. Use when the user asks to "sync projects", "reconcile projects", "check my project lists match", or do a GTD or PARA project sweep.
 ---
 
 # GTD — Sync Projects
@@ -12,7 +12,7 @@ Make the project lists across all locations agree, with **Nirvana as the master*
 
 Unreachable locations go on a manual-check list at the end.
 
-**GTD vs. PARA:** keeping the project list current and trustworthy across systems is GTD review practice (projects being the GTD/PARA overlap). PARA is the *filing structure* the mirrors follow — one entry per project under each location's `1 - Projects/`. Mentions of PARA below refer to that folder structure.
+**GTD and PARA:** the user runs both methodologies side by side — GTD for stuff to do, PARA for filing — and projects are exactly where they overlap: every project exists in both. Keeping the project list current and trustworthy is GTD review practice (Nirvana, the master); the mirrors follow the PARA structure — one entry per project under each location's `1 - Projects/`.
 
 ## Source of truth
 

@@ -7,7 +7,7 @@ description: Close out a finished GTD project end to end. Finds the exact projec
 
 Close a completed project everywhere: complete it in Nirvana (the master), then file each artifact to its final home. Most artifacts go to **Archive**; pull out the ones that are really reference material (→ Resources) or ongoing area material (→ AoR) before archiving the rest.
 
-**GTD vs. PARA:** closing out a project — resolving its open loops in Nirvana and getting it off the active list — is GTD practice. PARA is the *filing structure* the artifacts move within: projects live in `1 - Projects/` while active and their material lands in AoR / Resources / Archives when done. Mentions of PARA below refer to that folder structure.
+**GTD and PARA:** the user runs both methodologies side by side — GTD for stuff to do, PARA for filing — and projects exist in both, so this skill spans the two. Closing out the project — resolving its open loops in Nirvana and getting it off the active list — is the GTD half; filing the artifacts is the PARA half: material lives in `1 - Projects/` while active and lands in AoR / Resources / Archives when done.
 
 ## Source of truth
 
