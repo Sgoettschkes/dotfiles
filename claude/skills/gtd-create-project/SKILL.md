@@ -1,11 +1,11 @@
 ---
 name: gtd-create-project
-description: Create a new GTD project everywhere it needs to live, not just Nirvana. Creates the active project in Nirvana (the master), then mirrors it — an Obsidian stub, a Google Drive folder — and tells the user which Gmail labels to add per account (label scoping needs judgment, so it's never automated). Use when the user asks to "create a project", "new project X", "start a project", "set up a project", or "spin up a project", and whenever another flow needs a brand-new active project to exist across all stores.
+description: Create a new GTD project everywhere it needs to live, not just Nirvana. Creates the active project in Nirvana (the master), then mirrors it — an Obsidian stub, a Google Drive folder, and the Gmail label (auto for private via gws and AccessOwl via MCP; other accounts handed to the user). Use when the user asks to "create a project", "new project X", "start a project", "set up a project", or "spin up a project", and whenever another flow needs a brand-new active project to exist across all stores.
 ---
 
 # GTD — Create Project
 
-A project must exist in **all relevant stores**, not Nirvana alone. Create it in Nirvana (the master), mirror it locally (Obsidian + Drive), and hand the user the Gmail label steps.
+A project must exist in **all relevant stores**, not Nirvana alone. Create it in Nirvana (the master), mirror it locally (Obsidian + Drive), and create the Gmail label (auto for private and AccessOwl; other accounts handed to the user).
 
 **GTD and PARA:** the user runs both methodologies side by side — GTD for stuff to do, PARA for filing — and projects are exactly where they overlap: every project lives in both. Creating the active project in Nirvana is the GTD half; giving it a home under each location's `1 - Projects/` is the PARA half. This is the create-time counterpart to `gtd-sync-projects` (reconcile after the fact) and `gtd-finish-project` (close out and file away).
 
@@ -35,24 +35,26 @@ Create an empty folder at `~/My Drive/1 - Projects/<exact name>/`.
 
 Confirm: `✓ Drive folder: <name>`.
 
-## Step 4 — Gmail (manual — tell the user)
+## Step 4 — Gmail label
 
-**Don't create labels** — scoping (which account, personal vs. work) needs judgment. Instead tell the user which `1 - Projects/<name>` label to add, per account, by the project's area:
+Create the `1 - Projects/<name>` label in the account matching the project's area. **If the account is unclear (e.g. work-vs-personal ambiguous), ask which account before creating** — don't guess.
 
-- **Private** (tag `private`) → Gmail privat only.
-- **AgileAddicts** (tag `AgileAddicts`) → Gmail AgileAddicts only — also privat if it generates personal email.
-- **AccessOwl** (tag `AccessOwl`) → Gmail AccessOwl only — also privat if personal email is involved.
-- **Meta / self-referential** (tag `professional`, e.g. PARA umsetzen) → no Gmail expected.
+- **Private** (tag `private`) → create in Gmail privat via `gws`:
+  `gws gmail users labels create --params '{"userId": "me"}' --json '{"name": "1 - Projects/<name>"}'`
+- **AccessOwl** (tag `AccessOwl`) → create in Gmail AccessOwl via the Gmail MCP `create_label` tool.
+- **Any other account** (tag `AgileAddicts`, `professional`, meta/self-referential, etc.) → **don't create it** — post a note telling the user to add the `1 - Projects/<name>` label themselves.
 
-Can't tell work vs. personal → ask.
+A project may warrant the label in more than one account (e.g. an AA or AO project that also generates personal email → also privat). Apply the per-account rule above to each: auto-create for private/AccessOwl, hand off the rest.
+
+Confirm what was created (`✓ Gmail privat label` / `✓ Gmail AccessOwl label`) and list any accounts left for the user.
 
 ## Batching
 
-If the user creates several projects in one turn: one `create_tasks` call for all of them, parallel Obsidian writes + Drive mkdirs, and a single consolidated Gmail "labels to add" list at the end.
+If the user creates several projects in one turn: one `create_tasks` call for all of them, parallel Obsidian writes + Drive mkdirs, and batch the Gmail labels too — create each private/AccessOwl label, and give a single consolidated "labels to add" list for the accounts left to the user.
 
 ## Done
 
-Report per store what was created (Nirvana ✓, Obsidian stub, Drive folder) and the consolidated Gmail label to-do list. Don't offer to log this or post EOD — the user will ask.
+Report per store what was created (Nirvana ✓, Obsidian stub, Drive folder, Gmail label(s) ✓) and the consolidated to-do list for any Gmail accounts left to the user. Don't offer to log this or post EOD — the user will ask.
 
 ## Related
 
