@@ -1,5 +1,5 @@
 ---
-name: do-dev-work
+name: sgoettschkes-dev-start-work
 description: Take a piece of dev work from a Notion 🔨 Product Backlog ticket all the way to a fresh Claude session implementing it in an isolated git worktree. Arrive at a ticket one of three ways — create a new ticket, work a specific existing ticket, or browse/filter the backlog (e.g. limited to one Epic) — then warn if the chosen ticket isn't "Selected for development" or is assigned to someone else, claim it, create a worktree via bin/wt-new, and launch a new Claude session in it via ao-open-worktree that runs /phx:plan with full ticket/PR/Epic context. Use when the user says "do dev work", "start dev work", "work a ticket", "spin up a worktree for …", "pick up the next ticket and start building", etc.
 ---
 
@@ -53,14 +53,14 @@ Hand off via `ao-open-worktree <worktree-path> "<instruction>"`. The instruction
 
 - The `/phx:plan <ticket-url>` invocation (full Notion ticket URL).
 - All context: the ticket (description **and** comments — see §1), any prior/related **PR** and the **Epic** (URLs), plus a one-liner on how they relate — read these out of the ticket / the user's request and inline them. Surface anything from the comments the new session can't re-derive from the ticket page itself.
-- A note that it was launched by the `do-dev-work` skill and must pick up step 5.
+- A note that it was launched by the `sgoettschkes-dev-start-work` skill and must pick up step 5.
 
 Template:
 
 ```
 ao-open-worktree <worktree-path> "/phx:plan <ticket-url>
 
-You were launched by the do-dev-work skill; pick up its remaining steps after planning.
+You were launched by the sgoettschkes-dev-start-work skill; pick up its remaining steps after planning.
 
 Context: <one-liner>. Related PR: <pr-url> — read its description, diff, and discussion to understand the prior approach. Epic: <epic-url> — read the Epic and its sibling tickets to understand the broader effort. Read all of this before planning.
 

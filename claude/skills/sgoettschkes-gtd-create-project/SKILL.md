@@ -1,5 +1,5 @@
 ---
-name: gtd-create-project
+name: sgoettschkes-gtd-create-project
 description: Create a new GTD project everywhere it needs to live, not just Nirvana. Creates the active project in Nirvana (the master), then mirrors it — an Obsidian stub, a Google Drive folder, and the Gmail label (auto for private via gws and AccessOwl via MCP; other accounts handed to the user). Use when the user asks to "create a project", "new project X", "start a project", "set up a project", or "spin up a project", and whenever another flow needs a brand-new active project to exist across all stores.
 ---
 
@@ -7,7 +7,7 @@ description: Create a new GTD project everywhere it needs to live, not just Nirv
 
 A project must exist in **all relevant stores**, not Nirvana alone. Create it in Nirvana (the master), mirror it locally (Obsidian + Drive), and create the Gmail label (auto for private and AccessOwl; other accounts handed to the user).
 
-**GTD and PARA:** the user runs both methodologies side by side — GTD for stuff to do, PARA for filing — and projects are exactly where they overlap: every project lives in both. Creating the active project in Nirvana is the GTD half; giving it a home under each location's `1 - Projects/` is the PARA half. This is the create-time counterpart to `gtd-sync-projects` (reconcile after the fact) and `gtd-finish-project` (close out and file away).
+**GTD and PARA:** the user runs both methodologies side by side — GTD for stuff to do, PARA for filing — and projects are exactly where they overlap: every project lives in both. Creating the active project in Nirvana is the GTD half; giving it a home under each location's `1 - Projects/` is the PARA half. This is the create-time counterpart to `sgoettschkes-gtd-sync-projects` (reconcile after the fact) and `sgoettschkes-gtd-finish-project` (close out and file away).
 
 ## Source of truth
 
@@ -59,4 +59,4 @@ Report per store what was created (Nirvana ✓, Obsidian stub, Drive folder, Gma
 ## Related
 
 - Naming and the project-vs-AoR/Resource distinction: `[[Konventionen]]`.
-- Reconcile existing projects across stores: `gtd-sync-projects`. Close one out: `gtd-finish-project`.
+- Reconcile existing projects across stores: `sgoettschkes-gtd-sync-projects`. Close one out: `sgoettschkes-gtd-finish-project`.

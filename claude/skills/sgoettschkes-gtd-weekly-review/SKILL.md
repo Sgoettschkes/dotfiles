@@ -1,6 +1,6 @@
 ---
-name: gtd-weekly-review
-description: Run the user's full GTD Weekly Review in the canonical three phases — Get Clear (papers, inboxes to zero via gtd-clear-inboxes, mind sweep), Get Current (next actions, calendars back and forward, waiting-for, projects, scheduled, AoR checklist), Get Creative (someday/maybe, new ideas). Nirvana is the task master; every phase is interactive and skippable; anything unreachable lands on a manual hand-off list. Use when the user asks for a "weekly review", "GTD review", "do my review", or "review my system".
+name: sgoettschkes-gtd-weekly-review
+description: Run the user's full GTD Weekly Review in the canonical three phases — Get Clear (papers, inboxes to zero via sgoettschkes-gtd-clear-inboxes, mind sweep), Get Current (next actions, calendars back and forward, waiting-for, projects, scheduled, AoR checklist), Get Creative (someday/maybe, new ideas). Nirvana is the task master; every phase is interactive and skippable; anything unreachable lands on a manual hand-off list. Use when the user asks for a "weekly review", "GTD review", "do my review", or "review my system".
 ---
 
 # GTD — Weekly Review
@@ -13,7 +13,7 @@ This is a long, interactive session (60–90 min when done fully). Rules of enga
 
 - **Announce the phase plan up front, then work phase by phase.** The user may say "skip X" or "stop after Y" at any point — honor it and note skipped steps in the final summary.
 - **Compact lists for reviewing, one-at-a-time for deciding.** Long lists (next actions, scheduled) are shown grouped and whole; the user flags what needs action. Short lists and real decisions (waiting-for, stalled projects, strays) go one item at a time.
-- **Nirvana decision rules from [[gtd-clear-inboxes]] apply throughout:** states are explicit, never assume `next`; project child tasks get `tags: []` (area is inherited); actioned Nirvana items are completed, never trashed.
+- **Nirvana decision rules from [[sgoettschkes-gtd-clear-inboxes]] apply throughout:** states are explicit, never assume `next`; project child tasks get `tags: []` (area is inherited); actioned Nirvana items are completed, never trashed.
 
 ## Setup
 
@@ -28,14 +28,14 @@ This is a long, interactive session (60–90 min when done fully). Rules of enga
 Not reachable (physical). Goes on the manual hand-off list; remind the user at the end.
 
 ### 2. Get inboxes to zero
-Invoke the **[[gtd-clear-inboxes]]** skill via the Skill tool — it owns the inbox list, reachability rules, and the clarify menu. Don't reimplement it here. If the user already cleared inboxes recently, skip on their say-so.
+Invoke the **[[sgoettschkes-gtd-clear-inboxes]]** skill via the Skill tool — it owns the inbox list, reachability rules, and the clarify menu. Don't reimplement it here. If the user already cleared inboxes recently, skip on their say-so.
 
 ### 3. Mind sweep — empty the head
 Prompt the user to dump whatever's on their mind, seeded with a short trigger list:
 
 > Anything on your mind? Triggers: promises made · Sophie/family · AccessOwl (tickets, reviews, people) · Selbstständigkeit (Kunden, Rechnungen, Steuer) · Wohnung/Besorgungen · Gesundheit/Termine · Finanzen · Freunde · anstehende Reisen/Events
 
-Clarify each capture immediately using the same GTD menu as gtd-clear-inboxes (do now / next / defer / waiting / someday / reference / project) — during a review nothing gets parked in the inbox that was just emptied.
+Clarify each capture immediately using the same GTD menu as sgoettschkes-gtd-clear-inboxes (do now / next / defer / waiting / someday / reference / project) — during a review nothing gets parked in the inbox that was just emptied.
 
 ## Phase 2 — Get Current
 
@@ -60,23 +60,23 @@ Same sources. Ask per notable event: any prep action needed? Capture with the ri
 ### 8. Review projects
 `get_tasks` with `type=project`, `state=active`, plus each project's tasks. For every project check: **does it have at least one next or scheduled action?** Surface stalled projects one at a time:
 1. **Add next action** → create it under the project.
-2. **It's actually done** → hand to [[gtd-finish-project]].
+2. **It's actually done** → hand to [[sgoettschkes-gtd-finish-project]].
 3. **Demote** → move project to `someday`.
 4. **Skip** → leave for now.
 
-Also ask once whether to run [[gtd-sync-projects]] (mirror reconciliation across Obsidian/Drive/Gmail) — useful every few weeks, not required weekly.
+Also ask once whether to run [[sgoettschkes-gtd-sync-projects]] (mirror reconciliation across Obsidian/Drive/Gmail) — useful every few weeks, not required weekly.
 
 ### 9. Review the scheduled list
 `get_tasks` with `state=scheduled`, shown compactly sorted by start date. Sanity check: dates still right, anything that should start now (→ `next`), anything that will never happen (→ `someday` or complete).
 
 ### 10. Review AoR checklist
-The GTD "review relevant checklists" step, using the `## AoR` section of Spaces.md. Show each AoR with its purpose line and ask which need attention this week. For flagged ones, capture the action or project ([[gtd-create-project]] for projects).
+The GTD "review relevant checklists" step, using the `## AoR` section of Spaces.md. Show each AoR with its purpose line and ask which need attention this week. For flagged ones, capture the action or project ([[sgoettschkes-gtd-create-project]] for projects).
 
 ## Phase 3 — Get Creative
 
 ### 11. Review someday/maybe
 `get_tasks` with `state=someday`, one item at a time:
-1. **Activate** → `next` (or a real project via [[gtd-create-project]]).
+1. **Activate** → `next` (or a real project via [[sgoettschkes-gtd-create-project]]).
 2. **Keep** → still a maybe.
 3. **Drop** → complete with a note; trash only if the user explicitly says so.
 
@@ -89,7 +89,7 @@ Summarize the review:
 
 ```
 Weekly Review complete ✓
-- Inboxes: cleared (via gtd-clear-inboxes) / skipped
+- Inboxes: cleared (via sgoettschkes-gtd-clear-inboxes) / skipped
 - Mind sweep: n captures
 - Next: n completed, n renegotiated · Waiting: n resolved · Scheduled: n adjusted
 - Projects: n active, n un-stalled, n finished/demoted
@@ -104,6 +104,6 @@ Don't offer to log this or post EOD — the user will ask.
 
 ## Related
 
-- [[gtd-clear-inboxes]] — owns inbox processing (step 2).
-- [[gtd-sync-projects]] — optional mirror reconciliation (step 8).
-- [[gtd-finish-project]] / [[gtd-create-project]] — invoked from steps 8, 10, 11 as needed.
+- [[sgoettschkes-gtd-clear-inboxes]] — owns inbox processing (step 2).
+- [[sgoettschkes-gtd-sync-projects]] — optional mirror reconciliation (step 8).
+- [[sgoettschkes-gtd-finish-project]] / [[sgoettschkes-gtd-create-project]] — invoked from steps 8, 10, 11 as needed.

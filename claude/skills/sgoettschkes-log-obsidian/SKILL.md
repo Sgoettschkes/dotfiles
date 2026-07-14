@@ -1,6 +1,6 @@
 ---
-name: daily-obsidian-log
-description: Append completed tasks to the running "Daily Log" file in the user's Obsidian vault (at `3 - Resources/Daily Log.md`). This is the source of truth for the daily log — EVERY logged task lands here (work and private). Use when the user asks to log a completed task ("log this", "add to daily log", "log to obsidian"), or after the user confirms a proactive offer following a substantial completed task. For work tasks (AccessOwl-related), also invoke [[daily-notion-log]] to mirror the entry to Notion — Notion is never logged without Obsidian.
+name: sgoettschkes-log-obsidian
+description: Append completed tasks to the running "Daily Log" file in the user's Obsidian vault (at `3 - Resources/Daily Log.md`). This is the source of truth for the daily log — EVERY logged task lands here (work and private). Use when the user asks to log a completed task ("log this", "add to daily log", "log to obsidian"), or after the user confirms a proactive offer following a substantial completed task. For work tasks (AccessOwl-related), also invoke [[sgoettschkes-log-notion]] to mirror the entry to Notion — Notion is never logged without Obsidian.
 ---
 
 # Daily Obsidian Log
@@ -22,7 +22,7 @@ Append a completed task to the Obsidian Daily Log — the source of truth for ev
    - Heading exists → add the bullet as the new last line.
    - Heading missing → add `## DD.MM.YYYY` directly after the current final bullet (no blank line), then the bullet.
 5. Apply with `Edit`, anchoring `old_string` on the file's actual last non-empty line. Leave the frontmatter untouched.
-6. **Work task?** Also invoke [[daily-notion-log]] with the same summary — Obsidian first, Notion second. If unsure whether it's work, ask before deciding.
+6. **Work task?** Also invoke [[sgoettschkes-log-notion]] with the same summary — Obsidian first, Notion second. If unsure whether it's work, ask before deciding.
 7. Confirm: `Logged: {bullet}` (or `Logged to Obsidian + Notion: {bullet}`).
 
 ## File shape
@@ -39,7 +39,7 @@ date: 2026-06-15
 - Fixed nginx config bug
 ## 15.06.2026
 - Installed Claude Code iTerm integration
-- Renamed daily-log skill to daily-notion-log
+- Renamed daily-log skill to sgoettschkes-log-notion
 ```
 
 No blank line between one day's last bullet and the next day's heading.

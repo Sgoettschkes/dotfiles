@@ -1,5 +1,5 @@
 ---
-name: unify-claude-settings
+name: sgoettschkes-claude-unify-settings
 description: Sweep every project's Claude Code settings (.claude/settings.json and .claude/settings.local.json in .dotfiles and all git repos under ~/workspace) and, item by item, decide whether each belongs in the global config instead. For each item the user chooses: move to global shared (~/.dotfiles/claude/settings.json), move to global local (~/.claude/settings.local.json), keep in the project, or delete it. Use when the user asks to "unify claude settings", "consolidate claude settings", "clean up project claude settings", or reconcile per-project Claude config against the global one.
 ---
 

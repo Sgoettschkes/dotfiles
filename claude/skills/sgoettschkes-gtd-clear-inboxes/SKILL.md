@@ -1,5 +1,5 @@
 ---
-name: gtd-clear-inboxes
+name: sgoettschkes-gtd-clear-inboxes
 description: Process the user's GTD inboxes to zero. Walks every inbox Claude can reach (Obsidian, Nirvana, Slack, Gmail, Drive, Downloads), shows each item one at a time, and asks what to do with it — then applies the decision. Inboxes Claude can't reach (e.g. the Physical Inbox, or any connector that isn't authenticated) are collected and handed back to the user to process manually at the end. Use when the user asks to "clear inboxes", "process my inbox", "inbox zero", "do a GTD sweep", or similar.
 ---
 

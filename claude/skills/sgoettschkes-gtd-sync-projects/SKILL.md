@@ -1,5 +1,5 @@
 ---
-name: gtd-sync-projects
+name: sgoettschkes-gtd-sync-projects
 description: Reconcile the user's GTD project lists across every location. Nirvana is the master — every active Nirvana project must exist in each reachable mirror location (Obsidian, Google Drive, and the Gmail accounts per scope); create the ones that are missing. Projects that exist in a mirror but NOT in Nirvana are surfaced one at a time and the user decides what to do. Locations Claude can't reach are listed at the end for manual checking. Use when the user asks to "sync projects", "reconcile projects", "check my project lists match", or do a GTD or PARA project sweep.
 ---
 

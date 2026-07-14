@@ -1,6 +1,6 @@
 ---
-name: eod-slack-post
-description: Post an end-of-day summary of today's work to Slack channel #check-in-out in the AccessOwl workspace. Pulls today's bullets from the user's Notion Daily Log (maintained by [[daily-notion-log]]) and composes a "Good night" message. Use ONLY when the user explicitly asks to post the EOD ("end of day", "wrap up", "post to slack", "good night", "EOD summary"). NEVER offer this skill proactively and NEVER invoke it on your own — the user always initiates it manually. Always shows a draft and waits for explicit confirmation before posting — Slack messages are visible to colleagues.
+name: sgoettschkes-log-eod-slack
+description: Post an end-of-day summary of today's work to Slack channel #check-in-out in the AccessOwl workspace. Pulls today's bullets from the user's Notion Daily Log (maintained by [[sgoettschkes-log-notion]]) and composes a "Good night" message. Use ONLY when the user explicitly asks to post the EOD ("end of day", "wrap up", "post to slack", "good night", "EOD summary"). NEVER offer this skill proactively and NEVER invoke it on your own — the user always initiates it manually. Always shows a draft and waits for explicit confirmation before posting — Slack messages are visible to colleagues.
 ---
 
 # End-of-Day Slack Post

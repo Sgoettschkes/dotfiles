@@ -1,11 +1,11 @@
 ---
-name: daily-notion-log
-description: Mirror a completed WORK task to the user's "Daily Log" Notion page (in addition to Obsidian). Use ONLY for tasks tied to the user's job at AccessOwl, and ALWAYS pair with [[daily-obsidian-log]] — Notion is never logged in isolation. Use when the user asks to log a completed work task ("log this", "log to daily log"). Also offer proactively after the user finishes a substantial work task — ask whether to log it. Do NOT use for personal projects, dotfiles changes, side projects, or anything outside the user's job. For end-of-day Slack summaries, see [[eod-slack-post]].
+name: sgoettschkes-log-notion
+description: Mirror a completed WORK task to the user's "Daily Log" Notion page (in addition to Obsidian). Use ONLY for tasks tied to the user's job at AccessOwl, and ALWAYS pair with [[sgoettschkes-log-obsidian]] — Notion is never logged in isolation. Use when the user asks to log a completed work task ("log this", "log to daily log"). Also offer proactively after the user finishes a substantial work task — ask whether to log it. Do NOT use for personal projects, dotfiles changes, side projects, or anything outside the user's job. For end-of-day Slack summaries, see [[sgoettschkes-log-eod-slack]].
 ---
 
 # Daily Notion Log
 
-Mirror a completed **work** task to the Notion Daily Log. Obsidian ([[daily-obsidian-log]]) is the source of truth; Notion is the work-only mirror that feeds the EOD Slack post.
+Mirror a completed **work** task to the Notion Daily Log. Obsidian ([[sgoettschkes-log-obsidian]]) is the source of truth; Notion is the work-only mirror that feeds the EOD Slack post.
 
 ## Scope
 
@@ -34,7 +34,7 @@ Mirror a completed **work** task to the Notion Daily Log. Obsidian ([[daily-obsi
 6. Append via `notion-update-page` with `insert_content`, position **end** — never `update_content`, never mid-page. Today's section is always last on the page, so appending to the end is always correct, and `insert_content` doesn't re-send existing bullets (see the WAF section).
    - Heading exists → content = just the new bullet.
    - Heading missing → content = the new heading followed by the bullet.
-7. Confirm the Obsidian counterpart exists; if not, invoke [[daily-obsidian-log]] now with the same summary.
+7. Confirm the Obsidian counterpart exists; if not, invoke [[sgoettschkes-log-obsidian]] now with the same summary.
 8. Confirm: `Logged to Notion + Obsidian: {summary}`.
 
 ## Entry shape

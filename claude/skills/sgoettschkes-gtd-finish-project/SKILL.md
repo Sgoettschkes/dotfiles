@@ -1,5 +1,5 @@
 ---
-name: gtd-finish-project
+name: sgoettschkes-gtd-finish-project
 description: Close out a finished GTD project end to end. Finds the exact project in Nirvana; if it still has un-logged (incomplete) tasks, warns and asks what to do instead of completing; once all tasks are logged, marks the project done. Then walks every app that holds projects (Obsidian, Drive, Gmail), surfaces each artifact one at a time, and asks where it goes — most into that app's Archive, but some into an AoR or Resource. Unreachable locations are listed at the end for manual handling. Use when the user asks to "finish project X", "close out project X", "complete project X", or "archive project X" with a full close-out.
 ---
 
