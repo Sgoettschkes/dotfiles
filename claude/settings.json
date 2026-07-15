@@ -1,32 +1,148 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch",
-      "WebFetch(domain:github.com)",
-      "WebFetch(domain:raw.githubusercontent.com)",
-      "WebFetch(domain:hub.docker.com)",
-      "WebFetch(domain:medium.com)",
       "Bash(mix compile)",
       "Bash(mix test:*)",
-      "mcp__obsidian__read_note",
-      "mcp__obsidian__search_notes",
-      "mcp__obsidian__list_directory",
-      "mcp__nirvana__get_tasks",
-      "mcp__nirvana__get_inbox",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:hub.docker.com)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebSearch",
       "mcp__claude_ai_Notion__notion-fetch",
-      "mcp__claude_ai_Notion__notion-search",
       "mcp__claude_ai_Notion__notion-get-teams",
       "mcp__claude_ai_Notion__notion-get-users",
       "mcp__claude_ai_Notion__notion-query-data-sources",
+      "mcp__claude_ai_Notion__notion-search",
       "mcp__claude_ai_Slack__slack_read_file",
       "mcp__claude_ai_Slack__slack_read_thread",
-      "mcp__github__pull_request_read",
       "mcp__github__list_pull_requests",
-      "mcp__github__search_pull_requests"
+      "mcp__github__pull_request_read",
+      "mcp__github__search_pull_requests",
+      "mcp__home-assistant__ha_config_get_automation",
+      "mcp__home-assistant__ha_config_get_category",
+      "mcp__home-assistant__ha_config_get_dashboard",
+      "mcp__home-assistant__ha_config_get_label",
+      "mcp__home-assistant__ha_config_get_scene",
+      "mcp__home-assistant__ha_config_list_dashboard_resources",
+      "mcp__home-assistant__ha_config_list_groups",
+      "mcp__home-assistant__ha_config_list_helpers",
+      "mcp__home-assistant__ha_get_addon",
+      "mcp__home-assistant__ha_get_automation_traces",
+      "mcp__home-assistant__ha_get_device",
+      "mcp__home-assistant__ha_get_entity",
+      "mcp__home-assistant__ha_get_hacs_info",
+      "mcp__home-assistant__ha_get_history",
+      "mcp__home-assistant__ha_get_integration",
+      "mcp__home-assistant__ha_get_logs",
+      "mcp__home-assistant__ha_get_overview",
+      "mcp__home-assistant__ha_get_skill_guide",
+      "mcp__home-assistant__ha_get_state",
+      "mcp__home-assistant__ha_get_updates",
+      "mcp__home-assistant__ha_list_floors_areas",
+      "mcp__home-assistant__ha_list_services",
+      "mcp__home-assistant__ha_search",
+      "mcp__nirvana__get_inbox",
+      "mcp__nirvana__get_tasks",
+      "mcp__obsidian__list_directory",
+      "mcp__obsidian__read_note",
+      "mcp__obsidian__search_notes"
+    ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sebastian/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sebastian/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sebastian/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sebastian/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sebastian/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sebastian/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sebastian/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sebastian/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sebastian/.config/iterm2/cc-status"
+          }
+        ]
+      }
     ]
   },
   "enabledPlugins": {
-    "elixir-phoenix@oliver-kriska": true
+    "elixir-phoenix@oliver-kriska": true,
+    "home-assistant-skills@home-assistant-skills": true
   },
   "extraKnownMarketplaces": {
     "oliver-kriska": {
@@ -34,10 +150,17 @@
         "source": "github",
         "repo": "oliver-kriska/claude-elixir-phoenix"
       }
+    },
+    "home-assistant-skills": {
+      "source": {
+        "source": "github",
+        "repo": "homeassistant-ai/skills"
+      }
     }
   },
   "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
-  "theme": "dark"
+  "theme": "dark",
+  "model": "claude-fable-5[1m]"
 }
