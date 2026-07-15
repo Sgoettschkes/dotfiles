@@ -1,22 +1,23 @@
 ---
 name: sgoettschkes-claude-unify-settings
-description: Sweep every project's Claude Code settings (.claude/settings.json and .claude/settings.local.json in .dotfiles and all git repos under ~/workspace) and, item by item, decide whether each belongs in the global config instead. For each item the user chooses: move to global shared (~/.dotfiles/claude/settings.json), move to global local (~/.claude/settings.local.json), keep in the project, or delete it. Use when the user asks to "unify claude settings", "consolidate claude settings", "clean up project claude settings", or reconcile per-project Claude config against the global one.
+description: Sweep every project's Claude Code settings (.claude/settings.json and .claude/settings.local.json in .dotfiles and all git repos under ~/workspace) and, item by item, decide whether each belongs in the global config instead. For each item the user chooses: move to global (~/.dotfiles/claude/settings.json), keep in the project, or delete it. Use when the user asks to "unify claude settings", "consolidate claude settings", "clean up project claude settings", or reconcile per-project Claude config against the global one.
 ---
 
 # Unify Claude Settings
 
 Reconcile per-project Claude Code settings against the global config: walk every project's `.claude/settings.json` and `.claude/settings.local.json` and ask the user where **each item** belongs.
 
-## The four settings locations
+## The three settings locations
 
 | Location | Path | Scope | Tracked? |
 |---|---|---|---|
-| **Global shared** | `~/.dotfiles/claude/settings.json` | All the user's machines | Versioned (symlinked to `~/.claude/settings.json`) |
-| **Global local** | `~/.claude/settings.local.json` | This machine only | Untracked |
+| **Global** | `~/.dotfiles/claude/settings.json` | All the user's machines | Versioned (symlinked to `~/.claude/settings.json`) |
 | **Project shared** | `<repo>/.claude/settings.json` | Everyone who clones the repo (team) | Committed in that repo |
 | **Project local** | `<repo>/.claude/settings.local.json` | This machine only | Gitignored |
 
-**Always edit the real file, never through a symlink** — the global shared target is `~/.dotfiles/claude/settings.json` (`~/.claude/settings.json` is just the symlink).
+**There is no user-level local file.** Claude Code silently ignores `~/.claude/settings.local.json` — it is not a settings location (confirmed 2026-07-15; see the `claude-no-user-level-settings-local` memory). Machine-only settings can only live in a project's `settings.local.json`; a global item is always all-machines.
+
+**Always edit the real file, never through a symlink** — the global target is `~/.dotfiles/claude/settings.json` (`~/.claude/settings.json` is just the symlink). If `~/.claude/settings.json` has become a detached regular file (Claude Code sometimes replaces the symlink when it writes settings itself), merge its extra content into the dotfiles file and restore the symlink before sweeping.
 
 ## Discovery
 
@@ -29,7 +30,8 @@ find ~/.dotfiles ~/workspace \
   -path '*/.claude/settings.local.json' -print
 ```
 
-- **Never** sweep `~/.claude/settings.json` or `~/.claude/settings.local.json` as sources — those are the global destinations.
+- **Never** sweep `~/.claude/settings.json` as a source — that's the symlink to the global destination.
+- If `~/.claude/settings.local.json` exists, it's a dead file Claude Code never reads: sweep its items like a project file's, then delete it.
 - Projects with neither file: skip silently.
 - Announce the plan up front: which projects have settings files, how many items total.
 
@@ -47,10 +49,9 @@ Go finer than top-level keys so each decision is meaningful:
 
 Show each item with its source (project + file, shared or local), then ask via `AskUserQuestion`:
 
-1. **Global shared** → `~/.dotfiles/claude/settings.json` — all machines, via dotfiles.
-2. **Global local** → `~/.claude/settings.local.json` — this machine only.
-3. **Keep in project** → leave it.
-4. **Delete** → remove from the project file.
+1. **Global** → `~/.dotfiles/claude/settings.json` — all machines, via dotfiles.
+2. **Keep in project** → leave it.
+3. **Delete** → remove from the project file.
 
 Items sharing an obvious destination may be batched into one question — but never auto-decide; anything the user hasn't explicitly placed stays put.
 
@@ -81,17 +82,11 @@ After a successful move, remove the item from the project file.
 
 ## Prune redundant local rules
 
-Claude Code merges `settings.local.json` on top of `settings.json`, so anything present identically in both is dead weight in the local file. Check each pair:
-
-- **Global**: `~/.claude/settings.local.json` vs `~/.dotfiles/claude/settings.json`.
-- **Project**: each `<repo>/.claude/settings.local.json` vs its sibling `settings.json`.
-
-Drop duplicated items from the local file; delete the local file if it ends up empty.
+Claude Code merges a project's `settings.local.json` on top of its `settings.json`, so anything present identically in both is dead weight in the local file. Check each `<repo>/.claude/settings.local.json` against its sibling `settings.json` (and against the global file): drop duplicated items from the local file; delete the local file if it ends up empty.
 
 ## Committing
 
-- **Global shared** changes live in the dotfiles repo — do **not** auto-commit; the user asks when they want a commit.
-- **Global local** is untracked — nothing to commit.
+- **Global** changes live in the dotfiles repo — do **not** auto-commit; the user asks when they want a commit.
 
 ## Done
 
