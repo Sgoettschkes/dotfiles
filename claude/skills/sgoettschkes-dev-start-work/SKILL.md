@@ -1,6 +1,6 @@
 ---
 name: sgoettschkes-dev-start-work
-description: Take a piece of dev work from a Notion 🔨 Product Backlog ticket all the way to a fresh Claude session implementing it in an isolated git worktree. Arrive at a ticket one of three ways — create a new ticket, work a specific existing ticket, or browse/filter the backlog (e.g. limited to one Epic) — then warn if the chosen ticket isn't "Selected for development" or is assigned to someone else, claim it, create a worktree via bin/wt-new, and launch a new Claude session in it via ao-open-worktree that runs /phx:plan with full ticket/PR/Epic context. Use when the user says "do dev work", "start dev work", "work a ticket", "spin up a worktree for …", "pick up the next ticket and start building", etc.
+description: Take a piece of dev work from a Notion 🔨 Product Backlog ticket all the way to a fresh Claude session implementing it in an isolated git worktree. Arrive at a ticket one of three ways — create a new ticket, work a specific existing ticket, or browse/filter the backlog (e.g. limited to one Epic) — then warn if the chosen ticket isn't "Selected for development" or is assigned to someone else, claim it, create a worktree via bin/wt-new, write the full ticket/PR/Epic briefing to .claude/plans/<slug>/initial.md in the worktree, and launch a new Claude session in it via ao-open-worktree that runs /phx:plan against that briefing. Use when the user says "do dev work", "start dev work", "work a ticket", "spin up a worktree for …", "pick up the next ticket and start building", etc.
 ---
 
 # Do dev work
@@ -8,8 +8,8 @@ description: Take a piece of dev work from a Notion 🔨 Product Backlog ticket 
 Get from "I want to work on something" to a fresh Claude session implementing it in its own git worktree. Run everything from the **access_owl** repository root.
 
 Two Claude instances are involved:
-- **This (orchestrator) instance**: steps 1–4 — arrive at a ticket, validate/claim, create the worktree, launch the new session.
-- **The new instance** (started by `ao-open-worktree`): step 5 — `/phx:plan` produces the plan, then hands off to `/phx:full` to implement it, then walk-through verification. The hand-off instruction tells it so.
+- **This (orchestrator) instance**: steps 1–4 — arrive at a ticket, validate/claim, create the worktree, write the handoff file, launch the new session.
+- **The new instance** (started by `ao-open-worktree`): step 5 — `/phx:plan` produces the plan, then hands off to `/phx:full` to implement it, then walk-through verification. Its briefing lives in `.claude/plans/<slug>/initial.md` (written in §4), not in its first prompt.
 
 Pairs with `fix-notion-ticket` (single-instance variant) and the team conventions in `.claude/memory/`.
 
@@ -47,33 +47,23 @@ bin/wt-new <branch>
 
 This clones the dev DB and sets up the test DB — takes a few minutes; let it finish. Note the printed worktree path (e.g. `../access_owl-<branch>`).
 
-## 4. Launch the new Claude session
+## 4. Write the handoff file & launch the new session
 
-Hand off via `ao-open-worktree <worktree-path> "<instruction>"`. The instruction is the new session's first prompt — it starts cold, so the instruction must carry everything:
+The new session starts cold; its entire briefing lives in a handoff file inside the worktree, and the launch prompt is only a pointer to it.
 
-- The `/phx:plan <ticket-url>` invocation (full Notion ticket URL).
-- All context: the ticket (description **and** comments — see §1), any prior/related **PR** and the **Epic** (URLs), plus a one-liner on how they relate — read these out of the ticket / the user's request and inline them. Surface anything from the comments the new session can't re-derive from the ticket page itself.
-- A note that it was launched by the `sgoettschkes-dev-start-work` skill and must pick up step 5.
-
-Template:
+1. Use the branch name as the **slug**.
+2. Fill in the template at `references/initial-template.md` next to this SKILL.md (`~/.claude/skills/sgoettschkes-dev-start-work/references/initial-template.md`): replace every `{placeholder}` with what §§1–3 gathered, drop the sections the template marks as deletable when they don't apply, and let nothing template-ish (placeholders, fill-in instructions) survive into the result. Surface anything from the ticket comments the new session can't re-derive from the ticket page itself.
+3. Write it to `<worktree-path>/.claude/plans/<slug>/initial.md`.
+4. Launch:
 
 ```
-ao-open-worktree <worktree-path> "/phx:plan <ticket-url>
-
-You were launched by the sgoettschkes-dev-start-work skill; pick up its remaining steps after planning.
-
-Context: <one-liner>. Related PR: <pr-url> — read its description, diff, and discussion to understand the prior approach. Epic: <epic-url> — read the Epic and its sibling tickets to understand the broader effort. Read all of this before planning.
-
-/phx:plan will produce a plan file and then prompt you to start a fresh session and run /phx:full on it. That fresh session loses this conversation, so before you stop you MUST bake the follow-up into the plan file itself: append a final checkbox task to the plan's task list — '[ ] Run the walk-through-change skill (/walk-through-change) to present the change for manual verification, if it includes user-visible/visual changes checkable in a browser; otherwise skip and say so.' Putting it in the plan is the only way /phx:full sees it after the context clear."
+ao-open-worktree <worktree-path> "Follow .claude/plans/<slug>/initial.md — it is your full briefing from the sgoettschkes-dev-start-work skill."
 ```
 
-## 5. Plan → implement → walk-through — runs in the new instance
+## 5. In the new instance — reference only, nothing to do here
 
-For reference (not here):
-1. `/phx:plan` produces an implementation plan against the ticket, using the PR/Epic context. Because it then recommends a fresh session (context clear) before `/phx:full`, the walk-through follow-up would be lost — so the plan session appends it as a **final checkbox task in the plan file** so it survives the clear. Then it prompts the user to start `/phx:full` with that plan.
-2. `/phx:full` (fresh session) reads the plan file, implements it (implement → review → commit), and verifies it — including the appended walk-through task.
-3. Per that task: user-visible/visual changes → invoke **walk-through-change** to boot the dev server, seed the DB, and open the changed page logged-in; nothing visual → skip and say why.
+`initial.md` carries the new session's steps: read ticket/PR/Epic → `/phx:plan` → append the walk-through checkbox task to the plan file (verbatim text in the template; the plan file is the only context that survives into the fresh `/phx:full` session) → hand the user to `/phx:full`, which implements, reviews, commits, and ends with the walk-through task (visual changes → **walk-through-change** presents them in the browser; nothing visual → skip and say why).
 
 ## Done
 
-Report back: the ticket (title + URL), its claimed state, the branch/worktree path and ports, and that the new session is running `/phx:plan` (which will hand off to `/phx:full`). This instance's job ends there.
+Report back: the ticket (title + URL), its claimed state, the branch/worktree path and ports, the handoff file path (`.claude/plans/<slug>/initial.md`), and that the new session is running `/phx:plan` (which will hand off to `/phx:full`). This instance's job ends there.

@@ -6,7 +6,7 @@ INSTRUCTION="${2:-}"
 
 if [ -z "$WORKTREE_PATH" ]; then
   echo "Usage: ao-open-worktree /path/to/worktree [initial instruction]"
-  echo "The instruction may be multi-line, e.g. \"\$(cat prompt.txt)\"."
+  echo "Keep the instruction short — put long context in a file inside the worktree and pass a pointer to it."
   echo "With no instruction the panes are opened (cd'd into the worktree) without launching claude."
   exit 1
 fi
@@ -25,26 +25,13 @@ WORKTREE_PATH="$(cd "$WORKTREE_PATH" && pwd)"
 # from a path containing quotes, backticks, or command substitution.
 QUOTED_PATH="$(printf '%q' "$WORKTREE_PATH")"
 
-# Clean up the temp prompt file if we fail before the panes are launched. On
-# success the left pane deletes it itself (see below), so this only fires on error.
-cleanup_on_error() {
-  [ -n "${PROMPT_FILE:-}" ] && rm -f "$PROMPT_FILE"
-}
-trap cleanup_on_error ERR
-
-# Left-pane command. With an instruction we write the (possibly multi-line)
-# prompt to a temp file and have the pane read it back via "$(cat …)", so the
-# line typed into iTerm stays short — typing the whole prompt inline as a giant
-# $'…\n…' literal corrupts mid-stream when it races with the other pane's writes.
-# The pane reads the prompt into a var and deletes the file before launching
-# claude, so nothing is left behind. Without an instruction we just cd in
-# (handy for testing the pane layout).
+# Left-pane command. The instruction is typed inline into the pane; iTerm's
+# write text corrupts very long literals mid-stream, so callers keep prompts
+# short and put long context in a file inside the worktree (see usage).
+# Without an instruction we just cd in (handy for testing the pane layout).
 if [ -n "$INSTRUCTION" ]; then
-  TMP_DIR="${TMPDIR:-/tmp}"
-  PROMPT_FILE="$(mktemp "${TMP_DIR%/}/ao-prompt.XXXXXX")"
-  printf '%s' "$INSTRUCTION" > "$PROMPT_FILE"
-  QUOTED_PROMPT_FILE="$(printf '%q' "$PROMPT_FILE")"
-  LEFT_CMD="cd $QUOTED_PATH && _ao_prompt=\"\$(cat $QUOTED_PROMPT_FILE)\" && rm -f $QUOTED_PROMPT_FILE && claude --permission-mode auto \"\$_ao_prompt\""
+  QUOTED_INSTRUCTION="$(printf '%q' "$INSTRUCTION")"
+  LEFT_CMD="cd $QUOTED_PATH && claude --permission-mode auto $QUOTED_INSTRUCTION"
 else
   LEFT_CMD="cd $QUOTED_PATH"
 fi
@@ -99,8 +86,8 @@ on run argv
 end run
 EOF
 
-if [ -n "${PROMPT_FILE:-}" ]; then
-  echo "Launched claude in $WORKTREE_PATH (prompt: $PROMPT_FILE)"
+if [ -n "$INSTRUCTION" ]; then
+  echo "Launched claude in $WORKTREE_PATH"
 else
   echo "Opened panes in $WORKTREE_PATH (no instruction → claude not launched)"
 fi
