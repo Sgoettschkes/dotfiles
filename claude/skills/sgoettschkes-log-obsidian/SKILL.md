@@ -11,17 +11,17 @@ Append a completed task to the Obsidian Daily Log — the source of truth for ev
 
 - **File**: `~/Documents/Second Brain/3 - Resources/Daily Log.md`
 - **Date format**: German numeric `DD.MM.YYYY`, derived from the environment's `currentDate`
-- **Tools**: plain `Read`/`Edit` — the vault is a local directory; don't route through an Obsidian MCP server
+- **Tools**: `grep`, `tail`, and `printf >>` via Bash — never `Read`/`Edit` (the file is long, and Edit's mid-file anchoring was the historical failure mode) and no Obsidian MCP server
 
 ## Workflow
 
 1. Confirm the task is actually done.
 2. Draft a short bullet (see style below) and show it for approval; use the user's edit verbatim.
-3. `Read` the file and make sure you see its **true final line**. The file is long and grows daily — anchoring an edit mid-file (from a partial or stale read) is the main failure mode. Re-read the tail right before editing if in doubt.
-4. Append at the very end of the file — never insert mid-file. Today's `## DD.MM.YYYY` heading, when present, is always the last heading, so "end of today's section" and "end of file" are the same place:
-   - Heading exists → add the bullet as the new last line.
-   - Heading missing → add `## DD.MM.YYYY` directly after the current final bullet (no blank line), then the bullet.
-5. Apply with `Edit`, anchoring `old_string` on the file's actual last non-empty line. Leave the frontmatter untouched.
+3. Check whether today's heading exists: `grep -q '^## DD.MM.YYYY$' file`.
+4. Check the tail: `tail -n 2 file` to see the current last line, and `tail -c 1 file` (empty output = trailing newline present). If the trailing newline is missing, start the appended text with `\n`.
+5. Append with `printf '…' >> file` — appending to the end is always correct because today's section, when present, is always the last one:
+   - Heading exists → append just the bullet: `printf -- '- Bullet text\n' >> file`
+   - Heading missing → append heading + bullet (no blank line before the heading): `printf -- '## DD.MM.YYYY\n- Bullet text\n' >> file`
 6. **Work task?** Also invoke [[sgoettschkes-log-notion]] with the same summary — Obsidian first, Notion second. If unsure whether it's work, ask before deciding.
 7. Confirm: `Logged: {bullet}` (or `Logged to Obsidian + Notion: {bullet}`).
 
