@@ -18,10 +18,10 @@ Append a completed task to the Obsidian Daily Log — the source of truth for ev
 1. Confirm the task is actually done.
 2. Draft a short bullet (see style below) and show it for approval; use the user's edit verbatim.
 3. Check whether today's heading exists: `grep -q '^## DD.MM.YYYY$' file`.
-4. Check the tail: `tail -n 2 file` to see the current last line, and `tail -c 1 file` (empty output = trailing newline present). If the trailing newline is missing, start the appended text with `\n`.
-5. Append with `printf '…' >> file` — appending to the end is always correct because today's section, when present, is always the last one:
-   - Heading exists → append just the bullet: `printf -- '- Bullet text\n' >> file`
-   - Heading missing → append heading + bullet (no blank line before the heading): `printf -- '## DD.MM.YYYY\n- Bullet text\n' >> file`
+4. Check the tail: `tail -n 2 file` to see the current last line.
+5. Append with `printf '…' >> file` — appending to the end is always correct because today's section, when present, is always the last one. Always prefix the append with the guard below; it repairs a missing trailing newline deterministically in shell (command substitution strips a trailing newline, so `$(tail -c 1 …)` is empty iff the last byte is a newline). Never eyeball the last byte yourself and never hand-prepend `\n` — that's how stray blank lines got introduced:
+   - Heading exists → `[ -n "$(tail -c 1 file)" ] && printf '\n' >> file; printf -- '- Bullet text\n' >> file`
+   - Heading missing → `[ -n "$(tail -c 1 file)" ] && printf '\n' >> file; printf -- '## DD.MM.YYYY\n- Bullet text\n' >> file` (no blank line before the heading)
 6. **Work task?** Also invoke [[sgoettschkes-log-notion]] with the same summary — Obsidian first, Notion second. If unsure whether it's work, ask before deciding.
 7. Confirm: `Logged: {bullet}` (or `Logged to Obsidian + Notion: {bullet}`).
 
