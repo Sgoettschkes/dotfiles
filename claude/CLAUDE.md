@@ -18,4 +18,4 @@ Proactive offers after a substantial completed task: ask whether to log it; the 
 
 ## EOD Slack Post
 
-The `sgoettschkes-log-eod-slack` skill is **user-initiated only**. Never offer it, never suggest it, never invoke it on your own — not after a log entry, not at the end of the day, not as a follow-up. The user will explicitly ask ("post EOD", "wrap up", "good night", etc.) when they want it.
+The `sgoettschkes-log-post-eod` skill is **user-initiated only**. Never offer it, never suggest it, never invoke it on your own — not after a log entry, not at the end of the day, not as a follow-up. The user will explicitly ask ("post EOD", "wrap up", "good night", etc.) when they want it.

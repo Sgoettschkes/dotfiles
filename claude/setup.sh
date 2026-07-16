@@ -36,7 +36,7 @@ create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json
 mkdir -p "$HOME/.claude/skills"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-log-task" "$HOME/.claude/skills/sgoettschkes-log-task"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-dev-start-work" "$HOME/.claude/skills/sgoettschkes-dev-start-work"
-create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-log-eod-slack" "$HOME/.claude/skills/sgoettschkes-log-eod-slack"
+create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-log-post-eod" "$HOME/.claude/skills/sgoettschkes-log-post-eod"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-gtd-clear-inboxes" "$HOME/.claude/skills/sgoettschkes-gtd-clear-inboxes"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-gtd-create-project" "$HOME/.claude/skills/sgoettschkes-gtd-create-project"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-gtd-finish-project" "$HOME/.claude/skills/sgoettschkes-gtd-finish-project"

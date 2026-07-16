@@ -1,6 +1,6 @@
 ---
 name: sgoettschkes-log-task
-description: Log a completed task to the user's daily log. Every logged task is appended to the "Daily Log" file in the Obsidian vault (the source of truth, work and private alike); work tasks (tied to the user's job at AccessOwl) are ALSO mirrored to the "Daily Log" Notion page — never Notion alone. Use when the user asks to log a completed task ("log this", "add to daily log", "log to obsidian", "log to notion", "log to daily log"), or after the user confirms a proactive offer following a substantial completed task. For end-of-day Slack summaries, see [[sgoettschkes-log-eod-slack]].
+description: Log a completed task to the user's daily log. Every logged task is appended to the "Daily Log" file in the Obsidian vault (the source of truth, work and private alike); work tasks (tied to the user's job at AccessOwl) are ALSO mirrored to the "Daily Log" Notion page — never Notion alone. Use when the user asks to log a completed task ("log this", "add to daily log", "log to obsidian", "log to notion", "log to daily log"), or after the user confirms a proactive offer following a substantial completed task. For end-of-day Slack summaries, see [[sgoettschkes-log-post-eod]].
 ---
 
 # Daily Log
