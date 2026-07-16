@@ -99,6 +99,7 @@ remove_symlink "$HOME/.claude/skills/sgoettschkes-gtd-finish-project" "sgoettsch
 remove_symlink "$HOME/.claude/skills/sgoettschkes-gtd-sync-projects" "sgoettschkes-gtd-sync-projects skill"
 remove_symlink "$HOME/.claude/skills/sgoettschkes-gtd-weekly-review" "sgoettschkes-gtd-weekly-review skill"
 remove_symlink "$HOME/.claude/skills/sgoettschkes-claude-unify-settings" "sgoettschkes-claude-unify-settings skill"
+remove_symlink "$HOME/.claude/skills/sgoettschkes-cleft-process" "sgoettschkes-cleft-process skill"
 echo
 
 # Codex configuration

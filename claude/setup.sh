@@ -43,6 +43,7 @@ create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-gtd-finish-project" "$H
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-gtd-sync-projects" "$HOME/.claude/skills/sgoettschkes-gtd-sync-projects"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-gtd-weekly-review" "$HOME/.claude/skills/sgoettschkes-gtd-weekly-review"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-claude-unify-settings" "$HOME/.claude/skills/sgoettschkes-claude-unify-settings"
+create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-cleft-process" "$HOME/.claude/skills/sgoettschkes-cleft-process"
 echo
 
 if ! command -v claude &> /dev/null; then
