@@ -12,14 +12,9 @@
 
 ## Daily Log
 
-Logging rule — applies whenever the user asks to "log this" / "add to daily log" or confirms a proactive log offer:
+All logging goes through `sgoettschkes-log-task` — whenever the user asks to "log this" / "add to daily log" or confirms a proactive log offer. The skill appends every logged task to Obsidian (the source of truth) and additionally mirrors work tasks (anything tied to the user's job at AccessOwl) to Notion, which feeds the EOD Slack post. Never log to Notion only. If it's unclear whether a task is work-related, the skill asks (Work vs. Private) — don't guess.
 
-- **Every logged task goes to Obsidian** via `sgoettschkes-log-obsidian`. This is non-negotiable — Obsidian is the source of truth for both work and private logs.
-- **Work tasks ALSO go to Notion** via `sgoettschkes-log-notion` (which mirrors the entry to Notion and is the source for the EOD Slack post). A work task means anything tied to the user's job at AccessOwl: AccessOwl repos, Linear tickets, internal Notion/Slack threads, meetings with colleagues, etc.
-- **Never log to Notion only.** If a task warrants a Notion entry, it warrants an Obsidian entry too. For work tasks both skills must be invoked — Obsidian first, then Notion.
-- **If it's unclear whether a task is work-related, ASK before logging.** Don't guess. Personal projects (dotfiles, side projects, hobby code) and personal admin (errands, life admin) are Obsidian-only.
-
-Proactive offers after a substantial completed task: ask whether to log it. If the task is clearly work, offer both Obsidian + Notion. If clearly personal, offer Obsidian only. If ambiguous, ask which.
+Proactive offers after a substantial completed task: ask whether to log it; the skill handles the work/private split.
 
 ## EOD Slack Post
 
