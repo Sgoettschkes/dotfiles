@@ -80,3 +80,5 @@ echo
 echo "Install plugins by hand if not already installed (see README → Claude Code plugins):"
 echo "  claude plugin marketplace add oliver-kriska/claude-elixir-phoenix"
 echo "  claude plugin install elixir-phoenix@oliver-kriska"
+echo "  claude plugin marketplace add JuliusBrussee/caveman"
+echo "  claude plugin install caveman@caveman"

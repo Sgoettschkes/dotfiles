@@ -141,10 +141,17 @@
     ]
   },
   "enabledPlugins": {
+    "caveman@caveman": true,
     "elixir-phoenix@oliver-kriska": true,
     "home-assistant-skills@home-assistant-skills": true
   },
   "extraKnownMarketplaces": {
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    },
     "oliver-kriska": {
       "source": {
         "source": "github",

@@ -84,12 +84,18 @@ Each MCP is a `register` call in `claude/setup.sh`. Currently configured:
 
 ### Claude Code plugins
 
-Plugin config is split across two files because Claude Code honors the keys differently:
+Plugin config lives in **`claude/settings.json`** (tracked, symlinked to `~/.claude/settings.json`): `enabledPlugins` holds the enable toggles and `extraKnownMarketplaces` registers where each plugin is fetched from.
 
-* **`claude/settings.json`** (tracked, symlinked to `~/.claude/settings.json`) holds `enabledPlugins`. This is the only file the enable toggle is read from — `enabledPlugins` in `settings.local.json` is silently ignored.
-* **`~/.claude/settings.local.json`** (per machine, untracked) holds `extraKnownMarketplaces`, which registers where a plugin is fetched from.
+Neither key fetches plugin code, and enabling a plugin whose files aren't installed is a harmless no-op. On a fresh machine, install the files once for each plugin you want (commands below). Verify with `claude plugin list`.
 
-Neither file fetches plugin code, and enabling a plugin whose files aren't installed is a harmless no-op. On a fresh machine, register the marketplace in `settings.local.json`, then install the files once for each plugin you want. Verify with `claude plugin list`.
+#### caveman
+
+Ultra-compressed agent output (~65% fewer output tokens), see [github.com/JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman). Auto-activates per session via plugin hooks; toggle with `/caveman` or "normal mode".
+
+```bash
+claude plugin marketplace add JuliusBrussee/caveman
+claude plugin install caveman@caveman
+```
 
 #### elixir-phoenix
 
