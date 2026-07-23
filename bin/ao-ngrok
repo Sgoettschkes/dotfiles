@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [ -z "${APP_URL_HOST:-}" ]; then
+  echo "APP_URL_HOST is not set" >&2
+  exit 1
+fi
+
+if [ -z "${PORT:-}" ]; then
+  echo "PORT is not set" >&2
+  exit 1
+fi
+
+exec ngrok http --url="$APP_URL_HOST" "$PORT"
