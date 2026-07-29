@@ -179,6 +179,16 @@ local plugins = {
         topdelete = { text = "‾" },
         changedelete = { text = "~" },
       },
+      linehl = true,
+      on_attach = function(bufnr)
+        local gitsigns = require("gitsigns")
+        local function map(keys, fn, desc)
+          vim.keymap.set("n", keys, fn, { buffer = bufnr, desc = desc })
+        end
+        map("<leader>hp", gitsigns.preview_hunk, "Git [H]unk [P]review (popup)")
+        map("<leader>hi", gitsigns.preview_hunk_inline, "Git [H]unk preview [I]nline")
+        map("<leader>td", gitsigns.toggle_deleted, "[T]oggle show [D]eleted lines")
+      end,
     },
   },
   { -- Useful plugin to show you pending keybinds.
