@@ -129,6 +129,16 @@
         ]
       }
     ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/sebastian/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [
@@ -152,16 +162,16 @@
         "repo": "JuliusBrussee/caveman"
       }
     },
-    "oliver-kriska": {
-      "source": {
-        "source": "github",
-        "repo": "oliver-kriska/claude-elixir-phoenix"
-      }
-    },
     "home-assistant-skills": {
       "source": {
         "source": "github",
         "repo": "homeassistant-ai/skills"
+      }
+    },
+    "oliver-kriska": {
+      "source": {
+        "source": "github",
+        "repo": "oliver-kriska/claude-elixir-phoenix"
       }
     }
   },
@@ -170,8 +180,11 @@
     "command": "bash \"/Users/sebastian/.claude/statusline.sh\""
   },
   "alwaysThinkingEnabled": true,
+  "effortLevel": "xhigh",
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
   "theme": "dark",
-  "model": "claude-fable-5[1m]"
+  "autoCompactEnabled": true,
+  "enableWorkflows": false,
+  "model": "claude-opus-5[1m]"
 }
