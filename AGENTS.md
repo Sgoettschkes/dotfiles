@@ -1,30 +1,30 @@
 # Project: .dotfiles
 
 ## Project Description
-My personal and professional dotfiles repository to sync configuration across all macOS machines.
+Personal + work dotfiles repo. Sync config across all macOS machines.
 
 ## Purpose
-This repository manages my development environment configuration through symlinks, ensuring consistency across multiple macOS systems while maintaining a single source of truth for all configurations.
+Manage dev environment config via symlinks. Consistency across many macOS systems, single source of truth.
 
 ## Software Managed
 
-See `README.md` for the full software inventory; `install.sh` is the canonical list. The items below are the ones that shape how I work in this repo:
+See `README.md` for full software inventory; `install.sh` is canonical list. Items below shape how work happen in this repo:
 
-- **1Password CLI (`op`)**: Used by `make claude` to read MCP secrets from the `Private` vault
-- **asdf**: Version manager for programming languages and tools (Node.js, Python, Ruby, etc.)
-- **Claude Code**: Anthropic CLI for AI-assisted coding
-- **Codex**: OpenAI's terminal coding agent
-- **Neovim**: Modern text editor with Lua configuration
-- **uv**: Python package runner (used to launch the Docker MCP server via `uvx`)
-- **Zsh + Oh-My-Zsh + Spaceship**: Shell environment with custom prompt and plugins
+- **1Password CLI (`op`)**: `make claude` read MCP secrets from `Private` vault
+- **asdf**: Version manager for languages + tools (Node.js, Python, Ruby, etc.)
+- **Claude Code**: Anthropic CLI for AI coding
+- **Codex**: OpenAI terminal coding agent
+- **Neovim**: Editor, Lua config
+- **uv**: Python package runner (launch Docker MCP server via `uvx`)
+- **Zsh + Oh-My-Zsh + Spaceship**: Shell env, custom prompt + plugins
 
 ## Conventions
-- **Opinionated**: This is my personal dotfiles repository with specific workflow preferences
-- **Automated setup**: Make commands handle all installation and configuration steps
-- **Symlink-based**: All configurations are symlinked from this repository to their expected locations
-  - Changes in the repo are immediately reflected in the system
-  - No file copying or manual synchronization needed
-- **Version controlled**: All configurations tracked in Git for history and rollback capability
+- **Opinionated**: Personal repo, specific workflow preferences
+- **Automated setup**: Make commands do all install + config
+- **Symlink-based**: All configs symlinked from repo to expected locations
+  - Repo change hit system instantly
+  - No copying, no manual sync
+- **Version controlled**: All config in Git. History + rollback.
 
 ## Setup Instructions
 
@@ -36,61 +36,61 @@ make install
 ```
 
 ### Post-Installation
-1. Install asdf plugins and tools: `make asdf`
+1. Install asdf plugins + tools: `make asdf`
 2. Import Rectangle settings from `rectangle/` folder manually
-3. Configure local SSH settings in `~/.ssh/config.local` (not tracked in Git)
-4. Select a Nerd Font in iTerm2 (Preferences → Profiles → Text)
-5. Set up Claude Code (symlinks + MCP servers): `make claude` (requires 1Password CLI signed in)
+3. Set local SSH config in `~/.ssh/config.local` (not in Git)
+4. Pick Nerd Font in iTerm2 (Preferences → Profiles → Text)
+5. Set up Claude Code (symlinks + MCP servers): `make claude` (need 1Password CLI signed in)
 6. Set up Codex (symlinks + MCP servers): `make codex`
 
 ### Maintenance Commands
-- `make install` - Run installation/update of dotfiles
+- `make install` - Install/update dotfiles
 - `make clean` - Remove all symlinks
-- `make asdf` - Setup asdf plugins and tools
-- `make asdf-clean` - Remove unused asdf installations
-- `make claude` - Set up Claude Code: symlinks + MCP servers (requires 1Password CLI signed in)
+- `make asdf` - Setup asdf plugins + tools
+- `make asdf-clean` - Remove unused asdf installs
+- `make claude` - Set up Claude Code: symlinks + MCP servers (need 1Password CLI signed in)
 - `make codex` - Set up Codex: symlinks + MCP servers
-- `make help` - Show all available commands
+- `make help` - Show all commands
 
 ## Folder Structure
-- `/bin/` - Personal executable scripts, each symlinked into `~/.local/bin` (already on PATH) by `install.sh`. Drop a new executable here and re-run `make install` — no per-script edits needed.
-- `/asdf/` - asdf configuration and setup scripts
-  - `setup.sh` - Script to install all asdf plugins
-  - `cleanup.sh` - Script to remove unused plugin versions
-  - `tool-versions` - Global tool versions configuration (symlinked to `~/.tool-versions`)
-- `/claude/` - Global Claude Code configuration
+- `/bin/` - Personal scripts, each symlinked into `~/.local/bin` (already on PATH) by `install.sh`. Drop new executable here, re-run `make install` — no per-script edit.
+- `/asdf/` - asdf config + setup scripts
+  - `setup.sh` - Install all asdf plugins
+  - `cleanup.sh` - Remove unused plugin versions
+  - `tool-versions` - Global tool versions (symlinked to `~/.tool-versions`)
+- `/claude/` - Global Claude Code config
   - `CLAUDE.md` - Global instructions (symlinked to `~/.claude/CLAUDE.md`)
-  - `setup.sh` - Symlinks config + skills into `~/.claude` and registers MCP servers (run via `make claude`)
+  - `setup.sh` - Symlink config + skills into `~/.claude`, register MCP servers (run via `make claude`)
   - `skills/` - Custom skills symlinked into `~/.claude/skills/`, all namespaced `sgoettschkes-<domain>-<action>`: `sgoettschkes-claude-unify-settings`, `sgoettschkes-cleft-process`, `sgoettschkes-dev-start-work`, `sgoettschkes-gtd-clear-inboxes`, `sgoettschkes-gtd-create-project`, `sgoettschkes-gtd-finish-project`, `sgoettschkes-gtd-sync-projects`, `sgoettschkes-gtd-weekly-review`, `sgoettschkes-log-post-eod`, `sgoettschkes-log-task`
-- `/codex/` - Global Codex configuration
+- `/codex/` - Global Codex config
   - `AGENTS.md` - Global instructions (symlinked to `~/.codex/AGENTS.md`)
-  - `setup.sh` - Symlinks `AGENTS.md` into `~/.codex` and registers MCP servers (run via `make codex`). `config.toml` is machine-local (not tracked); Codex rewrites it at runtime.
-- `/git/` - Git configurations for different contexts
-  - Includes organization-specific gitconfig files
-- `/neovim/` - Neovim configuration using Lua
+  - `setup.sh` - Symlink `AGENTS.md` into `~/.codex`, register MCP servers (run via `make codex`). `config.toml` machine-local (not tracked); Codex rewrite it at runtime.
+- `/git/` - Git configs for different contexts
+  - Includes org-specific gitconfig files
+- `/neovim/` - Neovim config in Lua
 - `/rectangle/` - Rectangle window manager settings
-  - Configuration must be imported manually through the app
-- `/ssh/` - SSH configurations for various systems
+  - Must import manually through app
+- `/ssh/` - SSH configs for various systems
   - Symlinked to `~/.ssh/config`
-  - Supports local overrides via `~/.ssh/config.local`
-- `/wallpapers/` - Desktop wallpaper images (optional)
-- `/zsh/` - Zsh shell configuration
-  - `zshrc` - Main configuration file (symlinked to `~/.zshrc`)
+  - Local overrides via `~/.ssh/config.local`
+- `/wallpapers/` - Desktop wallpapers (optional)
+- `/zsh/` - Zsh config
+  - `zshrc` - Main config (symlinked to `~/.zshrc`)
   - `zprofile` - Login shell profile (symlinked to `~/.zprofile`)
-  - `spaceshiprc.zsh` - Spaceship prompt customizations
-  - `oh-my-zsh-custom/` - Oh My Zsh custom directory (git submodule providing the Spaceship theme)
+  - `spaceshiprc.zsh` - Spaceship prompt tweaks
+  - `oh-my-zsh-custom/` - Oh My Zsh custom dir (git submodule, provide Spaceship theme)
 
 ## Important Files
-- `install.sh` - Main installation script that sets up all symlinks and dependencies
-- `cleanup.sh` - Script to safely remove all symlinks created by installation
-- `Makefile` - Task runner for common operations
-- `README.md` - Public documentation for the repository
-- `AGENTS.md` - Tool-agnostic instructions for any AI coding agent working in this repo
-- `CLAUDE.md` - Claude-specific instructions; defers to `AGENTS.md` for the shared rules
-- `.editorconfig` - Editor configuration for consistent coding style
+- `install.sh` - Main install script. Sets up all symlinks + deps.
+- `cleanup.sh` - Safely remove all symlinks made by install
+- `Makefile` - Task runner
+- `README.md` - Public repo docs
+- `AGENTS.md` - Tool-agnostic instructions for any AI coding agent in this repo
+- `CLAUDE.md` - Claude-specific instructions; defer to `AGENTS.md` for shared rules
+- `.editorconfig` - Editor config for consistent style
 - `.gitmodules` - Git submodule definitions (if any)
 
 ## Notes
-- This configuration is macOS-specific and tested only on macOS systems
-- Local/private configurations (SSH keys, tokens, etc.) should never be committed
-- The repository follows a "convention over configuration" approach for simplicity
+- macOS-only. Tested only on macOS.
+- Never commit local/private config (SSH keys, tokens, etc.)
+- Repo follow "convention over configuration"

@@ -4,22 +4,22 @@
 # Coding Guidelines
 
 ## Comments
-- When adding comments, only describe why something was implemented, never what it is doing
-- Only describe non-obvious why in comments
+- Comments say why, never what
+- Only non-obvious why
 
 ## General
-- If clarifying questions are needed, ask them
+- Need clarify? Ask
 
 ## Daily Log
 
-All logging goes through `sgoettschkes-log-task` — whenever the user asks to "log this" / "add to daily log" or confirms a proactive log offer. The skill appends every logged task to Obsidian (the source of truth) and additionally mirrors work tasks (anything tied to the user's job at AccessOwl) to Notion, which feeds the EOD Slack post. Never log to Notion only. If it's unclear whether a task is work-related, the skill asks (Work vs. Private) — don't guess.
+All logging go through `sgoettschkes-log-task` — when user say "log this" / "add to daily log", or confirm proactive offer. Skill append every task to Obsidian (source of truth). Work tasks (tied to user job at AccessOwl) also mirror to Notion, which feed EOD Slack post. Never Notion only. Unclear if work-related? Skill ask (Work vs. Private) — no guess.
 
-Proactive offers after a substantial completed task: ask whether to log it; the skill handles the work/private split.
+Proactive offer after substantial done task: ask whether log it; skill handle work/private split.
 
 ## EOD Slack Post
 
-The `sgoettschkes-log-post-eod` skill is **user-initiated only**. Never offer it, never suggest it, never invoke it on your own — not after a log entry, not at the end of the day, not as a follow-up. The user will explicitly ask ("post EOD", "wrap up", "good night", etc.) when they want it.
+`sgoettschkes-log-post-eod` skill **user-initiated only**. Never offer, never suggest, never invoke self — not after log entry, not at day end, not as follow-up. User ask explicit ("post EOD", "wrap up", "good night", etc.) when want it.
 
 ## SSH Access
 
-SSH access is always channeled through 1Password, which prompts the user for a password outside the shell. If SSH access is not granted (the command fails on auth/agent access), do NOT adjust SSH settings or config in any way. Instead, print a short message explaining that SSH access is needed and that the user should approve the 1Password prompt and ask to retry.
+SSH access always through 1Password, which prompt user for password outside shell. If SSH access not granted (command fail on auth/agent access), do NOT touch SSH settings or config. Instead print short message: SSH access needed, user should approve 1Password prompt, then ask retry.
