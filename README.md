@@ -81,6 +81,8 @@ So `make claude` seed `~/.claude/settings.json` from `claude/settings.json` only
 
 Statusline = one command slot, so `claude/statusline.sh` render everything: working directory, git branch, model (parsed from context JSON Claude pipe on stdin), then caveman mode badge appended by calling plugin's own badge script. That call hardcode plugin cache path, which change when plugin update. Badge disappear: fix path in `claude/statusline.sh`.
 
+Plugin track active mode in one global `~/.claude/.caveman-active`, shared by all concurrent sessions — no session id ([upstream #184](https://github.com/JuliusBrussee/caveman/issues/184)). So new session overwrite mode of session already running, and one-shot modes (`/caveman-commit`) can delete flag on restore. Deliberately no fallback in wrapper: same flag drive per-turn rule injection, so missing flag mean caveman genuinely not enforced, not just unbadged. Blank badge = real signal, believe it. Re-arm with `/caveman <mode>`.
+
 Each MCP = one `register` call in `claude/setup.sh`. Configured now:
 
 * **Nirvana** — HTTP transport at `mcp.nirvanahq.com`
