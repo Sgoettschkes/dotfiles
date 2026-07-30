@@ -153,6 +153,11 @@ create_symlink "$DOTFILES_DIR/neovim/init.lua" "$HOME/.config/nvim/init.lua"
 create_symlink "$DOTFILES_DIR/neovim/lua" "$HOME/.config/nvim/lua"
 echo
 
+echo "Setting up caveman configuration..."
+mkdir -p $HOME/.config/caveman
+create_symlink "$DOTFILES_DIR/caveman/config.json" "$HOME/.config/caveman/config.json"
+echo
+
 echo "Setting up asdf configuration..."
 create_symlink "$DOTFILES_DIR/asdf/tool-versions" "$HOME/.tool-versions"
 echo

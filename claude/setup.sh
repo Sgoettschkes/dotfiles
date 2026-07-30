@@ -32,8 +32,18 @@ mkdir -p "$HOME/.claude"
 # Claude state (history, sessions, projects) is owner-only sensitive
 chmod 700 "$HOME/.claude"
 create_symlink "$DOTFILES_DIR/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
-create_symlink "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
 create_symlink "$DOTFILES_DIR/claude/statusline.sh" "$HOME/.claude/statusline.sh"
+
+# Not a symlink: Claude Code rewrites settings.json on every in-app config
+# change (/config, /model, plugin toggles) using a temp file plus rename(),
+# which replaces the symlink with a regular file. Seed it once instead and
+# sync the two copies by hand.
+if [ ! -e "$HOME/.claude/settings.json" ]; then
+    cp "$DOTFILES_DIR/claude/settings.json" "$HOME/.claude/settings.json"
+    echo -e "${GREEN}✓ Seeded $HOME/.claude/settings.json${NC}"
+else
+    echo -e "${YELLOW}• $HOME/.claude/settings.json exists — left untouched${NC}"
+fi
 mkdir -p "$HOME/.claude/skills"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-log-task" "$HOME/.claude/skills/sgoettschkes-log-task"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-dev-start-work" "$HOME/.claude/skills/sgoettschkes-dev-start-work"

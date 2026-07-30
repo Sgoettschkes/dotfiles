@@ -73,7 +73,13 @@ Executable scripts in `bin/` are symlinked into `~/.local/bin` (already on PATH)
 
 ### Claude Code setup
 
-`make install` no longer touches Claude — run `make claude` per machine. It symlinks the Claude config (`CLAUDE.md`, `settings.json`, skills) into `~/.claude`, then registers MCP servers.
+`make install` no longer touches Claude — run `make claude` per machine. It symlinks the Claude config (`CLAUDE.md`, `statusline.sh`, skills) into `~/.claude`, then registers MCP servers.
+
+**`settings.json` is copied, not symlinked.** Claude Code rewrites `~/.claude/settings.json` whenever config changes in-app (`/config`, `/model`, theme, plugin toggles), and it writes atomically — temp file plus `rename()`. That replaces the symlink with a regular file, so the link silently breaks the first time you change a setting and the two copies then drift apart unnoticed. `CLAUDE.md` stays symlinked because Claude never writes it.
+
+So `make claude` seeds `~/.claude/settings.json` from `claude/settings.json` only when the file doesn't exist yet, and never touches an existing one. Treat the tracked copy as the bootstrap seed and reconcile it by hand after changing settings in-app — `diff <(jq -S . ~/.claude/settings.json) <(jq -S . claude/settings.json)` shows the drift with key ordering normalised.
+
+The statusline is a single command slot, so `claude/statusline.sh` renders everything: working directory, git branch and model (parsed from the context JSON Claude pipes to it on stdin), then the caveman mode badge appended by calling the plugin's own badge script. That call hardcodes the plugin's cache path, which changes when the plugin updates — fix the path in `claude/statusline.sh` if the badge disappears.
 
 Each MCP is a `register` call in `claude/setup.sh`. Currently configured:
 
@@ -84,7 +90,7 @@ Each MCP is a `register` call in `claude/setup.sh`. Currently configured:
 
 ### Claude Code plugins
 
-Plugin config lives in **`claude/settings.json`** (tracked, symlinked to `~/.claude/settings.json`): `enabledPlugins` holds the enable toggles and `extraKnownMarketplaces` registers where each plugin is fetched from.
+Plugin config lives in **`claude/settings.json`** (tracked, copied to `~/.claude/settings.json` — see the note above): `enabledPlugins` holds the enable toggles and `extraKnownMarketplaces` registers where each plugin is fetched from.
 
 Neither key fetches plugin code, and enabling a plugin whose files aren't installed is a harmless no-op. On a fresh machine, install the files once for each plugin you want (commands below). Verify with `claude plugin list`.
 
@@ -96,6 +102,10 @@ Ultra-compressed agent output (~65% fewer output tokens), see [github.com/Julius
 claude plugin marketplace add JuliusBrussee/caveman
 claude plugin install caveman@caveman
 ```
+
+The default compression level lives in **`caveman/config.json`** (tracked, symlinked by `install.sh` to `~/.config/caveman/config.json`), currently `ultra`. Valid modes: `off`, `lite`, `full`, `ultra`, `wenyan-lite`, `wenyan`, `wenyan-full`, `wenyan-ultra`. The plugin resolves the default from `CAVEMAN_DEFAULT_MODE`, then a repo-local `.caveman/config.json` or `.caveman.json`, then this file, then `full` — so a per-project file overrides it. `/caveman <mode>` still switches the running session.
+
+The statusline badge showing the active mode is wired via `claude/statusline.sh`, see [Claude Code setup](#claude-code-setup).
 
 #### elixir-phoenix
 
