@@ -165,6 +165,10 @@
       }
     }
   },
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"/Users/sebastian/.claude/statusline.sh\""
+  },
   "alwaysThinkingEnabled": true,
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
