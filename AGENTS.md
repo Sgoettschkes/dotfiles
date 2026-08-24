@@ -61,7 +61,7 @@ make install
 - `/claude/` - Global Claude Code config
   - `CLAUDE.md` - Global instructions (symlinked to `~/.claude/CLAUDE.md`)
   - `setup.sh` - Symlink config + skills into `~/.claude`, register MCP servers (run via `make claude`)
-  - `skills/` - Custom skills symlinked into `~/.claude/skills/`, all namespaced `sgoettschkes-<domain>-<action>`: `sgoettschkes-claude-unify-settings`, `sgoettschkes-cleft-process`, `sgoettschkes-dev-start-work`, `sgoettschkes-gtd-clear-inboxes`, `sgoettschkes-gtd-create-project`, `sgoettschkes-gtd-finish-project`, `sgoettschkes-gtd-sync-projects`, `sgoettschkes-gtd-weekly-review`, `sgoettschkes-log-post-eod`, `sgoettschkes-log-task`
+  - `skills/` - Custom skills symlinked into `~/.claude/skills/`, all namespaced `sgoettschkes-<domain>-<action>`: `sgoettschkes-claude-unify-settings`, `sgoettschkes-cleft-process`, `sgoettschkes-dev-finish-work`, `sgoettschkes-dev-start-work`, `sgoettschkes-gtd-clear-inboxes`, `sgoettschkes-gtd-create-project`, `sgoettschkes-gtd-finish-project`, `sgoettschkes-gtd-sync-projects`, `sgoettschkes-gtd-weekly-review`, `sgoettschkes-log-post-eod`, `sgoettschkes-log-task`
 - `/codex/` - Global Codex config
   - `AGENTS.md` - Global instructions (symlinked to `~/.codex/AGENTS.md`)
   - `setup.sh` - Symlink `AGENTS.md` into `~/.codex`, register MCP servers (run via `make codex`). `config.toml` machine-local (not tracked); Codex rewrite it at runtime.

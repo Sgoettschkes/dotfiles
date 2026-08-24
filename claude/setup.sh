@@ -47,6 +47,7 @@ fi
 mkdir -p "$HOME/.claude/skills"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-log-task" "$HOME/.claude/skills/sgoettschkes-log-task"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-dev-start-work" "$HOME/.claude/skills/sgoettschkes-dev-start-work"
+create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-dev-finish-work" "$HOME/.claude/skills/sgoettschkes-dev-finish-work"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-log-post-eod" "$HOME/.claude/skills/sgoettschkes-log-post-eod"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-gtd-clear-inboxes" "$HOME/.claude/skills/sgoettschkes-gtd-clear-inboxes"
 create_symlink "$DOTFILES_DIR/claude/skills/sgoettschkes-gtd-create-project" "$HOME/.claude/skills/sgoettschkes-gtd-create-project"
