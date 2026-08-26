@@ -63,7 +63,24 @@ Then the leftover **project container**:
 
 ### Gmail
 
-Label moves aren't automated. Tell the user which project label to move from `1 - Projects` to `4 - Archives` in each account where it exists, respecting scope (privat = all; AgileAddicts/AccessOwl = work projects only). If an artifact went to an AoR/Resource, mention the matching label move too.
+The project label is an artifact like any other: surface it, ask where it goes, and **move it yourself** in the two reachable accounts. Scope applies (privat = all projects; AccessOwl = AO projects only; AgileAddicts = always Step 4).
+
+Before asking, look at what the label actually holds — `messagesTotal` from a label `get`, plus the From/Subject of the threads if there are only a few. That's what makes the Archive-vs-Resource-vs-delete call, and an empty label is a stub: delete it instead of archiving it.
+
+A label move is a **rename** — the label keeps its id and stays attached to its messages, so nothing needs re-labelling.
+
+- **Gmail privat** (`gws` CLI, never the Gmail MCP):
+  ```
+  gws gmail users labels list --params '{"userId":"me"}'          # find the id
+  gws gmail users labels get --params '{"userId":"me","id":"<id>"}'   # messagesTotal
+  gws gmail users labels patch --params '{"userId":"me","id":"<id>"}' \
+    --json '{"name":"4 - Archives/<name>"}'
+  ```
+- **Gmail AccessOwl** — Gmail MCP: `list_labels` to find it, `update_label` with the new `4 - Archives/<name>` name.
+
+Same rename for an AoR or Resource destination (`2 - AoR/<area>/<name>`, `3 - Resources/…`). Deleting a label needs explicit confirmation, and only ever for an empty one.
+
+If gws auth has expired or the AccessOwl connector is unauthenticated, defer that account to Step 4.
 
 ## Step 4 — Manual hand-off
 
