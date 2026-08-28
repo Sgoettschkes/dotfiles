@@ -37,20 +37,27 @@ Confirm: `✓ Drive folder: <name>`.
 
 ## Step 4 — Gmail label
 
-Create the `1 - Projects/<name>` label in the account matching the project's area. **If the account is unclear (e.g. work-vs-personal ambiguous), ask which account before creating** — don't guess.
+**Gmail privat always gets the label — every project, every area, no exceptions.** `Spaces.md` says "Gmail privat — volle Liste", and that means the full list, not just the `private`-tagged ones. Never skip it because the project looks work-only:
 
-- **Private** (tag `private`) → create in Gmail privat via `gws`:
-  `gws gmail users labels create --params '{"userId": "me"}' --json '{"name": "1 - Projects/<name>"}'`
-- **AccessOwl** (tag `AccessOwl`) → create in Gmail AccessOwl via the Gmail MCP `create_label` tool.
-- **Any other account** (tag `AgileAddicts`, `professional`, meta/self-referential, etc.) → **don't create it** — post a note telling the user to add the `1 - Projects/<name>` label themselves.
+```
+gws gmail users labels create --params '{"userId": "me"}' --json '{"name": "1 - Projects/<name>"}'
+```
 
-A project may warrant the label in more than one account (e.g. an AA or AO project that also generates personal email → also privat). Apply the per-account rule above to each: auto-create for private/AccessOwl, hand off the rest.
+Then, **in addition**, the label in the account matching the project's area:
+
+- **AccessOwl** (tag `AccessOwl`) → Gmail AccessOwl via the Gmail MCP `create_label` tool.
+- **AgileAddicts** (tag `AgileAddicts`) → hand off: tell the user to add `1 - Projects/<name>` there.
+- **`private`, `professional`, meta/self-referential** → privat alone covers it; nothing extra.
+
+If the area itself is unclear (work-vs-personal ambiguous), ask before creating the area account's label — but create the privat one regardless.
+
+**Never silence gws stderr** (`2>/dev/null`) when checking or creating labels: an expired token returns a 401 that reads like "no such label" and leads to wrong conclusions. On an auth error, say so and ask the user to re-auth — never report a label as absent or created on the back of a swallowed 401.
 
 Confirm what was created (`✓ Gmail privat label` / `✓ Gmail AccessOwl label`) and list any accounts left for the user.
 
 ## Batching
 
-If the user creates several projects in one turn: one `create_tasks` call for all of them, parallel Obsidian writes + Drive mkdirs, and batch the Gmail labels too — create each private/AccessOwl label, and give a single consolidated "labels to add" list for the accounts left to the user.
+If the user creates several projects in one turn: one `create_tasks` call for all of them, parallel Obsidian writes + Drive mkdirs, and batch the Gmail labels too — a privat label for every project plus each AccessOwl one, and a single consolidated "labels to add" list for AgileAddicts.
 
 ## Done
 
