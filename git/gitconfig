@@ -12,6 +12,7 @@
     co = checkout
     cob = checkout -b
     di = diff
+    dl = diff HEAD^1 HEAD
     ll = log --pretty=format:"%ar\\ %C(yellow)%h%Cred%d\\ %Creset%s%Cgreen\\ [%an]" --decorate
     me = merge
     met = mergetool
