@@ -52,7 +52,9 @@ This clones the dev DB and sets up the test DB — takes a few minutes; let it f
 The new session starts cold; its entire briefing lives in a handoff file inside the worktree, and the launch prompt is only a pointer to it.
 
 1. Use the branch name as the **slug**.
-2. Fill in the template at `references/initial-template.md` next to this SKILL.md (`~/.claude/skills/sgoettschkes-dev-start-work/references/initial-template.md`): replace every `{placeholder}` with what §§1–3 gathered, drop the sections the template marks as deletable when they don't apply, and let nothing template-ish (placeholders, fill-in instructions) survive into the result. Surface anything from the ticket comments the new session can't re-derive from the ticket page itself.
+2. Fill in the template at `references/initial-template.md` next to this SKILL.md (`~/.claude/skills/sgoettschkes-dev-start-work/references/initial-template.md`): replace every `{placeholder}` with what §§1–3 gathered (including `{worktree-path}` — the absolute worktree path printed by `bin/wt-new`), drop the sections the template marks as deletable when they don't apply, and let nothing template-ish (placeholders, fill-in instructions) survive into the result. Surface anything from the ticket comments the new session can't re-derive from the ticket page itself.
+
+   The template's **"STOP — environment rule for every mix command"** section is mandatory — never trim, shorten, or reword it, and never mark it deletable. Every `mix` command in a worktree must be run as `source .env.local && mix …` in the same shell invocation; the section is the only thing that tells the fresh session so, and step 3 of the template propagates it into the plan file for the `/phx:full` session after that.
 3. Write it to `<worktree-path>/.claude/plans/<slug>/initial.md`.
 4. Launch:
 
@@ -62,8 +64,8 @@ ao-open-worktree <worktree-path> "Follow .claude/plans/<slug>/initial.md — it 
 
 ## 5. In the new instance — reference only, nothing to do here
 
-`initial.md` carries the new session's steps: read ticket/PR/Epic → `/phx:plan` → append the walk-through checkbox task to the plan file (verbatim text in the template; the plan file is the only context that survives into the fresh `/phx:full` session) → hand the user to `/phx:full`, which implements, reviews, commits, and ends with the walk-through task (visual changes → **walk-through-change** presents them in the browser; nothing visual → skip and say why).
+`initial.md` carries the new session's steps: read ticket/PR/Epic → `/phx:plan` → write the `source .env.local` environment section plus the walk-through checkbox task into the plan file (verbatim text in the template; the plan file is the only context that survives into the fresh `/phx:full` session) → hand the user to `/phx:full`, which implements, reviews, commits, and ends with the walk-through task (visual changes → **walk-through-change** presents them in the browser; nothing visual → skip and say why).
 
 ## Done
 
-Report back: the ticket (title + URL), its claimed state, the branch/worktree path and ports, the handoff file path (`.claude/plans/<slug>/initial.md`), and that the new session is running `/phx:plan` (which will hand off to `/phx:full`). This instance's job ends there.
+Before launching, re-read the written `initial.md` and confirm the environment-rule section survived intact with the real worktree path substituted. Then report back: the ticket (title + URL), its claimed state, the branch/worktree path and ports, the handoff file path (`.claude/plans/<slug>/initial.md`), and that the new session is running `/phx:plan` (which will hand off to `/phx:full`). This instance's job ends there.
