@@ -37,10 +37,6 @@ asdf plugin add lua https://github.com/Stratus3D/asdf-lua.git 2>/dev/null || ech
 echo "Installing Node.js plugin..."
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git 2>/dev/null || echo "Node.js plugin already exists"
 
-# claude/statusline.sh parses Claude Code's context JSON with jq
-echo "Installing jq plugin..."
-asdf plugin add jq https://github.com/lsanwick/asdf-jq.git 2>/dev/null || echo "jq plugin already exists"
-
 echo "All plugins installed successfully!"
 
 # Set Erlang build options for better compatibility
