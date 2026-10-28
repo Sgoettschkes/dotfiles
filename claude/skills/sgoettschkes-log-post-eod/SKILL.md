@@ -36,7 +36,7 @@ Resolve IDs at runtime each session (cache for the session only):
      | awk -v seed=$RANDOM 'BEGIN{srand(seed)} {a[NR]=$0} END{if(NR>0) print a[int(rand()*NR)+1]}'
    ```
    Phrase before `|`, emoji after. The `grep -v` prevents repeating yesterday's emoji. (`awk` seeded from `$RANDOM` because `shuf` isn't on macOS by default.)
-4. Compose the message in **Slack mrkdwn** (not standard markdown): links `<url|label>`, bullets `•`, bold `*bold*`.
+4. Compose the message in **standard markdown**: links `[label](url)`, bullets `•`, bold `**bold**`. `slack_send_message` takes standard markdown and converts it itself, so don't write Slack mrkdwn (`<url|label>`, `*bold*`).
 
    Structure:
    - Line 1: the sign-off phrase + emoji from step 3, verbatim (e.g. `Heading out :sunset:`). No period before the emoji.
@@ -57,7 +57,7 @@ Resolve IDs at runtime each session (cache for the session only):
 
    Mostly setup + small process wins — feels like the workflow is starting to click.
 
-   • Migrated the X service to Y (<https://github.com/...|PR #123>)
+   • Migrated the X service to Y ([PR #123](https://github.com/...))
    • Investigated the flaky test in Z
    ```
 5. Show the draft and **wait for explicit confirmation** — the post is visible to colleagues. On requested changes: redraft, show again, wait for another explicit OK.
