@@ -29,6 +29,7 @@ One flow, one entry text, two destinations: the entry is always appended to the 
 
 - One short line — enough to recognize the task later, no more. Past tense, action-led ("Fixed X", "Shipped Y", "Reviewed Z").
 - **The verb must match the actual state of the work.** "Fixed"/"Shipped"/"Merged"/"Deployed" only for work that landed; work that stopped at an open, unmerged PR is "Opened PR for X" / "Raised PR to do Y". Unsure of the state → ask, don't assume done.
+- **Describe the work, not the git mechanics.** For work not yet in a PR or landed, use "Worked on X" / "Implemented X" — never "Committed X" or other git-step verbs (pushed, staged, rebased).
 - Inline links where they exist: `Reviewed [PR #123](https://github.com/...)`.
 - No private commentary that wouldn't make sense on reread.
 - **Date format** (for day headings in both destinations): German numeric `DD.MM.YYYY`, derived from the environment's `currentDate`.
