@@ -65,7 +65,9 @@ Then the leftover **project container**:
 
 The project label is an artifact like any other: surface it, ask where it goes, and **move it yourself** in the two reachable accounts. Scope applies (privat = all projects; AccessOwl = AO projects only; AgileAddicts = always Step 4).
 
-Before asking, look at what the label actually holds — `messagesTotal` from a label `get`, plus the From/Subject of the threads if there are only a few. That's what makes the Archive-vs-Resource-vs-delete call, and an empty label is a stub: delete it instead of archiving it.
+Before asking, look at what the label actually holds — `messagesTotal` from a label `get`, plus the From/Subject of the threads if there are only a few. That's what makes the Archive-vs-Resource-vs-delete call.
+
+**Empty label (`messagesTotal: 0`) is a stub: delete it outright, no question** — same rule as empty folders and headline-only notes. Just report it in the close-out.
 
 A label move is a **rename** — the label keeps its id and stays attached to its messages, so nothing needs re-labelling.
 
@@ -75,10 +77,11 @@ A label move is a **rename** — the label keeps its id and stays attached to it
   gws gmail users labels get --params '{"userId":"me","id":"<id>"}'   # messagesTotal
   gws gmail users labels patch --params '{"userId":"me","id":"<id>"}' \
     --json '{"name":"4 - Archives/<name>"}'
+  gws gmail users labels delete --params '{"userId":"me","id":"<id>"}'  # empty label
   ```
-- **Gmail AccessOwl** — Gmail MCP: `list_labels` to find it, `update_label` with the new `4 - Archives/<name>` name.
+- **Gmail AccessOwl** — Gmail MCP: `list_labels` to find it, `update_label` with the new `4 - Archives/<name>` name; `delete_label` for an empty one.
 
-Same rename for an AoR or Resource destination (`2 - AoR/<area>/<name>`, `3 - Resources/…`). Deleting a label needs explicit confirmation, and only ever for an empty one.
+Same rename for an AoR or Resource destination (`2 - AoR/<area>/<name>`, `3 - Resources/…`). Never delete a label that still holds messages.
 
 If gws auth has expired or the AccessOwl connector is unauthenticated, defer that account to Step 4.
 
