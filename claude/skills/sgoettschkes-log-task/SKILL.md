@@ -45,7 +45,7 @@ Approval MUST go through the `AskUserQuestion` tool — a plain "ok?" in text is
 
 The Obsidian Daily Log is the source of truth — every approved entry lands here.
 
-- **File**: `~/Documents/Second Brain/3 - Resources/Daily Log.md`
+- **File**: `~/Documents/Second Brain/3 - Resources/Daily Log/Daily Log.md`
 - **Tools**: `grep`, `tail`, and `printf >>` via Bash — never `Read`/`Edit` (the file is long, and Edit's mid-file anchoring was the historical failure mode) and no Obsidian MCP server
 
 Steps:
