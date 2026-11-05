@@ -41,8 +41,21 @@ database and the default port — it writes to the wrong database, collides
 with other worktrees' servers, and produces test results that mean nothing.
 If a mix command fails on DB or port, suspect a missing `source` first.
 
-Carry this rule forward: it must land verbatim in the plan file you write in
-step 2 below, because the session that executes the plan never sees this file.
+Carry this rule forward: whenever you write a plan file, it must land
+verbatim in it (see "Plan file blocks" below), because a session that
+executes the plan after a context clear never sees this file.
+
+## Review & verification — suggest these, every time
+
+- After **significant code changes**, suggest the user run the
+  **accessowl-review** skill (`/accessowl-review`) before committing or
+  opening a PR.
+- When the change includes **user-visible/visual changes** checkable in a
+  browser, suggest the **accessowl-walk-through-change** skill
+  (`/accessowl-walk-through-change`) to present it for manual verification.
+
+Suggest only — don't run either unasked. Nothing visual? Say so instead of
+suggesting the walk-through.
 
 ## Context
 
@@ -65,6 +78,11 @@ held nothing relevant.}
 
 ## Your remaining steps
 
+{Keep exactly ONE of the four variants below — the start mode the user
+chose — and delete the other three together with every "Variant …" label.}
+
+{Variant A — plan, then clear and work:}
+
 1. Read the ticket (description **and** comments via `notion-get-comments`)
    plus every resource listed above, before planning.
 2. Invoke the phx:plan skill exactly as if the user had typed
@@ -72,36 +90,67 @@ held nothing relevant.}
    ticket URL as args). Steer it to save its plan as
    `.claude/plans/{slug}/plan.md`, next to this file; if it ends up under a
    different slug anyway, use that actual path in the steps below.
-3. **Before you stop**, edit the plan file so it carries both of these into
-   the fresh session that executes it:
+3. **Before you stop**, add the "Plan file blocks" below to the plan file.
+   The plan is executed after a `/clear`, by a session that never sees your
+   conversation — the plan file is the only channel that survives, so this
+   step is mandatory.
+4. Ask the user to run `/clear` and then `/phx:work <path-to-the-plan>`.
 
-   a. A section at the very top, verbatim:
+{Variant B — quick implementation, no phx:plan:}
 
-   ```markdown
-   ## Environment — source .env.local before every mix command
+1. Read the ticket (description **and** comments via `notion-get-comments`)
+   plus every resource listed above.
+2. Invoke the phx:quick skill exactly as if the user had typed
+   `/phx:quick <one-line summary of the ticket>` (Skill tool, skill
+   `elixir-phoenix:quick`, the summary as args). Do **not** run `/phx:plan`
+   first. The environment rule above still applies to its verification
+   commands.
+3. If phx:quick hits its escape hatch (change too big for quick mode), stop
+   and ask the user how to continue rather than switching to planning on
+   your own.
 
-   This worktree has its own `.env.local` with its dedicated
-   `DATABASE_NAME`, `TEST_DATABASE_NAME`, `PORT` and `TEST_PORT`. Shell
-   state does not persist between tool calls, so **every** command that
-   runs `mix` must source it in the same invocation:
+{Variant C — implement directly:}
 
-   `source .env.local && mix test`, `source .env.local && mix compile`,
-   `source .env.local && iex -S mix phx.server`.
+1. Read the ticket (description **and** comments via `notion-get-comments`)
+   plus every resource listed above.
+2. Implement the ticket directly in this session, following the environment
+   rule above and suggesting the skills from "Review & verification" when
+   they apply.
 
-   Skipping it targets the main checkout's databases and default port:
-   wrong database written, port collisions, meaningless test results.
-   ```
+{Variant D — wait for the user:}
 
-   b. This final checkbox appended to the plan's task list, verbatim:
+1. Confirm in one or two lines that you've read this briefing for
+   "{ticket-title}", then wait for the user's instructions. Don't read the
+   ticket or start any work until they say so.
 
-   ```markdown
-   - [ ] Run the walk-through-change skill (/walk-through-change) to present
-     the change for manual verification, if it includes user-visible/visual
-     changes checkable in a browser; otherwise skip and say so.
-   ```
+## Plan file blocks
 
-   The plan is executed by `/phx:full` in a fresh session that never sees
-   your conversation — the plan file is the only channel that survives the
-   context clear, so this step is mandatory.
-4. Prompt the user to start a fresh session and run
-   `/phx:full <path-to-the-plan>`.
+Whenever you write a plan file for this ticket, edit it so it carries both
+of these, verbatim:
+
+a. A section at the very top:
+
+```markdown
+## Environment — source .env.local before every mix command
+
+This worktree has its own `.env.local` with its dedicated
+`DATABASE_NAME`, `TEST_DATABASE_NAME`, `PORT` and `TEST_PORT`. Shell
+state does not persist between tool calls, so **every** command that
+runs `mix` must source it in the same invocation:
+
+`source .env.local && mix test`, `source .env.local && mix compile`,
+`source .env.local && iex -S mix phx.server`.
+
+Skipping it targets the main checkout's databases and default port:
+wrong database written, port collisions, meaningless test results.
+```
+
+b. This final checkbox appended to the plan's task list:
+
+```markdown
+- [ ] Suggest next steps to the user: the accessowl-review skill
+  (/accessowl-review) if the change touched significant code, and the
+  accessowl-walk-through-change skill (/accessowl-walk-through-change) if it
+  includes user-visible/visual changes checkable in a browser (otherwise say
+  so). Suggest only — don't run either unasked.
+```
