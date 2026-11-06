@@ -43,7 +43,14 @@ Resolve IDs at runtime each session (cache for the session only):
    - Line 2: blank.
    - Line 3: a **fresh one-line summary** of the day's theme/mood — not a paraphrase of the bullets, not templated (e.g. "Mostly setup + small process wins.").
    - Line 4: blank.
-   - Then today's log entries, one `•` bullet per line.
+   - Then today's log entries, grouped into sections in this order. Each section is a bold headline (`**Shipped PRs**`) followed directly by its `•` bullets, one per line; a blank line separates sections. A section with no entries is left out entirely — no headline, no "nothing today" placeholder.
+     - **Important** — things colleagues should focus on: showstopper bugs, production outage work, anything urgent or blocking others. Takes precedence over the other sections (e.g. a merged hotfix for an outage goes here, not under Shipped PRs).
+     - **Shipped PRs** — PRs merged/released today.
+     - **Ongoing work** — in-progress work: open PRs, investigations, tickets started but not done.
+     - **Meetings** — calls, syncs, reviews, interviews.
+     - **Other** — everything else.
+
+     Each entry goes in exactly one section. Unsure where one belongs → ask.
 
    Filter for colleague-readability:
    - **Drop private items** (personal notes, internal thoughts, friction logs, anything the user wouldn't share).
@@ -57,8 +64,20 @@ Resolve IDs at runtime each session (cache for the session only):
 
    Mostly setup + small process wins — feels like the workflow is starting to click.
 
+   **Important**
+   • Login broken for SSO customers since this afternoon — root cause found, fix in review ([PR #124](https://github.com/...))
+
+   **Shipped PRs**
    • Migrated the X service to Y ([PR #123](https://github.com/...))
+
+   **Ongoing work**
    • Investigated the flaky test in Z
+
+   **Meetings**
+   • Sprint planning
+
+   **Other**
+   • Cleaned up the onboarding doc
    ```
 5. Show the draft and **wait for explicit confirmation** — the post is visible to colleagues. On requested changes: redraft, show again, wait for another explicit OK.
 6. Post via `mcp__claude_ai_Slack__slack_send_message` to the resolved channel.
