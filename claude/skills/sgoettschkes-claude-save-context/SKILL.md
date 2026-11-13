@@ -1,11 +1,11 @@
 ---
 name: sgoettschkes-claude-save-context
-description: Before the user clears the context, sweep the current session for knowledge worth keeping and write it into the artifacts that should carry it — README, agent files (AGENTS.md, CLAUDE.md, .claude/agents, skills), docs, repo memory (checked-in CLAUDE.md / CLAUDE.local.md) and the local auto-memory. Lists every proposed update, asks whether to apply them (re-asking with the revised list whenever the user requests changes), applies the approved ones, offers to commit the versioned files, then hands off to /clear. Use when the user says "save context", "persist what we learned", "before I clear", "prep for /clear", "update docs before clearing", or invokes this skill directly.
+description: Before the user clears the context, sweep the current session for knowledge worth keeping and write it into the artifacts that should carry it — README, agent files (AGENTS.md, CLAUDE.md, .claude/agents, skills), docs, repo memory (checked-in CLAUDE.md / CLAUDE.local.md) and the local auto-memory. Walks through every proposed update one at a time, showing its exact diff and asking apply or skip (re-showing an item whenever the user changes its text), applies the approved ones, offers to commit the versioned files, then hands off to /clear. Use when the user says "save context", "persist what we learned", "before I clear", "prep for /clear", "update docs before clearing", or invokes this skill directly.
 ---
 
 # Save context before /clear
 
-`/clear` throws away everything this session learned. Anything that should outlive it has to land in a file first. This skill finds those things, gets approval on the exact list, writes them, optionally commits, and ends with the user running `/clear`.
+`/clear` throws away everything this session learned. Anything that should outlive it has to land in a file first. This skill finds those things, walks the user through each change in full to apply or skip it, writes them, optionally commits, and ends with the user running `/clear`.
 
 Run the steps in order. Nothing is written before §4.
 
@@ -54,34 +54,62 @@ git check-ignore -q <path>            # ignored → not versioned
 
 A new file in a non-ignored path counts as versioned (it will be committed). The auto-memory dir is never versioned.
 
-## 3. List everything and ask
+## 3. Walk through each change and ask
 
-Show the full list, grouped by artifact, versioned ones marked:
+The user decides item by item, so they must see exactly what would be written — not a summary of it. Split the findings into items (one item = one self-contained change the user can accept or skip on its own), number them, and open with a single line: how many changes were found. Nothing found → say so and skip to §6.
 
+Then go through the items **one at a time**, in order. For each, show:
+
+- **Target**: file, versioned or local, new file or update
+- **Where**: the section / heading / line it lands at
+- **Why**: one line — what in this session prompted it
+- **Exact change**: a fenced `diff` block with the real lines removed (`-`) and added (`+`), plus a line or two of surrounding context so placement is unambiguous. New files show their complete content, frontmatter included. A new memory file and its `MEMORY.md` pointer line are shown together as one item.
+
+Example (two separate turns, each followed by its own question):
+
+````
+[1/2] README.md (versioned, update) — Maintenance Commands
+Why: `make foo` added this session, not documented anywhere
+```diff
+ - `make asdf-clean` - Remove unused asdf installs
++- `make foo` - Rebuild foo cache
+ - `make claude` - Set up Claude Code …
 ```
-README.md (versioned)
-  - Add `make foo` to Maintenance Commands — added this session
-AGENTS.md (versioned)
-  - Folder Structure: add `bin/wt-new` — new script
-memory: wt-rm-flag-spelling.md (local, new)
-  - `-db` not `--db`; `--db` exits "unknown flag"
-memory: gws-cli-auth-setup-quirks.md (local, update)
-  - Token expiry is now 30 days, not 7
+
+[2/2] memory: wt-rm-flag-spelling.md (local, new) + MEMORY.md pointer
+Why: `--db` failed twice this session with "unknown flag"
+```diff
++---
++name: wt-rm-flag-spelling
++description: wt-rm takes -db, not --db
++metadata:
++  type: reference
++---
++
++`wt-rm` takes `-db`; `--db` exits "unknown flag".
 ```
+```diff
+ - [GTD and PARA both active](gtd-and-para-both-active.md) — …
++- [wt-rm flag spelling](wt-rm-flag-spelling.md) — -db not --db
+```
+````
 
-Each line says what changes and why, in one line. Nothing found → say so and skip to §6.
+Never shorten to "add a note about X" or "update the skill list" — if the text isn't shown, the user can't judge it.
 
-Then `AskUserQuestion`:
+After showing an item, `AskUserQuestion` for that item alone:
 
-- **Apply all** (recommended)
-- **Pick some** → follow up with a multi-select of the items, then apply only those
-- **Skip** → write nothing, go to §6
+- **Apply**
+- **Skip**
 
-Any free-text answer ("all but the README one", "reword X", "also add Y") means the list changed: revise it, show the full revised list again, and ask again with the same options. Repeat until the user picks one of the three options — never apply a version they haven't seen.
+Don't mark either as recommended — the point is the user's judgment per item. Record the decision, then move to the next item. Don't write anything yet; collect decisions until every item is decided.
+
+Free-text answer ("reword to …", "put it under X instead", "also mention Y") → revise that item, show it again in full, and ask again for the same item. Never apply text the user hasn't seen. If the user asks for a brand-new item, append it to the end of the queue. "Skip the rest" / "apply the rest" → decide all remaining items that way without asking further.
+
+Once all items are decided, show a one-line-per-item recap (`[n] target — apply/skip`) and continue to §4. All skipped → go to §6.
 
 ## 4. Apply
 
-Write each approved update with Edit (Write only for new files). Match the target file's style exactly — if a file is written in a compressed style, write compressed; if it's prose, write prose. Comments-say-why rules from the user's instructions apply to any code touched.
+Write each approved update with Edit (Write only for new files), using exactly the text shown in §3 — no rewording at apply time. Match the target file's style exactly — if a file is written in a compressed style, write compressed; if it's prose, write prose. Comments-say-why rules from the user's instructions apply to any code touched.
 
 Keep a list of every file you touched, split into versioned and unversioned.
 
