@@ -1,11 +1,11 @@
 ---
 name: sgoettschkes-claude-save-context
-description: Before the user clears the context, sweep the current session for knowledge worth keeping and write it into the artifacts that should carry it — README, agent files (AGENTS.md, CLAUDE.md, .claude/agents, skills), docs, repo memory (checked-in CLAUDE.md / CLAUDE.local.md) and the local auto-memory. Walks through every proposed update one at a time, showing its exact diff and asking apply or skip (re-showing an item whenever the user changes its text), applies the approved ones, offers to commit the versioned files, then hands off to /clear. Use when the user says "save context", "persist what we learned", "before I clear", "prep for /clear", "update docs before clearing", or invokes this skill directly.
+description: Before the user clears the context, sweep the current session for knowledge worth keeping and write it into the artifacts that should carry it — README, agent files (AGENTS.md, CLAUDE.md, .claude/agents, skills), docs, repo memory (checked-in CLAUDE.md / CLAUDE.local.md) and the local auto-memory. Walks through every proposed update one at a time, showing its exact diff and asking apply or skip (re-showing an item whenever the user changes its text), applies the approved ones, offers to commit the versioned files, logs the session's work via sgoettschkes-log-task, then hands off to /clear. Use when the user says "save context", "persist what we learned", "before I clear", "prep for /clear", "update docs before clearing", or invokes this skill directly.
 ---
 
 # Save context before /clear
 
-`/clear` throws away everything this session learned. Anything that should outlive it has to land in a file first. This skill finds those things, walks the user through each change in full to apply or skip it, writes them, optionally commits, and ends with the user running `/clear`.
+`/clear` throws away everything this session learned. Anything that should outlive it has to land in a file first. This skill finds those things, walks the user through each change in full to apply or skip it, writes them, optionally commits, logs the session's work, and ends with the user running `/clear`.
 
 Run the steps in order. Nothing is written before §4.
 
@@ -126,11 +126,15 @@ On commit: `git add` exactly the touched files by path (never `-A` or `.`), comm
 
 Commit fails (hook, signing) → report the exact error, leave the changes staged, don't retry with `--no-verify`.
 
-## 6. Hand off to /clear
+## 6. Log the session's work
+
+Once `/clear` runs, nobody remembers what this session did, so the daily log has to be written now. Invoke the `sgoettschkes-log-task` skill via the Skill tool for the work completed in this session (the task itself, not the context save) and follow it through — its own approval dialog, work/private split and confirmation apply unchanged. The user declining there is fine; continue to §7 either way.
+
+## 7. Hand off to /clear
 
 `/clear` is a built-in CLI command. Claude cannot invoke it — not via the Skill tool, not via Bash. So the last step is the user's.
 
-Finish with a short summary (files updated, memory written, commit hash or "uncommitted"), then the final line, on its own:
+Finish with a short summary (files updated, memory written, commit hash or "uncommitted", logged or not), then the final line, on its own:
 
 > Ready. Run `/clear` now.
 
