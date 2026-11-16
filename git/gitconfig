@@ -76,6 +76,7 @@
 
 [rebase]
     autosquash = true
+    autoStash = true
 
 [receive]
     fsckObjects = true # see https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0
