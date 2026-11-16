@@ -1,2 +1,5 @@
 .DS_Store
 *.backup
+
+# Aikido (work machine only) backs up the zsh files it modifies
+*.aikido-backup
