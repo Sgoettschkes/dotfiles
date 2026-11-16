@@ -12,7 +12,8 @@ You are a fresh Claude session in a dedicated git worktree, launched to
 implement the ticket above. This file is your full briefing: it carries
 everything the orchestrator session knew that you cannot re-derive on your
 own. Read it fully — starting with the environment rule directly below, which
-applies to every command you run — then work through "Your remaining steps".
+applies to every command you run — then sync with main and work through
+"Your remaining steps".
 
 ## STOP — environment rule for every mix command
 
@@ -75,6 +76,24 @@ held nothing relevant.}
   the broader effort.
 
 {Delete any resource line that doesn't apply; delete the section if none do.}
+
+## First: sync with main
+
+Do this before anything in "Your remaining steps", in every mode.
+`bin/wt-new` branched off the main checkout's local `main`, which can lag
+behind `origin`.
+
+```bash
+git fetch origin main
+git rebase origin/main
+```
+
+- Leave the main checkout alone — no `pull` there, no local `main` update.
+- Nothing is committed on this branch yet, so the rebase is a fast-forward.
+- Either command fails (conflict, dirty tree, auth) → stop and tell the
+  user. Don't force, reset or stash on your own.
+- If the update brought new migrations or dependencies, run
+  `source .env.local && mix deps.get && mix ecto.migrate` before starting.
 
 ## Your remaining steps
 

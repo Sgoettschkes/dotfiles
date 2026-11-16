@@ -65,8 +65,9 @@ The new session starts cold; its entire briefing lives in a handoff file inside 
 1. Use the branch name as the **slug**.
 2. Fill in the template at `references/initial-template.md` next to this SKILL.md (`~/.claude/skills/sgoettschkes-dev-start-work/references/initial-template.md`): replace every `{placeholder}` with what §§1–4 gathered (including `{worktree-path}` — the absolute worktree path printed by `bin/wt-new`), keep only the "Your remaining steps" variant for the chosen mode, drop the sections the template marks as deletable when they don't apply, and let nothing template-ish (placeholders, variant labels, fill-in instructions) survive into the result. Surface anything from the ticket comments the new session can't re-derive from the ticket page itself.
 
-   Three sections are mandatory in every mode — never trim, shorten, or reword them, and never mark them deletable:
+   Four sections are mandatory in every mode — never trim, shorten, or reword them, and never mark them deletable:
    - **"STOP — environment rule for every mix command"**: every `mix` command in a worktree must be run as `source .env.local && mix …` in the same shell invocation; the section is the only thing that tells the fresh session so.
+   - **"First: sync with main"**: fetches `origin/main` and rebases the new branch onto it before any work starts, because `bin/wt-new` branches off a possibly stale local `main`.
    - **"Review & verification"**: tells the new session to suggest `accessowl-review` after significant code changes and `accessowl-walk-through-change` for visual changes.
    - **"Plan file blocks"**: propagates both of the above into any plan file, the only context that survives a `/clear`.
 
@@ -84,4 +85,4 @@ ao-open-worktree <worktree-path> "Follow .claude/plans/<slug>/initial.md — it 
 
 ## Done
 
-Before launching, re-read the written `initial.md` and confirm: the environment-rule section survived intact with the real worktree path substituted, the "Review & verification" and "Plan file blocks" sections are present, and exactly one "Your remaining steps" variant remains. Then report back: the ticket (title + URL), its claimed state, the branch/worktree path and ports, the handoff file path (`.claude/plans/<slug>/initial.md`), and the chosen start mode with what the new session is doing now. This instance's job ends there.
+Before launching, re-read the written `initial.md` and confirm: the environment-rule section survived intact with the real worktree path substituted, the "First: sync with main" section is present, the "Review & verification" and "Plan file blocks" sections are present, and exactly one "Your remaining steps" variant remains. Then report back: the ticket (title + URL), its claimed state, the branch/worktree path and ports, the handoff file path (`.claude/plans/<slug>/initial.md`), and the chosen start mode with what the new session is doing now. This instance's job ends there.
