@@ -1,11 +1,11 @@
 ---
 name: sgoettschkes-dev-finish-work
-description: Close out a finished piece of dev work — the mirror of [[sgoettschkes-dev-start-work]]. Verifies the PR actually merged, stops the worktree's dev server, sets the Notion 🔨 Product Backlog ticket to Completed, logs the task via sgoettschkes-log-task, removes the git worktree plus its dev/test DBs via bin/wt-rm (access_owl repo only), and deletes the branch on GitHub. Use when the user says "finish dev work", "wrap up this ticket", "the PR is merged, clean up", "close out the worktree", "done with this branch", etc.
+description: Close out a finished piece of dev work — the mirror of [[sgoettschkes-dev-start-work]]. Verifies the PR actually merged, stops the worktree's dev server, sets the Notion 🔨 Product Backlog ticket to Completed, saves the session's learnings and logs the task via sgoettschkes-claude-save-context, removes the git worktree plus its dev/test DBs via bin/wt-rm (access_owl repo only), and deletes the branch on GitHub. Use when the user says "finish dev work", "wrap up this ticket", "the PR is merged, clean up", "close out the worktree", "done with this branch", etc.
 ---
 
 # Finish dev work
 
-Take a merged piece of dev work and leave nothing behind: dev server stopped, ticket closed, task logged, worktree and DBs gone, branch deleted locally and on GitHub.
+Take a merged piece of dev work and leave nothing behind: dev server stopped, ticket closed, learnings saved, task logged, worktree and DBs gone, branch deleted locally and on GitHub.
 
 Pairs with `sgoettschkes-dev-start-work` (which created the ticket claim, the worktree, and the briefing file this skill reads).
 
@@ -60,11 +60,16 @@ notion-update-page  page_id: <ticket page id>  command: update_properties
 properties: {"Status": "Completed"}
 ```
 
-## 5. Log the task
+## 5. Save context and log the task
 
-Invoke the `sgoettschkes-log-task` skill. This is AccessOwl work, so it lands in Obsidian **and** Notion.
+Invoke the `sgoettschkes-claude-save-context` skill. It logs the task itself via `sgoettschkes-log-task`, so don't log separately. This is AccessOwl work, so the entry lands in Obsidian **and** Notion.
 
-The PR is merged, so the entry's verb says so — "Shipped X" / "Merged X", never "Opened PR for X". Hand the skill the PR URL and the ticket URL to inline. That skill owns its own approval dialog; don't pre-approve or bypass it.
+Hand it two overrides:
+
+- **Versioned edits go to the main checkout, uncommitted.** The worktree's branch is already merged and §7 deletes it, so anything written or committed there is lost. Read and edit each versioned target at the same relative path under `<main-checkout>`, and skip its commit offer — the user ships those edits later.
+- **Log entry.** The PR is merged, so the entry's verb says so — "Shipped X" / "Merged X", never "Opened PR for X". Hand it the PR URL and the ticket URL to inline.
+
+Both skills own their approval dialogs; don't pre-approve or bypass them.
 
 ## 6. Confirm the destructive cleanup
 
@@ -99,4 +104,4 @@ Repos with "automatically delete head branches" on remove the branch at merge ti
 
 ## Done
 
-Report, one line each: the PR (number, URL, merged into which branch), the dev server (shell killed, or nothing running), the ticket's new status, where the task got logged, the worktree and DBs dropped plus the local branch, and the remote branch. Name every step that was skipped and why.
+Report, one line each: the PR (number, URL, merged into which branch), the dev server (shell killed, or nothing running), the ticket's new status, which files save-context left uncommitted in the main checkout, where the task got logged, the worktree and DBs dropped plus the local branch, and the remote branch. Name every step that was skipped and why.
