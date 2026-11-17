@@ -93,7 +93,7 @@ If this Claude session's cwd is inside the removed worktree, that directory no l
 
 ## 8. Delete the remote branch
 
-Through the **GitHub CLI** — `git push` is not permitted in this setup, so `git push origin --delete` is not an option:
+Through the **GitHub CLI**:
 
 ```bash
 gh api repos/{owner}/{repo}/git/ref/heads/<branch>              # still there? 404 = already gone

@@ -122,7 +122,7 @@ Only if at least one versioned file changed. Check `git status --short` first: i
 - **Commit** (recommended) — one commit with only the touched versioned files
 - **Leave uncommitted**
 
-On commit: `git add` exactly the touched files by path (never `-A` or `.`), commit with a message in the repo's convention (check `git log --oneline -10`; e.g. `docs(claude): …` for this dotfiles repo), plus the attribution trailer the harness specifies. Don't push.
+On commit: `git add` exactly the touched files by path (never `-A` or `.`), commit with a message in the repo's convention (check `git log --oneline -10`; e.g. `docs(claude): …` for this dotfiles repo), plus the attribution trailer the harness specifies.
 
 Commit fails (hook, signing) → report the exact error, leave the changes staged, don't retry with `--no-verify`.
 
