@@ -48,6 +48,8 @@ SPACESHIP_EXIT_CODE_SHOW=true
 SPACESHIP_PROMPT_ORDER=(${SPACESHIP_PROMPT_ORDER:#time})
 SPACESHIP_RPROMPT_ORDER=(time)
 
+SPACESHIP_PROMPT_ORDER[${SPACESHIP_PROMPT_ORDER[(i)elixir]}]=(elixir postgres)
+
 # ============================================================================
 # CUSTOM TRUNCATION FUNCTIONS
 # ============================================================================
@@ -199,6 +201,33 @@ spaceship_git_status_spaced() {
   spaceship::section \
     --color "$SPACESHIP_GIT_STATUS_COLOR" \
     "$SPACESHIP_GIT_STATUS_PREFIX${(j: :)parts}$SPACESHIP_GIT_STATUS_SUFFIX"
+}
+
+# ============================================================================
+# CUSTOM SECTIONS
+# ============================================================================
+
+# Postgres version pinned by the project's .tool-versions. Mirrors asdf's
+# lookup (nearest file that lists the tool wins) but skips ~/.tool-versions,
+# since the global default would otherwise show up everywhere.
+spaceship_postgres() {
+  local dir=$PWD file line
+  while true; do
+    file="$dir/.tool-versions"
+    if [[ $file != $HOME/.tool-versions && -r $file ]]; then
+      line=${(M)${(f)"$(<$file)"}:#postgres[[:space:]]*}
+      [[ -n $line ]] && break
+    fi
+    [[ $dir == / ]] && return
+    dir=${dir:h}
+  done
+
+  spaceship::section \
+    --color blue \
+    --prefix "$SPACESHIP_PROMPT_DEFAULT_PREFIX" \
+    --suffix "$SPACESHIP_PROMPT_DEFAULT_SUFFIX" \
+    --symbol "🐘 " \
+    "v${${=line}[2]}"
 }
 
 # ============================================================================
