@@ -69,6 +69,10 @@ Install script symlink SSH, Zsh, Git, asdf configs.
 
 Local ssh config (must not be in git) go in `~/.ssh/config.local`.
 
+### 1Password CLI
+
+`op` auth through 1Password app integration: app Settings → Developer → "Integrate with 1Password CLI", plus Touch ID in Settings → Security. `op` then ask fingerprint per terminal session — no `op signin`, no `eval`. Account added to `op` by hand (master password) force old per-shell `eval $(op signin)` flow; remove with `op signout --account <shorthand> --forget`. Old tab still fail "not signed in" after switch: stale `OP_SESSION_*` from earlier `eval` win over app — `unset` it or open new tab.
+
 ### Personal scripts
 
 `install.sh` symlink executables in `bin/` into `~/.local/bin` (already on PATH). Add command: drop executable in `bin/`, run `make install`. Symlink name match filename.

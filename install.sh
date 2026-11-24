@@ -176,7 +176,7 @@ echo "Next steps:"
 echo "1. Install asdf plugins by running: make asdf"
 echo "2. Import Rectangle settings from: $DOTFILES_DIR/rectangle/config.json"
 echo "3. Configure local SSH overrides in: ~/.ssh/config.local (not tracked in Git)"
-echo "4. Set up Claude Code (symlinks + MCP servers): make claude (requires 1Password CLI signed in)"
+echo "4. Set up Claude Code (symlinks + MCP servers): make claude"
 echo "5. Set up Codex (symlinks + MCP servers): make codex"
 echo
 echo -e "${YELLOW}Note: If any existing files were backed up, they have .backup extension${NC}"

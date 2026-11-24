@@ -35,7 +35,7 @@ asdf-clean: ## Remove all unused asdf plugin installations
 	@echo "$(YELLOW)Cleaning up asdf installations...$(NC)"
 	@./asdf/cleanup.sh
 
-claude: ## Set up Claude Code: symlinks + MCP servers (requires 1Password CLI signed in)
+claude: ## Set up Claude Code: symlinks + MCP servers
 	@echo "$(YELLOW)Setting up Claude Code...$(NC)"
 	@./claude/setup.sh
 

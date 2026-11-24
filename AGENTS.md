@@ -10,7 +10,7 @@ Manage dev environment config via symlinks. Consistency across many macOS system
 
 See `README.md` for full software inventory; `install.sh` is canonical list. Items below shape how work happen in this repo:
 
-- **1Password CLI (`op`)**: `make claude` read MCP secrets from `Private` vault
+- **1Password CLI (`op`)**: auth through 1Password app (Touch ID), see README. No make target use it.
 - **asdf**: Version manager for languages + tools (Node.js, Python, Ruby, etc.)
 - **Claude Code**: Anthropic CLI for AI coding
 - **Codex**: OpenAI terminal coding agent
@@ -40,7 +40,7 @@ make install
 2. Import Rectangle settings from `rectangle/` folder manually
 3. Set local SSH config in `~/.ssh/config.local` (not in Git)
 4. Pick Nerd Font in iTerm2 (Preferences → Profiles → Text)
-5. Set up Claude Code (symlinks + MCP servers): `make claude` (need 1Password CLI signed in)
+5. Set up Claude Code (symlinks + MCP servers): `make claude`
 6. Set up Codex (symlinks + MCP servers): `make codex`
 
 ### Maintenance Commands
@@ -48,7 +48,7 @@ make install
 - `make clean` - Remove all symlinks
 - `make asdf` - Setup asdf plugins + tools
 - `make asdf-clean` - Remove unused asdf installs
-- `make claude` - Set up Claude Code: symlinks + MCP servers (need 1Password CLI signed in)
+- `make claude` - Set up Claude Code: symlinks + MCP servers
 - `make codex` - Set up Codex: symlinks + MCP servers
 - `make help` - Show all commands
 
