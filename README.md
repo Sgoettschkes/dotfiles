@@ -34,6 +34,8 @@ Remove all symlinks: `make clean`
 
 ## Additional Software
 
+**Nirvana** (GTD task manager, master for all tasks and projects) — install by hand from the Mac App Store: [Nirvana for GTD](https://apps.apple.com/app/nirvana-for-gtd/id1022913190). Use App Store build, not the direct download from nirvanahq.com.
+
 Auto-installed via Homebrew (macOS only):
 
 * 1Password CLI (`op`)
