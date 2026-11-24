@@ -18,7 +18,7 @@ One flow, one entry text, two destinations: the entry is always appended to the 
 
 1. Confirm the task is actually done.
 2. Classify work vs. private. If unclear, it becomes a second question in the approval dialog.
-3. Gather links to include inline: GitHub PRs, Linear tickets, Slack threads as direct URLs; Notion tickets/pages via `mcp__claude_ai_Notion__notion-search`. Ask whether anything else should be linked when more links seem likely.
+3. Gather links to include inline: GitHub PRs and commits, Linear tickets, Slack messages and threads as direct URLs; Notion tickets/pages via `mcp__claude_ai_Notion__notion-search`. Ask whether anything else should be linked when more links seem likely.
 4. Draft the entry (style below).
 5. **Hard stop — approval dialog** (below). Nothing is written anywhere before the dialog returns an approval.
 6. Append to Obsidian (mechanics below).
@@ -31,7 +31,8 @@ One flow, one entry text, two destinations: the entry is always appended to the 
 - **Always propose one bullet per log request**, also when the session covered several tasks: combine them into a single line. Split into several bullets only when the user asks.
 - **The verb must match the actual state of the work.** "Fixed"/"Shipped"/"Merged"/"Deployed" only for work that landed; work that stopped at an open, unmerged PR is "Opened PR for X" / "Raised PR to do Y". Unsure of the state → ask, don't assume done.
 - **Describe the work, not the git mechanics.** For work not yet in a PR or landed, use "Worked on X" / "Implemented X" — never "Committed X" or other git-step verbs (pushed, staged, rebased).
-- Inline links where they exist: `Reviewed [PR #123](https://github.com/...)`.
+- **The task, not its results.** No findings, numbers, outcomes or conclusions — "Investigated slow dashboard query", not "Investigated slow dashboard query, missing index, 4s → 200ms". The results live in the artifacts the entry links to.
+- Inline links to artifacts where they exist — Notion tickets, GitHub PRs and commits, Slack messages: `Reviewed [PR #123](https://github.com/...)`.
 - No private commentary that wouldn't make sense on reread.
 - **Date format** (for day headings in both destinations): German numeric `DD.MM.YYYY`, derived from the environment's `currentDate`.
 
