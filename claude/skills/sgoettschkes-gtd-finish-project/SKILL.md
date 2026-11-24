@@ -27,8 +27,8 @@ Project mirror locations live in the Spaces note, section `## Projects`:
 
 Retrieve the project's tasks and check for any not logged (not completed).
 
-- **Un-logged tasks exist** → warn with a count and list, and **ask what to do** before anything else. Per task: complete now, move out (other project / standalone next / someday), or delete. Never mark the project done while open tasks remain unresolved.
-- **All logged** → mark the project done (`completed: true`). Leave tasks in their current list; collect to logbook only if explicitly asked.
+- **Un-logged tasks exist** → warn with a count and list, and **ask what to do** before anything else. Per task: complete now (`completed: true` + `state: "logbook"`), move out (other project / standalone next / someday), or delete. Never mark the project done while open tasks remain unresolved.
+- **All logged** → mark the project done (`completed: true` + `state: "logbook"`), like a click in the app.
 
 Confirm: `✓ Nirvana: project "<name>" completed` (or report the open tasks and pause).
 

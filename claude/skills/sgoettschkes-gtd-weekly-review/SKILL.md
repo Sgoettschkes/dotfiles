@@ -40,7 +40,7 @@ Clarify each capture immediately using the same GTD menu as sgoettschkes-gtd-cle
 ## Phase 2 — Get Current
 
 ### 4. Review next actions
-`get_tasks` with `state=next`. Show the full list compactly, grouped by area, and ask the user to flag: **done** (→ `completed: true`), **no longer a next action** (→ renegotiate to `scheduled`/`someday`), **dead** (→ complete with a note, trash only on explicit request). Everything unflagged stays.
+`get_tasks` with `state=next`. Show the full list compactly, grouped by area, and ask the user to flag: **done** (→ `completed: true` + `state: "logbook"`), **no longer a next action** (→ renegotiate to `scheduled`/`someday`), **dead** (→ complete with a note, into the logbook like done; trash only on explicit request). Everything unflagged stays.
 
 ### 5. Review the past calendar (last 7 days)
 - **Privat calendar:** `gws calendar events list` with `calendarId: "primary"` and a `timeMin`/`timeMax` window (never the Google Calendar MCP for privat).
@@ -53,7 +53,7 @@ Same sources. Ask per notable event: any prep action needed? Capture with the ri
 
 ### 7. Review waiting-for
 `get_tasks` with `state=waiting` — one item at a time:
-1. **Received** → `completed: true`.
+1. **Received** → `completed: true` + `state: "logbook"`.
 2. **Nudge** → create a next action to follow up (or draft the message right now if it's Slack/email Claude can reach).
 3. **Still waiting** → keep, optionally note the date of last check in the task.
 
