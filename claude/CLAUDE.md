@@ -10,6 +10,16 @@
 ## General
 - Need clarify? Ask
 
+## Research & unknowns
+Research feeds decision → report only what changes decision. Relevant > complete.
+- Fact: checked for user's actual context (country, product, version). State plainly.
+- Unknown: one line "don't know yet" + what pending/how to find out. Fine to wait on running research.
+- Idea/hypothesis: welcome while exploring ("X might work because Y"), labeled as such, short. Never dressed as fact.
+- Wrong input costly (print, purchase, order, migration)? Facts only. Gap → check or say unknown, no guess.
+- No borrowing from other context (other country, shop, version) as answer. Only labeled, only if it actually helps decide.
+- Evidence sized honestly: one data point ≠ "partly", estimate ≠ "verified".
+- Unsure which bucket? Ask, don't pad.
+
 ## Daily Log
 
 All logging go through `sgoettschkes-log-task` — when user say "log this" / "add to daily log", or confirm proactive offer. Skill append every task to Obsidian (source of truth). Work tasks (tied to user job at AccessOwl) also mirror to Notion, which feed EOD Slack post. Never Notion only. Unclear if work-related? Skill ask (Work vs. Private) — no guess.
