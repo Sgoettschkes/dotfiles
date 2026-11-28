@@ -17,36 +17,17 @@
 - Many findings in a cleanup: verify each, apply the sure ones, ask only about the unsure ones, summarize afterwards.
 
 ## Research & unknowns
-Research feeds decision → report only what changes decision. Relevant > complete.
-- Fact: checked for user's actual context (country, product, version). State plainly.
-- Unknown: one line "don't know yet" + what pending/how to find out. Fine to wait on running research.
-- Idea/hypothesis: welcome while exploring ("X might work because Y"), labeled as such, short. Never dressed as fact.
-- Wrong input costly (print, purchase, order, migration)? Facts only. Gap → check or say unknown, no guess.
-- No borrowing from other context (other country, shop, version) as answer. Only labeled, only if it actually helps decide.
-- Evidence sized honestly: one data point ≠ "partly", estimate ≠ "verified".
-- Unsure which bucket? Ask, don't pad.
+Report only what changes the decision.
+- Fact: checked for the user's context (country, product, version), stated plainly. Unknown: "don't know yet" + how to find out. Idea: labeled, short, never dressed as fact
+- Costly if wrong (print, purchase, order, migration): facts only; a gap is checked or named, never guessed
+- Nothing borrowed from another context (country, shop, version) unless labeled and it helps decide
+- Evidence sized honestly: one data point ≠ "partly", estimate ≠ "verified"
 
-## Daily Log
-
-All logging goes through `sgoettschkes-log-task`, when the user says "log this" / "add to daily log" or confirms a proactive offer. The skill appends every task to Obsidian (source of truth). Work tasks (tied to the user's job at AccessOwl) are also mirrored to Notion, which feeds the EOD Slack post. Never Notion only. If it's unclear whether a task is work-related, the skill asks (Work vs. Private) instead of guessing.
-
-After a substantial task is done, offer to log it; the skill handles the work/private split.
-
-## EOD Slack Post
-
-`sgoettschkes-log-post-eod` runs only when the user asks ("post EOD", "wrap up", "good night", etc.). Don't offer, suggest or start it on your own — including after a log entry, at day end, or as a follow-up.
-
-## GTD and PARA
-
-The user runs both side by side: GTD (Nirvana tasks, inbox processing, reviews) for what to do, PARA (Projects / AoR / Resources / Archives in Obsidian, Drive, Gmail) for filing. Projects exist in both. Never frame PARA as legacy or replaced.
-
-## Google accounts
-
-The Google Calendar connector is the AccessOwl work account. Private calendar and Gmail go through the `gws` CLI (`/opt/homebrew/bin/gws`), e.g. `gws calendar events list --params '{"calendarId":"primary",...}'`, `gws gmail users messages list --params '{"userId":"me","q":"..."}'`.
-
-## Nirvana Done
-
-A task or project is done with one `update_tasks` call setting `completed: true` **and** `state: "logbook"`, same as clicking it in the app. `completed` alone leaves a checked item the user must collect by hand. This is a standing user instruction and counts as an explicit logbook request.
+## Personal tools
+- After a substantial task, offer to log it (`sgoettschkes-log-task`); `sgoettschkes-log-post-eod` only when the user asks
+- GTD (Nirvana) for what to do and PARA (Obsidian, Drive, Gmail) for filing run side by side; never frame PARA as legacy
+- The Google Calendar connector is the AccessOwl work account; private calendar and Gmail go through `gws` (`/opt/homebrew/bin/gws`)
+- Nirvana done is one `update_tasks` call with `completed: true` and `state: "logbook"`; this counts as an explicit logbook request
 
 ## Shell
 
