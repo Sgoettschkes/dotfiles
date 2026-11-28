@@ -13,6 +13,7 @@
 - "Formulate", "write up", "summarize", "critique", "what else could we do?" and "why X?" are answered in chat; change no file until the user says so (at most one line on where it could go).
 - Open points needing a short answer: phrase each as a choice with one reading ("Arrow or no arrow?"). If an answer still has two readings, ask before building.
 - In a list walk-through, show only the current item, never the remaining list.
+- Questions and list items are numbered continuously through the whole message (1, 2, 3 …, never restarting per list or section), so the user can answer or comment by number.
 - Many findings in a cleanup: verify each, apply the sure ones, ask only about the unsure ones, summarize afterwards.
 
 ## Research & unknowns

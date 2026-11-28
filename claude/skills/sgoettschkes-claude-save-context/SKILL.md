@@ -5,7 +5,7 @@ description: Before the user clears the context, sweep the current session for k
 
 # Save context before /clear
 
-`/clear` throws away everything this session learned. Anything that should outlive it has to land in a file first. This skill finds those things, walks the user through each change in full to apply or skip it, writes them, optionally commits, logs the session's work, and ends with a summary.
+`/clear` throws away everything this session learned. Anything that should outlive it has to land in a file first. This skill finds those things, walks the user through each change in full to apply or skip it, writes them, optionally commits and logs the session's work.
 
 Run the steps in order. Nothing is written before §4.
 
@@ -105,7 +105,7 @@ Don't mark either as recommended — the point is the user's judgment per item. 
 
 Free-text answer ("reword to …", "put it under X instead", "also mention Y") → revise that item, show it again in full, and ask again for the same item. Never apply text the user hasn't seen. If the user asks for a brand-new item, append it to the end of the queue. "Skip the rest" / "apply the rest" → decide all remaining items that way without asking further.
 
-Once all items are decided, show a one-line-per-item recap (`[n] target — apply/skip`) and continue to §4. All skipped → go to §6.
+Once all items are decided, continue to §4. All skipped → go to §6.
 
 ## 4. Apply
 
@@ -128,8 +128,6 @@ Commit fails (hook, signing) → report the exact error, leave the changes stage
 
 ## 6. Log the session's work
 
-Once `/clear` runs, nobody remembers what this session did, so the daily log has to be written now. Invoke the `sgoettschkes-log-task` skill via the Skill tool for the work completed in this session (the task itself, not the context save) and follow it through — its own approval dialog, work/private split and confirmation apply unchanged. The user declining there is fine; continue to §7 either way.
+Once `/clear` runs, nobody remembers what this session did, so the daily log has to be written now. Invoke the `sgoettschkes-log-task` skill via the Skill tool for the work completed in this session (the task itself, not the context save) and follow it through — its own approval dialog, work/private split and confirmation apply unchanged. The user declining there is fine.
 
-## 7. Summarize
-
-Finish with a short summary: files updated, memory written, commit hash or "uncommitted", logged or not.
+No closing summary: the last message names only what failed or is still open.
